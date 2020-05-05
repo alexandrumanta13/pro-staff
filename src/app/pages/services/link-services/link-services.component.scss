@@ -1,0 +1,15 @@
+ul {
+    margin: 40px 0;
+
+    li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        img {
+            width: 20px;
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,115 @@
+	<!-- Header Section -->
+	<header id="header-section" class="header-section">
+
+	  <!-- Logo Block -->
+	  <div class="logo-block">
+	    <!-- container -->
+	    <div class="container">
+	      <div class="row">
+	        <!-- col-md-2 -->
+	        <div class="col-md-3 col-sm-4">
+	          <a title="Curatenie perfecta" (click)="toggleLink($event, '/')"><img
+	              src="/assets/images/logo-curatenie-perfecta.png" alt="Curatenie perfecta" /></a>
+	        </div><!-- col-md-2 /- -->
+	        <!-- col-md-4 -->
+	        <div class="col-md-6 col-sm-8 pull-right row">
+	          <!-- col-md-7 -->
+	          <div class="col-md-12 col-sm-6  call-us">
+	            <img src="/assets/images/icon/mobile-icon.svg" alt="mobile-icon" />
+	            <p>Suna pentru curatenie!<span><a href="tel:+40747171409">(0747) 171 409</a> </span></p>
+	          </div><!-- col-md-7 /- -->
+
+
+	        </div><!-- col-md-4 /- -->
+	      </div>
+	    </div>
+	  </div><!-- Logo Block /- -->
+
+	  <!-- Menu Block -->
+	  <div class="menu-block">
+	    <div class="container">
+	      <div class="row">
+	        <!-- col-md-8 -->
+	        <nav class="navbar navbar-default col-md-9">
+	          <!-- Brand and toggle get grouped for better mobile display -->
+	          <div class="navbar-header">
+	            <button id="collapseMenu" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+	              data-target="#bs-example-navbar-collapse-1">
+	              <span class="sr-only">Toggle navigation</span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	            </button>
+	            <a (click)="toggleLink($event, '/')"><img src="/assets/images/logo-curatenie-perfecta.png"
+	                alt="Curatenie perfecta"></a>
+	          </div>
+	          <!-- Collect the nav links, forms, and other content for toggling -->
+	          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            <ul class="nav navbar-nav">
+	              <li class="active parent-link">
+	                <a title="Acasa" (click)="toggleLink($event, '/')" class="dropdown-toggle">Acasa</a>
+	              </li>
+
+	              <li class="dropdown parent-link">
+	                <a title="Servicii curatenie" (click)="toggleLink($event, '/servicii-curatenie')"
+	                  class="dropdown-toggle" data-toggle="dropdown">Servicii Curatenie</a>
+	                <ul class="dropdown-menu" role="menu">
+	                  <li><a title="Curatenie Birouri" (click)="toggleLink($event, '/curatenie-birouri')">Curatenie
+	                      Birouri</a></li>
+	                  <li><a title="Curatenie la Domiciliu"
+	                      (click)="toggleLink($event, '/curatenie-la-domiciliu')">Curatenie la Domiciliu</a></li>
+	                  <li><a title="Curatenie Spatii Comerciale"
+	                      (click)="toggleLink($event, '/curatenie-spatii-comerciale')">Curatenie Spatii
+	                      Comerciale</a></li>
+	                  <li><a title="Curatenie Spatii Industriale"
+	                      (click)="toggleLink($event, '/curatenie-spatii-industriale')">Curatenie Spatii
+	                      Industriale</a></li>
+	                  <li><a title="Curatenie dupa Constructor"
+	                      (click)="toggleLink($event, '/curatenie-dupa-constructor')">Curatenie dupa
+	                      Constructor</a></li>
+	                  <li><a title="Curatenie dupa Evenimente"
+	                      (click)="toggleLink($event, '/curatenie-dupa-evenimente')">Curatenie dupa
+	                      Evenimente</a></li>
+
+	                </ul>
+	              </li>
+	              <li class="dropdown parent-link">
+	                <a title="Curatare" class="dropdown-toggle" data-toggle="dropdown">Curatare</a>
+	                <ul class="dropdown-menu" role="menu">
+	                  <li><a title="Canapele si Fotolii" (click)="toggleLink($event, '/curatare-canapele')">Canapele si
+	                      Fotolii</a></li>
+	                  <li><a title="Mocheta si Covor" (click)="toggleLink($event, '/curatare-mocheta-covor')">Mocheta si
+	                      Covor</a></li>
+	                  <li><a title="Spalare Mecanizata Podele"
+	                      (click)="toggleLink($event, '/spalare-mecanizata-podele')">Spalare Mecanizata
+	                      Podele</a></li>
+	                  <li><a title="Curatenie in Masina"
+	                      (click)="toggleLink($event, '/curatare-tapiterie-auto-detailing')">Curatenie in Masina</a></li>
+	                </ul>
+	              </li>
+	              <li class="parent-link"><a title="Preturi" (click)="toggleLink($event, '/preturi')">Preturi</a></li>
+	              <li class="parent-link"><a title="Utile" (click)="toggleLink($event, '/utile')">Utile</a></li>
+	              <li class="parent-link"><a title="Despre noi" (click)="toggleLink($event, '/despre-noi')">Despre noi</a>
+	              </li>
+	              <li class="parent-link"><a title="Contact" (click)="toggleLink($event, '/contact')">Contact</a></li>
+	              <!-- <li>
+	                <a title="Search" href="#"><i class="fa fa-search"></i></a>
+	                <div id="sb-search" class="sb-search">
+	                  <form>
+	                    <input class="sb-search-input" placeholder="Enter your search term..." type="text" value=""
+	                      name="search" id="search">
+	                    <button class="sb-search-submit"></button>
+	                    <span class="sb-icon-search"></span>
+	                  </form>
+	                </div>
+	              </li> -->
+	            </ul>
+	          </div><!-- /.navbar-collapse -->
+	        </nav><!-- col-md-8 /- -->
+	        <div class="quote">
+	          <a title="CERE O ESTIMARE GRATUITA" data-toggle="modal" data-target="#openModal">CERE O ESTIMARE GRATUITA</a>
+	        </div>
+	      </div>
+	    </div><!-- /.container -->
+	  </div><!-- Menu Block /- -->
+	</header><!-- Header Section /- -->

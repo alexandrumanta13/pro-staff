@@ -1,0 +1,148 @@
+.subslider-section {
+  display: flex;
+  background-color: #09aa42;
+  padding: 20px 0;
+ 
+
+  .container {
+    display: flex;
+    align-items: center;
+    @media (max-width: 991px) {
+      flex-direction: column;
+    }
+
+    h3 {
+      color: #fff;
+      margin: 0;
+      @media (max-width: 991px) {
+        margin: 20px;
+        text-align: center;
+      }
+    }
+
+    a {
+      margin: 0 auto;
+      display: inline-block;
+      background-color: #f3e721;
+      border: 2px solid #f3e721;
+      box-shadow: 0 4px 0 rgba(243, 231, 33, .25);
+      padding: 7px 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #333;
+      transition: all ease 0.5s;
+
+      &:hover {
+        box-shadow: 0 4px 0 rgba(3, 49, 46, .25);
+        background-color: #03312e;
+        border: 2px solid #03312e;
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+.service-section {
+  margin-top: 60px;
+
+  .container {
+    padding: 60px 0;
+    border-top: 1px solid #ddd;
+    
+  }
+
+  .section-header {
+    h1 {
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      padding-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    margin-top: 0;
+    .container {
+      padding: 0;
+    }
+
+    
+  }
+
+  .img {
+
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+  }
+
+  @media (max-width: 991px) {
+    .service-content {
+      padding: 16px;
+      .section-header {
+        margin: 40px 0;
+      }
+    }
+    
+
+  }
+
+  .service-content-box {
+    margin-left: 40px;
+
+    @media (max-width: 991px) {
+      
+        margin-left: 0;
+      
+      
+    }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+
+        li {
+          flex-basis: 50%;
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          img {
+            width: 20px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+  }
+
+
+  .service-carousel {
+    background-color: #f6f6f6;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .container {
+      border: none;
+      @media (max-width: 991px) {
+        width: 100%;
+        .section-header {
+          padding: 0 16px;
+        }
+      }
+    }
+  }
+
+
+
+  .section-clean {
+    background-color: #f6f6f6;
+  }

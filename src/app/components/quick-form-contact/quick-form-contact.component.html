@@ -1,0 +1,85 @@
+<!-- <form [formGroup]="form" (ngSubmit)="submit()">
+          
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+            formControlName="name"
+            id="name" 
+            type="text" 
+            class="form-control">
+        <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+            <div *ngIf="f.name.errors.required">Name is required.</div>
+            <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+            formControlName="email"
+            id="email" 
+            type="text" 
+            class="form-control">
+        <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+            <div *ngIf="f.email.errors.required">Email is required.</div>
+            <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea 
+            formControlName="body"
+            id="body" 
+            type="text" 
+            class="form-control">
+        </textarea>
+        <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
+            <div *ngIf="f.body.errors.required">Body is required.</div>
+        </div>
+    </div>
+  
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+</form> -->
+
+<form id="quick-contact" class="contact-form col-md-4" [formGroup]="form" (ngSubmit)="submit()">
+  <h3> Folosim dezinfectant <span>avizat de Ministerul Sanatatii </span></h3>
+  <div class="form-control">
+    <div class="row">
+      <div class="form-group col-md-6 col-xs-12">
+        <input formControlName="name" id="name" type="text" class="form-control" placeholder="Nume">
+        <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+          <div *ngIf="f.name.errors.required">Introduceti numele</div>
+          <div *ngIf="f.name.errors.minlength">Numele trebuie sa contina cel putin 3 litere</div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 col-xs-12">
+        <input formControlName="email" id="email" type="text" class="form-control " placeholder="Email">
+        <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+          <div *ngIf="f.email.errors.required">Introduceti emailul</div>
+          <div *ngIf="f.email.errors.minlength">Formatul nu este corect</div>
+          <div *ngIf="f.email.errors.required">Formatul nu este corect</div>
+        </div>
+      </div>
+      <div class="form-group col-md-12 col-xs-12">
+        <input formControlName="phone" id="phone" type="text" class="form-control" placeholder="Telefon">
+        <div *ngIf="f.phone.touched && f.phone.invalid" class="alert alert-danger">
+          <div *ngIf="f.phone.errors.required">Introduceti numarul</div>
+          <div *ngIf="f.phone.errors.pattern">Telefonul nu are formatul corect</div>
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="form-group">
+      <textarea formControlName="body" id="body" name="quick-message"
+        placeholder="Ce vrei sa curatam impecabil?"></textarea>
+      <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
+        <div *ngIf="f.body.errors.required">Introduceti mesajul</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Trimite</button>
+  </div>
+  <div id="alert-msg" class="alert-msg"></div>
+</form>

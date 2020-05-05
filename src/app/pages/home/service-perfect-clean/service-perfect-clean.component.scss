@@ -1,0 +1,44 @@
+.section-perfect-clean {
+  h1 {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  &__inner {
+    background-color: #f6f6f6;
+
+    .container {
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 991px) {
+        flex-direction: column;
+      }
+
+      ul {
+        li {
+          margin-bottom: 40px;
+
+          @media (max-width: 991px) {
+            margin: 40px 0;
+          }
+
+          .title {
+            display: flex;
+            align-items: center;
+            color: #09aa42;
+          }
+
+          img {
+            width: 40px;
+            margin-right: 10px;
+          }
+
+          p {
+            margin-top: 16px;
+          }
+        }
+      }
+    }
+  }
+}
