@@ -36,7 +36,7 @@ export class FormContactCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.endpoint = "https://curatenieperfecta.ro/data/sendEmail.php";
+    this.endpoint = "https://pro-staff.ro/data/sendEmail.php";
   }
 
   submit() {

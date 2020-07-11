@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "curatenieperfecta": {
+    "pro-staff": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/curatenieperfecta",
+            "outputPath": "dist/pro-staff",
            
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -32,39 +32,12 @@
             ],
             "styles": [
               
-              "src/assets/libraries/bootstrap/bootstrap.min.css",
-              "src/assets/libraries/fuelux/jquery-ui.min.css",
-              "src/assets/libraries/owl-carousel/owl.carousel.css", 
-              "src/assets/libraries/owl-carousel/owl.theme.css", 
-              "src/assets/libraries/fonts/font-awesome.min.css",
-              "src/assets/libraries/animate/animate.min.css",
-              "src/assets/libraries/flexslider/flexslider.css" , 
-              "src/assets/libraries/magnific-popup.css" ,
-              "src/assets/css/components.css",
-              "src/assets/style.css",
-              "src/assets/css/media.css",
+              
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/libraries/jquery.min.js",	
-              "src/assets/libraries/jquery.easing.min.js",
-              "src/assets/libraries/bootstrap/bootstrap.min.js",
-              "src/assets/smtp.js",	
-              "src/assets/libraries/gmap/jquery.gmap.min.js",
-              "src/assets/libraries/fuelux/jquery-ui.min.js",
-              "src/assets/libraries/jquery.animateNumber.min.js",
-              "src/assets/libraries/jquery.appear.js",
-              "src/assets/libraries/jquery.knob.js",
-              "src/assets/libraries/wow.min.js",
-              "src/assets/libraries/owl-carousel/owl.carousel.min.js",
-              "src/assets/libraries/portfolio-filter/jquery.quicksand.js",
-              "src/assets/libraries/expanding-search/modernizr.custom.js",
-              "src/assets/libraries/flexslider/jquery.flexslider-min.js",
-              "src/assets/libraries/jquery.magnific-popup.min.js",
-              "src/assets/libraries/expanding-search/modernizr.custom.js",
-              "src/assets/libraries/expanding-search/classie.js",
-              "src/assets/libraries/expanding-search/uisearch.js",
-              "src/assets/js/functions.js"
+              
+              "src/assets/smtp.js"
             ]
           },
           "configurations": {
@@ -103,18 +76,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "curatenieperfecta:build"
+            "browserTarget": "pro-staff:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "curatenieperfecta:build:production"
+              "browserTarget": "pro-staff:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "curatenieperfecta:build"
+            "browserTarget": "pro-staff:build"
           }
         },
         "test": {
@@ -152,15 +125,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "curatenieperfecta:serve"
+            "devServerTarget": "pro-staff:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "curatenieperfecta:serve:production"
+              "devServerTarget": "pro-staff:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "curatenieperfecta"
+  "defaultProject": "pro-staff"
 }

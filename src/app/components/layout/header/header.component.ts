@@ -13,8 +13,9 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleLink(event, link) {
-    const links = document.querySelectorAll('.active');
     console.log(link)
+    const links = document.querySelectorAll('.active');
+    
     for (let i = 0; i < links.length; i++) {
       links[i].classList.remove('active');
     }

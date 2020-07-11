@@ -8,7 +8,7 @@
 	      <div class="row">
 	        <!-- col-md-2 -->
 	        <div class="col-md-3 col-sm-4">
-	          <a title="Curatenie perfecta" (click)="toggleLink($event, '/')"><img
+	          <a title="Curatenie perfecta" [routerLink]="['/']"><img
 	              src="/assets/images/logo-curatenie-perfecta.png" alt="Curatenie perfecta" /></a>
 	        </div><!-- col-md-2 /- -->
 	        <!-- col-md-4 -->
@@ -16,7 +16,7 @@
 	          <!-- col-md-7 -->
 	          <div class="col-md-12 col-sm-6  call-us">
 	            <img src="/assets/images/icon/mobile-icon.svg" alt="mobile-icon" />
-	            <p>Suna pentru curatenie!<span><a href="tel:+40747171409">(0747) 171 409</a> </span></p>
+	            <p>Suna pentru curatenie!<span><a href="tel:+40744192411">(0744) 192 411</a> </span></p>
 	          </div><!-- col-md-7 /- -->
 
 
@@ -40,14 +40,15 @@
 	              <span class="icon-bar"></span>
 	              <span class="icon-bar"></span>
 	            </button>
-	            <a (click)="toggleLink($event, '/')"><img src="/assets/images/logo-curatenie-perfecta.png"
+				<a [routerLink]="['/']">
+					<img src="/assets/images/logo-curatenie-perfecta.png"
 	                alt="Curatenie perfecta"></a>
 	          </div>
 	          <!-- Collect the nav links, forms, and other content for toggling -->
 	          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	            <ul class="nav navbar-nav">
 	              <li class="active parent-link">
-	                <a title="Acasa" (click)="toggleLink($event, '/')" class="dropdown-toggle">Acasa</a>
+	                <a title="Acasa" class="dropdown-toggle" (click)="toggleLink($event, '/')">Acasa</a>
 	              </li>
 
 	              <li class="dropdown parent-link">

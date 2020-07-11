@@ -46,6 +46,7 @@ import { CookiesComponent } from './pages/cookies/cookies.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { PricesComponent } from './pages/prices/prices.component';
+import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
   
 
 @NgModule({
@@ -87,7 +88,8 @@ import { PricesComponent } from './pages/prices/prices.component';
     CookiesComponent,
     TermsComponent,
     ThankYouComponent,
-    PricesComponent
+    PricesComponent,
+    WhatsappComponent
   ],
   imports: [
     BrowserModule,

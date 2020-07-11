@@ -59,7 +59,9 @@ a:hover {
       }
     }
   }
-
+  .navbar-default .navbar-nav > li .dropdown-menu li a {
+    text-transform: none;
+  }
 }
 
 @media only screen and (max-width: 767px) and (min-width: 319px) {
