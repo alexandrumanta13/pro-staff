@@ -1,0 +1,31 @@
+#scroll-top{
+    background-color: $color-primary;
+}
+
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: $color-primary;
+    border-color: $color-primary;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    border-color: $color-primary;
+}
+
+.product-section-slider::after, .product-section-slider::before {
+    border-top-color: $color-primary;
+}
+
+.cart-dropdown .product-title {
+    margin-right: 10px;
+}
+
+.sticky-header.fixed {
+    background-color: $color-primary;
+}
+
+@media screen and (max-width: 767px) {
+    .header-middle .header-right {
+        margin-bottom: 0;
+    }
+}

@@ -1,4 +1,17 @@
-.call-us {
-    display: flex;
-    justify-content: flex-end;
+
+
+
+.logo-sticky {
+    display: none;
 }
+
+.fixed {
+    .logo-sticky {
+        display: flex;
+    }
+
+    .logo-not-sticky {
+        display: none;
+    }
+}
+

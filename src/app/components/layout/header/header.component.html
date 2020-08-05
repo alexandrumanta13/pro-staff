@@ -1,116 +1,220 @@
-	<!-- Header Section -->
-	<header id="header-section" class="header-section">
+<header class="header header-transparent">
+	<div class="header-middle sticky-header">
+		<div class="container-fluid">
+			<div class="header-left">
+				<a href="index.html" class="logo">
+					<img class="logo-not-sticky" src="assets/images/logo-transparent-1.png" alt="Pro Staff">
+					<img class="logo-sticky" src="assets/images/logo.png" alt="Pro Staff">
+				</a>
+			</div><!-- End .header-left -->
 
-	  <!-- Logo Block -->
-	  <div class="logo-block">
-	    <!-- container -->
-	    <div class="container">
-	      <div class="row">
-	        <!-- col-md-2 -->
-	        <div class="col-md-3 col-sm-4">
-	          <a title="Curatenie perfecta" [routerLink]="['/']"><img
-	              src="/assets/images/logo-curatenie-perfecta.png" alt="Curatenie perfecta" /></a>
-	        </div><!-- col-md-2 /- -->
-	        <!-- col-md-4 -->
-	        <div class="col-md-6 col-sm-8 pull-right row">
-	          <!-- col-md-7 -->
-	          <div class="col-md-12 col-sm-6  call-us">
-	            <img src="/assets/images/icon/mobile-icon.svg" alt="mobile-icon" />
-	            <p>Suna pentru curatenie!<span><a href="tel:+40744192411">(0744) 192 411</a> </span></p>
-	          </div><!-- col-md-7 /- -->
+			<div class="header-center">
+				<nav class="main-nav">
+					<ul class="menu sf-arrows">
+						<li>
+							<a href="#" class="sf-with-ul">Produse</a>
+							<!-- <ul>
+								<li><a href="">Home</a></li>
+								<li><a href="category.html">Categories</a>
+									<ul>
+										<li><a href="#">Variations 1</a>
+											<ul>
+												<li><a href="category-banner-full-width.html">Fullwidth Banner<span class="tip tip-hot">Hot!</span></a></li>
+												<li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
+												<li><a href="category-banner-boxed-image.html">Boxed Image Banner</a></li>
+												<li><a href="category-sidebar-left.html">Left Sidebar</a></li>
+												<li><a href="category-sidebar-right.html">Right Sidebar</a></li>
+												<li><a href="category-flex-grid.html">Product Flex Grid</a></li>
+												<li><a href="category-horizontal-filter1.html">Horizontal Filter 1</a></li>
+												<li><a href="category-horizontal-filter2.html">Horizontal Filter 2</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Variations 2</a>
+											<ul>
+												<li><a href="#">Product List Item Types</a></li>
+												<li><a href="category-infinite-scroll.html">Ajax Infinite Scroll</a></li>
+												<li><a href="category-3col.html">3 Columns Products</a></li>
+												<li><a href="category-4col.html">4 Columns Products <span class="tip tip-new">New</span></a></li>
+												<li><a href="category-5col.html">5 Columns Products</a></li>
+												<li><a href="category-6col.html">6 Columns Products</a></li>
+												<li><a href="category-7col.html">7 Columns Products</a></li>
+												<li><a href="category-8col.html">8 Columns Products</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li><a href="product.html">Products</a>
+									<ul>
+										<li><a href="#">Variations</a>
+											<ul>
+												<li><a href="product.html">Horizontal Thumbnails</a></li>
+												<li><a href="product-full-width.html">Vertical Thumbnails<span class="tip tip-hot">Hot!</span></a></li>
+												<li><a href="product.html">Inner Zoom</a></li>
+												<li><a href="product-addcart-sticky.html">Addtocart Sticky</a></li>
+												<li><a href="product-sidebar-left.html">Accordion Tabs</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Variations</a>
+											<ul>                                                        
+												<li><a href="product-sticky-tab.html">Sticky Tabs</a></li>
+												<li><a href="product-simple.html">Simple Product</a></li>
+												<li><a href="product-sidebar-left.html">With Left Sidebar</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Product Layout Types</a>
+											<ul>
+												<li><a href="product.html">Default Layout</a></li>
+												<li><a href="product-extended-layout.html">Extended Layout</a></li>
+												<li><a href="product-full-width.html">Full Width Layout</a></li>
+												<li><a href="product-grid-layout.html">Grid Images Layout</a></li>
+												<li><a href="product-sticky-both.html">Sticky Both Side Info<span class="tip tip-hot">Hot!</span></a></li>
+												<li><a href="product-sticky-info.html">Sticky Right Side Info</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li><a href="#">Pages</a>
+									<ul>
+										<li><a href="cart.html">Shopping Cart</a></li>
+										<li><a href="#">Checkout</a>
+											<ul>
+												<li><a href="checkout-shipping.html">Checkout Shipping</a></li>
+												<li><a href="checkout-shipping-2.html">Checkout Shipping 2</a></li>
+												<li><a href="checkout-review.html">Checkout Review</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Dashboard</a>
+											<ul>
+												<li><a href="dashboard.html">Dashboard</a></li>
+												<li><a href="my-account.html">My Account</a></li>
+											</ul>
+										</li>
+										<li><a href="about.html">About Us</a></li>
+										<li><a href="#">Blog</a>
+											<ul>
+												<li><a href="blog.html">Blog</a></li>
+												<li><a href="single.html">Blog Post</a></li>
+											</ul>
+										</li>
+										<li><a href="contact.html">Contact Us</a></li>
+										<li><a href="#" class="login-link">Login</a></li>
+										<li><a href="forgot-password.html">Forgot Password</a></li>
+									</ul>
+								</li>
+								<li><a href="#" class="sf-with-ul">Features</a>
+									<ul>
+										<li><a href="#">Header Types</a></li>
+										<li><a href="#">Footer Types</a></li>
+									</ul>
+								</li>
+							</ul> -->
+						</li>
+						<li><a href="#">Despre noi</a></li>
+						<li><a href="#">Proiecte</a></li>
+						<li><a href="#">Noutati</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</nav>
 
+				<div class="header-contact">
+					<i class="icon-phone"></i>
+					<a href="tel:#">0721.203.933</a>
+				</div><!-- End .header-contact -->
+			</div><!-- End .header-center -->
 
-	        </div><!-- col-md-4 /- -->
-	      </div>
-	    </div>
-	  </div><!-- Logo Block /- -->
+			<div class="header-right">
+				<button class="mobile-menu-toggler" type="button">
+					<i class="icon-menu"></i>
+				</button>
+				<div class="header-search header-search-popup header-search-category d-none d-sm-block">
+					<a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
+					<form action="#" method="get">
+						<div class="header-search-wrapper show">
+							<input type="search" class="form-control" name="q" id="q" placeholder="I'm searching for..." required="">
+							<div class="select-custom">
+								<select id="cat" name="cat">
 
-	  <!-- Menu Block -->
-	  <div class="menu-block">
-	    <div class="container">
-	      <div class="row">
-	        <!-- col-md-8 -->
-	        <nav class="navbar navbar-default col-md-9">
-	          <!-- Brand and toggle get grouped for better mobile display -->
-	          <div class="navbar-header">
-	            <button id="collapseMenu" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-	              data-target="#bs-example-navbar-collapse-1">
-	              <span class="sr-only">Toggle navigation</span>
-	              <span class="icon-bar"></span>
-	              <span class="icon-bar"></span>
-	              <span class="icon-bar"></span>
-	            </button>
-				<a [routerLink]="['/']">
-					<img src="/assets/images/logo-curatenie-perfecta.png"
-	                alt="Curatenie perfecta"></a>
-	          </div>
-	          <!-- Collect the nav links, forms, and other content for toggling -->
-	          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	            <ul class="nav navbar-nav">
-	              <li class="active parent-link">
-	                <a title="Acasa" class="dropdown-toggle" (click)="toggleLink($event, '/')">Acasa</a>
-	              </li>
+									<option value="">Toate categoriile</option>
+									<option value="4">VOPSEA LAVABILA</option>
+									<option value="4">VOPSEA DECORATIVA</option>
+									<option value="4">VOPSEA METAL</option>
+									<option value="4">PENTRU LEMN</option>
+									<option value="4">VOPSEA PARDOSEALA</option>
+									<option value="4">VOPSEA CERAMICA</option>
+									<option value="4">HIDROIZOLATII</option>
+									<option value="4">CAMERE COPII</option>
+									<option value="4">APARATE ȘI SCULE DE VOPSIT</option>
+									
+								</select>
+							</div><!-- End .select-custom -->
+							<button class="btn icon-search-3" type="submit"></button>
+						</div><!-- End .header-search-wrapper -->
+					</form>
+				</div>
 
-	              <li class="dropdown parent-link">
-	                <a title="Servicii curatenie" (click)="toggleLink($event, '/servicii-curatenie')"
-	                  class="dropdown-toggle" data-toggle="dropdown">Servicii Curatenie</a>
-	                <ul class="dropdown-menu" role="menu">
-	                  <li><a title="Curatenie Birouri" (click)="toggleLink($event, '/curatenie-birouri')">Curatenie
-	                      Birouri</a></li>
-	                  <li><a title="Curatenie la Domiciliu"
-	                      (click)="toggleLink($event, '/curatenie-la-domiciliu')">Curatenie la Domiciliu</a></li>
-	                  <li><a title="Curatenie Spatii Comerciale"
-	                      (click)="toggleLink($event, '/curatenie-spatii-comerciale')">Curatenie Spatii
-	                      Comerciale</a></li>
-	                  <li><a title="Curatenie Spatii Industriale"
-	                      (click)="toggleLink($event, '/curatenie-spatii-industriale')">Curatenie Spatii
-	                      Industriale</a></li>
-	                  <li><a title="Curatenie dupa Constructor"
-	                      (click)="toggleLink($event, '/curatenie-dupa-constructor')">Curatenie dupa
-	                      Constructor</a></li>
-	                  <li><a title="Curatenie dupa Evenimente"
-	                      (click)="toggleLink($event, '/curatenie-dupa-evenimente')">Curatenie dupa
-	                      Evenimente</a></li>
+				<div class="dropdown cart-dropdown">
+					<a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+						<span class="cart-count">2</span>
+					</a>
 
-	                </ul>
-	              </li>
-	              <li class="dropdown parent-link">
-	                <a title="Curatare" class="dropdown-toggle" data-toggle="dropdown">Curatare</a>
-	                <ul class="dropdown-menu" role="menu">
-	                  <li><a title="Canapele si Fotolii" (click)="toggleLink($event, '/curatare-canapele')">Canapele si
-	                      Fotolii</a></li>
-	                  <li><a title="Mocheta si Covor" (click)="toggleLink($event, '/curatare-mocheta-covor')">Mocheta si
-	                      Covor</a></li>
-	                  <li><a title="Spalare Mecanizata Podele"
-	                      (click)="toggleLink($event, '/spalare-mecanizata-podele')">Spalare Mecanizata
-	                      Podele</a></li>
-	                  <li><a title="Curatenie in Masina"
-	                      (click)="toggleLink($event, '/curatare-tapiterie-auto-detailing')">Curatenie in Masina</a></li>
-	                </ul>
-	              </li>
-	              <li class="parent-link"><a title="Preturi" (click)="toggleLink($event, '/preturi')">Preturi</a></li>
-	              <li class="parent-link"><a title="Utile" (click)="toggleLink($event, '/utile')">Utile</a></li>
-	              <li class="parent-link"><a title="Despre noi" (click)="toggleLink($event, '/despre-noi')">Despre noi</a>
-	              </li>
-	              <li class="parent-link"><a title="Contact" (click)="toggleLink($event, '/contact')">Contact</a></li>
-	              <!-- <li>
-	                <a title="Search" href="#"><i class="fa fa-search"></i></a>
-	                <div id="sb-search" class="sb-search">
-	                  <form>
-	                    <input class="sb-search-input" placeholder="Enter your search term..." type="text" value=""
-	                      name="search" id="search">
-	                    <button class="sb-search-submit"></button>
-	                    <span class="sb-icon-search"></span>
-	                  </form>
-	                </div>
-	              </li> -->
-	            </ul>
-	          </div><!-- /.navbar-collapse -->
-	        </nav><!-- col-md-8 /- -->
-	        <div class="quote">
-	          <a title="CERE O ESTIMARE GRATUITA" data-toggle="modal" data-target="#openModal">CERE O ESTIMARE GRATUITA</a>
-	        </div>
-	      </div>
-	    </div><!-- /.container -->
-	  </div><!-- Menu Block /- -->
-	</header><!-- Header Section /- -->
+					<div class="dropdown-menu" >
+						<div class="dropdownmenu-wrapper">
+							<div class="dropdown-cart-products">
+								<div class="product">
+									<div class="product-details">
+										<h4 class="product-title">
+											<a href="#">DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA SOLVENT</a>
+										</h4>
+
+										<span class="cart-product-info">
+											<span class="cart-product-qty">1</span>
+											x 51.90 lei
+										</span>
+									</div><!-- End .product-details -->
+
+									<figure class="product-image-container">
+										<a href="#" class="product-image">
+											<img src="https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg" alt="product">
+										</a>
+										<a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+									</figure>
+								</div><!-- End .product -->
+
+								<div class="product">
+									<div class="product-details">
+										<h4 class="product-title">
+											<a href="#">Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural</a>
+										</h4>
+
+										<span class="cart-product-info">
+											<span class="cart-product-qty">1</span>
+											x 34.90 lei
+										</span>
+									</div><!-- End .product-details -->
+
+									<figure class="product-image-container">
+										<a href="#" class="product-image">
+											<img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
+										</a>
+										<a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+									</figure>
+								</div><!-- End .product -->
+							</div><!-- End .cart-product -->
+
+							<div class="dropdown-cart-total">
+								<span>Total</span>
+
+								<span class="cart-total-price">134 lei</span>
+							</div><!-- End .dropdown-cart-total -->
+
+							<div class="dropdown-cart-action">
+								<a href="cart.html" class="btn btn-orange">Vezi cos</a>
+								<a href="checkout-shipping.html" class="btn btn-orange">Finalizeaza</a>
+							</div><!-- End .dropdown-cart-total -->
+						</div><!-- End .dropdownmenu-wrapper -->
+					</div><!-- End .dropdown-menu -->
+				</div><!-- End .dropdown -->
+			</div><!-- End .header-right -->
+		</div><!-- End .container-fluid -->
+	</div><!-- End .header-middle -->
+</header><!-- End .header -->

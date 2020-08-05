@@ -1,0 +1,36 @@
+.btn {
+  &.btn-orange {
+    border-color: $color-primary;
+    background-color: $color-primary;
+    color: $color-white;
+    opacity: 1;
+
+    &:hover,
+    &:focus {
+      border-color: rgba($color-primary, 0.85);
+      background-color: rgba($color-primary, 0.85);
+      color: $color-white;
+    }
+  }
+}
+
+.btn-quickview {
+
+  background-color: $color-primary;
+  color: $color-white;
+
+}
+
+.btn-outline-dark {
+  border-color: $color-primary;
+
+  color: $color-primary;
+
+  &:hover,
+  &:focus {
+    border-color: $color-primary;
+    background-color: $color-primary;
+    color: $color-white;
+  }
+}
+
