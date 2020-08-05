@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: '', component: HomeComponent,
     data: {
-      title: 'Curatenie perfecta',
+      title: 'Pro staff',
       description: 'Description Meta Tag Content',
       ogUrl: 'your og url'
     }
@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'setari-gdpr', component: GdprComponent,
     data: {
       title: 'Setari GDPR',
-      description: 'Apeleaza la servicii profesionale de curatare mocheta si covor la domiciliu. Suntem o firma de curatenie ce oferim servicii in Bucuresti si Ilfov. Preturi competitive.',
+      description: '',
       ogUrl: 'your og url'
     }
   },
@@ -33,7 +33,7 @@ const routes: Routes = [
     path: 'confidentialitate', component: ConfidentialityComponent,
     data: {
       title: 'Confidentialitate',
-      description: 'Apeleaza la servicii profesionale de curatare mocheta si covor la domiciliu. Suntem o firma de curatenie ce oferim servicii in Bucuresti si Ilfov. Preturi competitive.',
+      description: '',
       ogUrl: 'your og url'
     }
   },
@@ -41,7 +41,7 @@ const routes: Routes = [
     path: 'setari-cookies', component: CookiesComponent,
     data: {
       title: 'Setari cookies',
-      description: 'Apeleaza la servicii profesionale de curatare mocheta si covor la domiciliu. Suntem o firma de curatenie ce oferim servicii in Bucuresti si Ilfov. Preturi competitive.',
+      description: '',
       ogUrl: 'your og url'
     }
   },
@@ -49,7 +49,7 @@ const routes: Routes = [
     path: 'termeni-si-conditii', component: TermsComponent,
     data: {
       title: 'Termeni si conditii',
-      description: 'Apeleaza la servicii profesionale de curatare mocheta si covor la domiciliu. Suntem o firma de curatenie ce oferim servicii in Bucuresti si Ilfov. Preturi competitive.',
+      description: '',
       ogUrl: 'your og url'
     }
   },
@@ -57,7 +57,7 @@ const routes: Routes = [
     path: 'contact', component: ContactComponent,
     data: {
       title: 'Contact',
-      description: 'Apeleaza la servicii profesionale de curatare mocheta si covor la domiciliu. Suntem o firma de curatenie ce oferim servicii in Bucuresti si Ilfov. Preturi competitive.',
+      description: '',
       ogUrl: 'your og url'
     }
   },
