@@ -27,12 +27,15 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets/images"
+              "src/assets/images",
+              "src/app/admin/resources/angular-material-elements"
             ],
             "styles": [
               
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/style.min.css",
+              "src/assets/icons/meteocons/style.css",
+              "src/assets/icons/material-icons/outline/style.css",
               "src/styles.scss"
             ],
             "scripts": [
