@@ -475,38 +475,40 @@
       //QuickView Popup
       $('a.btn-quickview').on('click', function (e) {
         e.preventDefault();
-        Porto.ajaxLoading();
-        var ajaxUrl = $(this).attr('href');
-        setTimeout(function () {
-          $.magnificPopup.open({
-            type: 'ajax',
-            mainClass: "mfp-ajax-product",
-            tLoading: '',
-            preloader: false,
-            removalDelay: 50,
-            items: {
-              src: ajaxUrl
-            },
-            callbacks: {
-              ajaxContentAdded: function () {
-                Porto.owlCarousels();
-                Porto.quantityInputs();
-                if (typeof addthis !== 'undefined') {
-                  addthis.layers.refresh();
-                }
-                else {
-                  $.getScript("https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b927288a03dbde6");
-                }
-              },
-              beforeClose: function () {
-                $('.ajax-overlay').fadeOut(200, function() {$(this).remove()});
-              }
-            },
-            ajax: {
-              tError: '',
-            }
-          });
-        }, 1500);
+        Porto.owlCarousels();
+      //  Porto.quantityInputs();
+        // Porto.ajaxLoading();
+        // var ajaxUrl = $(this).attr('href');
+        // setTimeout(function () {
+        //   $.magnificPopup.open({
+        //     type: 'ajax',
+        //     mainClass: "mfp-ajax-product",
+        //     tLoading: '',
+        //     preloader: false,
+        //     removalDelay: 50,
+        //     items: {
+        //       src: ajaxUrl
+        //     },
+        //     callbacks: {
+        //       ajaxContentAdded: function () {
+        //         Porto.owlCarousels();
+        //         Porto.quantityInputs();
+        //         if (typeof addthis !== 'undefined') {
+        //           addthis.layers.refresh();
+        //         }
+        //         else {
+        //           $.getScript("https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b927288a03dbde6");
+        //         }
+        //       },
+        //       beforeClose: function () {
+        //         $('.ajax-overlay').fadeOut(200, function() {$(this).remove()});
+        //       }
+        //     },
+        //     ajax: {
+        //       tError: '',
+        //     }
+        //   });
+        // }, 1500);
       });
     },
     productTabSroll: function () {

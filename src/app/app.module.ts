@@ -31,7 +31,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { SliderComponent } from './pages/home/slider/slider.component';
 import { MobileMenuComponent } from './components/layout/mobile-menu/mobile-menu.component';
 import { ProductQuickViewComponent } from './components/layout/product-quick-view/product-quick-view.component';
+import { ProductsComponent } from './components/products/products.component';
+import { FeaturedProductsComponent } from './components/products/featured-products/featured-products.component';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 
+
+import { OwlModule } from 'ngx-owl-carousel';
+import { CartComponent } from './components/cart/cart.component';
   
 
 @NgModule({
@@ -54,6 +60,10 @@ import { ProductQuickViewComponent } from './components/layout/product-quick-vie
     SliderComponent,
     MobileMenuComponent,
     ProductQuickViewComponent,
+    ProductsComponent,
+    FeaturedProductsComponent,
+    ProductDetailsComponent,
+    CartComponent,
     
   ],
   imports: [
@@ -63,6 +73,7 @@ import { ProductQuickViewComponent } from './components/layout/product-quick-vie
     HttpClientModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    OwlModule
    // AdminModule
   ],
   exports: [

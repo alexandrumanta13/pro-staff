@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../components/products/product.model'
+
+import { ActivatedRoute } from '@angular/router';
+
+import { Product } from '../../products/product.model'
+
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit {
 
-  products: Product[]
-  constructor() {
+  product;
+  products: Product[];
+  constructor(private route: ActivatedRoute) {
     this.products = [
       new Product(
         'Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural',
@@ -63,6 +68,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.product = this.products[+params.get('productId')];
+    });
   }
 
 }

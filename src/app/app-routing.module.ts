@@ -9,6 +9,8 @@ import { ConfidentialityComponent } from './pages/confidentiality/confidentialit
 import { CookiesComponent } from "./pages/cookies/cookies.component";
 import { TermsComponent } from "./pages/terms/terms.component";
 import { AdminComponent } from './admin/admin/admin.component';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 const routes: Routes = [
@@ -22,9 +24,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'admin', loadChildren: () => import(`./admin/admin.module`).then(m => m.AdminModule) },
+    path: 'admin', loadChildren: () => import(`./admin/admin.module`).then(m => m.AdminModule) 
+  },
 
-
+  { path: 'produse/:productName/:productId', component: ProductDetailsComponent },
+  { path: 'cos-cumparaturi', component: CartComponent },
+   
   {
     path: 'setari-gdpr', component: GdprComponent,
     data: {

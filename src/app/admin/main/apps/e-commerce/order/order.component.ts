@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject} from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from 'src/@fuse/animations';
+import { fuseAnimations } from '../../../../../../../src/@fuse/animations';
 
 import { orderStatuses } from '../../../../main/apps/e-commerce/order/order-statuses';
 import { Order } from '../../../../main/apps/e-commerce/order/order.model';

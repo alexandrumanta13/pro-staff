@@ -21,14 +21,16 @@ import { AppStoreModule } from './store/store.module';
 import { LayoutModule } from './layout/layout.module';
 import { AdminComponent } from './admin/admin.component';
 import { AdminRoutingModule } from './admin.routing.module';
+import { AnalyticsDashboardModule } from './main/apps/dashboards/analytics/analytics.module'
 
 const appRoutes: Routes = [
     {
         path        : 'apps',
-        // loadChildren: './main/apps/apps.module#AppsModule'
+        //loadChildren: './main/apps/apps.module#AppsModule'
         //loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule)
         //loadChildren: './main/apps/dashboards/analytics'
-        loadChildren: () => import('./main/apps/dashboards/analytics/analytics.module').then(m => m.AnalyticsDashboardModule)
+       //loadChildren: () => AnalyticsDashboardModule
+       component: AdminComponent
     },
     // {
     //     path        : 'pages',
@@ -60,7 +62,7 @@ const appRoutes: Routes = [
        // AdminRoutingModule,
        RouterModule.forChild(appRoutes),
 
-        TranslateModule.forRoot(),
+        TranslateModule.forChild(),
         InMemoryWebApiModule.forRoot(FakeDbService, {
             delay: 0,
             passThruUnknownUrl: true
@@ -86,19 +88,13 @@ const appRoutes: Routes = [
     ],
     declarations: [
         AdminComponent,
-
-
-       
     ],
    
     exports: [
         // Fuse modules
         
 
-        FuseProgressBarModule,
-        FuseSharedModule,
-        FuseSidebarModule,
-        FuseThemeOptionsModule,
+       
     ],
     providers: [
         FuseModule

@@ -4,6 +4,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
 
+declare var $: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -43,5 +44,16 @@ export class AppComponent {
       }
       window.scrollTo(0, 0)
     });
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+    )
+      .subscribe((event) => {
+        $.getScript('../assets/js/jquery.min.js');
+        $.getScript('../assets/js/bootstrap.bundle.min.js');
+        $.getScript('../assets/js/plugins.min.js');
+        $.getScript('../assets/js/main.js');
+      });
   }
 }

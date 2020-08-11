@@ -1,4 +1,4 @@
-<header class="header header-transparent">
+<header class="header" [ngClass]="router.url == '/' ? 'header-transparent' : ''">
 	<div class="header-middle sticky-header">
 		<div class="container-fluid">
 			<div class="header-left">
@@ -208,8 +208,8 @@
 							</div><!-- End .dropdown-cart-total -->
 
 							<div class="dropdown-cart-action">
-								<a href="cart.html" class="btn btn-orange">Vezi cos</a>
-								<a href="checkout-shipping.html" class="btn btn-orange">Finalizeaza</a>
+								<a [routerLink]="['/cos-cumparaturi']" class="btn btn-orange">Vezi cos</a>
+								<a [routerLink]="['/finalizeaza-comanda']" class="btn btn-orange">Finalizeaza</a>
 							</div><!-- End .dropdown-cart-total -->
 						</div><!-- End .dropdownmenu-wrapper -->
 					</div><!-- End .dropdown-menu -->

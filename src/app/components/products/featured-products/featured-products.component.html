@@ -1,0 +1,20 @@
+<div class="product" *ngFor="let product of products">
+    <figure class="product-image-container">
+        <a href="product.html" class="product-image">
+            <img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
+        </a>
+        <span class="product-label label-new">Nou</span>
+        <a href="#" class="btn-quickview">Vezi detalii</a>
+    </figure>
+    <div class="product-details">
+        
+
+        <h2 class="product-title">
+            <a href="product.html">{{product.name}}</a>
+        </h2>
+        <div class="price-box">
+            <span class="old-price">69 lei</span>
+            <span class="product-price">34.90 lei</span>
+        </div><!-- End .price-box -->
+    </div><!-- End .product-details -->
+</div><!-- End .product -->

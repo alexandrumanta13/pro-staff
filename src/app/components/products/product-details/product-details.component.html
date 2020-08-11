@@ -1,0 +1,540 @@
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+      <li class="breadcrumb-item"><a href="#">Vopsea decorativa</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Vopsea decorativa cu efect special</li>
+    </ol>
+  </div><!-- End .container-fluid -->
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="product-single-container product-single-default">
+        <div class="row">
+          <div class="col-lg-7 col-md-6">
+            <div class="product-single-gallery">
+              <div class="product-slider-container product-item">
+                <div class="product-single-carousel owl-carousel owl-theme">
+                  <div class="product-item">
+                    <img class="product-single-image" [src]="product.image" [attr.data-zoom-image]="product.image" />
+                  </div>
+                  <div class="product-item">
+                    <img class="product-single-image" src="assets/images/products/zoom/product-2.jpg"
+                      data-zoom-image="assets/images/products/zoom/product-2-big.jpg" />
+                  </div>
+                  <div class="product-item">
+                    <img class="product-single-image" src="assets/images/products/zoom/product-3.jpg"
+                      data-zoom-image="assets/images/products/zoom/product-3-big.jpg" />
+                  </div>
+                  <div class="product-item">
+                    <img class="product-single-image" src="assets/images/products/zoom/product-4.jpg"
+                      data-zoom-image="assets/images/products/zoom/product-4-big.jpg" />
+                  </div>
+                </div>
+                <!-- End .product-single-carousel -->
+                <span class="prod-full-screen">
+                  <i class="icon-plus"></i>
+                </span>
+              </div>
+              <div class="prod-thumbnail row owl-dots" id='carousel-custom-dots'>
+                <div class="col-3 owl-dot">
+                  <img src="{{product.image}}" />
+                </div>
+                <div class="col-3 owl-dot">
+                  <img src="assets/images/products/zoom/product-2.jpg" />
+                </div>
+                <div class="col-3 owl-dot">
+                  <img src="assets/images/products/zoom/product-3.jpg" />
+                </div>
+                <div class="col-3 owl-dot">
+                  <img src="assets/images/products/zoom/product-4.jpg" />
+                </div>
+              </div>
+            </div><!-- End .product-single-gallery -->
+          </div><!-- End .col-lg-7 -->
+
+          <div class="col-lg-5 col-md-6">
+            <div class="product-single-details">
+              <h1 class="product-title">{{product.name}}</h1>
+
+              <div class="ratings-container">
+                <div class="product-ratings">
+                  <span class="ratings" style="width:60%"></span><!-- End .ratings -->
+                </div><!-- End .product-ratings -->
+
+                <a href="#" class="rating-link">( 6 Recenzii )</a>
+              </div><!-- End .product-container -->
+
+              <div class="price-box">
+                <span class="old-price"
+                  *ngIf="product.discount > 0">{{ ((product.price/product.discount)*100).toFixed(2) }}</span>
+                <span class="product-price">{{product.price}} lei</span>
+              </div><!-- End .price-box -->
+
+              <div class="product-desc">
+                <p>Vopsea decorativa pentru interior cu efect de matase chinezeasca.</p>
+              </div><!-- End .product-desc -->
+
+              <div class="product-filters-container">
+                <div class="product-single-filter" *ngIf="product.colors.length > 0">
+                  <label>Culori:</label>
+                  <ul class="config-swatch-list">
+                    <li *ngFor="let color of product.colors">
+                      {{color}}
+                      <a [ngStyle]="{'background-color': color}"></a>
+                    </li>
+                  </ul>
+                </div><!-- End .product-single-filter -->
+
+                <div class="product-single-filter">
+                  <label>Cantitati:</label>
+                  <ul class="config-size-list">
+                    <li class="active"><a href="#">1l</a></li>
+                    <li><a href="#">2l</a></li>
+                    <li><a href="#">5l</a></li>
+                    <li><a href="#">20l</a></li>
+                  </ul>
+                </div><!-- End .product-single-filter -->
+              </div><!-- End .product-filters-container -->
+
+              <div class="product-action">
+                <div class="product-single-qty">
+                  <input class="horizontal-quantity form-control" type="text">
+                </div><!-- End .product-single-qty -->
+
+                <a href="cart.html" class="paction add-cart" title="Adauga in cos">
+                  <span>Adauga in cos</span>
+                </a>
+
+                <a href="#" class="paction add-wishlist" title="Adauga la favorite">
+                  <span>Adauga la favorite</span>
+                </a>
+              </div><!-- End .product-action -->
+
+              <div class="product-single-share">
+                <label>Share:</label>
+                <!-- www.addthis.com share plugin-->
+                <div class="addthis_inline_share_toolbox"></div>
+              </div><!-- End .product single-share -->
+            </div><!-- End .product-single-details -->
+          </div><!-- End .col-lg-5 -->
+        </div><!-- End .row -->
+      </div><!-- End .product-single-container -->
+
+      <div class="product-single-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab"
+              aria-controls="product-desc-content" aria-selected="false">Descriere</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" id="product-tab-size" data-toggle="tab" href="#product-size-content" role="tab"
+              aria-controls="product-size-content" aria-selected="true">Detalii tehnice</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" id="product-tab-reviews" data-toggle="tab" href="#product-reviews-content" role="tab"
+              aria-controls="product-reviews-content" aria-selected="false">Recenzii</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade" id="product-desc-content" role="tabpanel" aria-labelledby="product-tab-desc">
+            <div class="product-desc-content">
+              <p>Vopsea decorativa care reproduce un efect de mătase acolo unde este aplicat. ORGANZA are o acoperire
+                foarte ridicată într-un singur strat, cu aderență și lavabilitate excelente, oferind suprafețelor
+                peretelui un aspect cromatic și tactil, precum țesătura de mătase chinezească..</p>
+              <ul>
+                <li><i class="icon-ok"></i>Any Product types that You want - Simple, Configurable</li>
+                <li><i class="icon-ok"></i>Downloadable/Digital Products, Virtual Products</li>
+                <li><i class="icon-ok"></i>Inventory Management with Backordered items</li>
+              </ul>
+
+            </div><!-- End .product-desc-content -->
+          </div><!-- End .tab-pane -->
+
+          <div class="tab-pane fade show active" id="product-size-content" role="tabpanel"
+            aria-labelledby="product-tab-size">
+            <div class="product-size-content">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="assets/images/products/single/body-shape.png" alt="body shape">
+                </div><!-- End .col-md-4 -->
+
+                <div class="col-md-8">
+                  <table class="table table-size">
+                    <thead>
+                      <tr>
+                        <th>Cantitate</th>
+                        <th>Diluare</th>
+                        <th>Straruri baza</th>
+                        <th>Consum baza</th>
+                        <th>Temperatura de aplicare</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1l</td>
+                        <td>5%</td>
+                        <td>1</td>
+                        <td>4 mp/l</td>
+                        <td>+5C + 36C</td>
+                      </tr>
+                      <tr>
+                        <td>2l</td>
+                        <td>5%</td>
+                        <td>1</td>
+                        <td>4 mp/l</td>
+                        <td>+5C + 36C</td>
+                      </tr>
+                      <tr>
+                        <td>5l</td>
+                        <td>5%</td>
+                        <td>1</td>
+                        <td>4 mp/l</td>
+                        <td>+5C + 36C</td>
+                      </tr>
+                      <tr>
+                        <td>10l</td>
+                        <td>5%</td>
+                        <td>1</td>
+                        <td>4 mp/l</td>
+                        <td>+5C + 36C</td>
+                      </tr>
+                      <tr>
+                        <td>20l</td>
+                        <td>5%</td>
+                        <td>1</td>
+                        <td>4 mp/l</td>
+                        <td>+5C + 36C</td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div><!-- End .row -->
+            </div><!-- End .product-size-content -->
+          </div><!-- End .tab-pane -->
+
+       
+
+          <div class="tab-pane fade" id="product-reviews-content" role="tabpanel" aria-labelledby="product-tab-reviews">
+            <div class="product-reviews-content">
+              <div class="collateral-box">
+                <ul>
+                  <li>Fii primul care evalueaza acest produs.</li>
+                </ul>
+              </div><!-- End .collateral-box -->
+
+              <div class="add-product-review">
+                <h3 class="text-uppercase heading-text-color font-weight-semibold">SCRIE PROPIA TA RECENZIE</h3>
+                <p>Cum evaluezi acest produs? *</p>
+
+                <form action="#">
+                  <table class="ratings-table">
+                    <thead>
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>1 stea</th>
+                        <th>2 stele</th>
+                        <th>3 stele</th>
+                        <th>4 stele</th>
+                        <th>5 stele</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Calitate</td>
+                        <td>
+                          <input type="radio" name="ratings[1]" id="Quality_1" value="1" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="ratings[1]" id="Quality_2" value="2" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="ratings[1]" id="Quality_3" value="3" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="ratings[1]" id="Quality_4" value="4" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="ratings[1]" id="Quality_5" value="5" class="radio">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Mod de aplicare</td>
+                        <td>
+                          <input type="radio" name="value[1]" id="Value_1" value="1" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="value[1]" id="Value_2" value="2" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="value[1]" id="Value_3" value="3" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="value[1]" id="Value_4" value="4" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="value[1]" id="Value_5" value="5" class="radio">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pret</td>
+                        <td>
+                          <input type="radio" name="price[1]" id="Price_1" value="1" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="price[1]" id="Price_2" value="2" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="price[1]" id="Price_3" value="3" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="price[1]" id="Price_4" value="4" class="radio">
+                        </td>
+                        <td>
+                          <input type="radio" name="price[1]" id="Price_5" value="5" class="radio">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="form-group">
+                    <label>Numele tau <span class="required">*</span></label>
+                    <input type="text" class="form-control form-control-sm" required>
+                  </div><!-- End .form-group -->
+                  <div class="form-group">
+                    <label>Sumarul recenziei tale <span class="required">*</span></label>
+                    <input type="text" class="form-control form-control-sm" required>
+                  </div><!-- End .form-group -->
+                  <div class="form-group mb-2">
+                    <label>Recenzie <span class="required">*</span></label>
+                    <textarea cols="5" rows="6" class="form-control form-control-sm"></textarea>
+                  </div><!-- End .form-group -->
+
+                  <input type="submit" class="btn btn-primary" value="Adauga recenzie">
+                </form>
+              </div><!-- End .add-product-review -->
+            </div><!-- End .product-reviews-content -->
+          </div><!-- End .tab-pane -->
+        </div><!-- End .tab-content -->
+      </div><!-- End .product-single-tabs -->
+    </div><!-- End .col-lg-9 -->
+
+    <div class="sidebar-overlay"></div>
+    <div class="sidebar-toggle"><i class="icon-sliders"></i></div>
+    <aside class="sidebar-product col-lg-3 padding-left-lg mobile-sidebar">
+      <div class="sidebar-wrapper">
+        <div class="widget widget-collapse">
+          <h3 class="widget-title">
+            <a data-toggle="collapse" href="#widget-body-1" role="button" aria-expanded="true"
+              aria-controls="widget-body-1">Produse</a>
+          </h3>
+
+          <div class="collapse show" id="widget-body-1">
+            <div class="widget-body">
+              <ul class="cat-list">
+                <li><a href="#">VOPSEA LAVABILA</a></li>
+                <li><a href="#">VOPSEA DECORATIVA</a></li>
+                <li><a href="#">VOPSEA METAL</a></li>
+                <li><a href="#">PENTRU LEMN</a></li>
+                <li><a href="#">VOPSEA PARDOSEALA</a></li>
+                <li><a href="#">VOPSEA CERAMICA</a></li>
+                <li><a href="#">HIDROIZOLATII</a></li>
+                <li><a href="#">CAMERE COPII</a></li>
+                <li><a href="#">APARATE ȘI SCULE DE VOPSIT</a></li>
+               
+              </ul>
+            </div><!-- End .widget-body -->
+          </div><!-- End .collapse -->
+        </div><!-- End .widget -->
+
+        <div class="widget widget-banner">
+          <div class="banner banner-image">
+            <a href="#">
+              <img src="assets/images/banners/banner-sidebar.jpg" alt="Banner Desc">
+            </a>
+          </div><!-- End .banner -->
+        </div><!-- End .widget -->
+
+        <div class="widget widget-featured">
+          <h3 class="widget-title">Cele mai vandute</h3>
+
+          <div class="widget-body">
+            <div class="owl-carousel widget-featured-products">
+              <div class="featured-col">
+
+                <div class="product  product-sm">
+                    <figure class="product-image-container">
+                        <a href="product.html" class="product-image">
+                            <img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
+                        </a>
+                       
+                    </figure>
+                    <div class="product-details">
+                        
+        
+                        <h2 class="product-title">
+                            <a href="product.html">PENSULA 120MM PENTRU VOPSEA DECORATIVA , GIEFFE , DIN PAR NATURAL</a>
+                        </h2>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                              <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                            </div><!-- End .product-ratings -->
+                          </div><!-- End .product-container -->
+                        <div class="price-box">
+                            <span class="product-price">39.90 lei</span>
+                        </div><!-- End .price-box -->
+                    </div><!-- End .product-details -->
+                </div><!-- End .product -->
+
+                <div class="product product-sm">
+                    <figure class="product-image-container">
+                        <a href="product.html" class="product-image">
+                            <img src="https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg" alt="product">
+                        </a>
+                       
+                        <span class="product-label label-new">Nou</span>
+                    </figure>
+                    <div class="product-details">
+                        
+        
+                        <h2 class="product-title">
+                            <a href="product.html">DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA SOLVENT</a>
+                        </h2>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                              <span class="ratings" style="width:20%"></span><!-- End .ratings -->
+                            </div><!-- End .product-ratings -->
+                          </div><!-- End .product-container -->
+                        <div class="price-box">
+                            <span class="product-price">51.90 lei</span>
+                        </div><!-- End .price-box -->
+                    </div><!-- End .product-details -->
+                </div><!-- End .product -->
+               
+
+                <div class="product product-sm">
+                    <figure class="product-image-container">
+                        <a href="product.html" class="product-image">
+                            <img src="https://pro-staff.ro/wp-content/uploads/2019/01/Primer-grund-antirugina-pe-baza-de-apa-Tixe-300x300.jpg" alt="product">
+                        </a>
+                      
+                        <span class="product-label label-sale">-25%</span>
+                    </figure>
+                    <div class="product-details">
+                       
+        
+                        <h2 class="product-title">
+                            <a href="product.html">PRIMER ANTIRUGINA PE BAZA DE APA – TIXE</a>
+                        </h2>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                              <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                            </div><!-- End .product-ratings -->
+                          </div><!-- End .product-container -->
+                        <div class="price-box">
+                            <span class="old-price">69 lei</span>
+                            <span class="product-price">49.90 lei</span>
+                        </div><!-- End .price-box -->
+                    </div><!-- End .product-details -->
+                </div><!-- End .product -->
+               
+              </div><!-- End .featured-col -->
+
+              <div class="featured-col">
+
+                <div class="product product-sm">
+                    <figure class="product-image-container">
+                        <a href="product.html" class="product-image">
+                            <img src="https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-decorativa-300x300.jpg" alt="product">
+                        </a>
+                      
+                    </figure>
+                    <div class="product-details">
+                     
+        
+                        <h2 class="product-title">
+                            <a href="product.html">VOPSEA DECORATIVA CU EFECT DE MATASE – TIXE – ORGANZA</a>
+                        </h2>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                              <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                            </div><!-- End .product-ratings -->
+                          </div><!-- End .product-container -->
+                        <div class="price-box">
+                            <span class="product-price">160 lei</span>
+                        </div><!-- End .price-box -->
+                    </div><!-- End .product-details -->
+                </div><!-- End .product -->
+              
+
+                <div class="product product-sm">
+                    <figure class="product-image-container">
+                        <a href="product.html" class="product-image">
+                            <img src="https://pro-staff.ro/wp-content/uploads/2019/02/glacial-300x300.jpg" alt="product">
+                        </a>
+                       
+                    </figure>
+                    <div class="product-details">
+                      
+        
+                        <h2 class="product-title">
+                            <a href="product.html">GLACIAL – TIXE – VOPSEA EFECT METALE PRETIOASE</a>
+                        </h2>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                              <span class="ratings" style="width:60%"></span><!-- End .ratings -->
+                            </div><!-- End .product-ratings -->
+                          </div><!-- End .product-container -->
+                        <div class="price-box">
+                            <span class="product-price">160 lei</span>
+                        </div><!-- End .price-box -->
+                    </div><!-- End .product-details -->
+                </div><!-- End .product -->
+              </div><!-- End .featured-col -->
+            </div><!-- End .widget-featured-slider -->
+          </div><!-- End .widget-body -->
+        </div><!-- End .widget -->
+      </div>
+    </aside><!-- End .col-md-3 -->
+  </div><!-- End .row -->
+
+  <div class="featured-section pt-sm bg-white">
+    <h2 class="carousel-title">Cumparate impreuna</h2>
+    <div class="featured-products owl-carousel owl-theme owl-dots-top">
+        <div class="product" *ngFor="let product of products; index as productId">
+            <figure class="product-image-container">
+                <a [routerLink]="['/produse',product.name, productId]" class="product-image">
+                    <img src="{{product.image}}" alt="product">
+                </a>
+                <span class="product-label label-sale" *ngIf="product.discount > 0">-{{product.discount}}%</span>
+                <span class="product-label label-new" *ngIf="product.newProduct === true">Nou</span>
+                <a [routerLink]="['/produse',product.name, productId]" class="btn-quickview">Vezi detalii</a>
+            </figure>
+            <div class="product-details">
+                
+                <ul class="config-swatch-list" *ngIf="product.colors.length > 0">
+                    <li *ngFor="let color of product.colors">
+                        {{color}}
+                        <a [ngStyle]="{'background-color': color}"></a>
+                    </li>
+                   
+                </ul>
+        
+                <h2 class="product-title">
+                    <a href="product.html">{{product.name}}</a>
+                </h2>
+                <div class="price-box">
+                    <span class="old-price" *ngIf="product.discount > 0">{{ ((product.price/product.discount)*100).toFixed(2) }}</span>
+                    <span class="product-price">{{product.price}} lei</span>
+                </div><!-- End .price-box -->
+            </div><!-- End .product-details -->
+        </div><!-- End .product -->
+    </div><!-- End .featured-proucts -->
+  </div><!-- End .featured-section -->
+
+  <div class="mb-lg-4"></div><!-- margin -->
+</div><!-- End .container-fluid -->

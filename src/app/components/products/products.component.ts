@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../components/products/product.model'
+import { Product } from './product.model'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class HomeComponent implements OnInit {
-
+export class ProductsComponent implements OnInit {
   products: Product[]
   constructor() {
     this.products = [

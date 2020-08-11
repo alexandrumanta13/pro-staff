@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AgmCoreModule } from '@agm/core';
 
-import { FuseSharedModule } from 'src/@fuse/shared.module';
-import { FuseHighlightModule } from 'src/@fuse/components/index';
+import { FuseSharedModule } from '../../../../../../../src/@fuse/shared.module';
+import { FuseHighlightModule } from '../../../../../../../src/@fuse/components/index';
 
 import { DocsComponentsThirdPartyGoogleMapsComponent } from './google-maps.component';
 
