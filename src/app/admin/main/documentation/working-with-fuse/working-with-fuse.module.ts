@@ -3,17 +3,17 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseHighlightModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseHighlightModule } from '../../../../../../src/@fuse/components';
 
-import { DocsWorkingWithFuseServerComponent } from 'app/main/documentation/working-with-fuse/server/server.component';
-import { DocsWorkingWithFuseProductionComponent } from 'app/main/documentation/working-with-fuse/production/production.component';
-import { DocsWorkingWithFuseDirectoryStructureComponent } from 'app/main/documentation/working-with-fuse/directory-structure/directory-structure.component';
-import { DocsWorkingWithFuseUpdatingFuseComponent } from 'app/main/documentation/working-with-fuse/updating-fuse/updating-fuse.component';
-import { DocsWorkingWithFuseMultiLanguageComponent } from 'app/main/documentation/working-with-fuse/multi-language/multi-language.component';
-import { DocsWorkingWithFuseMaterialThemingComponent } from 'app/main/documentation/working-with-fuse/material-theming/material-theming.component';
-import { DocsWorkingWithFuseThemeLayoutsComponent } from 'app/main/documentation/working-with-fuse/theme-layouts/theme-layouts.component';
-import { DocsWorkingWithFusePageLayoutsComponent } from 'app/main/documentation/working-with-fuse/page-layouts/page-layouts.component';
+import { DocsWorkingWithFuseServerComponent } from '../../../main/documentation/working-with-fuse/server/server.component';
+import { DocsWorkingWithFuseProductionComponent } from '../../../main/documentation/working-with-fuse/production/production.component';
+import { DocsWorkingWithFuseDirectoryStructureComponent } from '../../../main/documentation/working-with-fuse/directory-structure/directory-structure.component';
+import { DocsWorkingWithFuseUpdatingFuseComponent } from '../../../main/documentation/working-with-fuse/updating-fuse/updating-fuse.component';
+import { DocsWorkingWithFuseMultiLanguageComponent } from '../../../main/documentation/working-with-fuse/multi-language/multi-language.component';
+import { DocsWorkingWithFuseMaterialThemingComponent } from '../../../main/documentation/working-with-fuse/material-theming/material-theming.component';
+import { DocsWorkingWithFuseThemeLayoutsComponent } from '../../../main/documentation/working-with-fuse/theme-layouts/theme-layouts.component';
+import { DocsWorkingWithFusePageLayoutsComponent } from '../../../main/documentation/working-with-fuse/page-layouts/page-layouts.component';
 
 const routes = [
     {

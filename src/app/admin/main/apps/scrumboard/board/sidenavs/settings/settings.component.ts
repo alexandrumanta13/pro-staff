@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { fuseAnimations } from '@fuse/animations';
-import { ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
+import { fuseAnimations } from 'src/@fuse/animations';
+import { ScrumboardService } from '../../../../../../main/apps/scrumboard/scrumboard.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

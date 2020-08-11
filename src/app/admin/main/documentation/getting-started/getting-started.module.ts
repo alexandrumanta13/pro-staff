@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseHighlightModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseHighlightModule } from '../../../../../../src/@fuse/components';
 
-import { DocsGettingStartedIntroductionComponent } from 'app/main/documentation/getting-started/introduction/introduction.component';
-import { DocsGettingStartedInstallationComponent } from 'app/main/documentation/getting-started/installation/installation.component';
+import { DocsGettingStartedIntroductionComponent } from '../../../main/documentation/getting-started/introduction/introduction.component';
+import { DocsGettingStartedInstallationComponent } from '../../../main/documentation/getting-started/installation/installation.component';
 
 const routes = [
     {

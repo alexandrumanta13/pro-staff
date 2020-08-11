@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { InvoiceService } from 'app/main/pages/invoices/invoice.service';
-import { InvoiceCompactComponent } from 'app/main/pages/invoices/compact/compact.component';
+import { InvoiceService } from '../../../../main/pages/invoices/invoice.service';
+import { InvoiceCompactComponent } from '../../../../main/pages/invoices/compact/compact.component';
 
 const routes = [
     {

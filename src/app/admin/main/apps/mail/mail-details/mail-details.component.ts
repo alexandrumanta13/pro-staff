@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { Mail } from 'app/main/apps/mail/mail.model';
-import { MailService } from 'app/main/apps/mail/mail.service';
+import { Mail } from '../../../../main/apps/mail/mail.model';
+import { MailService } from '../../../../main/apps/mail/mail.service';
 
 @Component({
     selector     : 'mail-details',

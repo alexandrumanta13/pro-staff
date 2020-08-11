@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { fuseAnimations } from 'src/@fuse/animations';
+import { FuseSidebarService } from 'src/@fuse/components/sidebar/sidebar.service';
 
-import { FileManagerService } from 'app/main/apps/file-manager/file-manager.service';
+import { FileManagerService } from '../../../main/apps/file-manager/file-manager.service';
 
 @Component({
     selector     : 'file-manager',

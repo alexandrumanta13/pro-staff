@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { FuseSidebarService } from 'src/@fuse/components/sidebar/sidebar.service';
 
 @Component({
     selector   : 'carded-right-sidebar-1',

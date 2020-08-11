@@ -3,9 +3,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
+import { FuseConfirmDialogComponent } from 'src/@fuse/components/confirm-dialog/confirm-dialog.component';
 
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
+import { ContactsService } from '../../../../main/apps/contacts/contacts.service';
 
 @Component({
     selector   : 'selected-bar',

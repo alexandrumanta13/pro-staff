@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { ProfileService } from 'app/main/pages/profile/profile.service';
+import { ProfileService } from '../../../../../main/pages/profile/profile.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 

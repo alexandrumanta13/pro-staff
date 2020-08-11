@@ -12,16 +12,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseSidebarModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseSidebarModule } from '../../../../../../src/@fuse/components';
 
-import { MailService } from 'app/main/apps/mail/mail.service';
-import { MailComponent } from 'app/main/apps/mail/mail.component';
-import { MailListComponent } from 'app/main/apps/mail/mail-list/mail-list.component';
-import { MailListItemComponent } from 'app/main/apps/mail/mail-list/mail-list-item/mail-list-item.component';
-import { MailDetailsComponent } from 'app/main/apps/mail/mail-details/mail-details.component';
-import { MailMainSidebarComponent } from 'app/main/apps/mail/sidebars/main/main-sidebar.component';
-import { MailComposeDialogComponent } from 'app/main/apps/mail/dialogs/compose/compose.component';
+import { MailService } from '../../../main/apps/mail/mail.service';
+import { MailComponent } from '../../../main/apps/mail/mail.component';
+import { MailListComponent } from '../../../main/apps/mail/mail-list/mail-list.component';
+import { MailListItemComponent } from '../../../main/apps/mail/mail-list/mail-list-item/mail-list-item.component';
+import { MailDetailsComponent } from '../../../main/apps/mail/mail-details/mail-details.component';
+import { MailMainSidebarComponent } from '../../../main/apps/mail/sidebars/main/main-sidebar.component';
+import { MailComposeDialogComponent } from '../../../main/apps/mail/dialogs/compose/compose.component';
 
 const routes: Routes = [
     {

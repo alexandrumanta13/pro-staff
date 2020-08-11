@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { AnalyticsDashboardService } from 'app/main/apps/dashboards/analytics/analytics.service';
+import { AnalyticsDashboardService } from '../../../../main/apps/dashboards/analytics/analytics.service';
 
 @Component({
     selector     : 'analytics-dashboard',

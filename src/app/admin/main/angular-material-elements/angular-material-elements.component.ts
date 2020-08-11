@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { COMPONENT_MAP } from 'app/main/angular-material-elements/example-components';
+import { COMPONENT_MAP } from '../../main/angular-material-elements/example-components';
 
 @Component({
     selector   : 'angular-material',

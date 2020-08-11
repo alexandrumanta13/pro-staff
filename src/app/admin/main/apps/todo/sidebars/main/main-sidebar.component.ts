@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { TodoService } from 'app/main/apps/todo/todo.service';
+import { TodoService } from '../../../../../main/apps/todo/todo.service';
 
 @Component({
     selector     : 'todo-main-sidebar',

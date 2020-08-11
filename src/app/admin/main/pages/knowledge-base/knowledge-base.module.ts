@@ -6,11 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
 
-import { KnowledgeBaseService } from 'app/main/pages/knowledge-base/knowledge-base.service';
-import { KnowledgeBaseComponent } from 'app/main/pages/knowledge-base/knowledge-base.component';
-import { KnowledgeBaseArticleComponent } from 'app/main/pages/knowledge-base/dialogs/article/article.component';
+import { KnowledgeBaseService } from '../../../main/pages/knowledge-base/knowledge-base.service';
+import { KnowledgeBaseComponent } from '../../../main/pages/knowledge-base/knowledge-base.component';
+import { KnowledgeBaseArticleComponent } from '../../../main/pages/knowledge-base/dialogs/article/article.component';
 
 const routes = [
     {

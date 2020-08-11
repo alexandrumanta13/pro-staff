@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-import { ChatPanelService } from 'app/layout/components/chat-panel/chat-panel.service';
+import { FuseSidebarService } from 'src/@fuse/components/sidebar/sidebar.service';
+import { FusePerfectScrollbarDirective } from 'src/@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import { ChatPanelService } from '../../../layout/components/chat-panel/chat-panel.service';
 
 @Component({
     selector     : 'chat-panel',

@@ -12,17 +12,17 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
 
-import { ChatService } from 'app/main/apps/chat/chat.service';
-import { ChatComponent } from 'app/main/apps/chat/chat.component';
-import { ChatStartComponent } from 'app/main/apps/chat/chat-start/chat-start.component';
-import { ChatViewComponent } from 'app/main/apps/chat/chat-view/chat-view.component';
-import { ChatChatsSidenavComponent } from 'app/main/apps/chat/sidenavs/left/chats/chats.component';
-import { ChatUserSidenavComponent } from 'app/main/apps/chat/sidenavs/left/user/user.component';
-import { ChatLeftSidenavComponent } from 'app/main/apps/chat/sidenavs/left/left.component';
-import { ChatRightSidenavComponent } from 'app/main/apps/chat/sidenavs/right/right.component';
-import { ChatContactSidenavComponent } from 'app/main/apps/chat/sidenavs/right/contact/contact.component';
+import { ChatService } from '../../../main/apps/chat/chat.service';
+import { ChatComponent } from '../../../main/apps/chat/chat.component';
+import { ChatStartComponent } from '../../../main/apps/chat/chat-start/chat-start.component';
+import { ChatViewComponent } from '../../../main/apps/chat/chat-view/chat-view.component';
+import { ChatChatsSidenavComponent } from '../../../main/apps/chat/sidenavs/left/chats/chats.component';
+import { ChatUserSidenavComponent } from '../../../main/apps/chat/sidenavs/left/user/user.component';
+import { ChatLeftSidenavComponent } from '../../../main/apps/chat/sidenavs/left/left.component';
+import { ChatRightSidenavComponent } from '../../../main/apps/chat/sidenavs/right/right.component';
+import { ChatContactSidenavComponent } from '../../../main/apps/chat/sidenavs/right/contact/contact.component';
 
 const routes: Routes = [
     {

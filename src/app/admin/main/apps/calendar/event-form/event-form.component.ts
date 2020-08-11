@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CalendarEvent } from 'angular-calendar';
 
-import { MatColors } from '@fuse/mat-colors';
+import { MatColors } from 'src/@fuse/mat-colors';
 
-import { CalendarEventModel } from 'app/main/apps/calendar/event.model';
+import { CalendarEventModel } from '../../../../main/apps/calendar/event.model';
 
 @Component({
     selector     : 'calendar-event-form-dialog',

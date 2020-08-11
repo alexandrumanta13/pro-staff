@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { FuseUtils } from '@fuse/utils';
+import { FuseUtils } from 'src/@fuse/utils';
 
 @Injectable()
 export class ChatPanelService

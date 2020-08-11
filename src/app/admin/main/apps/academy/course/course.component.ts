@@ -2,11 +2,11 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, QueryLi
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
-import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { fuseAnimations } from 'src/@fuse/animations';
+import { FusePerfectScrollbarDirective } from 'src/@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import { FuseSidebarService } from 'src/@fuse/components/sidebar/sidebar.service';
 
-import { AcademyCourseService } from 'app/main/apps/academy/course.service';
+import { AcademyCourseService } from '../../../../main/apps/academy/course.service';
 
 @Component({
     selector     : 'academy-course',

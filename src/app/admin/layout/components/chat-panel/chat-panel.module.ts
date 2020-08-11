@@ -7,10 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { ChatPanelComponent } from 'app/layout/components/chat-panel/chat-panel.component';
-import { ChatPanelService } from 'app/layout/components/chat-panel/chat-panel.service';
+import { ChatPanelComponent } from '../../../layout/components/chat-panel/chat-panel.component';
+import { ChatPanelService } from '../../../layout/components/chat-panel/chat-panel.service';
 
 @NgModule({
     declarations: [

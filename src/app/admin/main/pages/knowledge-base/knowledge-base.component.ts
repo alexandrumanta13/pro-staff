@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { KnowledgeBaseService } from 'app/main/pages/knowledge-base/knowledge-base.service';
-import { KnowledgeBaseArticleComponent } from 'app/main/pages/knowledge-base/dialogs/article/article.component';
+import { KnowledgeBaseService } from '../../../main/pages/knowledge-base/knowledge-base.service';
+import { KnowledgeBaseArticleComponent } from '../../../main/pages/knowledge-base/dialogs/article/article.component';
 
 @Component({
     selector     : 'knowledge-base',

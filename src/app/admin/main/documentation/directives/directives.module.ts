@@ -3,13 +3,13 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseHighlightModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseHighlightModule } from '../../../../../../src/@fuse/components';
 
-import { DocsDirectivesFuseIfOnDomComponent } from 'app/main/documentation/directives/fuseIfOnDom/fuse-if-on-dom.component';
-import { DocsDirectivesFuseInnerScrollComponent } from 'app/main/documentation/directives/fuseInnerScroll/fuse-inner-scroll.component';
-import { DocsDirectivesFuseMatSidenavComponent } from 'app/main/documentation/directives/fuseMatSidenav/fuse-mat-sidenav.component';
-import { DocsDirectivesFusePerfectScrollbarComponent } from 'app/main/documentation/directives/fusePerfectScrollbar/fuse-perfect-scrollbar.component';
+import { DocsDirectivesFuseIfOnDomComponent } from '../../../main/documentation/directives/fuseIfOnDom/fuse-if-on-dom.component';
+import { DocsDirectivesFuseInnerScrollComponent } from '../../../main/documentation/directives/fuseInnerScroll/fuse-inner-scroll.component';
+import { DocsDirectivesFuseMatSidenavComponent } from '../../../main/documentation/directives/fuseMatSidenav/fuse-mat-sidenav.component';
+import { DocsDirectivesFusePerfectScrollbarComponent } from '../../../main/documentation/directives/fusePerfectScrollbar/fuse-perfect-scrollbar.component';
 
 const routes = [
     {

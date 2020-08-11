@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { FuseUtils } from '@fuse/utils';
+import { FuseUtils } from '../../../../../../src/@fuse/utils';
 
 @Injectable()
 export class ChatService implements Resolve<any>

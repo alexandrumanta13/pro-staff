@@ -6,9 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { LoginComponent } from 'app/main/pages/authentication/login/login.component';
+import { LoginComponent } from '../../../../main/pages/authentication/login/login.component';
 
 const routes = [
     {

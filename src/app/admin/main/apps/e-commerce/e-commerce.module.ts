@@ -16,17 +16,17 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AgmCoreModule } from '@agm/core';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
+import { FuseWidgetModule } from 'src/@fuse/components/widget/widget.module';
 
-import { EcommerceProductsComponent } from 'app/main/apps/e-commerce/products/products.component';
-import { EcommerceProductsService } from 'app/main/apps/e-commerce/products/products.service';
-import { EcommerceProductComponent } from 'app/main/apps/e-commerce/product/product.component';
-import { EcommerceProductService } from 'app/main/apps/e-commerce/product/product.service';
-import { EcommerceOrdersComponent } from 'app/main/apps/e-commerce/orders/orders.component';
-import { EcommerceOrdersService } from 'app/main/apps/e-commerce/orders/orders.service';
-import { EcommerceOrderComponent } from 'app/main/apps/e-commerce/order/order.component';
-import { EcommerceOrderService } from 'app/main/apps/e-commerce/order/order.service';
+import { EcommerceProductsComponent } from '../../../main/apps/e-commerce/products/products.component';
+import { EcommerceProductsService } from '../../../main/apps/e-commerce/products/products.service';
+import { EcommerceProductComponent } from '../../../main/apps/e-commerce/product/product.component';
+import { EcommerceProductService } from '../../../main/apps/e-commerce/product/product.service';
+import { EcommerceOrdersComponent } from '../../../main/apps/e-commerce/orders/orders.component';
+import { EcommerceOrdersService } from '../../../main/apps/e-commerce/orders/orders.service';
+import { EcommerceOrderComponent } from '../../../main/apps/e-commerce/order/order.component';
+import { EcommerceOrderService } from '../../../main/apps/e-commerce/order/order.service';
 
 const routes: Routes = [
     {

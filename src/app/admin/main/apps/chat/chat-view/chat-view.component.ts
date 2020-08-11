@@ -3,9 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import { FusePerfectScrollbarDirective } from 'src/@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 
-import { ChatService } from 'app/main/apps/chat/chat.service';
+import { ChatService } from '../../../../main/apps/chat/chat.service';
 
 @Component({
     selector     : 'chat-view',

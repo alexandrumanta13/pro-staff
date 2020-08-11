@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { SearchClassicService } from 'app/main/pages/search/classic/search-classic.service';
+import { SearchClassicService } from '../../../../main/pages/search/classic/search-classic.service';
 
 @Component({
     selector     : 'search-classic',

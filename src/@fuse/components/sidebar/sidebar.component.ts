@@ -7,8 +7,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { FuseSidebarService } from './sidebar.service';
-import { FuseMatchMediaService } from '@fuse/services/match-media.service';
-import { FuseConfigService } from '@fuse/services/config.service';
+import { FuseMatchMediaService } from 'src/@fuse/services/match-media.service';
+import { FuseConfigService } from 'src/@fuse/services/config.service';
 
 @Component({
     selector     : 'fuse-sidebar',
@@ -76,7 +76,7 @@ export class FuseSidebarComponent implements OnInit, OnDestroy
     private _unsubscribeAll: Subject<any>;
 
     @HostBinding('class.animations-enabled')
-    private _animationsEnabled: boolean;
+    public _animationsEnabled: boolean;
 
     /**
      * Constructor

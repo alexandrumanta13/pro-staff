@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { MatColors } from '@fuse/mat-colors';
+import { MatColors } from 'src/@fuse/mat-colors';
 
-import { ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
+import { ScrumboardService } from '../../../../../../../main/apps/scrumboard/scrumboard.service';
 
 @Component({
     selector     : 'scrumboard-board-color-selector',

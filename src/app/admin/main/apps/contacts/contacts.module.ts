@@ -11,15 +11,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseConfirmDialogModule, FuseSidebarModule } from '../../../../../../src/@fuse/components';
 
-import { ContactsComponent } from 'app/main/apps/contacts/contacts.component';
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
-import { ContactsContactListComponent } from 'app/main/apps/contacts/contact-list/contact-list.component';
-import { ContactsSelectedBarComponent } from 'app/main/apps/contacts/selected-bar/selected-bar.component';
-import { ContactsMainSidebarComponent } from 'app/main/apps/contacts/sidebars/main/main.component';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
+import { ContactsComponent } from '../../../main/apps/contacts/contacts.component';
+import { ContactsService } from '../../../main/apps/contacts/contacts.service';
+import { ContactsContactListComponent } from '../../../main/apps/contacts/contact-list/contact-list.component';
+import { ContactsSelectedBarComponent } from '../../../main/apps/contacts/selected-bar/selected-bar.component';
+import { ContactsMainSidebarComponent } from '../../../main/apps/contacts/sidebars/main/main.component';
+import { ContactsContactFormDialogComponent } from '../../../main/apps/contacts/contact-form/contact-form.component';
 
 const routes: Routes = [
     {

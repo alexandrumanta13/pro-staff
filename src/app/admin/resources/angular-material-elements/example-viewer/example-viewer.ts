@@ -3,10 +3,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import 'prismjs/components/prism-scss';
 import 'prismjs/components/prism-typescript';
 
-import { fuseAnimations } from '@fuse/animations/index';
-import { FuseCopierService } from '@fuse/services/copier.service';
+import { fuseAnimations } from 'src/@fuse/animations/index';
+import { FuseCopierService } from 'src/@fuse/services/copier.service';
 
-import { EXAMPLE_COMPONENTS } from 'app/main/angular-material-elements/example-components';
+import { EXAMPLE_COMPONENTS } from '../../../main/angular-material-elements/example-components';
 
 export interface LiveExample
 {

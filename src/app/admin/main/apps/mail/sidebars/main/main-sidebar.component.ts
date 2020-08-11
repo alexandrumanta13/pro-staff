@@ -4,10 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { MailService } from 'app/main/apps/mail/mail.service';
-import { MailComposeDialogComponent } from 'app/main/apps/mail/dialogs/compose/compose.component';
+import { MailService } from '../../../../../main/apps/mail/mail.service';
+import { MailComposeDialogComponent } from '../../../../../main/apps/mail/dialogs/compose/compose.component';
 
 @Component({
     selector     : 'mail-main-sidebar',

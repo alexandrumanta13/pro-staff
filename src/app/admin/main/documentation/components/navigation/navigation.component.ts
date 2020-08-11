@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseNavigationService } from 'src/@fuse/components/navigation/navigation.service';
 
 @Component({
     selector   : 'docs-components-navigation',

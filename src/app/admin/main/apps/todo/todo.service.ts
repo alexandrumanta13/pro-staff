@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { FuseUtils } from '@fuse/utils';
+import { FuseUtils } from '../../../../../../src/@fuse/utils';
 
-import { Todo } from 'app/main/apps/todo/todo.model';
+import { Todo } from '../../../main/apps/todo/todo.model';
 
 @Injectable()
 export class TodoService implements Resolve<any>

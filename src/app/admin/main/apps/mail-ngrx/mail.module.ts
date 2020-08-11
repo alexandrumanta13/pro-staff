@@ -12,18 +12,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseSidebarModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseSidebarModule } from '../../../../../../src/@fuse/components';
 
-import * as fromGuards from 'app/main/apps/mail-ngrx/store/guards/index';
-import { MailNgrxStoreModule } from 'app/main/apps/mail-ngrx/store/store.module';
-import { MailNgrxComponent } from 'app/main/apps/mail-ngrx/mail.component';
-import { MailNgrxListComponent } from 'app/main/apps/mail-ngrx/mail-list/mail-list.component';
-import { MailNgrxListItemComponent } from 'app/main/apps/mail-ngrx/mail-list/mail-list-item/mail-list-item.component';
-import { MailNgrxDetailsComponent } from 'app/main/apps/mail-ngrx/mail-details/mail-details.component';
-import { MailNgrxMainSidebarComponent } from 'app/main/apps/mail-ngrx/sidebars/main/main-sidebar.component';
-import { MailNgrxComposeDialogComponent } from 'app/main/apps/mail-ngrx/dialogs/compose/compose.component';
-import { MailNgrxService } from 'app/main/apps/mail-ngrx/mail.service';
+import * as fromGuards from '../../../main/apps/mail-ngrx/store/guards/index';
+import { MailNgrxStoreModule } from '../../../main/apps/mail-ngrx/store/store.module';
+import { MailNgrxComponent } from '../../../main/apps/mail-ngrx/mail.component';
+import { MailNgrxListComponent } from '../../../main/apps/mail-ngrx/mail-list/mail-list.component';
+import { MailNgrxListItemComponent } from '../../../main/apps/mail-ngrx/mail-list/mail-list-item/mail-list-item.component';
+import { MailNgrxDetailsComponent } from '../../../main/apps/mail-ngrx/mail-details/mail-details.component';
+import { MailNgrxMainSidebarComponent } from '../../../main/apps/mail-ngrx/sidebars/main/main-sidebar.component';
+import { MailNgrxComposeDialogComponent } from '../../../main/apps/mail-ngrx/dialogs/compose/compose.component';
+import { MailNgrxService } from '../../../main/apps/mail-ngrx/mail.service';
 
 const routes: Routes = [
     {

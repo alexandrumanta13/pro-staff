@@ -11,15 +11,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseSidebarModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseSidebarModule } from '../../../../../../src/@fuse/components';
 
-import { TodoService } from 'app/main/apps/todo/todo.service';
-import { TodoComponent } from 'app/main/apps/todo/todo.component';
-import { TodoMainSidebarComponent } from 'app/main/apps/todo/sidebars/main/main-sidebar.component';
-import { TodoListItemComponent } from 'app/main/apps/todo/todo-list/todo-list-item/todo-list-item.component';
-import { TodoListComponent } from 'app/main/apps/todo/todo-list/todo-list.component';
-import { TodoDetailsComponent } from 'app/main/apps/todo/todo-details/todo-details.component';
+import { TodoService } from '../../../main/apps/todo/todo.service';
+import { TodoComponent } from '../../../main/apps/todo/todo.component';
+import { TodoMainSidebarComponent } from '../../../main/apps/todo/sidebars/main/main-sidebar.component';
+import { TodoListItemComponent } from '../../../main/apps/todo/todo-list/todo-list-item/todo-list-item.component';
+import { TodoListComponent } from '../../../main/apps/todo/todo-list/todo-list.component';
+import { TodoDetailsComponent } from '../../../main/apps/todo/todo-details/todo-details.component';
 
 const routes: Routes = [
     {

@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject} from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { orderStatuses } from 'app/main/apps/e-commerce/order/order-statuses';
-import { Order } from 'app/main/apps/e-commerce/order/order.model';
-import { EcommerceOrderService } from 'app/main/apps/e-commerce/order/order.service';
+import { orderStatuses } from '../../../../main/apps/e-commerce/order/order-statuses';
+import { Order } from '../../../../main/apps/e-commerce/order/order.model';
+import { EcommerceOrderService } from '../../../../main/apps/e-commerce/order/order.service';
 
 @Component({
     selector     : 'e-commerce-order',

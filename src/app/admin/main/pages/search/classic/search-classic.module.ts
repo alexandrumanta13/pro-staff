@@ -7,10 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { SearchClassicComponent } from 'app/main/pages/search/classic/search-classic.component';
-import { SearchClassicService } from 'app/main/pages/search/classic/search-classic.service';
+import { SearchClassicComponent } from '../../../../main/pages/search/classic/search-classic.component';
+import { SearchClassicService } from '../../../../main/pages/search/classic/search-classic.service';
 
 
 const routes = [

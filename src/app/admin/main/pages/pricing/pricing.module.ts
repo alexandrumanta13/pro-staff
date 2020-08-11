@@ -3,11 +3,11 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { PricingStyle1Component } from 'app/main/pages/pricing/style-1/style-1.component';
-import { PricingStyle2Component } from 'app/main/pages/pricing/style-2/style-2.component';
-import { PricingStyle3Component } from 'app/main/pages/pricing/style-3/style-3.component';
+import { PricingStyle1Component } from '../../../main/pages/pricing/style-1/style-1.component';
+import { PricingStyle2Component } from '../../../main/pages/pricing/style-2/style-2.component';
+import { PricingStyle3Component } from '../../../main/pages/pricing/style-3/style-3.component';
 
 const routes = [
     {

@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
-import { environment } from 'environments/environment';
-import { reducers, effects, CustomSerializer } from 'app/store';
+import { environment } from '../../../environments/environment';
+import { reducers, effects, CustomSerializer } from '../store';
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
     ? [storeFreeze]

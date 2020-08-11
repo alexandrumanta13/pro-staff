@@ -3,18 +3,18 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
 
-import { FuseCountdownModule, FuseHighlightModule, FuseMaterialColorPickerModule, FuseWidgetModule } from '@fuse/components';
-import { DocsComponentsCountdownComponent } from 'app/main/documentation/components/countdown/countdown.component';
-import { DocsComponentsHighlightComponent } from 'app/main/documentation/components/highlight/highlight.component';
-import { DocsComponentsMaterialColorPickerComponent } from 'app/main/documentation/components/material-color-picker/material-color-picker.component';
-import { DocsComponentsNavigationComponent } from 'app/main/documentation/components/navigation/navigation.component';
-import { DocsComponentsProgressBarComponent } from 'app/main/documentation/components/progress-bar/progress-bar.component';
-import { DocsComponentsSearchBarComponent } from 'app/main/documentation/components/search-bar/search-bar.component';
-import { DocsComponentsSidebarComponent } from 'app/main/documentation/components/sidebar/sidebar.component';
-import { DocsComponentsShortcutsComponent } from 'app/main/documentation/components/shortcuts/shortcuts.component';
-import { DocsComponentsWidgetComponent } from 'app/main/documentation/components/widget/widget.component';
+import { FuseCountdownModule, FuseHighlightModule, FuseMaterialColorPickerModule, FuseWidgetModule } from '../../../../../../src/@fuse/components';
+import { DocsComponentsCountdownComponent } from '../../../main/documentation/components/countdown/countdown.component';
+import { DocsComponentsHighlightComponent } from '../../../main/documentation/components/highlight/highlight.component';
+import { DocsComponentsMaterialColorPickerComponent } from '../../../main/documentation/components/material-color-picker/material-color-picker.component';
+import { DocsComponentsNavigationComponent } from '../../../main/documentation/components/navigation/navigation.component';
+import { DocsComponentsProgressBarComponent } from '../../../main/documentation/components/progress-bar/progress-bar.component';
+import { DocsComponentsSearchBarComponent } from '../../../main/documentation/components/search-bar/search-bar.component';
+import { DocsComponentsSidebarComponent } from '../../../main/documentation/components/sidebar/sidebar.component';
+import { DocsComponentsShortcutsComponent } from '../../../main/documentation/components/shortcuts/shortcuts.component';
+import { DocsComponentsWidgetComponent } from '../../../main/documentation/components/widget/widget.component';
 
 const routes = [
     {

@@ -3,10 +3,10 @@ import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, Observable } from 'rxjs';
 import * as shape from 'd3-shape';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { ProjectDashboardService } from 'app/main/apps/dashboards/project/project.service';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { ProjectDashboardService } from '../../../../main/apps/dashboards/project/project.service';
+import { FuseSidebarService } from 'src/@fuse/components/sidebar/sidebar.service';
 
 @Component({
     selector     : 'project-dashboard',

@@ -17,22 +17,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseConfirmDialogModule, FuseMaterialColorPickerModule } from '@fuse/components';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
+import { FuseConfirmDialogModule, FuseMaterialColorPickerModule } from 'src/@fuse/components';
 
-import { BoardResolve, ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
-import { ScrumboardComponent } from 'app/main/apps/scrumboard/scrumboard.component';
-import { ScrumboardBoardComponent } from 'app/main/apps/scrumboard/board/board.component';
-import { ScrumboardBoardListComponent } from 'app/main/apps/scrumboard/board/list/list.component';
-import { ScrumboardBoardCardComponent } from 'app/main/apps/scrumboard/board/list/card/card.component';
-import { ScrumboardBoardEditListNameComponent } from 'app/main/apps/scrumboard/board/list/edit-list-name/edit-list-name.component';
-import { ScrumboardBoardAddCardComponent } from 'app/main/apps/scrumboard/board/list/add-card/add-card.component';
-import { ScrumboardBoardAddListComponent } from 'app/main/apps/scrumboard/board/add-list/add-list.component';
-import { ScrumboardCardDialogComponent } from 'app/main/apps/scrumboard/board/dialogs/card/card.component';
-import { ScrumboardLabelSelectorComponent } from 'app/main/apps/scrumboard/board/dialogs/card/label-selector/label-selector.component';
-import { ScrumboardEditBoardNameComponent } from 'app/main/apps/scrumboard/board/edit-board-name/edit-board-name.component';
-import { ScrumboardBoardSettingsSidenavComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/settings.component';
-import { ScrumboardBoardColorSelectorComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/board-color-selector/board-color-selector.component';
+import { BoardResolve, ScrumboardService } from '../../../main/apps/scrumboard/scrumboard.service';
+import { ScrumboardComponent } from '../../../main/apps/scrumboard/scrumboard.component';
+import { ScrumboardBoardComponent } from '../../../main/apps/scrumboard/board/board.component';
+import { ScrumboardBoardListComponent } from '../../../main/apps/scrumboard/board/list/list.component';
+import { ScrumboardBoardCardComponent } from '../../../main/apps/scrumboard/board/list/card/card.component';
+import { ScrumboardBoardEditListNameComponent } from '../../../main/apps/scrumboard/board/list/edit-list-name/edit-list-name.component';
+import { ScrumboardBoardAddCardComponent } from '../../../main/apps/scrumboard/board/list/add-card/add-card.component';
+import { ScrumboardBoardAddListComponent } from '../../../main/apps/scrumboard/board/add-list/add-list.component';
+import { ScrumboardCardDialogComponent } from '../../../main/apps/scrumboard/board/dialogs/card/card.component';
+import { ScrumboardLabelSelectorComponent } from '../../../main/apps/scrumboard/board/dialogs/card/label-selector/label-selector.component';
+import { ScrumboardEditBoardNameComponent } from '../../../main/apps/scrumboard/board/edit-board-name/edit-board-name.component';
+import { ScrumboardBoardSettingsSidenavComponent } from '../../../main/apps/scrumboard/board/sidenavs/settings/settings.component';
+import { ScrumboardBoardColorSelectorComponent } from '../../../main/apps/scrumboard/board/sidenavs/settings/board-color-selector/board-color-selector.component';
 
 const routes: Routes = [
     {

@@ -4,10 +4,10 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Subject } from 'rxjs';
 
-import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
-import { FuseUtils } from '@fuse/utils';
+import { FuseConfirmDialogComponent } from 'src/@fuse/components/confirm-dialog/confirm-dialog.component';
+import { FuseUtils } from 'src/@fuse/utils';
 
-import { ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
+import { ScrumboardService } from '../../../../../../main/apps/scrumboard/scrumboard.service';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

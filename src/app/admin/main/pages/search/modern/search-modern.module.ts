@@ -7,10 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { SearchModernComponent } from 'app/main/pages/search/modern/search-modern.component';
-import { SearchModernService } from 'app/main/pages/search/modern/search-modern.service';
+import { SearchModernComponent } from '../../../../main/pages/search/modern/search-modern.component';
+import { SearchModernService } from '../../../../main/pages/search/modern/search-modern.service';
 
 
 const routes = [

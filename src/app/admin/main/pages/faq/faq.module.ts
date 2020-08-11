@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { FaqService } from 'app/main/pages/faq/faq.service';
-import { FaqComponent } from 'app/main/pages/faq/faq.component';
+import { FaqService } from '../../../main/pages/faq/faq.service';
+import { FaqComponent } from '../../../main/pages/faq/faq.component';
 
 const routes = [
     {

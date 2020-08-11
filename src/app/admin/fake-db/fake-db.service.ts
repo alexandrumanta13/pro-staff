@@ -1,24 +1,24 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { ProjectDashboardDb } from 'app/fake-db/dashboard-project';
-import { AnalyticsDashboardDb } from 'app/fake-db/dashboard-analytics';
-import { CalendarFakeDb } from 'app/fake-db/calendar';
-import { ECommerceFakeDb } from 'app/fake-db/e-commerce';
-import { AcademyFakeDb } from 'app/fake-db/academy';
-import { MailFakeDb } from 'app/fake-db/mail';
-import { ChatFakeDb } from 'app/fake-db/chat';
-import { FileManagerFakeDb } from 'app/fake-db/file-manager';
-import { ContactsFakeDb } from 'app/fake-db/contacts';
-import { TodoFakeDb } from 'app/fake-db/todo';
-import { ScrumboardFakeDb } from 'app/fake-db/scrumboard';
-import { InvoiceFakeDb } from 'app/fake-db/invoice';
-import { ProfileFakeDb } from 'app/fake-db/profile';
-import { SearchFakeDb } from 'app/fake-db/search';
-import { FaqFakeDb } from 'app/fake-db/faq';
-import { KnowledgeBaseFakeDb } from 'app/fake-db/knowledge-base';
-import { IconsFakeDb } from 'app/fake-db/icons';
-import { ChatPanelFakeDb } from 'app/fake-db/chat-panel';
-import { QuickPanelFakeDb } from 'app/fake-db/quick-panel';
+import { ProjectDashboardDb } from '../fake-db/dashboard-project';
+import { AnalyticsDashboardDb } from '../fake-db/dashboard-analytics';
+import { CalendarFakeDb } from '../fake-db/calendar';
+import { ECommerceFakeDb } from '../fake-db/e-commerce';
+import { AcademyFakeDb } from '../fake-db/academy';
+import { MailFakeDb } from '../fake-db/mail';
+import { ChatFakeDb } from '../fake-db/chat';
+import { FileManagerFakeDb } from '../fake-db/file-manager';
+import { ContactsFakeDb } from '../fake-db/contacts';
+import { TodoFakeDb } from '../fake-db/todo';
+import { ScrumboardFakeDb } from '../fake-db/scrumboard';
+import { InvoiceFakeDb } from '../fake-db/invoice';
+import { ProfileFakeDb } from '../fake-db/profile';
+import { SearchFakeDb } from '../fake-db/search';
+import { FaqFakeDb } from '../fake-db/faq';
+import { KnowledgeBaseFakeDb } from '../fake-db/knowledge-base';
+import { IconsFakeDb } from '../fake-db/icons';
+import { ChatPanelFakeDb } from '../fake-db/chat-panel';
+import { QuickPanelFakeDb } from '../fake-db/quick-panel';
 
 export class FakeDbService implements InMemoryDbService
 {

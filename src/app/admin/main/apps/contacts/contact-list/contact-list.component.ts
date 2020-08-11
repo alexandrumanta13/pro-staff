@@ -5,11 +5,11 @@ import { DataSource } from '@angular/cdk/collections';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
-import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
+import { fuseAnimations } from 'src/@fuse/animations';
+import { FuseConfirmDialogComponent } from 'src/@fuse/components/confirm-dialog/confirm-dialog.component';
 
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
+import { ContactsService } from '../../../../main/apps/contacts/contacts.service';
+import { ContactsContactFormDialogComponent } from '../../../../main/apps/contacts/contact-form/contact-form.component';
 
 @Component({
     selector     : 'contacts-contact-list',

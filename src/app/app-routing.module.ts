@@ -8,6 +8,7 @@ import { GdprComponent } from './pages/gdpr/gdpr.component';
 import { ConfidentialityComponent } from './pages/confidentiality/confidentiality.component';
 import { CookiesComponent } from "./pages/cookies/cookies.component";
 import { TermsComponent } from "./pages/terms/terms.component";
+import { AdminComponent } from './admin/admin/admin.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
       ogUrl: 'your og url'
     }
   },
+
+  {
+    path: 'admin', loadChildren: () => import(`./admin/admin.module`).then(m => m.AdminModule) },
+
 
   {
     path: 'setari-gdpr', component: GdprComponent,

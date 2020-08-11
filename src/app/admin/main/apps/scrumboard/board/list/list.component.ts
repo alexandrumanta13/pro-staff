@@ -4,12 +4,12 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
-import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import { FuseConfirmDialogComponent } from 'src/@fuse/components/confirm-dialog/confirm-dialog.component';
+import { FusePerfectScrollbarDirective } from 'src/@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 
-import { ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
-import { Card } from 'app/main/apps/scrumboard/card.model';
-import { ScrumboardCardDialogComponent } from 'app/main/apps/scrumboard/board/dialogs/card/card.component';
+import { ScrumboardService } from '../../../../../main/apps/scrumboard/scrumboard.service';
+import { Card } from '../../../../../main/apps/scrumboard/card.model';
+import { ScrumboardCardDialogComponent } from '../../../../../main/apps/scrumboard/board/dialogs/card/card.component';
 
 @Component({
     selector     : 'scrumboard-board-list',

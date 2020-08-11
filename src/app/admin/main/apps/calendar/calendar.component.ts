@@ -5,12 +5,12 @@ import { Subject } from 'rxjs';
 import { startOfDay, isSameDay, isSameMonth } from 'date-fns';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarMonthViewDay } from 'angular-calendar';
 
-import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
-import { fuseAnimations } from '@fuse/animations';
+import { FuseConfirmDialogComponent } from '../../../../../../src/@fuse/components/confirm-dialog/confirm-dialog.component';
+import { fuseAnimations } from '../../../../../../src/@fuse/animations';
 
-import { CalendarService } from 'app/main/apps/calendar/calendar.service';
-import { CalendarEventModel } from 'app/main/apps/calendar/event.model';
-import { CalendarEventFormDialogComponent } from 'app/main/apps/calendar/event-form/event-form.component';
+import { CalendarService } from '../../../main/apps/calendar/calendar.service';
+import { CalendarEventModel } from '../../../main/apps/calendar/event.model';
+import { CalendarEventFormDialogComponent } from '../../../main/apps/calendar/event-form/event-form.component';
 
 @Component({
     selector     : 'calendar',

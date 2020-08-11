@@ -3,9 +3,9 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
-import { FuseUtils } from '@fuse/utils';
+import { FuseUtils } from 'src/@fuse/utils';
 
-import { FaqService } from 'app/main/pages/faq/faq.service';
+import { FaqService } from '../../../main/pages/faq/faq.service';
 
 @Component({
     selector     : 'faq',

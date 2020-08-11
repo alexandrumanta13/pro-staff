@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseHighlightModule } from '@fuse/components/index';
-import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
+import { FuseHighlightModule } from 'src/@fuse/components/index';
+import { FuseWidgetModule } from 'src/@fuse/components/widget/widget.module';
 
-import { MaterialModule } from 'app/main/angular-material-elements/material.module';
-import { EXAMPLE_LIST } from 'app/main/angular-material-elements/example-components';
-import { AngularMaterialElementsComponent } from 'app/main/angular-material-elements/angular-material-elements.component';
-import { ExampleViewerComponent } from 'app/main/angular-material-elements/example-viewer/example-viewer';
+import { MaterialModule } from '../../main/angular-material-elements/material.module';
+import { EXAMPLE_LIST } from '../../main/angular-material-elements/example-components';
+import { AngularMaterialElementsComponent } from '../../main/angular-material-elements/angular-material-elements.component';
+import { ExampleViewerComponent } from '../../main/angular-material-elements/example-viewer/example-viewer';
 
 const routes: Routes = [
     {

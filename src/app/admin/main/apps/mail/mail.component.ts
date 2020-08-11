@@ -3,14 +3,14 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
+import { FuseSidebarService } from '../../../../../../src/@fuse/components/sidebar/sidebar.service';
+import { FuseTranslationLoaderService } from '../../../../../../src/@fuse/services/translation-loader.service';
 
-import { Mail } from 'app/main/apps/mail/mail.model';
-import { MailService } from 'app/main/apps/mail/mail.service';
+import { Mail } from '../../../main/apps/mail/mail.model';
+import { MailService } from '../../../main/apps/mail/mail.service';
 
-import { locale as english } from 'app/main/apps/mail//i18n/en';
-import { locale as turkish } from 'app/main/apps/mail//i18n/tr';
+import { locale as english } from '../../../main/apps/mail//i18n/en';
+import { locale as turkish } from '../../../main/apps/mail//i18n/tr';
 
 @Component({
     selector     : 'mail',

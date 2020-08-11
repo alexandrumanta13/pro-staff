@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { FuseUtils } from '@fuse/utils';
+import { FuseUtils } from '../../../../../../src/@fuse/utils';
 
-import { Contact } from 'app/main/apps/contacts/contact.model';
+import { Contact } from '../../../main/apps/contacts/contact.model';
 
 @Injectable()
 export class ContactsService implements Resolve<any>

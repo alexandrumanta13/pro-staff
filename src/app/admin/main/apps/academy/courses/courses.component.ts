@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { AcademyCoursesService } from 'app/main/apps/academy/courses.service';
+import { AcademyCoursesService } from '../../../../main/apps/academy/courses.service';
 
 @Component({
     selector   : 'academy-courses',

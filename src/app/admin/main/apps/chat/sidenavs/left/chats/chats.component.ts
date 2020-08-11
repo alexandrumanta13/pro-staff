@@ -3,10 +3,10 @@ import { MediaObserver } from '@angular/flex-layout';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
-import { FuseMatSidenavHelperService } from '@fuse/directives/fuse-mat-sidenav/fuse-mat-sidenav.service';
+import { fuseAnimations } from 'src/@fuse/animations';
+import { FuseMatSidenavHelperService } from 'src/@fuse/directives/fuse-mat-sidenav/fuse-mat-sidenav.service';
 
-import { ChatService } from 'app/main/apps/chat/chat.service';
+import { ChatService } from '../../../../../../main/apps/chat/chat.service';
 
 @Component({
     selector     : 'chat-chats-sidenav',

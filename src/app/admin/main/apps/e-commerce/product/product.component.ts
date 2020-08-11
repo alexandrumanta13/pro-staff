@@ -5,11 +5,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
-import { FuseUtils } from '@fuse/utils';
+import { fuseAnimations } from 'src/@fuse/animations';
+import { FuseUtils } from 'src/@fuse/utils';
 
-import { Product } from 'app/main/apps/e-commerce/product/product.model';
-import { EcommerceProductService } from 'app/main/apps/e-commerce/product/product.service';
+import { Product } from '../../../../main/apps/e-commerce/product/product.model';
+import { EcommerceProductService } from '../../../../main/apps/e-commerce/product/product.service';
 
 @Component({
     selector     : 'e-commerce-product',

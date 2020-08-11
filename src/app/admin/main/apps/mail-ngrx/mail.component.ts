@@ -4,15 +4,15 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
+import { FuseSidebarService } from '../../../../../../src/@fuse/components/sidebar/sidebar.service';
+import { FuseTranslationLoaderService } from '../../../../../../src/@fuse/services/translation-loader.service';
 
-import { Mail } from 'app/main/apps/mail-ngrx/mail.model';
-import { MailNgrxService } from 'app/main/apps/mail-ngrx/mail.service';
-import * as fromStore from 'app/main/apps/mail-ngrx/store';
+import { Mail } from '../../../main/apps/mail-ngrx/mail.model';
+import { MailNgrxService } from '../../../main/apps/mail-ngrx/mail.service';
+import * as fromStore from '../../../main/apps/mail-ngrx/store';
 
-import { locale as english } from 'app/main/apps/mail-ngrx/i18n/en';
-import { locale as turkish } from 'app/main/apps/mail-ngrx/i18n/tr';
+import { locale as english } from '../../../main/apps/mail-ngrx/i18n/en';
+import { locale as turkish } from '../../../main/apps/mail-ngrx/i18n/tr';
 
 @Component({
     selector       : 'mail-ngrx',

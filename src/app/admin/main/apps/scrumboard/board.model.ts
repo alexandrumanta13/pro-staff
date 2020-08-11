@@ -1,4 +1,4 @@
-import { FuseUtils } from '@fuse/utils';
+import { FuseUtils } from '../../../../../../src/@fuse/utils';
 
 import { List } from './list.model';
 import { Card } from './card.model';

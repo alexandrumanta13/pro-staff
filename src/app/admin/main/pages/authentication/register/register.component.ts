@@ -3,8 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators';
 
-import { FuseConfigService } from '@fuse/services/config.service';
-import { fuseAnimations } from '@fuse/animations';
+import { FuseConfigService } from 'src/@fuse/services/config.service';
+import { fuseAnimations } from 'src/@fuse/animations';
 
 @Component({
     selector     : 'register',

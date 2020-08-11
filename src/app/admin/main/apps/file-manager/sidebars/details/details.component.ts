@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from '@fuse/animations';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { FileManagerService } from 'app/main/apps/file-manager/file-manager.service';
+import { FileManagerService } from '../../../../../main/apps/file-manager/file-manager.service';
 
 @Component({
     selector   : 'file-manager-details-sidebar',

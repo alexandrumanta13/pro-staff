@@ -13,12 +13,12 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { CalendarModule as AngularCalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseConfirmDialogModule } from '@fuse/components';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
+import { FuseConfirmDialogModule } from '../../../../../../src/@fuse/components';
 
-import { CalendarComponent } from 'app/main/apps/calendar/calendar.component';
-import { CalendarService } from 'app/main/apps/calendar/calendar.service';
-import { CalendarEventFormDialogComponent } from 'app/main/apps/calendar/event-form/event-form.component';
+import { CalendarComponent } from '../../../main/apps/calendar/calendar.component';
+import { CalendarService } from '../../../main/apps/calendar/calendar.service';
+import { CalendarEventFormDialogComponent } from '../../../main/apps/calendar/event-form/event-form.component';
 
 const routes: Routes = [
     {

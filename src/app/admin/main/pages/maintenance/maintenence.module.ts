@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { MaintenanceComponent } from 'app/main/pages/maintenance/maintenance.component';
+import { MaintenanceComponent } from '../../../main/pages/maintenance/maintenance.component';
 
 const routes = [
     {

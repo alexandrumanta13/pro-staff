@@ -1,4 +1,4 @@
-import { FuseNavigation } from '@fuse/types';
+import { FuseNavigation } from 'src/@fuse/types';
 
 export const navigation: FuseNavigation[] = [
     {

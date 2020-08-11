@@ -7,13 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from '../../../../../../src/@fuse/shared.module';
 
-import { AcademyCoursesComponent } from 'app/main/apps/academy/courses/courses.component';
-import { AcademyCourseComponent } from 'app/main/apps/academy/course/course.component';
-import { AcademyCoursesService } from 'app/main/apps/academy/courses.service';
-import { AcademyCourseService } from 'app/main/apps/academy/course.service';
-import { FuseSidebarModule } from '@fuse/components';
+import { AcademyCoursesComponent } from '../../../main/apps/academy/courses/courses.component';
+import { AcademyCourseComponent } from '../../../main/apps/academy/course/course.component';
+import { AcademyCoursesService } from '../../../main/apps/academy/courses.service';
+import { AcademyCourseService } from '../../../main/apps/academy/course.service';
+import { FuseSidebarModule } from '../../../../../../src/@fuse/components';
 
 const routes = [
     {

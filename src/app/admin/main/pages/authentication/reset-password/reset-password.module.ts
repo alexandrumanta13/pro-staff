@@ -5,9 +5,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
 
-import { ResetPasswordComponent } from 'app/main/pages/authentication/reset-password/reset-password.component';
+import { ResetPasswordComponent } from '../../../../main/pages/authentication/reset-password/reset-password.component';
 
 const routes = [
     {

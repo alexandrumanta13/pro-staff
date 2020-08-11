@@ -10,12 +10,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseSidebarModule } from '@fuse/components';
-import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
+import { FuseSharedModule } from 'src/@fuse/shared.module';
+import { FuseSidebarModule } from 'src/@fuse/components';
+import { FuseWidgetModule } from 'src/@fuse/components/widget/widget.module';
 
-import { ProjectDashboardComponent } from 'app/main/apps/dashboards/project/project.component';
-import { ProjectDashboardService } from 'app/main/apps/dashboards/project/project.service';
+import { ProjectDashboardComponent } from '../../../../main/apps/dashboards/project/project.component';
+import { ProjectDashboardService } from '../../../../main/apps/dashboards/project/project.service';
 
 const routes: Routes = [
     {

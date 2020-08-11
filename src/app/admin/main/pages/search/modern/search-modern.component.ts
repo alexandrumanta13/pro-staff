@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { SearchModernService } from 'app/main/pages/search/modern/search-modern.service';
+import { SearchModernService } from '../../../../main/pages/search/modern/search-modern.service';
 
 @Component({
     selector     : 'search-modern',

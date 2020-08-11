@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
-import { FuseUtils } from '@fuse/utils';
-import { fuseAnimations } from '@fuse/animations';
+import { FuseUtils } from 'src/@fuse/utils';
+import { fuseAnimations } from 'src/@fuse/animations';
 
-import { Todo } from 'app/main/apps/todo/todo.model';
-import { TodoService } from 'app/main/apps/todo/todo.service';
+import { Todo } from '../../../../main/apps/todo/todo.model';
+import { TodoService } from '../../../../main/apps/todo/todo.service';
 
 @Component({
     selector     : 'todo-details',
