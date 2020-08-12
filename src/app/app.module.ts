@@ -36,7 +36,7 @@ import { FeaturedProductsComponent } from './components/products/featured-produc
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 
 
-import { OwlModule } from 'ngx-owl-carousel';
+
 import { CartComponent } from './components/cart/cart.component';
   
 
@@ -73,7 +73,7 @@ import { CartComponent } from './components/cart/cart.component';
     HttpClientModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    OwlModule
+    
    // AdminModule
   ],
   exports: [
