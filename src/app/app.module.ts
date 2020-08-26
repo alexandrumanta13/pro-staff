@@ -1,43 +1,65 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdminModule } from './admin/admin.module';
+
+
+
+// used to create fake backend
+
+
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/layout/header/header.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
-
-
-import { QuickFormContactComponent } from './components/quick-form-contact/quick-form-contact.component';
-
-
-import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { FormContactCategoriesComponent } from './components/form-contact-categories/form-contact-categories.component';
 
-import { SimpleFromContactComponent } from './components/simple-from-contact/simple-from-contact.component';
 
+import { AppComponent } from './app.component';
+
+import { HeaderComponent } from './components/layout';
+import { FooterComponent } from './components/layout';
+import { MobileMenuComponent } from './components/layout';
+import { ProductQuickViewComponent } from './components/layout';
+
+import { ProductsComponent } from './components/products';
+import { FeaturedProductsComponent } from './components/products';
+import { ProductDetailsComponent } from './components/products';
+
+import { CartComponent } from './components';
+import { AlertComponent } from './components';
+
+
+// import { JwtInterceptor, ErrorInterceptor } from './helpers';
+// import { fakeBackendProvider } from './helpers';
+
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { GdprComponent } from './pages/gdpr/gdpr.component';
 import { ConfidentialityComponent } from './pages/confidentiality/confidentiality.component';
 import { CookiesComponent } from './pages/cookies/cookies.component';
 import { TermsComponent } from './pages/terms/terms.component';
-import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
 import { SliderComponent } from './pages/home/slider/slider.component';
-import { MobileMenuComponent } from './components/layout/mobile-menu/mobile-menu.component';
-import { ProductQuickViewComponent } from './components/layout/product-quick-view/product-quick-view.component';
-import { ProductsComponent } from './components/products/products.component';
-import { FeaturedProductsComponent } from './components/products/featured-products/featured-products.component';
-import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 
-import { CartComponent } from './components/cart/cart.component';
+import { AuthGuard } from './app-routing.guard';
+import { AuthenticationService } from './services';
+
+import { UserRoleDirective } from './directives/user-role.directive';
+import { UserDirective } from './directives/user.directive';
+import { AdminModule } from './pages/admin/admin.module';
+import { InterorComponent } from './pages/projects/interor/interor.component';
+import { ExteriorComponent } from './pages/projects/exterior/exterior.component';
+
+
+
+
+
   
 
 @NgModule({
@@ -45,11 +67,9 @@ import { CartComponent } from './components/cart/cart.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    QuickFormContactComponent,
     HomeComponent,
+    AboutComponent,
     NotFoundComponent,
-    FormContactCategoriesComponent,
-    SimpleFromContactComponent,
     ContactComponent,
     GdprComponent,
     ConfidentialityComponent,
@@ -64,7 +84,12 @@ import { CartComponent } from './components/cart/cart.component';
     FeaturedProductsComponent,
     ProductDetailsComponent,
     CartComponent,
-    
+    AlertComponent,
+    LoginComponent,    
+    UserDirective,
+    UserRoleDirective,
+    InterorComponent,
+    ExteriorComponent
   ],
   imports: [
     BrowserModule,
@@ -73,13 +98,21 @@ import { CartComponent } from './components/cart/cart.component';
     HttpClientModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    
-   // AdminModule
+    AdminModule
   ],
   exports: [
-    QuickFormContactComponent
+    UserDirective,
+    UserRoleDirective
   ],
-  providers: [],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    //fakeBackendProvider,
+
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

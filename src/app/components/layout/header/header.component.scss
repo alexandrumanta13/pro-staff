@@ -1,17 +1,94 @@
-
-
-
 .logo-sticky {
-    display: none;
+  display: none;
 }
 
 .fixed {
-    .logo-sticky {
-        display: flex;
-    }
+  .logo-sticky {
+    display: flex;
+  }
 
-    .logo-not-sticky {
-        display: none;
-    }
+  .logo-not-sticky {
+    display: none;
+  }
 }
 
+.user-account {
+  a {
+    color: #fff;
+    margin-bottom: 6px;
+    display: flex;
+    font-size: 29px;
+
+    img {
+      height: 29px;
+    
+      display: flex;
+    }
+
+    &.dropdown-toggle {
+      display: block;
+      position: relative;
+      padding: 0 1.6rem 0 2.4rem;
+      text-decoration: none;
+
+      &::after {
+        display: inline-block;
+        position: absolute;
+        top: 1rem;
+        right: 0;
+        width: auto;
+        height: auto;
+        margin: 0;
+        transition: all .3s;
+        border: 0;
+        color: #fff;
+        font-family: 'porto';
+        font-size: 1.4rem;
+        line-height: 1;
+        content: '\e81c';
+      }
+    }
+  }
+
+  .dropdown-menu {
+    display: block;
+    top: 100%;
+    right: 0rem;
+    left: auto;
+    width: 300px;
+    margin: 0;
+    padding-top: 9px;
+    transition: all .25s;
+    border: 0;
+    background-color: transparent;
+    color: #777;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    box-shadow: none;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+  }
+
+  .dropdownmenu-wrapper {
+    padding: 1.6rem 1.9rem;
+
+    &::before {
+      right: 22px;
+      left: auto;
+    }
+
+    &::after {
+      right: 23px;
+      left: auto;
+    }
+  }
+
+  &:hover {
+    .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+    }
+
+  }
+}

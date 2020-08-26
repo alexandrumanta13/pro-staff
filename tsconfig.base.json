@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -12,20 +12,22 @@
     "importHelpers": true,
     "target": "es2015",
 
-    
-        
-       
       
     "lib": [
       "es2018",
       "dom"
     ],
+
     "paths": {
-      "@fuse/*": [
+      "@fuse": [
           "@fuse/*"
       ]
-    },
+    }
+    
   },
+  "include": [
+    "./src/@fuse/**/*",
+  ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": false,
     "strictInjectionParameters": false,

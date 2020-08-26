@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GalleryCarouselComponent } from '../../components/gallery-carousel/gallery-carousel.component'
+
 
 @Component({
   selector: 'app-about',

@@ -1,19 +1,19 @@
-<header class="header" [ngClass]="router.url == '/' ? 'header-transparent' : ''">
-	<div class="header-middle sticky-header">
-		<div class="container-fluid">
-			<div class="header-left">
-				<a href="index.html" class="logo">
-					<img class="logo-not-sticky" src="assets/images/logo-transparent-1.png" alt="Pro Staff">
-					<img class="logo-sticky" src="assets/images/logo.png" alt="Pro Staff">
-				</a>
-			</div><!-- End .header-left -->
+<header class="header" [ngClass]="router.url == '/' || router.url == '/despre-noi' ? 'header-transparent' : ''">
+  <div class="header-middle sticky-header">
+    <div class="container-fluid">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <img class="logo-not-sticky" src="assets/images/logo-transparent-1.png" alt="Pro Staff">
+          <img class="logo-sticky" src="assets/images/logo.png" alt="Pro Staff">
+        </a>
+      </div><!-- End .header-left -->
 
-			<div class="header-center">
-				<nav class="main-nav">
-					<ul class="menu sf-arrows">
-						<li>
-							<a href="#" class="sf-with-ul">Produse</a>
-							<!-- <ul>
+      <div class="header-center">
+        <nav class="main-nav">
+          <ul class="menu sf-arrows">
+            <li>
+              <a href="#">Produse</a>
+              <!-- <ul>
 								<li><a href="">Home</a></li>
 								<li><a href="category.html">Categories</a>
 									<ul>
@@ -108,113 +108,145 @@
 									</ul>
 								</li>
 							</ul> -->
-						</li>
-						<li><a href="#">Despre noi</a></li>
-						<li><a href="#">Proiecte</a></li>
-						<li><a href="#">Noutati</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</nav>
+            </li>
+            <li><a routerLink="/despre-noi">Despre noi</a></li>
+            <li><a href="">Proiecte</a>
 
-				<div class="header-contact">
-					<i class="icon-phone"></i>
-					<a href="tel:#">0721.203.933</a>
-				</div><!-- End .header-contact -->
-			</div><!-- End .header-center -->
 
-			<div class="header-right">
-				<button class="mobile-menu-toggler" type="button">
-					<i class="icon-menu"></i>
-				</button>
-				<div class="header-search header-search-popup header-search-category d-none d-sm-block">
-					<a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
-					<form action="#" method="get">
-						<div class="header-search-wrapper show">
-							<input type="search" class="form-control" name="q" id="q" placeholder="I'm searching for..." required="">
-							<div class="select-custom">
-								<select id="cat" name="cat">
 
-									<option value="">Toate categoriile</option>
-									<option value="4">VOPSEA LAVABILA</option>
-									<option value="4">VOPSEA DECORATIVA</option>
-									<option value="4">VOPSEA METAL</option>
-									<option value="4">PENTRU LEMN</option>
-									<option value="4">VOPSEA PARDOSEALA</option>
-									<option value="4">VOPSEA CERAMICA</option>
-									<option value="4">HIDROIZOLATII</option>
-									<option value="4">CAMERE COPII</option>
-									<option value="4">APARATE ȘI SCULE DE VOPSIT</option>
-									
-								</select>
-							</div><!-- End .select-custom -->
-							<button class="btn icon-search-3" type="submit"></button>
-						</div><!-- End .header-search-wrapper -->
-					</form>
-				</div>
+              <ul>
+                <li>
+                  <a routerLink="/proiecte/interior">Interior</a>
+                </li>
+                <li>
+                  <a routerLink="/proiecte/exterior">Exterior</a>
+                </li>
+              </ul>
+            </li>
 
-				<div class="dropdown cart-dropdown">
-					<a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-						<span class="cart-count">2</span>
-					</a>
+            <li><a href="#">Noutati</a></li>
+            <li><a href="#">Contact</a></li>
+            <li>
+              <a class="nav-link" [routerLink]="['admin', 'dashboard']">Dashboard</a>
+            </li>
 
-					<div class="dropdown-menu" >
-						<div class="dropdownmenu-wrapper">
-							<div class="dropdown-cart-products">
-								<div class="product">
-									<div class="product-details">
-										<h4 class="product-title">
-											<a href="#">DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA SOLVENT</a>
-										</h4>
+          </ul>
 
-										<span class="cart-product-info">
-											<span class="cart-product-qty">1</span>
-											x 51.90 lei
-										</span>
-									</div><!-- End .product-details -->
+        </nav>
 
-									<figure class="product-image-container">
-										<a href="#" class="product-image">
-											<img src="https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg" alt="product">
-										</a>
-										<a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
-									</figure>
-								</div><!-- End .product -->
+        <div class="header-contact">
+          <i class="icon-phone"></i>
+          <a href="tel:#">0721.203.933</a>
+        </div><!-- End .header-contact -->
+      </div><!-- End .header-center -->
 
-								<div class="product">
-									<div class="product-details">
-										<h4 class="product-title">
-											<a href="#">Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural</a>
-										</h4>
+      <div class="header-right">
+        <button class="mobile-menu-toggler" type="button">
+          <i class="icon-menu"></i>
+        </button>
+        <div class="header-search header-search-popup header-search-category d-none d-sm-block">
+          <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
+          <form action="#" method="get">
+            <div class="header-search-wrapper show">
+              <input type="search" class="form-control" name="q" id="q" placeholder="I'm searching for..." required="">
+              <div class="select-custom">
+                <select id="cat" name="cat">
 
-										<span class="cart-product-info">
-											<span class="cart-product-qty">1</span>
-											x 34.90 lei
-										</span>
-									</div><!-- End .product-details -->
+                  <option value="">Toate categoriile</option>
+                  <option value="4">VOPSEA LAVABILA</option>
+                  <option value="4">VOPSEA DECORATIVA</option>
+                  <option value="4">VOPSEA METAL</option>
+                  <option value="4">PENTRU LEMN</option>
+                  <option value="4">VOPSEA PARDOSEALA</option>
+                  <option value="4">VOPSEA CERAMICA</option>
+                  <option value="4">HIDROIZOLATII</option>
+                  <option value="4">CAMERE COPII</option>
+                  <option value="4">APARATE ȘI SCULE DE VOPSIT</option>
 
-									<figure class="product-image-container">
-										<a href="#" class="product-image">
-											<img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
-										</a>
-										<a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
-									</figure>
-								</div><!-- End .product -->
-							</div><!-- End .cart-product -->
+                </select>
+              </div><!-- End .select-custom -->
+              <button class="btn icon-search-3" type="submit"></button>
+            </div><!-- End .header-search-wrapper -->
+          </form>
+        </div>
 
-							<div class="dropdown-cart-total">
-								<span>Total</span>
+        <div class="dropdown cart-dropdown">
+          <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" data-display="static">
+            <span class="cart-count">2</span>
+          </a>
 
-								<span class="cart-total-price">134 lei</span>
-							</div><!-- End .dropdown-cart-total -->
+          <div class="dropdown-menu dropdown">
+            <div class="dropdownmenu-wrapper">
+              <div class="dropdown-cart-products">
+                <div class="product">
+                  <div class="product-details">
+                    <h4 class="product-title">
+                      <a href="#">DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA
+                        SOLVENT</a>
+                    </h4>
 
-							<div class="dropdown-cart-action">
-								<a [routerLink]="['/cos-cumparaturi']" class="btn btn-orange">Vezi cos</a>
-								<a [routerLink]="['/finalizeaza-comanda']" class="btn btn-orange">Finalizeaza</a>
-							</div><!-- End .dropdown-cart-total -->
-						</div><!-- End .dropdownmenu-wrapper -->
-					</div><!-- End .dropdown-menu -->
-				</div><!-- End .dropdown -->
-			</div><!-- End .header-right -->
-		</div><!-- End .container-fluid -->
-	</div><!-- End .header-middle -->
+                    <span class="cart-product-info">
+                      <span class="cart-product-qty">1</span>
+                      x 51.90 lei
+                    </span>
+                  </div><!-- End .product-details -->
+
+                  <figure class="product-image-container">
+                    <a href="#" class="product-image">
+                      <img src="https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg" alt="product">
+                    </a>
+                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+                  </figure>
+                </div><!-- End .product -->
+
+                <div class="product">
+                  <div class="product-details">
+                    <h4 class="product-title">
+                      <a href="#">Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural</a>
+                    </h4>
+
+                    <span class="cart-product-info">
+                      <span class="cart-product-qty">1</span>
+                      x 34.90 lei
+                    </span>
+                  </div><!-- End .product-details -->
+
+                  <figure class="product-image-container">
+                    <a href="#" class="product-image">
+                      <img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
+                    </a>
+                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+                  </figure>
+                </div><!-- End .product -->
+              </div><!-- End .cart-product -->
+
+              <div class="dropdown-cart-total">
+                <span>Total</span>
+
+                <span class="cart-total-price">134 lei</span>
+              </div><!-- End .dropdown-cart-total -->
+
+              <div class="dropdown-cart-action">
+                <a [routerLink]="['/cos-cumparaturi']" class="btn btn-orange">Vezi cos</a>
+                <a [routerLink]="['/finalizeaza-comanda']" class="btn btn-orange">Finalizeaza</a>
+              </div><!-- End .dropdown-cart-total -->
+            </div><!-- End .dropdownmenu-wrapper -->
+          </div><!-- End .dropdown-menu -->
+        </div><!-- End .dropdown -->
+        <div class="dropdown user-account">
+          <a href="" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" data-display="static">
+            <img src="/assets/icons/user-account.svg" alt="">
+          </a>
+
+          <div class="dropdown-menu dropdown">
+            <div class="dropdownmenu-wrapper">
+
+            </div>
+          </div>
+        </div>
+      </div><!-- End .header-right -->
+    </div><!-- End .container-fluid -->
+  </div><!-- End .header-middle -->
 </header><!-- End .header -->

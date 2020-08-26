@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { SEOServiceService } from './seoservice.service';
+import { SEOServiceService } from './services/seoservice.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { Role } from './models/role';
+import { AuthenticationService } from './services';
+import { User } from './models';
 
 
 declare var $: any;
@@ -11,12 +14,15 @@ declare var $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'asdadax';
+  currentUser: User;
   constructor(
-    private router: Router,
+    public router: Router,
     private activatedRoute: ActivatedRoute,
-    private _seoService: SEOServiceService
-  ) { }
+    private _seoService: SEOServiceService,
+    private authService: AuthenticationService,
+  ) {
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
 
 
@@ -50,10 +56,29 @@ export class AppComponent {
       map(() => this.activatedRoute),
     )
       .subscribe((event) => {
-        $.getScript('../assets/js/jquery.min.js');
-        $.getScript('../assets/js/bootstrap.bundle.min.js');
-        $.getScript('../assets/js/plugins.min.js');
-        $.getScript('../assets/js/main.js');
+       
+       // $.getScript('../assets/js/main.js');
       });
+  }
+
+  ngAfterViewInit() {
+ 
+   // $.getScript('../assets/js/main.js');
+  }
+
+
+  get isAuthorized() {
+    return this.authService.isAuthorized();
+  }
+
+  get isAdmin() {
+    return this.authService.hasRole(Role.Admin);
+  }
+
+
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['login']);
   }
 }

@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ThankYouComponent } from "./components/thank-you/thank-you.component";
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ThankYouComponent } from "./pages/thank-you/thank-you.component";
 import { GdprComponent } from './pages/gdpr/gdpr.component';
 import { ConfidentialityComponent } from './pages/confidentiality/confidentiality.component';
 import { CookiesComponent } from "./pages/cookies/cookies.component";
 import { TermsComponent } from "./pages/terms/terms.component";
-import { AdminComponent } from './admin/admin/admin.component';
+
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
+import { LoginComponent } from './pages/login/login.component';
+
+
+import { AuthGuard } from './app-routing.guard';
+import { AuthenticationService } from './services';
+import { Role } from './models/role';
+import { InterorComponent } from './pages/projects/interor/interor.component';
+import { ExteriorComponent } from './pages/projects/exterior/exterior.component';
 
 
 const routes: Routes = [
@@ -24,12 +33,36 @@ const routes: Routes = [
   },
 
   {
-    path: 'admin', loadChildren: () => import(`./admin/admin.module`).then(m => m.AdminModule) 
+    path: 'proiecte/interior', component: InterorComponent,
+    data: {
+      title: 'Pro staff',
+      description: 'Description Meta Tag Content',
+      ogUrl: 'your og url'
+    }
   },
+
+  {
+    path: 'despre-noi', component: AboutComponent,
+    data: {
+      title: 'Pro staff',
+      description: 'Description Meta Tag Content',
+      ogUrl: 'your og url'
+    }
+  },
+
+  {
+    path: 'proiecte/exterior', component: ExteriorComponent,
+    data: {
+      title: 'Pro staff',
+      description: 'Description Meta Tag Content',
+      ogUrl: 'your og url'
+    }
+  },
+
 
   { path: 'produse/:productName/:productId', component: ProductDetailsComponent },
   { path: 'cos-cumparaturi', component: CartComponent },
-   
+
   {
     path: 'setari-gdpr', component: GdprComponent,
     data: {
@@ -38,6 +71,8 @@ const routes: Routes = [
       ogUrl: 'your og url'
     }
   },
+
+
 
   {
     path: 'confidentialitate', component: ConfidentialityComponent,
@@ -71,6 +106,21 @@ const routes: Routes = [
       ogUrl: 'your og url'
     }
   },
+
+  { path: 'login', component: LoginComponent },
+
+  {
+    path: 'admin',
+    // canLoad: [AuthGuard],
+    // canActivate: [AuthGuard],
+    data: {
+      roles: [
+        Role.Admin,
+      ]
+    },
+    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
+  },
+
   { path: '404', component: NotFoundComponent },
 
   { path: 'thank-you', component: ThankYouComponent },
@@ -80,6 +130,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    AuthGuard,
+    AuthenticationService
+  ]
 })
 export class AppRoutingModule { }
