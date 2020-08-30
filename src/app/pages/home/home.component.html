@@ -7,7 +7,7 @@
         <div class="product" *ngFor="let product of products; index as productId">
             <figure class="product-image-container">
                 <a [routerLink]="['/produse',product.name, productId]" class="product-image">
-                    <img src="{{product.image}}" alt="product">
+                    <img src="" alt="product">
                 </a>
                 <span class="product-label label-sale" *ngIf="product.discount > 0">-{{product.discount}}%</span>
                 <span class="product-label label-new" *ngIf="product.newProduct === true">Nou</span>
@@ -657,3 +657,5 @@
         </div><!-- End .row -->
     </div><!-- End .container-fluid -->
 </div>
+
+<app-featured-products></app-featured-products>

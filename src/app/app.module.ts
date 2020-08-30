@@ -55,6 +55,8 @@ import { UserDirective } from './directives/user.directive';
 import { AdminModule } from './pages/admin/admin.module';
 import { InterorComponent } from './pages/projects/interor/interor.component';
 import { ExteriorComponent } from './pages/projects/exterior/exterior.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
 
 
 
@@ -89,7 +91,9 @@ import { ExteriorComponent } from './pages/projects/exterior/exterior.component'
     UserDirective,
     UserRoleDirective,
     InterorComponent,
-    ExteriorComponent
+    ExteriorComponent,
+    BlogComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,

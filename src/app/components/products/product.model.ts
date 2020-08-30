@@ -1,6 +1,7 @@
 export class Product {
     constructor(
-      public name: string,
+     
+      public product_name: string,
       public image: string,
       public colors: string[],
       public newProduct: Boolean,
@@ -8,3 +9,5 @@ export class Product {
       public price: number) 
     {}
   }
+
+  

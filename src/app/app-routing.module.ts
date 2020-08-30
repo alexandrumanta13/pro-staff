@@ -20,6 +20,7 @@ import { AuthenticationService } from './services';
 import { Role } from './models/role';
 import { InterorComponent } from './pages/projects/interor/interor.component';
 import { ExteriorComponent } from './pages/projects/exterior/exterior.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,16 @@ const routes: Routes = [
       ogUrl: 'your og url'
     }
   },
+
+  {
+    path: 'blog', component: BlogComponent,
+    data: {
+      title: 'Pro staff',
+      description: 'Description Meta Tag Content',
+      ogUrl: 'your og url'
+    }
+  },
+
 
   {
     path: 'proiecte/exterior', component: ExteriorComponent,

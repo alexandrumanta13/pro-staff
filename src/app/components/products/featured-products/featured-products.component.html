@@ -1,4 +1,5 @@
 <div class="product" *ngFor="let product of products">
+    {{products.no_of_pages}}
     <figure class="product-image-container">
         <a href="product.html" class="product-image">
             <img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
@@ -15,6 +16,13 @@
         <div class="price-box">
             <span class="old-price">69 lei</span>
             <span class="product-price">34.90 lei</span>
-        </div><!-- End .price-box -->
-    </div><!-- End .product-details -->
-</div><!-- End .product -->
+        </div>
+    </div>
+</div>
+<div>
+   
+    <button (click)="firstPage()" mat-button> First </button>
+    <button (click)="previousPage()" mat-button> Previous</button>
+    <button (click)="nextPage()" mat-button> Next</button>
+    <button (click)="lastPage()" mat-button> Last</button>
+</div>

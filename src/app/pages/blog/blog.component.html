@@ -1,0 +1,219 @@
+<main class="main">
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Acasa</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+      </ol>
+    </div><!-- End .container-fluid -->
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Blog</h1>
+    </div><!-- End .container -->
+  </div><!-- End .page-header -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <article class="entry" *ngFor="let post of posts">
+          <div class="entry-media">
+            <a [routerLink]="['/blog', post.title]" [innerHTML]="post.image">
+
+            </a>
+          </div><!-- End .entry-media -->
+
+          <div class="entry-body">
+            <div class="entry-date">
+              <span class="day">29</span>
+              <span class="month">Jun</span>
+            </div><!-- End .entry-date -->
+
+            <h2 class="entry-title">
+              <a [routerLink]="['/blog', post.title]">{{post.title}}</a>
+            </h2>
+
+            <div class="entry-content">
+              <p>{{post.shortDescription}}</p>
+
+              <a [routerLink]="['/blog',post.title]" class="read-more">Citeste mai mult <i
+                  class="icon-angle-double-right"></i></a>
+            </div><!-- End .entry-content -->
+
+            <div class="entry-meta">
+              <span><i class="icon-calendar"></i>{{post.published}}</span>
+              <span><i class="icon-user"></i><a href="#">Prostaff</a></span>
+              <span><i class="icon-folder-open"></i>
+                <a *ngFor="let category of post.categories">{{category}}</a>
+              </span>
+            </div><!-- End .entry-meta -->
+          </div><!-- End .entry-body -->
+        </article><!-- End .entry -->
+
+
+
+        <nav class="toolbox toolbox-pagination">
+          <ul class="pagination">
+            <li class="page-item active">
+              <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><span class="page-link">...</span></li>
+            <li class="page-item">
+              <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
+            </li>
+          </ul>
+        </nav>
+      </div><!-- End .col-lg-9 -->
+
+      <aside class="sidebar col-lg-3">
+        <div class="sidebar-wrapper">
+
+
+          <div class="widget widget-categories">
+            <h4 class="widget-title">Categorii</h4>
+
+            <ul class="list">
+              <li><a href="#">Constructii si amenajari</a></li>
+              <li><a href="#">Exterior</a></li>
+              <li><a href="#">Interior</a></li>
+              <li><a href="#">Lemn-metal</a></li>
+              <li><a href="#">Noutati</a></li>
+              <li><a href="#">Tutoriale</a></li>
+            </ul>
+          </div><!-- End .widget -->
+
+          <div class="widget">
+            <h4 class="widget-title">Recente</h4>
+
+            <ul class="simple-entry-list">
+
+              <li>
+                <div class="entry-media">
+                  <a href="single.html">
+                    <img width="527" height="350"
+                      src="https://pro-staff.ro/wp-content/uploads/2020/05/Lac-pentru-lemn-incolor.png"
+                      class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
+                      srcset="https://pro-staff.ro/wp-content/uploads/2020/05/Lac-pentru-lemn-incolor.png 527w, https://pro-staff.ro/wp-content/uploads/2020/05/Lac-pentru-lemn-incolor-300x199.png 300w"
+                      sizes="(max-width: 527px) 100vw, 527px">
+                  </a>
+                </div><!-- End .entry-media -->
+                <div class="entry-info">
+                  <a href="single.html">Lac pentru lemn cu efect de ceara – Protejeaza lemnul impotriva
+                    impuritatilor</a>
+                  <div class="entry-meta">
+                    Mai 07, 2020
+                  </div><!-- End .entry-meta -->
+                </div><!-- End .entry-info -->
+              </li>
+
+              <li>
+                <div class="entry-media">
+                  <a href="single.html">
+                    <img width="633" height="501"
+                      src="https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-tabla-de-scris.png"
+                      class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+                      alt="Vopsea tabla de scris – Intotdeauna o alegere buna!"
+                      srcset="https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-tabla-de-scris.png 633w, https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-tabla-de-scris-300x237.png 300w, https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-tabla-de-scris-600x475.png 600w"
+                      sizes="(max-width: 633px) 100vw, 633px">
+                  </a>
+                </div><!-- End .entry-media -->
+                <div class="entry-info">
+                  <a href="single.html">Vopsea tabla de scris – Intotdeauna o alegere buna!</a>
+                  <div class="entry-meta">
+                    Aprilie 24, 2020
+                  </div><!-- End .entry-meta -->
+                </div><!-- End .entry-info -->
+              </li>
+              <li>
+                <div class="entry-media">
+                  <a href="single.html">
+                    <img width="1000" height="667"
+                      src="https://pro-staff.ro/wp-content/uploads/2020/04/lavabila-pentru-interior.jpg"
+                      class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+                      alt="Lavabila pentru interior – Ce culori alegem pentru reamenajarea locuintei?"
+                      srcset="https://pro-staff.ro/wp-content/uploads/2020/04/lavabila-pentru-interior.jpg 1000w, https://pro-staff.ro/wp-content/uploads/2020/04/lavabila-pentru-interior-300x200.jpg 300w, https://pro-staff.ro/wp-content/uploads/2020/04/lavabila-pentru-interior-768x512.jpg 768w, https://pro-staff.ro/wp-content/uploads/2020/04/lavabila-pentru-interior-600x400.jpg 600w"
+                      sizes="(max-width: 1000px) 100vw, 1000px">
+                  </a>
+                </div><!-- End .entry-media -->
+                <div class="entry-info">
+                  <a href="single.html">Lavabila pentru interior – Ce culori alegem pentru reamenajarea locuintei?</a>
+                  <div class="entry-meta">
+                    Aprilie 16, 2020
+                  </div><!-- End .entry-meta -->
+                </div><!-- End .entry-info -->
+              </li>
+              <li>
+                <div class="entry-media">
+                  <a href="single.html">
+                    <img width="960" height="413"
+                      src="https://pro-staff.ro/wp-content/uploads/2020/04/72102896_1633104420154737_4643384942951137280_o.png"
+                      class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+                      alt="Efect decorativ de piatra sparta"
+                      srcset="https://pro-staff.ro/wp-content/uploads/2020/04/72102896_1633104420154737_4643384942951137280_o.png 960w, https://pro-staff.ro/wp-content/uploads/2020/04/72102896_1633104420154737_4643384942951137280_o-300x129.png 300w, https://pro-staff.ro/wp-content/uploads/2020/04/72102896_1633104420154737_4643384942951137280_o-768x330.png 768w, https://pro-staff.ro/wp-content/uploads/2020/04/72102896_1633104420154737_4643384942951137280_o-600x258.png 600w"
+                      sizes="(max-width: 960px) 100vw, 960px">
+                  </a>
+                </div><!-- End .entry-media -->
+                <div class="entry-info">
+                  <a href="single.html">Efect decorativ de piatra sparta</a>
+                  <div class="entry-meta">
+                    Aprilie 15, 2020
+                  </div><!-- End .entry-meta -->
+                </div><!-- End .entry-info -->
+              </li>
+              <li>
+                <div class="entry-media">
+                  <a href="single.html">
+                    <img width="590" height="393"
+                      src="https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-decorativa-2.jpg"
+                      class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+                      alt="TIXE-ORGANZA- Vopsea decorativa cu efect de matase"
+                      srcset="https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-decorativa-2.jpg 590w, https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-decorativa-2-300x200.jpg 300w"
+                      sizes="(max-width: 590px) 100vw, 590px">
+                  </a>
+                </div><!-- End .entry-media -->
+                <div class="entry-info">
+                  <a href="single.html">TIXE-ORGANZA- Vopsea decorativa cu efect de matase</a>
+                  <div class="entry-meta">
+                    Aprilie 08, 2020
+                  </div><!-- End .entry-meta -->
+                </div><!-- End .entry-info -->
+              </li>
+            </ul>
+          </div><!-- End .widget -->
+
+
+
+          <div class="widget">
+            <h4 class="widget-title">Arhiva</h4>
+
+            <ul class="list">
+              <li><a href="#">Aprilie 2020</a></li>
+              <li><a href="#">Mai 2020</a></li>
+              <li><a href="#">Martie 2019</a></li>
+              <li><a href="#">Aprilie 2019</a></li>
+              <li><a href="#">Octombrie 2019</a></li>
+              <li><a href="#">Mai 2018</a></li>
+              <li><a href="#">August 2018</a></li>
+              <li><a href="#">Octombrie 2018</a></li>
+              <li><a href="#">Ianuarie 2018</a></li>
+            </ul>
+          </div><!-- End .widget -->
+
+
+          <div class="widget widget_compare">
+            <h4 class="widget-title">Compare Products</h4>
+
+            <p>You have no items to compare.</p>
+          </div><!-- End .widget -->
+        </div><!-- End .sidebar-wrapper -->
+      </aside><!-- End .col-lg-3 -->
+    </div><!-- End .row -->
+  </div><!-- End .container -->
+
+  <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
