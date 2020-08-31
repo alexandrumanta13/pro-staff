@@ -10,9 +10,14 @@ import { ConfidentialityComponent } from './pages/confidentiality/confidentialit
 import { CookiesComponent } from "./pages/cookies/cookies.component";
 import { TermsComponent } from "./pages/terms/terms.component";
 
+import { ProductsComponent } from "./components/products/products.component";
+
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './pages/login/login.component';
+
+
+import {CategoryProductsComponent} from './components/category-products/category-products.component';
 
 
 import { AuthGuard } from './app-routing.guard';
@@ -21,6 +26,7 @@ import { Role } from './models/role';
 import { InterorComponent } from './pages/projects/interor/interor.component';
 import { ExteriorComponent } from './pages/projects/exterior/exterior.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { CategoryComponent } from './components/category/category.component';
 
 
 const routes: Routes = [
@@ -70,8 +76,14 @@ const routes: Routes = [
     }
   },
 
+  { path: 'produse', component: ProductsComponent },
+  { path: 'produse/categorie/:categorySlug', component: CategoryProductsComponent},
+  { path: 'produs/:productName', component: ProductDetailsComponent },
 
-  { path: 'produse/:productName/:productId', component: ProductDetailsComponent },
+
+  { path: 'categorie/:categorySlug', component: CategoryComponent },
+
+
   { path: 'cos-cumparaturi', component: CartComponent },
 
   {

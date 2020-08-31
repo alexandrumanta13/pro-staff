@@ -1,0 +1,5 @@
+<div class="pagination">
+    <div class="pagination-item" (click)="decreaseCurrentPage();">PREV</div>
+    <div class="pagination-item" *ngFor="let number of pages" [class.current-page]="number === currentPage" (click)="setCurrentPage(number)">{{number}}</div>
+    <div class="pagination-item" (click)="increaseCurrentPage();">NEXT</div>
+</div>

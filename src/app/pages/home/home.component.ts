@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../components/products/product.model'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -8,61 +9,54 @@ import { Product } from '../../components/products/product.model'
 })
 export class HomeComponent implements OnInit {
 
-  products: Product[]
-  constructor() {
-    this.products = [
-      new Product(
-        'Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural',
-        'assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg',
-        [],
-        false,
-        0,
-        34.90
-      ),
-      new Product(
-        'PENSULA 120MM PENTRU VOPSEA DECORATIVA , GIEFFE , DIN PAR NATURAL',
-        'assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg',
-        [],
-        false,
-        0,
-        39.90
-      ),
-      new Product(
-        'DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA SOLVENT',
-        'https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg',
-        ['#fdb813', '#f68c1f', '#f27022', '#61c2cb'],
-        true,
-        0,
-        51.90
-      ),
-      new Product(
-        'PRIMER ANTIRUGINA PE BAZA DE APA – TIXE',
-        'https://pro-staff.ro/wp-content/uploads/2019/01/Primer-grund-antirugina-pe-baza-de-apa-Tixe-300x300.jpg',
-        ['#ff5c01', '#b90029', '#4ac0f2', '#737373'],
-        false,
-        25,
-        69
-      ),
-      new Product(
-        'VOPSEA DECORATIVA CU EFECT DE MATASE – TIXE – ORGANZ',
-        'https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-decorativa-300x300.jpg',
-        ['#37414a', '#60bb22', '#f2babb', '#a8b1b8'],
-        false,
-        0,
-        160
-      ),
-      new Product(
-        'GLACIAL – TIXE – VOPSEA EFECT METALE PRETIOASE',
-        'https://pro-staff.ro/wp-content/uploads/2019/02/glacial-300x300.jpg',
-        ['#000000', '#b2c1c1'],
-        false,
-        0,
-        150
-      ),
-    ]
+  public _featuredProducts = [];
+  public active;
+  public dynamicProductViewer;
+  public _products = [];
+  private _httpClient:HttpClient;
+
+  constructor(private httpClient:HttpClient) {
+    this._httpClient = httpClient;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.active = 1;
+    this.dynamicProductViewer = 'vopsea-lavabila';
+    
+    this.getFeaturedProducts();
+    this.getProducts();
+  }
+
+  getFeaturedProducts()
+  {
+    this._httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/featured").subscribe((data:any) => {
+      this._featuredProducts = data.products;
+    });
+    return this._featuredProducts;
+  }
+
+  getProducts(id?:string, category_type = "parent")
+  {
+    if(!id)
+    {
+        this._httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/category/vopsea-lavabila").subscribe((data:any) => {
+        this._products = data.products;
+      });
+    } else {
+      if(category_type == "parent")
+      {
+        this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/category/${id}`).subscribe((data:any) => {
+        this._products = data.products;
+        });
+      }
+      if(category_type == "child")
+      {
+        this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/subcategory/${id}`).subscribe((data:any) => {
+        this._products = data.products;
+        });
+      }
+    }
+    return this._products;
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './product.model'
+import { HttpClient } from '@angular/common/http';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-products',
@@ -7,61 +8,67 @@ import { Product } from './product.model'
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[]
-  constructor() {
-    this.products = [
-      new Product(
-        'Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural',
-        'assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg',
-        [],
-        false,
-        0,
-        34.90
-      ),
-      new Product(
-        'PENSULA 120MM PENTRU VOPSEA DECORATIVA , GIEFFE , DIN PAR NATURAL',
-        'assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg',
-        [],
-        false,
-        0,
-        39.90
-      ),
-      new Product(
-        'DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA SOLVENT',
-        'https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg',
-        ['#fdb813', '#f68c1f', '#f27022', '#61c2cb'],
-        true,
-        0,
-        51.90
-      ),
-      new Product(
-        'PRIMER ANTIRUGINA PE BAZA DE APA – TIXE',
-        'https://pro-staff.ro/wp-content/uploads/2019/01/Primer-grund-antirugina-pe-baza-de-apa-Tixe-300x300.jpg',
-        ['#ff5c01', '#b90029', '#4ac0f2', '#737373'],
-        false,
-        25,
-        69
-      ),
-      new Product(
-        'VOPSEA DECORATIVA CU EFECT DE MATASE – TIXE – ORGANZ',
-        'https://pro-staff.ro/wp-content/uploads/2020/04/vopsea-decorativa-300x300.jpg',
-        ['#37414a', '#60bb22', '#f2babb', '#a8b1b8'],
-        false,
-        0,
-        160
-      ),
-      new Product(
-        'GLACIAL – TIXE – VOPSEA EFECT METALE PRETIOASE',
-        'https://pro-staff.ro/wp-content/uploads/2019/02/glacial-300x300.jpg',
-        ['#000000', '#b2c1c1'],
-        false,
-        0,
-        150
-      ),
-    ]
+
+  private _httpClient: HttpClient;
+  
+  
+  public currentPage: number = 1;
+  private previousPage: number = this.currentPage - 1;
+  private nextPage: number = this.currentPage + 1;
+  public totalPages: number = 1;
+  public pages: number[] = [];
+
+  public _products: any = [];
+
+  constructor(httpClient: HttpClient) {
+    this._httpClient = httpClient;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getProducts();
   }
 
+  getProducts() {
+      this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
+          this._products = data.products;
+          this.setTotalPages(data.no_of_pages);
+          this.setPagesArray(this.totalPages);
+      });
+  }
+
+  getTotalPages()
+  {
+    return this.totalPages;
+  }
+
+  setTotalPages(page: number)
+  {
+    this.totalPages = page;
+  }
+
+  setPagesArray(maxPage: number)
+  {
+    this.pages = Array(maxPage).fill(0).map((x,i) => i+1);
+  }
+
+  setCurrentPage(page: number) {
+    if (this.currentPage <= this.totalPages) {
+      this.currentPage = page;
+    }
+    this.getProducts();
+  }
+
+  increaseCurrentPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage += 1;
+    }
+    this.getProducts();
+  }
+
+  decreaseCurrentPage() {
+    if (this.currentPage > 1) {
+      this.currentPage -= 1;
+    }
+    this.getProducts();
+  }
 }
