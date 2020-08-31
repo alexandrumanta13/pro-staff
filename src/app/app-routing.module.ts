@@ -17,8 +17,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './pages/login/login.component';
 
 
-import {CategoryProductsComponent} from './components/category-products/category-products.component';
-
 
 import { AuthGuard } from './app-routing.guard';
 import { AuthenticationService } from './services';
@@ -77,10 +75,7 @@ const routes: Routes = [
   },
 
   { path: 'produse', component: ProductsComponent },
-  { path: 'produse/categorie/:categorySlug', component: CategoryProductsComponent},
   { path: 'produs/:productName', component: ProductDetailsComponent },
-
-
   { path: 'categorie/:categorySlug', component: CategoryComponent },
 
 

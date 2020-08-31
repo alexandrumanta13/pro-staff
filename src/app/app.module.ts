@@ -57,7 +57,6 @@ import { InterorComponent } from './pages/projects/interor/interor.component';
 import { ExteriorComponent } from './pages/projects/exterior/exterior.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
-import { CategoryProductsComponent } from './components/category-products/category-products.component';
 import { CategoryComponent } from './components/category/category.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 
@@ -97,7 +96,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ExteriorComponent,
     BlogComponent,
     ProductsListComponent,
-    CategoryProductsComponent,
     CategoryComponent,
     PaginationComponent
   ],
