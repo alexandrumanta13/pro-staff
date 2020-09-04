@@ -15,6 +15,9 @@ declare var $: any;
 })
 export class AppComponent {
   currentUser: User;
+  public cartProducts = [];
+
+
   constructor(
     public router: Router,
     private activatedRoute: ActivatedRoute,
@@ -65,6 +68,19 @@ export class AppComponent {
  
    // $.getScript('../assets/js/main.js');
   }
+
+  addToCart(product){
+    const existing = this.cartProducts.find(({product_name}) => product.product_name === product_name);
+    if (existing) {
+      existing.num +=1;
+      return;
+    }
+    this.cartProducts.push({...product, num: 1});
+  }
+
+  removeFromCart(product) {
+    this.cartProducts = this.cartProducts.filter(({product_name}) => product_name !== product.product_name)
+   }
 
 
   get isAuthorized() {

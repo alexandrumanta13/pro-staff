@@ -27,65 +27,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="product-row">
+                        <tr class="product-row" *ngFor="let product of items$ | async">
                             <td class="product-col">
                                 <figure class="product-image-container">
                                     <a href="product.html" class="product-image">
-                                        <img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
+                                        <img src="{{product.image_url}}" alt="product">
                                     </a>
                                 </figure>
                                 <h2 class="product-title">
-                                    <a href="product.html">Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural</a>
+                                    <a href="product.html">{{product.product_name}}</a>
                                 </h2>
                             </td>
-                            <td>34.90 lei</td>
+                            <td>{{product.price}} lei</td>
                             <td>
-                                <input class="vertical-quantity form-control" type="text">
+                               
+                                <input class="vertical-quantity form-control" type="number" [(ngModel)]="product.num" (ngModelChange)="modelChanged($event)" min="0">
                             </td>
-                            <td>34.90 lei</td>
+                            <td>{{product.num * product.price | number:'1.2-2'}} lei</td>
                         </tr>
-                        <tr class="product-action-row">
+                        <!-- <tr class="product-action-row">
                             <td colspan="4" class="clearfix">
                                 <div class="float-left">
                                     <a href="#" class="btn-move">Muta in Favorite</a>
-                                </div><!-- End .float-left -->
+                                </div>
                                 
                                 <div class="float-right">
                                     <a href="#" title="Edit product" class="btn-edit"><span class="sr-only">Editeaza</span><i class="icon-pencil"></i></a>
                                     <a href="#" title="Remove product" class="btn-remove"><span class="sr-only">Elimina</span></a>
-                                </div><!-- End .float-right -->
+                                </div>
                             </td>
-                        </tr>
+                        </tr> -->
 
-                        <tr class="product-row">
-                            <td class="product-col">
-                                <figure class="product-image-container">
-                                    <a href="product.html" class="product-image">
-                                        <img src="https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg" alt="product">
-                                    </a>
-                                </figure>
-                                <h2 class="product-title">
-                                    <a href="product.html">DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA SOLVENT</a>
-                                </h2>
-                            </td>
-                            <td>51.90 lei</td>
-                            <td>
-                                <input class="vertical-quantity form-control" type="text">
-                            </td>
-                            <td>51.90 lei</td>
-                        </tr>
-                        <tr class="product-action-row">
-                            <td colspan="4" class="clearfix">
-                                <div class="float-left">
-                                    <a href="#" class="btn-move">Muta in favorite</a>
-                                </div><!-- End .float-left -->
-                                
-                                <div class="float-right">
-                                    <a href="#" title="Edit product" class="btn-edit"><span class="sr-only">Editeaza</span><i class="icon-pencil"></i></a>
-                                    <a href="#" title="Remove product" class="btn-remove"><span class="sr-only">Elimina</span></a>
-                                </div><!-- End .float-right -->
-                            </td>
-                        </tr>
+                       
                     </tbody>
 
                     <tfoot>
@@ -93,12 +66,12 @@
                             <td colspan="4" class="clearfix">
                                 <div class="float-left">
                                     <a href="category.html" class="btn btn-outline-secondary">Continua cumparaturile</a>
-                                </div><!-- End .float-left -->
+                                </div>
 
                                 <div class="float-right">
                                     <a href="#" class="btn btn-outline-secondary btn-clear-cart">Goleste cos </a>
                                     <a href="#" class="btn btn-outline-secondary btn-update-cart">Actualizeaza cos</a>
-                                </div><!-- End .float-right -->
+                                </div>
                             </td>
                         </tr>
                     </tfoot>

@@ -1,26 +1,37 @@
-<div class="product" *ngFor="let product of products">
-    {{product.alias}}
-    <figure class="product-image-container">
-        <a href="{{product.alias}}" class="product-image">
-            <img src="{{product.image_url}}" alt="product">
-        </a>
-        <span class="product-label label-new">Nou</span>
-        <a href="#" class="btn-quickview">Vezi detalii</a>
-    </figure>
-    <div class="product-details">
-        DA DA DA
-        <h2 class="product-title">
-            <a href="product.html">{{product.name}}</a>
-        </h2>
-        <div class="price-box">
-            <span class="product-price">{{product.price}}</span>
+<div class="container-fluid">
+  <h2 class="subtitle text-center">Cele mai cautate produse</h2>
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let product of _featuredProducts">
+      <ng-template class="slide" carouselSlide>
+        <div class="product">
+          <figure class="product-image-container">
+            <a routerLink="/produs/{{product.alias}}" class="product-image">
+              <img [src]="product.image_url" alt="product">
+            </a>
+            <a (click)="openModal('productQuickView', product.alias)" class="btn-quickview">Vezi detalii</a>
+          </figure>
+          <div class="product-details">
+            <!-- <ul class="config-swatch-list" *ngIf="product.colors.length > 0">
+              <li *ngFor="let color of product.colors">
+                {{color}}
+                <a [ngStyle]="{'background-color': color}"></a>
+              </li>
+
+            </ul> -->
+            <h2 class="product-title">
+              <a routerLink="/produs/{{product.alias}}">{{product.product_name}}</a>
+            </h2>
+            <div class="price-box">
+              <!-- <span class="old-price"
+                *ngIf="product.discount > 0">{{ ((product.price/product.discount)*100).toFixed(2) }}</span> -->
+              <span class="product-price">{{product.price}} lei</span>
+            </div>
+          </div>
         </div>
-    </div>
+      </ng-template>
+     
+    </ng-container>
+  </owl-carousel-o>
 </div>
-<div>
-   
-    <button (click)="firstPage()" mat-button> First </button>
-    <button (click)="previousPage()" mat-button> Previous</button>
-    <button (click)="nextPage()" mat-button> Next</button>
-    <button (click)="lastPage()" mat-button> Last</button>
-</div>
+
+<app-product-quick-view id="productQuickView" ></app-product-quick-view>

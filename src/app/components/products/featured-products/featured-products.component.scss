@@ -1,0 +1,26 @@
+.owl-carousel {
+    .owl-stage {
+        display: flex;
+    }
+    .owl-item {
+        display: flex;
+        flex-direction: column;
+    }
+} 
+
+.product-image-container {
+   
+    background-color: #fff;
+   
+   
+      display: flex;
+      align-items: center;
+      height: 250px;
+  }
+
+  .product {
+  
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }

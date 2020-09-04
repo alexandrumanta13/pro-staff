@@ -19,6 +19,8 @@ export class CategoryComponent implements OnInit {
   public pages: number[] = [];
 
   public _products: any = [];
+  public dynamicProductViewer;
+  public active;
 
   constructor(httpClient: HttpClient, private route:ActivatedRoute) {
     this._httpClient = httpClient;
@@ -28,10 +30,13 @@ export class CategoryComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this._route = params.get('categorySlug');
     });
+    this.active = 1;
     this.getProducts();
+    this.dynamicProductViewer = 'vopsea-lavabila';
   }
 
   getProducts() {
+    
       this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/category/${this._route}/page/${this.currentPage}`).subscribe((data: any) => {
           this._products = data.products;
           this.setTotalPages(data.no_of_pages);

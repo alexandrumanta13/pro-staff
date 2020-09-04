@@ -14,6 +14,7 @@ import { ProductsComponent } from "./components/products/products.component";
 
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { LoginComponent } from './pages/login/login.component';
 
 
@@ -80,6 +81,8 @@ const routes: Routes = [
 
 
   { path: 'cos-cumparaturi', component: CartComponent },
+
+  { path: 'finalizeaza-comanda', component: CheckoutComponent },
 
   {
     path: 'setari-gdpr', component: GdprComponent,

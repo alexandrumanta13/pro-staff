@@ -89,3 +89,21 @@ body.admin {
     }
   }
 }
+
+
+.body {
+  &.modal-open {
+    overflow: hidden;
+  }
+}
+
+a.add-cart:not([href]):not([tabindex]):focus, a.add-cart:not([href]):not([tabindex]):hover {
+  background-color: #141414;
+  color: #fff;
+  cursor: pointer;
+}
+
+a.add-cart:not([href]):not([tabindex]) {
+  background-color: #000;
+  color: #fff;
+}

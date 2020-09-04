@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Product } from '../product.model'
 import { FeaturedProduct } from './featured-product.model'
 import { ProductService } from '../../../services/products.service';
+import { ModalService } from '../../../services/modal.service';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
+
 import { HttpClient } from '@angular/common/http';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 @Component({
   selector: 'app-featured-products',
@@ -15,12 +19,53 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FeaturedProductsComponent {
 
-  products = [];
 
-  constructor(private httpClient : HttpClient) {  }
+  public _featuredProducts = [];
+  productAlias: string;
+
+
+  customOptions: OwlOptions = {
+    loop: true,
+    autoplay: true,
+    center: true,
+    dots: false,
+    autoHeight: true,
+    autoWidth: true,
+    nav: false,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 1,
+      },
+      1000: {
+        items: 5,
+      }
+    }
+  }
+
+  constructor(
+    private httpClient: HttpClient,
+    private productService: ProductService,
+    private modalService: ModalService
+  ) { }
+
 
   ngOnInit() {
-    this.httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/featured").subscribe((data:any) => this.products = data.products);
+    this.getFeaturedProducts();
+  }
+
+
+  openModal(id: string, slug: string) {
+    this.modalService.open(id, slug);
+  }
+
+  getFeaturedProducts() {
+    this.httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/featured").subscribe((data: any) => {
+      this._featuredProducts = data.products;
+    });
+    return this._featuredProducts;
   }
 
   public firstPage() {

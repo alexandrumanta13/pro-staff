@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { ProductService } from 'app/services/products.service';
+import { Product } from 'app/models/product';
 
 
 @Component({
@@ -15,9 +18,14 @@ export class ProductDetailsComponent implements OnInit {
   private _productSlug: string;
   private _httpClient: HttpClient;
   private _route;
-  public product: any = [];
+  //public product: any = [];
+  public product: Product;
 
-  constructor(httpClient: HttpClient, route: ActivatedRoute) {
+  constructor(
+    httpClient: HttpClient, 
+    route: ActivatedRoute,  
+    private productService: ProductService,
+    ) {
     this._httpClient = httpClient;
     this._route = route;
   }
@@ -26,14 +34,10 @@ export class ProductDetailsComponent implements OnInit {
     this._route.paramMap.subscribe(params => {
       this._productSlug = params.get('productName');
     });
-    this.getProducts();
-  }
 
-  getProducts() {
-    this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/product/${this._productSlug}`).subscribe((data:any) => {
-      this.product = data.product;
+    this.productService.getProductDetails(this._productSlug)
+    .subscribe(data => {
+      this.product = data;
     });
-    console.log(this.product);
   }
-
 }

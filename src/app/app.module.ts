@@ -60,8 +60,14 @@ import { ProductsListComponent } from './pages/products-list/products-list.compo
 import { CategoryComponent } from './components/category/category.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 
+import { RangeSlideDirective } from './directives/range.directive';
 
 
+// Import the library
+import { CarouselModule } from 'ngx-owl-carousel-o';
+// Needs to import the BrowserAnimationsModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 
   
@@ -97,7 +103,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     BlogComponent,
     ProductsListComponent,
     CategoryComponent,
-    PaginationComponent
+    PaginationComponent,
+    CheckoutComponent,
+    RangeSlideDirective
   ],
   imports: [
     BrowserModule,
@@ -106,12 +114,17 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     HttpClientModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    AdminModule
+    AdminModule,
+    BrowserAnimationsModule,
+    CarouselModule,
+    
   ],
   exports: [
     UserDirective,
-    UserRoleDirective
+    UserRoleDirective,
+    ProductQuickViewComponent
   ],
+  entryComponents: [ProductQuickViewComponent],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

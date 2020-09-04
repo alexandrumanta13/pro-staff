@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../components/products/product.model'
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  public _featuredProducts = [];
   public active;
   public dynamicProductViewer;
   public _products = [];
   private _httpClient:HttpClient;
+
 
   constructor(private httpClient:HttpClient) {
     this._httpClient = httpClient;
@@ -22,17 +22,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.active = 1;
     this.dynamicProductViewer = 'vopsea-lavabila';
-    
-    this.getFeaturedProducts();
     this.getProducts();
   }
 
-  getFeaturedProducts()
-  {
-    this._httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/featured").subscribe((data:any) => {
-      this._featuredProducts = data.products;
-    });
-    return this._featuredProducts;
+  openModal(){
+    const buttonModal = document.getElementById("openModalButton")
+    console.log('buttonModal', buttonModal)
+    buttonModal.click()
   }
 
   getProducts(id?:string, category_type = "parent")

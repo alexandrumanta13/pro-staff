@@ -111,9 +111,6 @@
             </li>
             <li><a routerLink="/despre-noi">Despre noi</a></li>
             <li><a href="">Proiecte</a>
-
-
-
               <ul>
                 <li>
                   <a routerLink="/proiecte/interior">Interior</a>
@@ -173,52 +170,35 @@
         <div class="dropdown cart-dropdown">
           <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" data-display="static">
-            <span class="cart-count">2</span>
+            <span class="cart-count">{{(items$ | async).lenght}}</span>
+           
           </a>
 
           <div class="dropdown-menu dropdown">
             <div class="dropdownmenu-wrapper">
               <div class="dropdown-cart-products">
-                <div class="product">
+
+                <div class="product" *ngFor="let product of items$ | async" (removeFromCart)="removeCart(product)">
                   <div class="product-details">
                     <h4 class="product-title">
-                      <a href="#">DORATURA – TIXE – VOPSEA DECORATIVA EXTERIOR CU EFECT AURIU METALIC PE BAZA
-                        SOLVENT</a>
+                      <a routerLink="/produs/{{product.alias}}">{{product.product_name}}</a>
                     </h4>
 
                     <span class="cart-product-info">
-                      <span class="cart-product-qty">1</span>
-                      x 51.90 lei
+                      <span class="cart-product-qty">{{product.num}}</span>
+                      x {{product.price}} lei
                     </span>
                   </div><!-- End .product-details -->
 
                   <figure class="product-image-container">
-                    <a href="#" class="product-image">
-                      <img src="https://pro-staff.ro/wp-content/uploads/2018/06/doratura_solvente.jpg" alt="product">
+                    <a routerLink="/produs/{{product.alias}}" class="product-image">
+                      <img src="{{product.image_url}}" alt="product">
                     </a>
-                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+                    <a (click)="removeCart(product)" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
                   </figure>
                 </div><!-- End .product -->
 
-                <div class="product">
-                  <div class="product-details">
-                    <h4 class="product-title">
-                      <a href="#">Pensula 100mm pentru vopsea decorativa , Gieffe , din par natural</a>
-                    </h4>
-
-                    <span class="cart-product-info">
-                      <span class="cart-product-qty">1</span>
-                      x 34.90 lei
-                    </span>
-                  </div><!-- End .product-details -->
-
-                  <figure class="product-image-container">
-                    <a href="#" class="product-image">
-                      <img src="assets/images/featured-items/pensula-vopsea-decorativa-150x150.jpg" alt="product">
-                    </a>
-                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
-                  </figure>
-                </div><!-- End .product -->
+               
               </div><!-- End .cart-product -->
 
               <div class="dropdown-cart-total">

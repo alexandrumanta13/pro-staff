@@ -12,7 +12,7 @@ import { Product } from '../models/product'
 export class ProductService {
 
 
-    private REST_API_SERVER = "https://pro-staff.ro/prostaff-api/v1/products";
+    private REST_API_SERVER = "https://pro-staff.ro/prostaff-api/v1/";
 
     public first: string;
     public prev: string;
@@ -20,13 +20,18 @@ export class ProductService {
     public last: string;
     public current: string;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient,
+       ) {
 
     }
 
     readProducts(){
         return this.httpClient.get<any>(`${this.REST_API_SERVER}`);
     }
+
+    getProductDetails(productAlias: string): Observable<Product> {
+        return this.httpClient.get<Product>(this.REST_API_SERVER + 'product/' + productAlias);
+      }
 
     handleError(error: HttpErrorResponse) {
         let errorMessage = 'Unknown error!';
