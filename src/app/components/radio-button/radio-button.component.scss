@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+
+    label {
+        height: 54px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+
+        input {
+            padding-right: 16px;
+            margin-right: 32px;
+        }
+    }
+}

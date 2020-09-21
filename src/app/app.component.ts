@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 import { SEOServiceService } from './services/seoservice.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { Role } from './models/role';
-import { AuthenticationService } from './services';
+import { AuthService } from './services';
 import { User } from './models';
+
 
 
 declare var $: any;
@@ -16,19 +17,32 @@ declare var $: any;
 export class AppComponent {
   currentUser: User;
   public cartProducts = [];
+  
 
 
   constructor(
     public router: Router,
     private activatedRoute: ActivatedRoute,
     private _seoService: SEOServiceService,
-    private authService: AuthenticationService,
+    private authService: AuthService,
+   
   ) {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
 
+  onScroll(e) {
+    console.log('div App', e.target.scrollTop);
+    const header = (<HTMLElement>document.querySelector('.sticky-header'));
+    const headerHeight= header.getBoundingClientRect().height
+    if(e.target.scrollTop > headerHeight) {
+      header.classList.add('fixed')
+    } else {
+      header.classList.remove('fixed')
+    }
+  }
 
+ 
   ngOnInit() {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -59,39 +73,51 @@ export class AppComponent {
       map(() => this.activatedRoute),
     )
       .subscribe((event) => {
-       
-       // $.getScript('../assets/js/main.js');
+
+        $.getScript('../assets/js/main.js');
+        $.getScript('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f50ef52d1631692')
       });
   }
 
   ngAfterViewInit() {
- 
-   // $.getScript('../assets/js/main.js');
+
+    $.getScript('../assets/js/main.js');
+    $.getScript('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f50ef52d1631692')
+
   }
 
-  addToCart(product){
-    const existing = this.cartProducts.find(({product_name}) => product.product_name === product_name);
+  addToCart(product) {
+    const existing = this.cartProducts.find(({ product_name }) => product.product_name === product_name);
     if (existing) {
-      existing.num +=1;
+      existing.num += 1;
       return;
     }
-    this.cartProducts.push({...product, num: 1});
+    this.cartProducts.push({ ...product, num: 1 });
   }
 
   removeFromCart(product) {
-    this.cartProducts = this.cartProducts.filter(({product_name}) => product_name !== product.product_name)
-   }
+    this.cartProducts = this.cartProducts.filter(({ product_name }) => product_name !== product.product_name)
+  }
 
 
   get isAuthorized() {
     return this.authService.isAuthorized();
   }
 
-  get isAdmin() {
-    return this.authService.hasRole(Role.Admin);
+  // get isAdmin() {
+  //   return this.authService.hasRole(Role.Admin);
+  // }
+
+  onActivate(event) {
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20); // how far to scroll on each step
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
   }
-
-
 
   logout() {
     this.authService.logout();

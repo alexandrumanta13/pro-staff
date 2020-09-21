@@ -7,7 +7,8 @@ export interface Product {
     description: string,
     alias: string,
     featured: number,
-    num: number
+    num: number,
+    availableQuantities: any;
 }
 
 // colors: string[],

@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { CartService } from 'app/services/cart.service';
 import { take, map } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,19 +10,47 @@ import { take, map } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
   public cartProducts = [];
+  scrolling: boolean;
 
   constructor(
     public router: Router,
-    private cartService: CartService) { }
+    private cartService: CartService) { 
+      this.scrolling = false;
+    }
+  public items$ = this.cartService.items$;
+  public cartTotal$;
+  public totalPrice$;
+  
 
-  items$ = this.cartService.items$;
-  //cartTotal$ = this.cartService.calcTotal();
- 
-
-  ngOnInit(): void {
+  ngOnInit() {
     this.getProducts();
-   // console.log(this.cartTotal$)
+    this.cartService.numTotal.subscribe(info => {
+      this.cartTotal$ = info;
+    })
+
+    this.cartService.totalPrice.subscribe(info => {
+      this.totalPrice$ = info;
+    })
+    
   }
+
+  isSticky: boolean = false;
+
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    // console.log($event['Window']);
+     console.log("scrolling");
+     
+     if(!this.scrolling) {
+      this.scrolling = true;
+    }
+     
+  }
+
+  @HostListener('scroll')
+  public asd(): void {
+  console.log('scrolling');
+}
+
 
   toggleLink(event, link) {
     const links = document.querySelectorAll('.active');
@@ -39,7 +68,7 @@ export class HeaderComponent implements OnInit {
       take(1),
       map((products) => {
         this.cartProducts = products;
-       // this.cartTotal$ = this.cartService.calcTotal();
+        this.cartTotal$;
       }),
     ).subscribe();
   }
@@ -49,18 +78,5 @@ export class HeaderComponent implements OnInit {
     this.cartService.removeFromCart(product);
     this.getProducts();
   }
-
-
-  // calcTotal() {
-  //   return this.carProduct.reduce((acc, pr) => acc += pr.num, 0);
-  // }
-
-  // removeCart(product) {
-  //   this.removeFromCart.emit(product);
-  // }
-
-  // calcTotalPrice() {
-  //   return this.carProduct.reduce((acc, pr) => acc += pr.price * pr.num, 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-  // }
 
 }

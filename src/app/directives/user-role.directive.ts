@@ -1,12 +1,12 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef, Input } from '@angular/core';
-import { AuthenticationService } from '../services';
+import { AuthService } from '../services';
 import { Role } from '../models/role';
 
 @Directive({ selector: '[appUserRole]'})
 export class UserRoleDirective implements OnInit {
     constructor(
         private templateRef: TemplateRef<any>,
-        private authService: AuthenticationService,
+        private authService: AuthService,
         private viewContainer: ViewContainerRef
     ) { }
 
@@ -24,9 +24,9 @@ export class UserRoleDirective implements OnInit {
     ngOnInit() {
         let hasAccess = false;
 
-        if (this.authService.isAuthorized() && this.userRoles) {
-            hasAccess = this.userRoles.some(r => this.authService.hasRole(r));
-        }
+        // if (this.authService.isAuthorized() && this.userRoles) {
+        //     hasAccess = this.userRoles.some(r => this.authService.hasRole(r));
+        // }
 
         if (hasAccess) {
             this.viewContainer.createEmbeddedView(this.templateRef);

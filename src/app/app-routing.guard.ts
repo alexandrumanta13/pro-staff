@@ -2,14 +2,14 @@ import { CanActivate, CanLoad, ActivatedRouteSnapshot, Router, Route, RouterStat
 
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AuthenticationService } from './services';
+import { AuthService } from './services';
 import { Role } from './models/role';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {
     constructor(
         public router: Router,
-        private authService: AuthenticationService
+        private authService: AuthService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -18,13 +18,13 @@ export class AuthGuard implements CanActivate, CanLoad {
             return false;
         }
 
-        const roles = route.data.roles as Role[];
-        if (roles && !roles.some(r => this.authService.hasRole(r))) {
-            this.router.navigate(['error', 'not-found'], { queryParams: { returnUrl: state.url }});
-            return false;
-        }
+        // const roles = route.data.roles as Role[];
+        // if (roles && !roles.some(r => this.authService.hasRole(r))) {
+        //     this.router.navigate(['error', 'not-found'], { queryParams: { returnUrl: state.url }});
+        //     return false;
+        // }
 
-        return true;
+        // return true;
     }
 
     canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
@@ -32,10 +32,10 @@ export class AuthGuard implements CanActivate, CanLoad {
             return false;
         }
 
-        const roles = route.data && route.data.roles as Role[];
-        if (roles && !roles.some(r => this.authService.hasRole(r))) {
-            return false;
-        }
+        // const roles = route.data && route.data.roles as Role[];
+        // if (roles && !roles.some(r => this.authService.hasRole(r))) {
+        //     return false;
+        // }
 
         return true;
     }

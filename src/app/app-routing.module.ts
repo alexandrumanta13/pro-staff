@@ -20,12 +20,14 @@ import { LoginComponent } from './pages/login/login.component';
 
 
 import { AuthGuard } from './app-routing.guard';
-import { AuthenticationService } from './services';
+import { AuthService } from './services';
 import { Role } from './models/role';
 import { InterorComponent } from './pages/projects/interor/interor.component';
 import { ExteriorComponent } from './pages/projects/exterior/exterior.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { CategoryComponent } from './components/category/category.component';
+import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 
 const routes: Routes = [
@@ -84,6 +86,8 @@ const routes: Routes = [
 
   { path: 'finalizeaza-comanda', component: CheckoutComponent },
 
+  { path: 'confirmare-si-plata', component: ConfirmOrderComponent },
+
   {
     path: 'setari-gdpr', component: GdprComponent,
     data: {
@@ -128,7 +132,7 @@ const routes: Routes = [
     }
   },
 
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: AuthComponent },
 
   {
     path: 'admin',
@@ -142,6 +146,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
   },
 
+  { path: 'autentificare', component: AuthComponent },
+
   { path: '404', component: NotFoundComponent },
 
   { path: 'thank-you', component: ThankYouComponent },
@@ -154,7 +160,7 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     AuthGuard,
-    AuthenticationService
+    AuthService
   ]
 })
 export class AppRoutingModule { }

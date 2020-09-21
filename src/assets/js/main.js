@@ -80,22 +80,23 @@
       });
     },
     stickyHeader: function () {
+     
       // Sticky header - calls if sticky-header class is added to the header
-      if ($('.sticky-header').length) {
-        var sticky = new Waypoint.Sticky({
-          element: $('.sticky-header')[0],
-          stuckClass: 'fixed',
-          offset: -10
-        });
-      }
+      // if ($('.sticky-header').length) {
+      //   var sticky = new Waypoint.Sticky({
+      //     element: $('.sticky-header')[0],
+      //     stuckClass: 'fixed',
+      //     offset: -10
+      //   });
+      // }
 
-      //Set sticky headers in main part
-      $('main').find('.sticky-header').each(function () {
-        var sticky = new Waypoint.Sticky({
-          element: $(this),
-          stuckClass: 'fixed-nav',
-        });
-      });
+      // //Set sticky headers in main part
+      // $('main').find('.sticky-header').each(function () {
+      //   var sticky = new Waypoint.Sticky({
+      //     element: $(this),
+      //     stuckClass: 'fixed-nav',
+      //   });
+      // });
     },
     mMenuToggle: function () {
       // Mobile Menu Show/Hide
@@ -680,13 +681,12 @@
    
       $('body').addClass("loaded");
 
-   
-    
     Porto.scrollBtnAppear();
   });
 
   // Scroll Event
   $(window).on('scroll', function () {
+    console.log('asda')
     Porto.scrollBtnAppear();
   });
 })(jQuery);

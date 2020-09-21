@@ -14,7 +14,7 @@
 </div><!-- End .page-header -->
 
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="(items$ | async).length > 0">
         <div class="col-lg-8 padding-right-lg">
             <div class="cart-table-container">
                 <table class="table table-cart">
@@ -27,6 +27,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <div>
+                            
+                        </div>
                         <tr class="product-row" *ngFor="let product of items$ | async">
                             <td class="product-col">
                                 <figure class="product-image-container">
@@ -45,32 +48,28 @@
                             </td>
                             <td>{{product.num * product.price | number:'1.2-2'}} lei</td>
                         </tr>
-                        <!-- <tr class="product-action-row">
+                        <!-- <tr class="product-action-row" *ngFor="let product of items$ | async; let index = index" [ngClass]="{'myStyle1': 0 === index % 1}">
                             <td colspan="4" class="clearfix">
                                 <div class="float-left">
                                     <a href="#" class="btn-move">Muta in Favorite</a>
                                 </div>
-                                
                                 <div class="float-right">
-                                    <a href="#" title="Edit product" class="btn-edit"><span class="sr-only">Editeaza</span><i class="icon-pencil"></i></a>
                                     <a href="#" title="Remove product" class="btn-remove"><span class="sr-only">Elimina</span></a>
                                 </div>
                             </td>
                         </tr> -->
-
-                       
                     </tbody>
 
                     <tfoot>
                         <tr>
                             <td colspan="4" class="clearfix">
                                 <div class="float-left">
-                                    <a href="category.html" class="btn btn-outline-secondary">Continua cumparaturile</a>
+                                    <a routerLink="/produse" class="btn btn-outline-secondary">Continua cumparaturile</a>
                                 </div>
 
                                 <div class="float-right">
-                                    <a href="#" class="btn btn-outline-secondary btn-clear-cart">Goleste cos </a>
-                                    <a href="#" class="btn btn-outline-secondary btn-update-cart">Actualizeaza cos</a>
+                                    <a (click)="emptyCart()" class="btn btn-outline-secondary btn-clear-cart">Goleste cos </a>
+                                    
                                 </div>
                             </td>
                         </tr>
@@ -93,13 +92,13 @@
 
         <div class="col-lg-4">
             <div class="cart-summary">
-                <h3>Summar</h3>
+                <h3>Sumar</h3>
 
-                <h4>
+                <!-- <h4>
                     <a data-toggle="collapse" href="#total-estimate-section" class="collapsed" role="button" aria-expanded="false" aria-controls="total-estimate-section">Cost estimativ transport</a>
-                </h4>
+                </h4> -->
 
-                <div class="collapse" id="total-estimate-section">
+                <!-- <div class="collapse" id="total-estimate-section">
                     <form action="#">
                         <div class="form-group form-group-sm">
                             <label>Judet</label>
@@ -108,8 +107,8 @@
                                     <option value="USA">Bucuresti</option>
                                     <option value="USA">Ilfov</option>
                                 </select>
-                            </div><!-- End .select-custom -->
-                        </div><!-- End .form-group -->
+                            </div>
+                        </div>
 
                         <div class="form-group form-group-sm">
                             <label>Oras/sector</label>
@@ -118,48 +117,48 @@
                                     <option value="CA">Sector 1</option>
                                     <option value="TX">Sector 2</option>
                                 </select>
-                            </div><!-- End .select-custom -->
-                        </div><!-- End .form-group -->
+                            </div>
+                        </div>
 
                         <div class="form-group form-group-sm">
                             <label>Cod postal</label>
                             <input type="text" class="form-control form-control-sm">
-                        </div><!-- End .form-group -->
+                        </div>
 
                         <div class="form-group form-group-custom-control">
                             <label>Fan Curier</label>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="flat-rate">
                                 <label class="custom-control-label" for="flat-rate">20 lei</label>
-                            </div><!-- End .custom-checkbox -->
-                        </div><!-- End .form-group -->
+                            </div>
+                        </div>
 
                         <div class="form-group form-group-custom-control">
                             <label>DPD</label>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="best-rate">
                                 <label class="custom-control-label" for="best-rate">15 lei</label>
-                            </div><!-- End .custom-checkbox -->
-                        </div><!-- End .form-group -->
+                            </div>
+                        </div>
                     </form>
-                </div><!-- End #total-estimate-section -->
+                </div> -->
 
                 <table class="table table-totals">
                     <tbody>
                         <tr>
                             <td>Total</td>
-                            <td>134 lei</td>
+                            <td>{{totalPrice$}} lei</td>
                         </tr>
 
-                        <tr>
+                        <!-- <tr>
                             <td>Transport</td>
                             <td>20 lei</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                     <tfoot>
                         <tr>
                             <td>Total comanda</td>
-                            <td>154 lei</td>
+                            <td>{{totalPrice$}} lei</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -171,6 +170,14 @@
             </div><!-- End .cart-summary -->
         </div><!-- End .col-lg-4 -->
     </div><!-- End .row -->
+    <div class="row">
+        <div class="col-xs-12" *ngIf="(items$ | async).length === 0">
+            <p>Nu exista produse in cos!</p>
+            <div class="float-left">
+                <a routerLink="/produse" class="btn btn-outline-secondary">Continua cumparaturile</a>
+            </div>
+        </div>
+    </div>
 </div><!-- End .container -->
 
 <div class="mb-6"></div><!-- margin -->

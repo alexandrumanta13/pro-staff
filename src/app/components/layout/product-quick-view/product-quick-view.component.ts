@@ -13,11 +13,18 @@ import { CartService } from 'app/services/cart.service';
 export class ProductQuickViewComponent implements OnInit {
   @Input() id: string;
   @Input() slug: string;
+  @Output() addToCartEmit = new EventEmitter();
+  @Output() num = new EventEmitter();
+
 
   private _httpClient: HttpClient;
   public product: any = [];
+  public colors: any = [];
 
   private element: any;
+  price: any;
+  clickedQnt: boolean = false;
+  clickedColor: boolean = false;
 
   constructor(
     httpClient: HttpClient,
@@ -28,6 +35,9 @@ export class ProductQuickViewComponent implements OnInit {
     this._httpClient = httpClient;
     this.element = el.nativeElement;
   }
+
+
+
 
 
 
@@ -55,9 +65,56 @@ export class ProductQuickViewComponent implements OnInit {
   getProducts(slug) {
     this.productService.getProductDetails(slug)
       .subscribe(data => {
+        console.log(data)
         this.product = data;
       });
+
+    const checkExistQnt = setInterval(() => {
+      const qnt = <HTMLElement>document.querySelector('.qnt-class.active a');
+      if (qnt) {
+        qnt.click();
+        clearInterval(checkExistQnt);
+      }
+    }, 100); // check every 100ms
+
+    const checkExistColor = setInterval(() => {
+      const color = <HTMLElement>document.querySelector('.color-class.active a');
+      if (color) {
+        color.click();
+        clearInterval(checkExistColor);
+      }
+    }, 100); // check every 100ms
+
   }
+
+  getColors(qnt, event) {
+    this.colors = this.product.information.filter((qnt) => qnt !== this.product.information.quantity);
+    const activeQnt = <HTMLElement>document.querySelector('.qnt-class.active');
+    if (this.clickedQnt == true) {
+      activeQnt.classList.remove('active');
+      event.target.parentElement.classList.add('active');
+    }
+    this.clickedQnt = true;
+  }
+
+  getPrice(colorValue, event) {
+    this.product.information.map(color => {
+      if (color.color == colorValue) {
+        this.price = color.price;
+        const activeColor = <HTMLElement>document.querySelector('.color-class.active');
+
+        if (this.clickedColor == true) {
+          activeColor.classList.remove('active');
+          event.target.parentElement.parentElement.classList.add('active');
+        }
+
+       
+      }
+    })
+    this.clickedColor = true;
+  }
+
+
 
   // remove self from modal service when component is destroyed
   ngOnDestroy(): void {
@@ -70,6 +127,9 @@ export class ProductQuickViewComponent implements OnInit {
     this.getProducts(slug);
     this.element.style.display = 'block';
     document.body.classList.add('modal-open');
+
+
+
   }
 
   // close modal
@@ -80,9 +140,12 @@ export class ProductQuickViewComponent implements OnInit {
 
 
   addToCart(product) {
-    this.cartService.addToCart(product);
+    const inputValue = (<HTMLInputElement>document.querySelector('.horizontal-quantity')).value;
+    this.cartService.addToCart(product, parseInt(inputValue));
+    this.close();
   }
 
-
-
+  onDestroy(): void {
+    this.element.unsubscribe();
+  }
 }

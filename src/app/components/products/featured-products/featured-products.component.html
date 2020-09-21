@@ -11,9 +11,10 @@
             <a (click)="openModal('productQuickView', product.alias)" class="btn-quickview">Vezi detalii</a>
           </figure>
           <div class="product-details">
+            
             <!-- <ul class="config-swatch-list" *ngIf="product.colors.length > 0">
-              <li *ngFor="let color of product.colors">
-                {{color}}
+              <li *ngFor="let color of product?.availableColors">
+                {{color.color}}
                 <a [ngStyle]="{'background-color': color}"></a>
               </li>
 

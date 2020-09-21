@@ -13,7 +13,8 @@
 .product-single-container {
   display: block;
   max-width: 980px;
-  height: auto;
+  height: 80vh;
+  margin: auto;
 }
 
 .modal-background {
@@ -34,4 +35,10 @@
 
 .product-title {
   padding-top: 30px;
+}
+
+.color-class {
+  img {
+    height: 100%;
+  }
 }

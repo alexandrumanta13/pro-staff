@@ -15,9 +15,10 @@ export class ModalService {
     }
 
     open(id: string, slug: string) {
-        // open modal specified by id
+        // open modal specified by id 
         const modal = this.modals.find(x => x.id === id);
         modal.open(slug);
+        
     }
 
     close(id: string) {

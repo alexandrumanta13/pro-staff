@@ -1,10 +1,10 @@
 <main class="main">
-  <div class="banner banner-cat mb-0" style="background-image: url('assets/images/bg-2.jpg');">
+  <div class="banner banner-cat mb-0" style="background-image: url('assets/images/bg-2.jpg');" id="products">
     <div class="banner-content container-fluid">
-      <h1 class="banner-title">
+      <!-- <h1 class="banner-title">
         Tixe
       </h1>
-      <a href="#" class="btn-sm btn-white">Cumpara acum</a>
+      <a href="#" class="btn-sm btn-white">Cumpara acum</a> -->
     </div><!-- End .banner-content -->
   </div><!-- End .banner -->
   <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -22,17 +22,20 @@
         <nav class="toolbox">
           <div class="toolbox-left">
             <div class="toolbox-item toolbox-sort">
-              <label>Sort By:</label>
+              <label>Sorteaza dupa:</label>
 
               <div class="select-custom">
                 <select name="orderby" class="form-control">
-                  <option value="menu_order" selected="selected">Default sorting</option>
-                  <option value="popularity">Sort by popularity</option>
-                  <option value="rating">Sort by average rating</option>
-                  <option value="date">Sort by newness</option>
-                  <option value="price">Sort by price: low to high</option>
-                  <option value="price-desc">Sort by price: high to low</option>
+                  <option value="Cele mai populare" selected="selected">Cele mai populare</option>
+                  <option value="Cele mai noi">Cele mai noi</option>
+                  <option value="Pret crescator">Pret crescator</option>
+                  <option value="Pret descrescator">Pret descrescator</option>
+                  <option value="Nr. review-uri">Nr. review-uri</option>
+                  <option value="Discount %">Discount %</option>
                 </select>
+
+               
+  
               </div><!-- End .select-custom -->
 
               <a href="#" class="sorter-btn" title="Set Ascending Direction"><span class="sr-only">Set Ascending
@@ -70,7 +73,7 @@
                   <img src="{{product.image_url}}" alt="product">
                 </a>
                 <!-- <span class="product-label label-new">Nou</span> -->
-                <a href="/produs/{{product.alias}}" class="btn-quickview">Vezi detalii</a>
+                <a (click)="openModal('productQuickView', product.alias)" class="btn-quickview">Vezi detalii</a>
               </figure>
               <div class="product-details">
                 <h2 class="product-title">
@@ -87,17 +90,24 @@
 
         <nav class="toolbox toolbox-pagination">
           <ul class="pagination">
-            <li class="page-item active">
-              <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+            <li class="page-item">
+              <a class="page-link page-link-btn" (click)="decreaseCurrentPage();"><i class="icon-angle-left"></i></a>
             </li>
-            <li *ngFor="let number of pages" [class.current-page]="number === currentPage"
-            (click)="setCurrentPage(number)"><a class="page-link" href="#">{{number}}</a></li>
+            <li *ngFor="let number of pages" class="page-item" [class.active]="number === currentPage"
+            (click)="setCurrentPage(number)"><a class="page-link">{{number}}</a></li>
             <!-- <li class="page-item"><span class="page-link">...</span></li> -->
             <li class="page-item">
               <a class="page-link page-link-btn" (click)="increaseCurrentPage();"><i class="icon-angle-right"></i></a>
             </li>
           </ul>
         </nav>
+
+        <!-- <div class="pagination">
+          <div class="pagination-item" (click)="decreaseCurrentPage();">PREV</div>
+          <div class="pagination-item" *ngFor="let number of pages" [class.current-page]="number === currentPage"
+            (click)="setCurrentPage(number)">{{number}}</div>
+          <div class="pagination-item" (click)="increaseCurrentPage();">NEXT</div>
+        </div> -->
       </div>
       <aside class="sidebar-shop col-lg-3 col-xl-2 order-lg-first">
         <div class="sidebar-wrapper">
@@ -169,7 +179,7 @@
               <div class="widget-body">
                 <form action="#">
                   <div class="price-slider-wrapper">
-                    <div id="price-slider">
+                    <div id="price-slider" [formGroup]="inputForm">
                         <input type="text" rentRangeSlider rangeType='rentPrice' formControlName='rentPrice' name='price'>
                     </div><!-- End #price-slider -->
                   </div><!-- End .price-slider-wrapper -->
@@ -259,10 +269,6 @@
   </div>
   <div class="mb-3"></div><!-- margin -->
 </main>
+<app-product-quick-view id="productQuickView" ></app-product-quick-view>
 
-<!-- <div class="pagination">
-  <div class="pagination-item" (click)="decreaseCurrentPage();">PREV</div>
-  <div class="pagination-item" *ngFor="let number of pages" [class.current-page]="number === currentPage"
-    (click)="setCurrentPage(number)">{{number}}</div>
-  <div class="pagination-item" (click)="increaseCurrentPage();">NEXT</div>
-</div> -->
+

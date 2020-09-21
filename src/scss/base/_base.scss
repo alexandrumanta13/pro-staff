@@ -92,9 +92,19 @@ body.admin {
 
 
 .body {
+  overflow: hidden;
   &.modal-open {
     overflow: hidden;
+    .page-wrapper {
+      overflow: hidden;
+    }
+    overflow: hidden;
   }
+}
+
+.page-wrapper {
+  height: 100%;
+  overflow: auto;
 }
 
 a.add-cart:not([href]):not([tabindex]):focus, a.add-cart:not([href]):not([tabindex]):hover {
@@ -105,5 +115,23 @@ a.add-cart:not([href]):not([tabindex]):focus, a.add-cart:not([href]):not([tabind
 
 a.add-cart:not([href]):not([tabindex]) {
   background-color: #000;
+  color: #fff;
+}
+
+.toolbox-item.toolbox-show {
+  margin-left: auto;
+  font-size: 1.2rem;
+}
+
+.page-link:not(:disabled):not(.disabled) {
+  color: #939393;
+}
+
+.active:not(:disabled):not(.disabled) .page-link {
+  color: #000;
+}
+
+
+.page-link-btn:not(:disabled):not(.disabled) {
   color: #fff;
 }

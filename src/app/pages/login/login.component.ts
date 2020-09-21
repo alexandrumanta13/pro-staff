@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AlertService, AuthenticationService } from '../../services';
+import { AlertService, AuthService } from '../../services';
 
 import { Role } from '../../models';
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private AuthenticationService: AuthenticationService,
+      private AuthenticationService: AuthService,
       private alertService: AlertService,
     
   ) {
@@ -69,9 +69,9 @@ export class LoginComponent implements OnInit {
  
   
 
-  login(role: Role) {
-      console.log(role)
-    this.AuthenticationService.login(role);
-    this.router.navigate(['/']);
-  }
+  // login(role: Role) {
+  //     console.log(role)
+  //   this.AutheService.login(role);
+  //   this.router.navigate(['/']);
+  // }
 }

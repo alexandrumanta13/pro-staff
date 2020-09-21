@@ -36,8 +36,11 @@ export class FeaturedProductsComponent {
       0: {
         items: 1,
       },
-      600: {
+      414: {
         items: 1,
+      },
+      600: {
+        items: 3,
       },
       1000: {
         items: 5,
@@ -62,7 +65,8 @@ export class FeaturedProductsComponent {
   }
 
   getFeaturedProducts() {
-    this.httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/featured").subscribe((data: any) => {
+    this.httpClient.get("https://pro-staff.ro/prostaff-api/v1/products/featured").subscribe((data: any) => {
+      console.log(data)
       this._featuredProducts = data.products;
     });
     return this._featuredProducts;

@@ -1,8 +1,8 @@
-<header class="header" [ngClass]="router.url == '/' || router.url == '/despre-noi' ? 'header-transparent' : ''">
-  <div class="header-middle sticky-header">
+<header class="header" [ngClass]="router.url == '/' || router.url == '/despre-noi' ? 'header-transparent' : ''" >
+  <div class="header-middle sticky-header" [ngClass]="{'sticky' : isSticky}">
     <div class="container-fluid">
       <div class="header-left">
-        <a href="/" class="logo">
+        <a routerLink="/" class="logo">
           <img class="logo-not-sticky" src="assets/images/logo-transparent-1.png" alt="Pro Staff">
           <img class="logo-sticky" src="assets/images/logo.png" alt="Pro Staff">
         </a>
@@ -12,7 +12,7 @@
         <nav class="main-nav">
           <ul class="menu sf-arrows">
             <li>
-              <a href="/produse">Produse</a>
+              <a routerLink="/produse">Produse</a>
               <!-- <ul>
 								<li><a href="">Home</a></li>
 								<li><a href="category.html">Categories</a>
@@ -122,7 +122,7 @@
             </li>
 
             <li><a routerLink="/blog">Noutati</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a routerLink="/contact">Contact</a></li>
             <li>
               <a class="nav-link" [routerLink]="['admin', 'dashboard']">Dashboard</a>
             </li>
@@ -170,10 +170,8 @@
         <div class="dropdown cart-dropdown">
           <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" data-display="static">
-            <span class="cart-count">{{(items$ | async).lenght}}</span>
-           
+            <span class="cart-count">{{cartTotal$}}</span>
           </a>
-
           <div class="dropdown-menu dropdown">
             <div class="dropdownmenu-wrapper">
               <div class="dropdown-cart-products">
@@ -201,16 +199,19 @@
                
               </div><!-- End .cart-product -->
 
-              <div class="dropdown-cart-total">
+              <div class="dropdown-cart-total" *ngIf="cartTotal$ > 0">
                 <span>Total</span>
 
-                <span class="cart-total-price">134 lei</span>
+                <span class="cart-total-price">{{totalPrice$}} lei</span>
               </div><!-- End .dropdown-cart-total -->
 
-              <div class="dropdown-cart-action">
+              <div class="dropdown-cart-action" *ngIf="cartTotal$ > 0">
                 <a [routerLink]="['/cos-cumparaturi']" class="btn btn-orange">Vezi cos</a>
                 <a [routerLink]="['/finalizeaza-comanda']" class="btn btn-orange">Finalizeaza</a>
               </div><!-- End .dropdown-cart-total -->
+              <div class="cart-empty" *ngIf="cartTotal$ === 0">
+                <p>Nu ai niciun produs in cos!</p>
+              </div>
             </div><!-- End .dropdownmenu-wrapper -->
           </div><!-- End .dropdown-menu -->
         </div><!-- End .dropdown -->

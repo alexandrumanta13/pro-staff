@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ModalService } from 'app/services';
 
 @Component({
   selector: 'app-products',
@@ -26,12 +27,13 @@ export class ProductsComponent implements OnInit {
 
   inputForm: FormGroup;
 
-  constructor(httpClient: HttpClient) {
+  constructor(httpClient: HttpClient, private modalService: ModalService) {
     this._httpClient = httpClient;
     this.inputForm = new FormGroup({
-      rentPrice : new FormControl('3000') ,
-      
-  });
+      rentPrice: new FormControl('3000'),
+
+    });
+
   }
 
   ngOnInit() {
@@ -40,7 +42,7 @@ export class ProductsComponent implements OnInit {
     this.dynamicProductViewer = 'vopsea-lavabila';
   }
 
-  output(e){
+  output(e) {
     console.log(e.target.value)
   }
 
@@ -52,33 +54,37 @@ export class ProductsComponent implements OnInit {
   //   });
   // }
 
-  getProducts(id?:string, category_type = "parent")
-  {
-    if(!id)
-    {
-        this._httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/category/vopsea-lavabila").subscribe((data:any) => {
+  getProducts(id?: string, category_type = "parent") {
+    if (!id) {
+      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;
         this.setTotalPages(data.no_of_pages);
-      this.setPagesArray(this.totalPages);
+        this.setPagesArray(this.totalPages);
+
+      });
+    }
+    else if (category_type == "parent") {
+      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${id}`).subscribe((data: any) => {
+        this._products = data.products;
+        this.setTotalPages(data.no_of_pages);
+        this.setPagesArray(this.totalPages);
+      });
+    }
+    else if (category_type == "child") {
+      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/subcategory/${id}`).subscribe((data: any) => {
+        this._products = data.products;
+        this.setTotalPages(data.no_of_pages);
+        this.setPagesArray(this.totalPages);
       });
     } else {
-      if(category_type == "parent")
-      {
-        this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/category/${id}`).subscribe((data:any) => {
+      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;
         this.setTotalPages(data.no_of_pages);
-      this.setPagesArray(this.totalPages);
-        });
-      }
-      if(category_type == "child")
-      {
-        this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/subcategory/${id}`).subscribe((data:any) => {
-        this._products = data.products;
-        this.setTotalPages(data.no_of_pages);
-      this.setPagesArray(this.totalPages);
-        });
-      }
+        this.setPagesArray(this.totalPages);
+      });
     }
+    document.getElementById("products").scrollIntoView();
+    console.log(this._products)
     return this._products;
   }
 
@@ -113,5 +119,9 @@ export class ProductsComponent implements OnInit {
       this.currentPage -= 1;
     }
     this.getProducts();
+  }
+
+  openModal(id: string, slug: string) {
+    this.modalService.open(id, slug);
   }
 }

@@ -1,0 +1,318 @@
+<main class="main">
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Acasa</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Confirmare si plata</li>
+      </ol>
+    </div><!-- End .container-fluid -->
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Confirmare comanda</h1>
+    </div><!-- End .container -->
+  </div><!-- End .page-header -->
+
+  <div class="container">
+    <ul class="checkout-progress-bar">
+      <li>
+        <span>Livrare</span>
+      </li>
+      <li class="active">
+        <span>Confirmare &amp; Plata</span>
+      </li>
+    </ul>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="order-summary">
+          <h3>Sumar</h3>
+
+          <h4>
+            <a data-toggle="collapse" href="#order-cart-section" class="collapsed" role="button" aria-expanded="false"
+              aria-controls="order-cart-section">{{cartTotal$ == 1 ? cartTotal$ + ' produs' : cartTotal$ + ' prdouse'}}
+              in cos</a>
+          </h4>
+
+          <div class="collapse" id="order-cart-section">
+            <table class="table table-mini-cart">
+              <tbody>
+                <tr *ngFor="let product of cartItems$ | async">
+                  <td class="product-col">
+                    <figure class="product-image-container">
+                      <a href="product.html" class="product-image">
+                        <img src="{{product.image_url}}" alt="product">
+                      </a>
+                    </figure>
+                    <div>
+                      <h2 class="product-title">
+                        <a href="product.html">{{product.product_name}}</a>
+                      </h2>
+
+                      <span class="product-qty">Cant: {{product.num}}</span>
+                    </div>
+                  </td>
+                  <td class="price-col">{{product.price}} Lei</td>
+                </tr>
+              </tbody>
+            </table>
+          </div><!-- End #order-cart-section -->
+        </div><!-- End .order-summary -->
+
+        <div class="checkout-info-box">
+          <h3 class="step-title">Livrare la: </h3>
+
+          <address>
+            {{shippingAddress?.address}}
+          </address>
+        </div><!-- End .checkout-info-box -->
+
+        <div class="checkout-info-box">
+          <h3 class="step-title">Metoda de livrare:
+            <a href="#" title="Edit" class="step-title-edit"><span class="sr-only">Edit</span><i
+                class="icon-pencil"></i></a>
+          </h3>
+
+          <p>DPD Courier - 20 Lei</p>
+        </div><!-- End .checkout-info-box -->
+      </div><!-- End .col-lg-4 -->
+
+      <div class="col-lg-8 order-lg-first padding-right-lg">
+        <div class="checkout-payment">
+          <h2 class="step-title">Metoda de plata:</h2>
+          <h4>{{payment?.method == 'card' ? 'Online / Card bancar' : 'Ramburs / Plata la livrare'}}</h4>
+
+          <div class="form-group-custom-control">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" [(ngModel)]="changeBillAddress" class="custom-control-input"
+                id="change-bill-address" value="1">
+              <label class="custom-control-label" for="change-bill-address">Adresa de facturare este aceeasi cu cea de
+                livrare</label>
+            </div><!-- End .custom-checkbox -->
+          </div><!-- End .form-group -->
+
+          <div id="checkout-shipping-address" class="show">
+            <address>
+              {{shippingAddress?.address}}
+            </address>
+          </div><!-- End #checkout-shipping-address -->
+
+          <div id="new-checkout-address">
+            <form [formGroup]="form" (ngSubmit)="pay()">
+
+              <div class="form-group">
+                <label>Nume companie </label>
+                <input formControlName="companyName" name="companyName" id="companyName" type="text"
+                  class="form-control">
+              </div><!-- End .form-group -->
+
+              <div class="form-group j">
+                <label>Numar de inregistrare in Registrul Comertului </label>
+                <select name="J" class="form-control" id="J" formControlName="J" [(ngModel)]="J">
+                  <option value="J">J</option>
+                  <option value="F">F</option>
+                  <option value="C">C</option>
+                  <option selected="selected" value="-">-</option>
+                </select>
+                <select class="form-control j1" name="J1" id="J1" formControlName="J1" [(ngModel)]="J1">
+                  <option value="">--</option>
+                  <option value="0">00</option>
+                  <option value="1">01</option>
+                  <option value="2">02</option>
+                  <option value="3">03</option>
+                  <option value="4">04</option>
+                  <option value="5">05</option>
+                  <option value="6">06</option>
+                  <option value="7">07</option>
+                  <option value="8">08</option>
+                  <option value="9">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                </select>
+                <input type="text" formControlName="J2" name="J2" id="J2" class="form-control">
+                <select name="J3" class="form-control date" id="J3" formControlName="J3" [(ngModel)]="J3">
+                  <option value="">----</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
+                  <option value="2016">2016</option>
+                  <option value="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                  <option value="2012">2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                  <option value="2008">2008</option>
+                  <option value="2007">2007</option>
+                  <option value="2006">2006</option>
+                  <option value="2005">2005</option>
+                  <option value="2004">2004</option>
+                  <option value="2003">2003</option>
+                  <option value="2002">2002</option>
+                  <option value="2001">2001</option>
+                  <option value="2000">2000</option>
+                  <option value="1999">1999</option>
+                  <option value="1998">1998</option>
+                  <option value="1997">1997</option>
+                  <option value="1996">1996</option>
+                  <option value="1995">1995</option>
+                  <option value="1994">1994</option>
+                  <option value="1993">1993</option>
+                  <option value="1992">1992</option>
+                  <option value="1991">1991</option>
+                  <option value="1990">1990</option>
+                </select>
+              </div><!-- End .form-group -->
+
+              <div class="form-group cui">
+                <label>Cod unic de Inregistrare </label>
+
+                <select id="prefcode" name="prefcode" class="form-control" formControlName="prefcode"
+                  [(ngModel)]="prefcode">
+                  <option value="RO">RO</option>
+                  <option value="0">----</option>
+                </select>
+
+                <input formControlName="cui" name="cui" id="cui" type="text" class="form-control">
+
+
+
+              </div><!-- End .form-group -->
+
+              <div class="form-group">
+                <label>Banca </label>
+                <input formControlName="bank" name="bank" id="bank" type="text" class="form-control">
+              </div><!-- End .form-group -->
+
+              <div class="form-group">
+                <label>Cont </label>
+                <input formControlName="bankAccount" name="bankAccount" id="bankAccount" type="text"
+                  class="form-control">
+              </div><!-- End .form-group -->
+
+              <div class="form-group required-field">
+                <label>Judet </label>
+                <input formControlName="city" name="city" id="city" type="text" class="form-control">
+              </div><!-- End .form-group -->
+
+              <div class="form-group required-field">
+                <label>Localitate </label>
+                <input formControlName="town" name="town" id="town" type="text" class="form-control">
+              </div><!-- End .form-group -->
+
+              <div class="form-group required-field">
+                <label>Adresa </label>
+                <input formControlName="address" name="address" id="address" type="text" class="form-control">
+              </div><!-- End .form-group -->
+
+            </form>
+          </div><!-- End #new-checkout-address -->
+
+          <div class="clearfix">
+            <a (click)="pay()" class="btn btn-primary float-right">Trimite comanda</a>
+          </div><!-- End .clearfix -->
+        </div><!-- End .checkout-payment -->
+
+        <div class="checkout-discount">
+          <h4>
+            <a data-toggle="collapse" href="#checkout-discount-section" class="collapsed" role="button"
+              aria-expanded="false" aria-controls="checkout-discount-section">Apply Discount Code</a>
+          </h4>
+
+          <div class="collapse" id="checkout-discount-section">
+            <form action="#">
+              <input type="text" class="form-control form-control-sm" placeholder="Enter discount code" required>
+              <button class="btn btn-sm btn-outline-secondary" type="submit">Apply Discount</button>
+            </form>
+          </div><!-- End .collapse -->
+        </div><!-- End .checkout-discount -->
+      </div><!-- End .col-lg-8 -->
+    </div><!-- End .row -->
+  </div><!-- End .container -->
+
+  <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
+
+<form target="_blank" *ngIf="dataAll" ACTION="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" METHOD="POST"
+  id="epForm" name="gateway" target="_self">
+
+  <!-- begin billing details -->
+  <input name="fname" type="hidden" value="{{order['customer']['firstName']}}" />
+  <input name="lname" type="hidden" value="{{order['customer']['lastName']}}" />
+
+  <input name="country" type="hidden" value="" />
+  <input name="company" type="hidden" value="" />
+  <input name="city" type="hidden" value="Bucuresti" />
+  <input name="add" type="hidden" value="{{shippingAddress}}" />
+  <input name="email" type="hidden" value="{{order['customer']['email']}}" />
+  <input name="phone" type="hidden" value="{{order['customer']['phone']}}" />
+  <input name="fax" type="hidden" value="" />
+  <!-- snd billing details -->
+
+
+
+
+  <!-- daca detaliile de shipping difera -->
+  <!-- begin shipping details -->
+  <input name="sfname" type="hidden" value="{{order['customer']['firstName']}}" />
+  <input name="slname" type="hidden" value="{{order['customer']['lastName']}}" />
+  <input name="scountry" type="hidden" value="" />
+  <input name="scompany" type="hidden" value="" />
+  <input name="scity" type="hidden" value="" />
+  <input name="sadd" type="hidden" value="" />
+  <input name="semail" type="hidden" value="{{order['customer']['email']}}" />
+  <input name="sphone" type="hidden" value="{{order['customer']['phone']}}" />
+  <input name="sfax" type="hidden" value="" />
+
+  <!-- end shipping details -->
+
+  <input type="hidden" name="amount" value="{{totalPrice$}}" SIZE="12" MAXLENGTH="12" />
+  <input TYPE="hidden" name="curr" value="{{dataAll.curr}}" SIZE="5" MAXLENGTH="3" />
+  <input type="hidden" name="invoice_id" value="{{order_guid}}" SIZE="32" MAXLENGTH="32" />
+  <input type="hidden" name="order_desc" value="{{dataAll.order_desc}}" SIZE="32" MAXLENGTH="50" />
+  <input TYPE="hidden" name="merch_id" size="15" value="{{dataAll.merch_id}}" />
+  <input TYPE="hidden" name="timestamp" size="15" value="{{dataAll.timestamp}}" />
+  <input TYPE="hidden" name="nonce" size="35" value="{{dataAll.nonce}}" />
+  <input TYPE="hidden" name="fp_hash" size="40" value="{{dataAll.fp_hash}}" />
+<script>
+  document.getElementById('epForm').submit();
+</script>
+</form>

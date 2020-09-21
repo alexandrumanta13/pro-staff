@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { User } from '../models';
-import { Role } from '../models/';
+import { Role } from '../models';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { DOCUMENT } from '@angular/common';
@@ -11,11 +11,14 @@ import { Router } from '@angular/router';
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+export class AuthService {
+  user = new Subject<User>();
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  private user: User;
-  private role: Role;
+  // private user: User;
+  // private role: Role;
+
+  signUpApi;
 
   constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document, public router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -40,25 +43,33 @@ export class AuthenticationService {
 
   }
 
-  hasRole(role: Role) {
-    const user = localStorage.getItem('currentUser')
-    const getRole = JSON.parse(user)
+  // hasRole(role: Role) {
+  //   const user = localStorage.getItem('currentUser')
+  //   const getRole = JSON.parse(user)
 
-    if (getRole.role == 'Admin') {
-      if(this.router.url.includes('/admin/dashboard')) {
-        this.document.body.classList.add('admin');
-      }
+  //   if (getRole.role == 'Admin') {
+  //     if(this.router.url.includes('/admin/dashboard')) {
+  //       this.document.body.classList.add('admin');
+  //     }
      
-      return this.isAuthorized();
-    } else {
-      return this.isAuthorized() && this.user.role === role;
-    }
-  }
+  //     return this.isAuthorized();
+  //   } else {
+  //     return this.isAuthorized() && this.user.role === role;
+  //   }
+  // }
 
-  login(role: Role) {
-    this.user = { role: role };
+  login(email: string, password: string) {
+    //this.user = { role: role };
 
-    localStorage.setItem('currentUser', JSON.stringify(this.user = { role: role }));
+   
+  //  localStorage.setItem('currentUser', JSON.stringify(this.user = { role: role }));
+
+    return this.http.post(this.signUpApi, {
+      email: email,
+      password: password,
+      returnScureToken: true
+
+    })
   }
 
   logout() {

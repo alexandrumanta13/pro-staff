@@ -2,54 +2,7 @@
 <app-featured-products></app-featured-products>
 <div class="mb-5 mb-md-7 mb-lg-9"></div><!-- margin -->
 
-<div class="product-slider-section">
-  <div class="product-section-slider owl-carousel owl-carousel-lazy owl-theme owl-theme-light">
-    <div class="product-section-slide">
-      <div class="slide-bg owl-lazy" data-src="assets/images/section/slide-section1.jpg"></div><!-- End .slide-bg -->
-
-      <div class="container-fluid product-slide-content">
-        <div class="row">
-          <div class="col-sm-6 offset-sm-6 col-lg-5 offset-lg-7">
-            <h3 style="margin-top: 40px">VOPSEA DECORATIVA</h3>
-
-            <img src="assets/images/section/vopsea-decorativa.png" alt="img">
-            <a href="/categorie/vopsea-decorativa" class="btn btn-orange">Cumpara acum</a>
-          </div><!-- End .col-lg-5 -->
-        </div><!-- End .row -->
-      </div><!-- End .product-slide-content -->
-    </div><!-- .product-section-slide -->
-
-    <div class="product-section-slide">
-      <div class="slide-bg owl-lazy" data-src="assets/images/section/vopsea-lavabila.png"></div><!-- End .slide-bg -->
-
-      <div class="container-fluid product-slide-content">
-        <div class="row">
-          <div class="col-sm-6 offset-sm-6 col-lg-5 offset-lg-7">
-            <h3 style="margin-top: 40px">VOPSEA LAVABILA</h3>
-
-            <img src="assets/images/section/vopsea-decorativa.png" alt="img">
-            <a href="/categorie/vopsea-lavabila" class="btn btn-orange">Cumpara acum</a>
-          </div><!-- End .col-lg-5 -->
-        </div><!-- End .row -->
-      </div><!-- End .product-slide-content -->
-    </div><!-- .product-section-slide -->
-
-    <div class="product-section-slide">
-      <div class="slide-bg owl-lazy" data-src="assets/images/section/accesorii.jpg"></div><!-- End .slide-bg -->
-
-      <div class="container-fluid product-slide-content">
-        <div class="row">
-          <div class="col-sm-6 offset-sm-6 col-lg-5 offset-lg-7">
-            <h3 style="margin-top: 40px">APARATE SI SCULE DE VOPSIT</h3>
-
-            <img src="assets/images/section/vopsea-decorativa.png" alt="img">
-            <a href="/categorie/aparate-si-scule-de-vopsit" class="btn btn-orange">Cumpara acum</a>
-          </div><!-- End .col-lg-5 -->
-        </div><!-- End .row -->
-      </div><!-- End .product-slide-content -->
-    </div><!-- .product-section-slide -->
-  </div><!-- End .product-section-slider -->
-</div><!-- End .product-slider-section -->
+<app-category-slider></app-category-slider>
 
 <div class="products-filter-container">
   <div class="container-fluid">
@@ -111,16 +64,16 @@
           <div class="col-6 col-md-4 col-lg-3 col-xl-5col" *ngFor="let product of _products">
             <div class="product">
               <figure class="product-image-container">
-                <a href="{{product.slug}}" class="product-image">
+                <a routerLink="{{product.slug}}" class="product-image">
                   <img src="{{product.image_url}}" height="150px" width="150px" alt="product">
                 </a>
-                <a href="/produs/{{product.alias}}" class="btn-quickview">Vezi detalii</a>
+                <a (click)="openModal('productQuickView', product.alias)" class="btn-quickview">Vezi detalii</a>
               </figure>
               <div class="product-details">
 
 
                 <h2 class="product-title">
-                  <a href="/produs/{{product.alias}}">{{product.product_name}}</a>
+                  <a routerLink="/produs/{{product.alias}}">{{product.product_name}}</a>
                 </h2>
                 <div class="price-box">
                   <span class="product-price">{{product.price}}</span>
@@ -133,7 +86,7 @@
         </div><!-- End .row -->
 
         <div class="product-more-container" *ngIf="dynamicProductViewer">
-          <a href="/categorie/{{dynamicProductViewer}}" class="btn btn-outline-dark">Vezi toate produsele</a>
+          <a routerLink="/categorie/{{dynamicProductViewer}}" class="btn btn-outline-dark">Vezi toate produsele</a>
         </div><!-- End .product-more-container -->
       </div><!-- End .col-lg-9 -->
     </div><!-- End .row -->

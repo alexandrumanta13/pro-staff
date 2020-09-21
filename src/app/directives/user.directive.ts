@@ -1,11 +1,11 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef, Input } from '@angular/core';
-import { AuthenticationService } from '../services';
+import { AuthService } from '../services';
 
 @Directive({ selector: '[appUser]'})
 export class UserDirective implements OnInit {
     constructor(
         private templateRef: TemplateRef<any>,
-        private authService: AuthenticationService,
+        private authService: AuthService,
         private viewContainer: ViewContainerRef
     ) { }
 

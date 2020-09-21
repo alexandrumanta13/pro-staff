@@ -1,0 +1,68 @@
+<div class="product-slider-section">
+    <div class="product-section-slider owl-carousel owl-carousel-lazy owl-theme owl-theme-light">
+      <div class="product-section-slide">
+        <div class="slide-bg owl-lazy" data-src="assets/images/section/slide-section1.jpg"></div><!-- End .slide-bg -->
+  
+        <div class="container-fluid product-slide-content">
+          <div class="row">
+            <div class="col-sm-6 offset-sm-6 col-lg-5 offset-lg-7">
+              <h3 style="margin-top: 40px">VOPSEA DECORATIVA</h3>
+  
+              
+              <ul class="category-product__list">
+                <li class="category-product__item" *ngFor="let product of _vopseaDecorativa">
+                    <a routerLink="/produs/{{product.alias}}">
+                        <img src="{{product.image_url}}" alt="">
+                    </a>
+                </li>
+              </ul>
+              <a routerLink="/categorie/vopsea-decorativa" class="btn btn-orange">Cumpara acum</a>
+            </div><!-- End .col-lg-5 -->
+          </div><!-- End .row -->
+        </div><!-- End .product-slide-content -->
+      </div><!-- .product-section-slide -->
+  
+      <div class="product-section-slide">
+        <div class="slide-bg owl-lazy" data-src="assets/images/section/vopsea-lavabila.png"></div><!-- End .slide-bg -->
+  
+        <div class="container-fluid product-slide-content">
+          <div class="row">
+            <div class="col-sm-6 offset-sm-6 col-lg-5 offset-lg-7">
+              <h3 style="margin-top: 40px">VOPSEA LAVABILA</h3>
+              
+              <ul class="category-product__list">
+                <li class="category-product__item" *ngFor="let product of _vopseaLavabila">
+                    <a routerLink="/produs/{{product.alias}}">
+                        <img src="{{product.image_url}}" alt="">
+                    </a>
+                </li>
+              </ul>
+              <a routerLink="/categorie/vopsea-lavabila" class="btn btn-orange">Cumpara acum</a>
+            </div><!-- End .col-lg-5 -->
+          </div><!-- End .row -->
+        </div><!-- End .product-slide-content -->
+      </div><!-- .product-section-slide -->
+  
+      <div class="product-section-slide">
+        <div class="slide-bg owl-lazy" data-src="assets/images/section/accesorii.jpg"></div><!-- End .slide-bg -->
+  
+        <div class="container-fluid product-slide-content">
+          <div class="row">
+            <div class="col-sm-6 offset-sm-6 col-lg-5 offset-lg-7">
+              <h3 style="margin-top: 40px">APARATE SI SCULE DE VOPSIT</h3>
+  
+              
+              <ul class="category-product__list">
+                <li class="category-product__item" *ngFor="let product of _accesoriiProfesionale">
+                    <a routerLink="/produs/{{product.alias}}">
+                        <img src="{{product.image_url}}" alt="">
+                    </a>
+                </li>
+              </ul>
+              <a routerLink="/categorie/aparate-si-scule-de-vopsit" class="btn btn-orange">Cumpara acum</a>
+            </div><!-- End .col-lg-5 -->
+          </div><!-- End .row -->
+        </div><!-- End .product-slide-content -->
+      </div><!-- .product-section-slide -->
+    </div><!-- End .product-section-slider -->
+  </div><!-- End .product-slider-section -->

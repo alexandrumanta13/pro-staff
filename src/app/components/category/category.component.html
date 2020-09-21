@@ -70,7 +70,7 @@
                     <img src="{{product.image_url}}" alt="product">
                   </a>
                   <!-- <span class="product-label label-new">Nou</span> -->
-                  <a href="/produs/{{product.alias}}" class="btn-quickview">Vezi detalii</a>
+                  <a (click)="openModal('productQuickView', product.alias)" class="btn-quickview">Vezi detalii</a>
                 </figure>
                 <div class="product-details">
                   <h2 class="product-title">
@@ -87,11 +87,11 @@
   
           <nav class="toolbox toolbox-pagination">
             <ul class="pagination">
-              <li class="page-item active">
-                <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+              <li class="page-item">
+                <a class="page-link page-link-btn" (click)="decreaseCurrentPage();"><i class="icon-angle-left"></i></a>
               </li>
-              <li *ngFor="let number of pages" [class.current-page]="number === currentPage"
-              (click)="setCurrentPage(number)"><a class="page-link" href="#">{{number}}</a></li>
+              <li *ngFor="let number of pages" class="page-item" [class.active]="number === currentPage"
+              (click)="setCurrentPage(number)"><a class="page-link">{{number}}</a></li>
               <!-- <li class="page-item"><span class="page-link">...</span></li> -->
               <li class="page-item">
                 <a class="page-link page-link-btn" (click)="increaseCurrentPage();"><i class="icon-angle-right"></i></a>
@@ -101,9 +101,65 @@
         </div>
         <aside class="sidebar-shop col-lg-3 col-xl-2 order-lg-first">
           <div class="sidebar-wrapper">
-           
-  
             <div class="widget">
+              <h3 class="widget-title">
+                <a data-toggle="collapse" href="#widget-body-4" role="button" aria-expanded="true"
+                  aria-controls="widget-body-4">Categorii</a>
+              </h3>
+  
+              <div class="collapse show" id="widget-body-4">
+                <div class="widget-body">
+                  <ul class="cat-list">
+                    <li>
+                      <a
+                      href="/categorie/vopsea-lavabila">VOPSEA
+                        LAVABILA</a>
+                    </li>
+                    <li>
+                      <a
+                        href="/categorie/vopsea-decorativa">VOPSEA
+                        DECORATIVA</a>
+                    </li>
+                    <li>
+                      <a
+                        href="/categorie/vopsea-metal">VOPSEA
+                        METAL</a>
+                    </li>
+                    <li>
+                      <a
+                        href="/categorie/pentru-lemn">PENTRU
+                        LEMN</a>
+                    </li>
+                    <li>
+                      <a
+                        href="/categorie/vopsea-pardoseala">VOPSEA
+                        PARDOSEALA</a>
+                    </li>
+                    <li>
+                      <a
+                        href="/categorie/vopsea-ceramica">VOPSEA
+                        CERAMICA</a>
+                    </li>
+                    <li>
+                      <a
+                      href="/categorie/hidroizolatii">HIDROIZOLATII</a>
+                    </li>
+                    <li>
+                      <a
+                      href="/categorie/camere-copii">CAMERE
+                        COPII</a>
+                    </li>
+                    <li>
+                      <a
+                        href="/categorie/aparate-si-scule-de-vopsit">APARATE
+                        ȘI SCULE DE VOPSIT</a>
+                    </li>
+                  </ul>
+                </div><!-- End .widget-body -->
+              </div><!-- End .collapse -->
+            </div><!-- End .widget -->
+           
+            <!-- <div class="widget">
               <h3 class="widget-title">
                 <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true"
                   aria-controls="widget-body-3">Price</a>
@@ -111,12 +167,12 @@
   
               <div class="collapse show" id="widget-body-3">
                 <div class="widget-body">
-                  <form action="#">
+                  <form>
                     <div class="price-slider-wrapper">
                       <div id="price-slider">
                           <input type="text" rentRangeSlider rangeType='rentPrice' formControlName='rentPrice' name='price'>
-                      </div><!-- End #price-slider -->
-                    </div><!-- End .price-slider-wrapper -->
+                      </div>
+                    </div>
   
                     <div class="filter-price-action">
                       <button type="submit" class="btn btn-primary">Filter</button>
@@ -124,12 +180,12 @@
                       <div class="filter-price-text">
                         Price:
                         <span id="filter-price-range"></span>
-                      </div><!-- End .filter-price-text -->
-                    </div><!-- End .filter-price-action -->
+                      </div>
+                    </div>
                   </form>
-                </div><!-- End .widget-body -->
-              </div><!-- End .collapse -->
-            </div><!-- End .widget -->
+                </div>
+              </div>
+            </div> -->
   
             <div class="widget">
               <h3 class="widget-title">
@@ -211,3 +267,4 @@
     <div class="pagination-item" (click)="increaseCurrentPage();">NEXT</div>
   </div> -->
   
+  <app-product-quick-view id="productQuickView" ></app-product-quick-view>

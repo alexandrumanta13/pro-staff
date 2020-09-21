@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../components/products/product.model'
 import { HttpClient } from '@angular/common/http';
+import { ModalService } from 'app/services';
 
 
 @Component({
@@ -15,8 +16,9 @@ export class HomeComponent implements OnInit {
   private _httpClient:HttpClient;
 
 
-  constructor(private httpClient:HttpClient) {
+  constructor(private httpClient:HttpClient, private modalService: ModalService) {
     this._httpClient = httpClient;
+    
   }
 
   ngOnInit() {
@@ -25,34 +27,33 @@ export class HomeComponent implements OnInit {
     this.getProducts();
   }
 
-  openModal(){
-    const buttonModal = document.getElementById("openModalButton")
-    console.log('buttonModal', buttonModal)
-    buttonModal.click()
-  }
-
+  
   getProducts(id?:string, category_type = "parent")
   {
     if(!id)
     {
-        this._httpClient.get("http://pro-staff.ro/prostaff-api/v1/products/category/vopsea-lavabila").subscribe((data:any) => {
+        this._httpClient.get("https://pro-staff.ro/prostaff-api/v1/products/category/vopsea-lavabila").subscribe((data:any) => {
         this._products = data.products;
       });
     } else {
       if(category_type == "parent")
       {
-        this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/category/${id}`).subscribe((data:any) => {
+        this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${id}`).subscribe((data:any) => {
         this._products = data.products;
         });
       }
       if(category_type == "child")
       {
-        this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/subcategory/${id}`).subscribe((data:any) => {
+        this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/subcategory/${id}`).subscribe((data:any) => {
         this._products = data.products;
         });
       }
     }
     return this._products;
+  }
+
+  openModal(id: string, slug: string) {
+    this.modalService.open(id, slug);
   }
 
 }

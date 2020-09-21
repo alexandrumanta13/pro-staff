@@ -1,0 +1,30 @@
+.product-section-slider {
+
+    &:before,
+    &:after {
+      content: none;
+    }
+  
+  }
+  
+
+  .category-product {
+      &__list {
+          display: flex;
+          margin: 0 -8px 20px;
+      }
+
+      &__item {
+          flex: 1;
+          margin: 0 8px;
+          a {
+              display: flex;
+              background-color: #fff;
+              align-items: center;
+              height: 100%;
+              img {
+                 margin: 0;
+              }
+          }
+      }
+  }

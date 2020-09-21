@@ -48,7 +48,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 
 import { AuthGuard } from './app-routing.guard';
-import { AuthenticationService } from './services';
+import { AuthService } from './services';
 
 import { UserRoleDirective } from './directives/user-role.directive';
 import { UserDirective } from './directives/user.directive';
@@ -68,6 +68,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 // Needs to import the BrowserAnimationsModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { RadioButtonComponent } from './components/radio-button/radio-button.component';
+import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
+import { AuthComponent } from './pages/auth/auth.component';
+import { CategorySliderComponent } from './pages/home/category-slider/category-slider.component';
 
 
   
@@ -105,7 +109,11 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     CategoryComponent,
     PaginationComponent,
     CheckoutComponent,
-    RangeSlideDirective
+    RangeSlideDirective,
+    RadioButtonComponent,
+    ConfirmOrderComponent,
+    AuthComponent,
+    CategorySliderComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +140,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     // provider used to create fake backend
     //fakeBackendProvider,
 
-    AuthenticationService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

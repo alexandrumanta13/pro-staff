@@ -7,20 +7,30 @@ import { CartService } from 'app/services/cart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
+
 export class CartComponent implements OnInit {
 
   constructor(
     public router: Router,
     private cartService: CartService) { }
 
-    items$ = this.cartService.items$;
-    products;
+    public items$ = this.cartService.items$;
+    public products;
+    public totalPrice$;
 
   ngOnInit(): void {
     this.items$.subscribe(data => {
-      console.log(data)
       this.products = data
     })
+
+    this.cartService.totalPrice.subscribe(info => {
+      this.totalPrice$ = info;
+    })
   }
+
+  emptyCart() {
+    this.cartService.emptyCart();
+  }
+
 
 }

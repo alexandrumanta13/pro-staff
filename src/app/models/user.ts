@@ -1,11 +1,16 @@
-import { Role } from './role';
+// import { Role } from './role';
 
 export class User {
-    // id: number;
-    // username: string;
-    // password: string;
-    // firstName: string;
-    // lastName: string;
-    // token: string;
-    role: Role;
+    constructor(
+        public email: string,
+        public id: string,
+        private _token: string,
+        private _tokenExpirationDate: string
+    ) {}
+
+    get token() {
+        
+        return this._token;
+    }
+    
 }
