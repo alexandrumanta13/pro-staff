@@ -25,7 +25,7 @@ export class SliderComponent implements OnInit {
     pullDrag: false,
     dots: true,
     dotsData: true,
-    autoplay: true,
+    autoplay: false,
     navSpeed: 15000,
     animateOut: 'fadeOut',
     navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
@@ -79,69 +79,23 @@ export class SliderComponent implements OnInit {
       .subscribe((response: any) => {
         console.log(response)
         this.sliders = response;
-        // this.onSlidersChanged.next(this.slider);
-        // this.items$ = this.onSlidersChanged.asObservable();
-
       });
-
   }
 
   ngAfterViewInit() {
-    // use default - empty
-    // for (var key in this.options) {
-    //   this.defaultOptions[key] = this.options[key];
-    // }
+        
+    const checkExist = setInterval(() => {
+      let bg = document.querySelectorAll<HTMLElement>('.slide-bg.home')
 
-    // var homeSlider = $('.home-slider');
 
-    // homeSlider.owlCarousel($.extend(true, {}, this.defaultOptions, {
-    //   lazyLoad: true,
-    //   dotsContainer: ".home-slider-thumbs",
-    //   autoplay: false,
-    //   animateOut: 'fadeOut'
-    // }));
-    // $('.home-slider ul.scene').parallax();
-
-    // homeSlider.on('loaded.owl.lazy', function (event) {
-    //   $(event.element).closest('.home-slide').addClass('loaded');
-    // });
-
-    // $('.home-slider-thumbs').find('a').on('click', function (e) {
-    //   var $this = $(this);
-
-    //   if (!$this.hasClass('active')) {
-    //     var index = $this.index();
-    //     homeSlider.trigger('to.owl.carousel', [index]);
-    //     $this.addClass('active').siblings().removeClass('active');
-    //   }
-
-    //   e.preventDefault();
-    // });
-
-    // this.$owlElement = $(this.el.nativeElement).owlCarousel(this.defaultOptions);
-    // $(this.sliderElement.nativeElement).owlCarousel($.extend(true, {}, this.defaultOptions, {
-    //   lazyLoad: true,
-    //   dotsContainer: ".home-slider-thumbs",
-    //   autoplay: false,
-    //   animateOut: 'fadeOut'
-    // }));
-    // var $owl = $('.home-slider');
-    // $owl.trigger('destroy.owl.carousel');
-    // After destory, the markup is still not the same with the initial.
-    // The differences are:
-    //   1. The initial content was wrapped by a 'div.owl-stage-outer';
-    //   2. The '.owl-carousel' itself has an '.owl-loaded' class attached;
-    //   We have to remove that before the new initialization.
-    // $owl.html($owl.find('.owl-stage-outer').html()).removeClass('owl-loaded');
-    // $owl.owlCarousel(
-    //   this.defaultOptions
-    // );
-    //$.getScript('/assets/js/plugins.js');
-    setTimeout(() => {
-      $('.owl-item ul.scene').parallax();
-
-    }, 2000);
-
+      console.log(bg)
+      if (bg.length && $('.owl-item ul.scene')) {
+        $('.owl-item ul.scene').parallax();
+        bg.forEach(node => node.style.backgroundImage = "url('" + node.dataset.src + "')");
+        console.log("Exists!");
+        clearInterval(checkExist);
+      }
+    }, 100);
 
   }
 

@@ -2,13 +2,13 @@
     <owl-carousel-o class="home-sliders" [options]="defaultOptions">
  
         <ng-container  *ngFor="let slider of sliders">
-          <ng-template class="home-slider-item" carouselSlide [id]="slider.id" data-dot="<button role='button' class='owl-dot'>aijsbdaijdjasbjsadbajdakj</button>">
+          <ng-template class="home-slider-item" carouselSlide [id]="slider.id" >
              
-            <img src="{{slider.background}}" alt="">
-            <div class="slide-bg owl-lazy"  [attr.data-src]="slider.background" style="background-image: url({{slider.background}});opacity: 1"></div>
+            
+            <div class="slide-bg home"  [attr.data-src]="slider.background"  style="opacity: 1"></div>
             <ul class="slide-bg scene" style="width: 100%; height: 100%;">
                 <li class="layer" data-depth="0.05">
-                    
+                    <img class="slider-product" src="{{slider.product}}" alt="">
                 </li>
                 <li class="layer" data-depth="0.06"><img style="position: absolute; top: 31%; left: 46.5%;" src="assets/images/slider/blurflake1.png" alt="" /></li>
                 <li class="layer" data-depth="0.07"><img class="animation-spin" style="position: absolute; top: 25%; left: 66%;" src="assets/images/slider/blurflake2.png" alt="" /></li>
@@ -90,7 +90,7 @@
     <div class="home-slider-thumbs">
         
         <a (click)="changeSlide(i)" *ngFor="let slider of sliders; index as i; let firstItem = first;" [ngClass]="{ active: firstItem }">
-            <img src="{{slider.product}}" alt="Slide Thumb">
+            <img src="{{slider.thumb}}" alt="Slide Thumb">
         </a>
         <!-- <a href="#">
             <img src="assets/images/slider/doratura-per-esterni--thumb.png" alt="Slide Thumb">
