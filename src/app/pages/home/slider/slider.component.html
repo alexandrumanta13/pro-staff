@@ -84,7 +84,9 @@
     </div>
 
     <div class="home-slider-thumbs">
-        <a href="#" class="active" *ngFor="let slider of sliders; let firstItem = first;" [ngClass]="{ active: firstItem }">
+        
+        <a href="#"  *ngFor="let slider of sliders; let firstItem = first;" [ngClass]="{ active: firstItem }">
+            {{slider.product}}
             <img src="{{slider.product}}" alt="Slide Thumb">
         </a>
         <!-- <a href="#">

@@ -40,7 +40,11 @@ export class SliderComponent implements OnInit {
 
     this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/sliders')
       .subscribe((response: any) => {
-        this.getSliders(response[0].id);
+
+        response.map(slider => {
+         // this.getSliders(slider.id);
+        })
+        
       });
   }
 
@@ -56,8 +60,16 @@ export class SliderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
+    
+      this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/sliders/slider')
+        .subscribe((response: any) => {
+          console.log(response)
+          this.sliders = response;
+          // this.onSlidersChanged.next(this.slider);
+          // this.items$ = this.onSlidersChanged.asObservable();
+  
+        });
+    
   }
 
   ngAfterViewInit() {
@@ -107,9 +119,9 @@ export class SliderComponent implements OnInit {
     //   2. The '.owl-carousel' itself has an '.owl-loaded' class attached;
     //   We have to remove that before the new initialization.
     $owl.html($owl.find('.owl-stage-outer').html()).removeClass('owl-loaded');
-    $owl.owlCarousel({
-      // your initial option here, again.
-    });
+    $owl.owlCarousel(
+      this.defaultOptions
+    );
     //$.getScript('/assets/js/plugins.js');
     setTimeout(() => {
       $('.home-slider ul.scene').parallax();
