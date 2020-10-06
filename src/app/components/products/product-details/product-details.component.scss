@@ -1,0 +1,29 @@
+.color-class {
+    img {
+      height: 100%;
+    }
+  }
+
+  .download {
+    padding: .85rem 1rem;
+    background-color: #000;
+    color: #fff;
+    font: 400 1.3rem/1 "Oswald",sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase; 
+    height: 43px;
+    span {
+        display: inline;
+    }
+  }
+
+  .ncs-ral {
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+          flex-basis: 5%;
+          padding: 8px;
+      }
+  }

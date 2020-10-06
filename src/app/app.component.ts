@@ -75,6 +75,7 @@ export class AppComponent {
       .subscribe((event) => {
 
         $.getScript('../assets/js/main.js');
+        
         $.getScript('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f50ef52d1631692')
       });
   }
@@ -82,6 +83,7 @@ export class AppComponent {
   ngAfterViewInit() {
 
     $.getScript('../assets/js/main.js');
+
     $.getScript('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f50ef52d1631692')
 
   }

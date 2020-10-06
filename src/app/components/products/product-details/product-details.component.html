@@ -59,22 +59,23 @@
             <div class="product-single-details">
               <h1 class="product-title">{{product?.product_name}}</h1>
 
-              <div class="ratings-container">
+              <!-- <div class="ratings-container">
                 <div class="product-ratings">
-                  <span class="ratings" style="width:60%"></span><!-- End .ratings -->
-                </div><!-- End .product-ratings -->
+                  <span class="ratings" style="width:60%"></span>
+                </div>
 
                 <a href="#" class="rating-link">( 6 Recenzii )</a>
-              </div><!-- End .product-container -->
+              </div> -->
 
               <div class="price-box">
                 <!-- <span class="old-price"
                   *ngIf="product.discount > 0">{{ ((product.price/product.discount)*100).toFixed(2) }}</span> -->
-                <span class="product-price">{{product?.price}} lei</span>
+                <span class="product-price">{{price}} lei</span>
+                <span class="product-price" *ngIf="clickedColor"> + 20 Lei (nuantator)</span>
               </div><!-- End .price-box -->
 
               <div class="product-desc">
-                <p>Vopsea decorativa pentru interior cu efect de matase chinezeasca.</p>
+                <p>{{product?.description}}</p>
               </div><!-- End .product-desc -->
 
               <div class="product-filters-container">
@@ -91,13 +92,29 @@
                 <div class="product-single-filter">
                   <label>Cantitati:</label>
                   <ul class="config-size-list">
-                    <li class="active"><a href="#">1l</a></li>
-                    <li><a href="#">2l</a></li>
-                    <li><a href="#">5l</a></li>
-                    <li><a href="#">20l</a></li>
+                    <li class="qnt-class" *ngFor="let qnt of product?.availableQuantities; first as isFirst"
+                      [ngClass]="{'active': isFirst}">
+                      <!-- <a (click)="getColors(qnt.quantity, $event)" [attr.data-qnt]="qnt.quantity">{{qnt.quantity}} {{qnt.um}}</a> -->
+                      <a (click)="getPrice(qnt.quantity, qnt.um, $event)" [attr.data-qnt]="qnt.quantity">{{qnt.quantity}}
+                        {{qnt.um}}</a>
+                    </li>
                   </ul>
                 </div><!-- End .product-single-filter -->
+                <div class="product-single-filter">
+                  <label>Culori:</label>
+                  <ul class="config-swatch-list">
+                    <li class="color-class" *ngFor="let color of product?.availableColors; first as isFirst">
+                      <a (click)="getColor(color.color, $event)">
+                        <img *ngIf="color.color_image" [attr.data-color]="color.color" [attr.data-image]="color.color_image"
+                          src="{{color.color_image}}" alt="">
+      
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div><!-- End .product-filters-container -->
+
+            
 
               <div class="product-action">
                 <div class="product-single-qty">
@@ -108,13 +125,13 @@
                   <span>Adauga in cos</span>
                 </a>
 
-                <a href="#" class="paction add-wishlist" title="Adauga la favorite">
+                <!-- <a href="#" class="paction add-wishlist" title="Adauga la favorite">
                   <span>Adauga la favorite</span>
-                </a>
+                </a> -->
               </div><!-- End .product-action -->
 
               <div class="product-single-share">
-                <label>Share:</label>
+                <label>Distribuie:</label>
                 <!-- www.addthis.com share plugin-->
                 <div class="addthis_inline_share_toolbox"></div>
               </div><!-- End .product single-share -->
@@ -126,41 +143,44 @@
       <div class="product-single-tabs">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
-            <a class="nav-link" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab"
+            <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab"
               aria-controls="product-desc-content" aria-selected="false">Descriere</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" id="product-tab-size" data-toggle="tab" href="#product-size-content" role="tab"
+            <a class="nav-link" id="product-tab-size" data-toggle="tab" href="#product-size-content" role="tab"
               aria-controls="product-size-content" aria-selected="true">Detalii tehnice</a>
           </li>
           
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" id="product-tab-reviews" data-toggle="tab" href="#product-reviews-content" role="tab"
               aria-controls="product-reviews-content" aria-selected="false">Recenzii</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" id="product-tab-reviews" data-toggle="tab" href="#product-colors-content" role="tab"
+              aria-controls="product-reviews-content" aria-selected="false">Culori</a>
           </li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade" id="product-desc-content" role="tabpanel" aria-labelledby="product-tab-desc">
             <div class="product-desc-content">
-              <p>Vopsea decorativa care reproduce un efect de mătase acolo unde este aplicat. ORGANZA are o acoperire
-                foarte ridicată într-un singur strat, cu aderență și lavabilitate excelente, oferind suprafețelor
-                peretelui un aspect cromatic și tactil, precum țesătura de mătase chinezească..</p>
-              <ul>
-                <li><i class="icon-ok"></i>Any Product types that You want - Simple, Configurable</li>
-                <li><i class="icon-ok"></i>Downloadable/Digital Products, Virtual Products</li>
-                <li><i class="icon-ok"></i>Inventory Management with Backordered items</li>
-              </ul>
+              <p>{{product?.description}}</p>
 
             </div><!-- End .product-desc-content -->
           </div><!-- End .tab-pane -->
 
-          <div class="tab-pane fade show active" id="product-size-content" role="tabpanel"
+          <div class="tab-pane fade" id="product-size-content" role="tabpanel"
             aria-labelledby="product-tab-size">
             <div class="product-size-content">
-              <div class="row">
-                <div class="col-md-4">
+            
+                <!-- <div class="col-md-4">
                   <img src="assets/images/products/single/body-shape.png" alt="body shape">
-                </div><!-- End .col-md-4 -->
+                </div> -->
+                <p>
+                  
+                  <a class="paction download" href="{{product?.datasheet}}" download>
+                     <span>Descarca fisa tehnica</span>
+                  </a>
+                </p>
 
                 <div class="col-md-8">
                   <table class="table table-size">
@@ -213,7 +233,7 @@
                     </tbody>
                   </table>
                 </div>
-              </div><!-- End .row -->
+              
             </div><!-- End .product-size-content -->
           </div><!-- End .tab-pane -->
 
@@ -319,6 +339,16 @@
               </div><!-- End .add-product-review -->
             </div><!-- End .product-reviews-content -->
           </div><!-- End .tab-pane -->
+
+          <div class="tab-pane fade" id="product-colors-content" role="tabpanel" aria-labelledby="product-tab-desc">
+            <div class="product-desc-content">
+              <p>Paletar NCS</p>
+              <ul class="ncs-ral">
+                <li *ngFor="let color of NCScolors" [ngStyle]="{backgroundColor: color.color_image}">{{color.color}}</li>
+              </ul>
+
+            </div><!-- End .product-desc-content -->
+          </div><!-- End .tab-pane -->
         </div><!-- End .tab-content -->
       </div><!-- End .product-single-tabs -->
     </div><!-- End .col-lg-9 -->
@@ -359,7 +389,7 @@
           </div><!-- End .banner -->
         </div><!-- End .widget -->
 
-        <div class="widget widget-featured">
+        <!-- <div class="widget widget-featured">
           <h3 class="widget-title">Cele mai vandute</h3>
 
           <div class="widget-body">
@@ -381,14 +411,14 @@
                         </h2>
                         <div class="ratings-container">
                             <div class="product-ratings">
-                              <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                            </div><!-- End .product-ratings -->
-                          </div><!-- End .product-container -->
+                              <span class="ratings" style="width:80%"></span>
+                            </div>
+                          </div>
                         <div class="price-box">
                             <span class="product-price">39.90 lei</span>
-                        </div><!-- End .price-box -->
-                    </div><!-- End .product-details -->
-                </div><!-- End .product -->
+                        </div>
+                    </div>
+                </div>
 
                 <div class="product product-sm">
                     <figure class="product-image-container">
@@ -406,14 +436,14 @@
                         </h2>
                         <div class="ratings-container">
                             <div class="product-ratings">
-                              <span class="ratings" style="width:20%"></span><!-- End .ratings -->
-                            </div><!-- End .product-ratings -->
-                          </div><!-- End .product-container -->
+                              <span class="ratings" style="width:20%"></span>
+                            </div>
+                          </div>
                         <div class="price-box">
                             <span class="product-price">51.90 lei</span>
-                        </div><!-- End .price-box -->
-                    </div><!-- End .product-details -->
-                </div><!-- End .product -->
+                        </div>
+                    </div>
+                </div>
                
 
                 <div class="product product-sm">
@@ -432,17 +462,17 @@
                         </h2>
                         <div class="ratings-container">
                             <div class="product-ratings">
-                              <span class="ratings" style="width:100%"></span><!-- End .ratings -->
-                            </div><!-- End .product-ratings -->
-                          </div><!-- End .product-container -->
+                              <span class="ratings" style="width:100%"></span>
+                            </div>
+                          </div>
                         <div class="price-box">
                             <span class="old-price">69 lei</span>
                             <span class="product-price">49.90 lei</span>
-                        </div><!-- End .price-box -->
-                    </div><!-- End .product-details -->
-                </div><!-- End .product -->
+                        </div>
+                    </div>
+                </div>
                
-              </div><!-- End .featured-col -->
+              </div>
 
               <div class="featured-col">
 
@@ -461,14 +491,14 @@
                         </h2>
                         <div class="ratings-container">
                             <div class="product-ratings">
-                              <span class="ratings" style="width:100%"></span><!-- End .ratings -->
-                            </div><!-- End .product-ratings -->
-                          </div><!-- End .product-container -->
+                              <span class="ratings" style="width:100%"></span>
+                            </div>
+                          </div>
                         <div class="price-box">
                             <span class="product-price">160 lei</span>
-                        </div><!-- End .price-box -->
-                    </div><!-- End .product-details -->
-                </div><!-- End .product -->
+                        </div>
+                    </div>
+                </div>
               
 
                 <div class="product product-sm">
@@ -486,21 +516,21 @@
                         </h2>
                         <div class="ratings-container">
                             <div class="product-ratings">
-                              <span class="ratings" style="width:60%"></span><!-- End .ratings -->
-                            </div><!-- End .product-ratings -->
-                          </div><!-- End .product-container -->
+                              <span class="ratings" style="width:60%"></span>
+                            </div>
+                          </div>
                         <div class="price-box">
                             <span class="product-price">160 lei</span>
-                        </div><!-- End .price-box -->
-                    </div><!-- End .product-details -->
-                </div><!-- End .product -->
-              </div><!-- End .featured-col -->
-            </div><!-- End .widget-featured-slider -->
-          </div><!-- End .widget-body -->
-        </div><!-- End .widget -->
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </div>
-    </aside><!-- End .col-md-3 -->
-  </div><!-- End .row -->
+    </aside>
+  </div>
 
   <div class="featured-section pt-sm bg-white" style="display: none;">
     <h2 class="carousel-title">Cumparate impreuna</h2>

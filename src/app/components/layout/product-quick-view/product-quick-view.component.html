@@ -8,49 +8,35 @@
           <div class="product-item">
             <img class="product-single-image" [src]="product?.image_url" [attr.data-zoom-image]="product?.image_url" />
           </div>
-          <!-- <div class="product-item">
-                        <img class="product-single-image" src="assets/images/products/zoom/product-2.jpg" data-zoom-image="assets/images/products/zoom/product-2-big.jpg"/>
-                    </div>
-                    <div class="product-item">
-                        <img class="product-single-image" src="assets/images/products/zoom/product-3.jpg" data-zoom-image="assets/images/products/zoom/product-3-big.jpg"/>
-                    </div>
-                    <div class="product-item">
-                        <img class="product-single-image" src="assets/images/products/zoom/product-4.jpg" data-zoom-image="assets/images/products/zoom/product-4-big.jpg"/>
-                    </div> -->
+          <!-- <div class="product-item" *ngFor="let image of product?.images">
+            <img class="product-single-image" [src]="image.image_url" [attr.data-zoom-image]="image.image_url" />
+          </div> -->
         </div>
         <!-- End .product-single-carousel -->
       </div>
-      <!-- <div class="prod-thumbnail row owl-dots" id='carousel-custom-dots'>
-                <div class="col-3 owl-dot">
-                    <img src="assets/images/products/zoom/product-1.jpg"/>
-                </div>
-                <div class="col-3 owl-dot">
-                    <img src="assets/images/products/zoom/product-2.jpg"/>
-                </div>
-                <div class="col-3 owl-dot">
-                    <img src="assets/images/products/zoom/product-3.jpg"/>
-                </div>
-                <div class="col-3 owl-dot">
-                    <img src="assets/images/products/zoom/product-4.jpg"/>
-                </div>
-            </div> -->
+      <div class="prod-thumbnail row owl-dots" id='carousel-custom-dots' *ngIf="singleImage > 1">
+        <div class="col-3 owl-dot" *ngFor="let image of product?.images">
+          <img src="{{image.image_url}}" />
+        </div>
+      </div>
     </div><!-- End .col-lg-7 -->
 
     <div class="col-lg-6 col-md-6">
       <div class="product-single-details">
         <h1 class="product-title">{{product?.product_name}}</h1>
 
-        <div class="ratings-container">
+        <!-- <div class="ratings-container">
           <div class="product-ratings">
-            <span class="ratings" style="width:60%"></span><!-- End .ratings -->
-          </div><!-- End .product-ratings -->
+            <span class="ratings" style="width:60%"></span>
+          </div>
 
           <a href="#" class="rating-link">( 6 Reviews )</a>
-        </div><!-- End .product-container -->
+        </div> -->
 
         <div class="price-box">
           <!-- <span class="old-price">$81.00</span> -->
           <span class="product-price">{{price}} Lei</span>
+          <span class="product-price" *ngIf="clickedColor"> + 20 Lei (nuantator)</span>
         </div><!-- End .price-box -->
 
         <div class="product-desc">
@@ -61,8 +47,11 @@
           <div class="product-single-filter">
             <label>Cantitati:</label>
             <ul class="config-size-list">
-              <li class="qnt-class" *ngFor="let qnt of product?.availableQuantities; first as isFirst" [ngClass]="{'active': isFirst}">
-                <a (click)="getColors(qnt.quantity, $event)" [attr.data-qnt]="qnt.quantity">{{qnt.quantity}} {{qnt.um}}</a>
+              <li class="qnt-class" *ngFor="let qnt of product?.availableQuantities; first as isFirst"
+                [ngClass]="{'active': isFirst}">
+                <!-- <a (click)="getColors(qnt.quantity, $event)" [attr.data-qnt]="qnt.quantity">{{qnt.quantity}} {{qnt.um}}</a> -->
+                <a (click)="getPrice(qnt.quantity, qnt.um, $event)" [attr.data-qnt]="qnt.quantity">{{qnt.quantity}}
+                  {{qnt.um}}</a>
               </li>
             </ul>
           </div><!-- End .product-single-filter -->
@@ -76,15 +65,17 @@
           </div> -->
 
           <div class="product-single-filter">
-            <label>Colors:</label>
-            <ul class="config-swatch-list">
-              <li class="color-class" *ngFor="let color of product?.availableColors; first as isFirst" [ngClass]="{'active': isFirst}">
-                <a (click)="getPrice(color.color, $event)">
-                  <img *ngIf="color.color_image" src="{{color.color_image}}" alt="">
-                  
+            <label>Culori:</label>
+            <ul class="config-swatch-list" >
+              <li class="color-class" *ngFor="let color of product?.availableColors; first as isFirst">
+                <a (click)="getColor(color.color, $event)">
+                  <img *ngIf="color.color_image" [attr.data-color]="color.color" [attr.data-image]="color.color_image"
+                    src="{{color.color_image}}" alt="">
+
                 </a>
               </li>
             </ul>
+            <a href="" *ngIf="product?.PaletteColorID == -1">Vezi paletarul de culori</a>
           </div><!-- End .product-single-filter -->
         </div><!-- End .product-filters-container -->
 
@@ -96,16 +87,16 @@
           <a (click)="addToCart(product)" class="paction add-cart" title="Add to Cart">
             <span>Adauga in cos</span>
           </a>
-          <a href="#" class="paction add-wishlist" title="Add to Wishlist">
+          <!-- <a href="#" class="paction add-wishlist" title="Add to Wishlist">
             <span>Add to Wishlist</span>
           </a>
           <a href="#" class="paction add-compare" title="Add to Compare">
             <span>Add to Compare</span>
-          </a>
+          </a> -->
         </div><!-- End .product-action -->
 
         <div class="product-single-share">
-          <label>Share:</label>
+          <label>Distribuie:</label>
           <!-- www.addthis.com share plugin-->
           <div class="addthis_inline_share_toolbox"></div>
         </div><!-- End .product single-share -->

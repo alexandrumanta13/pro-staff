@@ -123,9 +123,9 @@
 
             <li><a routerLink="/blog">Noutati</a></li>
             <li><a routerLink="/contact">Contact</a></li>
-            <li>
+            <!-- <li>
               <a class="nav-link" [routerLink]="['admin', 'dashboard']">Dashboard</a>
-            </li>
+            </li> -->
 
           </ul>
 
@@ -141,7 +141,7 @@
         <button class="mobile-menu-toggler" type="button">
           <i class="icon-menu"></i>
         </button>
-        <div class="header-search header-search-popup header-search-category d-none d-sm-block">
+        <!-- <div class="header-search header-search-popup header-search-category d-none d-sm-block">
           <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
           <form action="#" method="get">
             <div class="header-search-wrapper show">
@@ -161,11 +161,11 @@
                   <option value="4">APARATE ȘI SCULE DE VOPSIT</option>
 
                 </select>
-              </div><!-- End .select-custom -->
+              </div>
               <button class="btn icon-search-3" type="submit"></button>
-            </div><!-- End .header-search-wrapper -->
+            </div>
           </form>
-        </div>
+        </div> -->
 
         <div class="dropdown cart-dropdown">
           <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -184,7 +184,7 @@
 
                     <span class="cart-product-info">
                       <span class="cart-product-qty">{{product.num}}</span>
-                      x {{product.price}} lei
+                      x {{product.selectedPrice}} lei
                     </span>
                   </div><!-- End .product-details -->
 
@@ -215,7 +215,7 @@
             </div><!-- End .dropdownmenu-wrapper -->
           </div><!-- End .dropdown-menu -->
         </div><!-- End .dropdown -->
-        <div class="dropdown user-account">
+        <!-- <div class="dropdown user-account">
           <a href="" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" data-display="static">
             <img src="/assets/icons/user-account.svg" alt="">
@@ -226,7 +226,7 @@
 
             </div>
           </div>
-        </div>
+        </div> -->
       </div><!-- End .header-right -->
     </div><!-- End .container-fluid -->
   </div><!-- End .header-middle -->

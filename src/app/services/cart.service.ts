@@ -23,7 +23,7 @@ export class CartService {
         }
         this.itemsSubject.next(existingCartItems);
         this.numTotal.next(existingCartItems.reduce((acc, pr) => acc += pr.num, 0));
-        this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.price * pr.num, 0));
+        this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.selectedPrice * pr.num, 0));
     }
 
     private itemsSubject = new BehaviorSubject<Product[]>([]);
@@ -32,12 +32,16 @@ export class CartService {
     shippingItems$ = this.shippingSubject.asObservable();
 
 
-    addToCart(product: Product, value: number) {
+    addToCart(product, value: number) {
+        console.log(product)
             this.items$.pipe(
                 take(1),
                 map((products) => {
                     const existing = products.find(({ product_name }) => product.product_name === product_name);
-                    if (existing) {
+                    const selectedQnt = products.find(({selectedQnt}) => product.selectedQnt === selectedQnt);
+                    const selectedColor = products.find(({selectedColor}) => product.selectedColor === selectedColor);
+                    
+                    if (existing && selectedQnt && selectedColor) {
                         existing.num += value;
                     } else {
                         products.push({ ...product, num: value });
@@ -54,7 +58,7 @@ export class CartService {
         this.items$.pipe(
             take(1),
             map((products) => {
-                products = products.filter(({ product_name }) => product_name !== product.product_name);
+                products = products.filter(({ cart_uuid }) => cart_uuid !== product.cart_uuid);
                 localStorage.setItem('products', JSON.stringify(products));
                 this.calcTotal();
             }),
@@ -66,7 +70,7 @@ export class CartService {
         let existingCartItems = JSON.parse(localStorage.getItem('products'));
         this.itemsSubject.next(existingCartItems);
         this.numTotal.next(existingCartItems.reduce((acc, pr) => acc+= pr.num , 0));
-        this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.price * pr.num, 0));
+        this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.selectedPrice * pr.num, 0));
        // this.router.navigate(['/produse']);
     }
 
@@ -74,7 +78,7 @@ export class CartService {
         let existingCartItems = JSON.parse(localStorage.getItem('products'));
         this.itemsSubject.next(existingCartItems);
         this.numTotal.next(existingCartItems.reduce((acc, pr) => acc+= pr.num , 0));
-        this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.price * pr.num, 0));
+        this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.selectedPrice * pr.num, 0));
     }
 
     sendOrder(postVars) {

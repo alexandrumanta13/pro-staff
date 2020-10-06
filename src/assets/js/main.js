@@ -680,7 +680,7 @@
   $(window).on('load', function () {
    
       $('body').addClass("loaded");
-
+      Porto.init();
     Porto.scrollBtnAppear();
   });
 

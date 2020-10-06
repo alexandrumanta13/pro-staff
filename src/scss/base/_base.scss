@@ -135,3 +135,12 @@ a.add-cart:not([href]):not([tabindex]) {
 .page-link-btn:not(:disabled):not(.disabled) {
   color: #fff;
 }
+
+
+.owl-theme, .owl-carousel, .owl-carousel .owl-stage-outer, owl-stage, .owl-carousel .owl-stage, .owl-carousel .owl-item  {
+  height: 100%;
+}
+
+owl-stage {
+  display: flex;
+}

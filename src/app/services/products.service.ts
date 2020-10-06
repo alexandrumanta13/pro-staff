@@ -80,5 +80,16 @@ export class ProductService {
     }
 
 
+    public getColors(id: any): Promise<any> {
+        return new Promise((resolve, reject) => {
 
+            this.httpClient.get('https://pro-staff.ro/prostaff-api/v1/palette/' + id + '/colors')
+                .subscribe((response: any) => {
+                    console.log(response)
+
+                    resolve(response);
+                }, reject);
+
+        });
+    }
 }

@@ -9,6 +9,11 @@ export interface Product {
     featured: number,
     num: number,
     availableQuantities: any;
+    selectedQnt: any;
+    selectedColor: any;
+    selectedColorName: any;
+    selectedPrice;
+    cart_uuid;
 }
 
 // colors: string[],
