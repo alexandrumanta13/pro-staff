@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 declare var $: any;
 @Component({
@@ -13,10 +13,7 @@ declare var $: any;
 
 export class SliderComponent implements OnInit {
   sliders: any;
-  // @HostBinding('class') defaultClass = 'home-slider';
-  // @Input() options: object;
-
-  // @ViewChild('carousel') sliderElement: ElementRef;
+ 
 
 
   $owlElement: any;
@@ -53,8 +50,6 @@ export class SliderComponent implements OnInit {
       .subscribe((response: any) => {
         console.log(response)
         this.sliders = response;
-        // this.onSlidersChanged.next(this.slider);
-        // this.items$ = this.onSlidersChanged.asObservable();
 
       });
   }
@@ -65,9 +60,6 @@ export class SliderComponent implements OnInit {
         .subscribe((response: any) => {
           console.log(response)
           this.sliders = response;
-          // this.onSlidersChanged.next(this.slider);
-          // this.items$ = this.onSlidersChanged.asObservable();
-  
         });
     
   }
