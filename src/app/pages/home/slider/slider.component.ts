@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare var $: any;
 @Component({
@@ -13,22 +13,39 @@ declare var $: any;
 
 export class SliderComponent implements OnInit {
   sliders: any;
- 
+
 
 
   $owlElement: any;
 
-  defaultOptions: any = {
+  defaultOptions: OwlOptions = {
     loop: true,
-    margin: 0,
-    responsiveClass: true,
-    nav: false,
-    navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
     dots: true,
+    dotsData: true,
     autoplay: true,
-    autoplayTimeout: 15000,
-    items: 1,
-  };
+    navSpeed: 15000,
+    animateOut: 'fadeOut',
+    navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
+    nav: false
+  }
+
 
   constructor(
     private _httpClient: HttpClient,
@@ -39,9 +56,9 @@ export class SliderComponent implements OnInit {
       .subscribe((response: any) => {
 
         response.map(slider => {
-         // this.getSliders(slider.id);
+          // this.getSliders(slider.id);
         })
-        
+
       });
   }
 
@@ -50,18 +67,23 @@ export class SliderComponent implements OnInit {
       .subscribe((response: any) => {
         console.log(response)
         this.sliders = response;
+        // this.onSlidersChanged.next(this.slider);
+        // this.items$ = this.onSlidersChanged.asObservable();
 
       });
   }
 
   ngOnInit(): void {
-    
-      this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/sliders/slider')
-        .subscribe((response: any) => {
-          console.log(response)
-          this.sliders = response;
-        });
-    
+
+    this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/sliders/slider')
+      .subscribe((response: any) => {
+        console.log(response)
+        this.sliders = response;
+        // this.onSlidersChanged.next(this.slider);
+        // this.items$ = this.onSlidersChanged.asObservable();
+
+      });
+
   }
 
   ngAfterViewInit() {
@@ -103,22 +125,29 @@ export class SliderComponent implements OnInit {
     //   autoplay: false,
     //   animateOut: 'fadeOut'
     // }));
-    var $owl = $('.home-slider');
-    $owl.trigger('destroy.owl.carousel');
+    // var $owl = $('.home-slider');
+    // $owl.trigger('destroy.owl.carousel');
     // After destory, the markup is still not the same with the initial.
     // The differences are:
     //   1. The initial content was wrapped by a 'div.owl-stage-outer';
     //   2. The '.owl-carousel' itself has an '.owl-loaded' class attached;
     //   We have to remove that before the new initialization.
-    $owl.html($owl.find('.owl-stage-outer').html()).removeClass('owl-loaded');
-    $owl.owlCarousel(
-      this.defaultOptions
-    );
+    // $owl.html($owl.find('.owl-stage-outer').html()).removeClass('owl-loaded');
+    // $owl.owlCarousel(
+    //   this.defaultOptions
+    // );
     //$.getScript('/assets/js/plugins.js');
     setTimeout(() => {
-      $('.home-slider ul.scene').parallax();
-    },2000)
-    
+      $('.owl-item ul.scene').parallax();
+
+    }, 2000);
+
+
+  }
+
+  changeSlide(i) {
+    const dots: HTMLElement = document.querySelectorAll('.owl-dots .owl-dot-text')[i] as HTMLElement;
+    dots.click();
   }
 
   ngOnDestroy() {

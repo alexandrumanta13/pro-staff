@@ -1,3 +1,12 @@
 .home-slide::after, .home-slide::before {
     content: none;
 }
+
+.home-slider-container {
+    height: 100vh;
+}
+
+.home-slider-thumbs a {
+    display: flex;
+    align-items: center;
+}
