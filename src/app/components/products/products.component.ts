@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalService } from 'app/services';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -15,6 +16,9 @@ export class ProductsComponent implements OnInit {
   private _httpClient: HttpClient;
   public dynamicProductViewer;
   public active;
+  onCategoryChanged: BehaviorSubject<any>;
+  items$: any;
+  category: any;
 
 
   public currentPage: number = 1;
@@ -29,6 +33,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(httpClient: HttpClient, private modalService: ModalService) {
     this._httpClient = httpClient;
+    this.onCategoryChanged = new BehaviorSubject({});
     this.inputForm = new FormGroup({
       rentPrice: new FormControl('3000'),
 
@@ -46,6 +51,20 @@ export class ProductsComponent implements OnInit {
     console.log(e.target.value)
   }
 
+  getCategory(slug) {
+    this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/category/' + slug)
+      .subscribe((response: any) => {
+
+        this.onCategoryChanged.next(response.data);
+        this.items$ = this.onCategoryChanged.asObservable();
+        this.items$.subscribe(data => {
+          this.category = data;
+          console.log(this.category)
+        })
+
+      });
+  }
+
   // getProducts() {
   //   this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
   //     this._products = data.products;
@@ -55,6 +74,19 @@ export class ProductsComponent implements OnInit {
   // }
 
   getProducts(id?: string, category_type = "parent") {
+    
+    this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/category/' + id)
+      .subscribe((response: any) => {
+        console.log(response)
+        this.onCategoryChanged.next(response.data);
+        this.items$ = this.onCategoryChanged.asObservable();
+        this.items$.subscribe(data => {
+          console.log(data)
+          this.category = data;
+         
+        })
+
+      });
     if (!id) {
       this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { BehaviorSubject } from 'rxjs';
 declare var $: any;
 @Component({
   selector: 'app-category-slider',
@@ -13,6 +14,8 @@ export class CategorySliderComponent implements OnInit {
   public _vopseaDecorativa: any = [];
   public _accesoriiProfesionale: any = [];
   public _vopseaLavabila: any = [];
+
+
   sliders: any;
 
   customOptions: OwlOptions = {
@@ -44,29 +47,30 @@ export class CategorySliderComponent implements OnInit {
   }
   
 
+
   constructor(httpClient: HttpClient) {
     this._httpClient = httpClient;
   }
 
   ngOnInit(): void {
-   // this.getProducts();
+    // this.getProducts();
     this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/categories/featuredCategory')
-    .subscribe((response: any) => {
-      
-      this.sliders = response.data;
-      console.log(this.sliders)
-    });
+      .subscribe((response: any) => {
+
+        this.sliders = response.data;
+        console.log(this.sliders)
+      });
   }
 
   ngAfterViewInit() {
-        
+
     const checkExist = setInterval(() => {
       let bg = document.querySelectorAll<HTMLElement>('.featured-bg')
 
 
       console.log(bg)
       if (bg.length) {
-      
+
         bg.forEach(node => node.style.backgroundImage = "url('" + node.dataset.src + "')");
         console.log("Exists!");
         clearInterval(checkExist);
@@ -76,16 +80,18 @@ export class CategorySliderComponent implements OnInit {
   }
 
   getProducts() {
-    
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/category/vopsea-decorativa`, {limit: 5 }).subscribe((data: any) => {
-        this._vopseaDecorativa = data.products;
+
+    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/category/vopsea-decorativa`, { limit: 5 }).subscribe((data: any) => {
+      this._vopseaDecorativa = data.products;
     });
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/subcategory/accesorii-profesionale`, {limit: 5 }).subscribe((data: any) => {
-        this._accesoriiProfesionale = data.products;
+    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/subcategory/accesorii-profesionale`, { limit: 5 }).subscribe((data: any) => {
+      this._accesoriiProfesionale = data.products;
     });
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/category/vopsea-lavabila`, {limit: 5 }).subscribe((data: any) => {
-        this._vopseaLavabila = data.products;
+    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/category/vopsea-lavabila`, { limit: 5 }).subscribe((data: any) => {
+      this._vopseaLavabila = data.products;
     });
-}
+  }
+
+  
 
 }

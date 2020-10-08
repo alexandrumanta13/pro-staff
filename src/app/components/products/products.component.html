@@ -1,10 +1,19 @@
 <main class="main">
-  <div class="banner banner-cat mb-0" style="background-image: url('assets/images/bg-2.jpg');" id="products">
+  <div *ngIf="category.length == 0" class="banner banner-cat mb-0" style="background-image: url('assets/images/bg-2.jpg');" id="products">
     <div class="banner-content container-fluid">
-      <!-- <h1 class="banner-title">
-        Tixe
+      <h1 class="banner-title">
+        Toate produsele
       </h1>
-      <a href="#" class="btn-sm btn-white">Cumpara acum</a> -->
+      <!-- <a href="#" class="btn-sm btn-white">Cumpara acum</a> -->
+    </div><!-- End .banner-content -->
+  </div><!-- End .banner -->
+
+  <div *ngIf="category.length > 0" class="banner banner-cat mb-0" style="background-image: url('{{category[0].banner}}');" id="products">
+    <div class="banner-content container-fluid">
+      <h1 class="banner-title">
+        {{category[0].category_name}}
+      </h1>
+      <!-- <a href="#" class="btn-sm btn-white">Cumpara acum</a> -->
     </div><!-- End .banner-content -->
   </div><!-- End .banner -->
   <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
