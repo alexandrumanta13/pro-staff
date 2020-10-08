@@ -32,7 +32,6 @@ export class AppComponent {
 
 
   onScroll(e) {
-    console.log('div App', e.target.scrollTop);
     const header = (<HTMLElement>document.querySelector('.sticky-header'));
     const headerHeight= header.getBoundingClientRect().height
     if(e.target.scrollTop > headerHeight) {

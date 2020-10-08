@@ -1,7 +1,66 @@
 <div class="product-slider-section">
-    <div class="product-section-slider owl-carousel owl-carousel-lazy owl-theme owl-theme-light">
+<!-- 
+  <owl-carousel-o class="product-section-slider" [options]="defaultOptions">
+ 
+    <ng-container *ngFor="let slider of sliders">
+     
+      <ng-template class="product-section-slide" carouselSlide [id]="slider.id" >
+        {{slider.category_name}}
+         <img src="{{slider.banner}}" alt="">
+        <div class="slide-bg featured" [attr.data-src]="slider.banner"  style="opacity: 1"></div>
+        <div class="container-fluid product-slide-content">
+          <div class="row">
+            <div class="col-sm-6 offset-sm-6 col-lg-5 offset-lg-7">
+              <h3 style="margin-top: 40px">VOPSEA DECORATIVA</h3>
+  
+              
+             <ul class="category-product__list">
+                <li class="category-product__item" *ngFor="let product of _vopseaDecorativa">
+                    <a routerLink="/produs/{{product.alias}}">
+                        <img src="{{product.image_url}}" alt="">
+                    </a>
+                </li>
+              </ul> 
+              <a routerLink="/categorie/vopsea-decorativa" class="btn btn-orange">Cumpara acum</a>
+            </div>
+          </div>
+        </div>
+      
+        
+      </ng-template>
+    </ng-container>
+ 
+  </owl-carousel-o> -->
+
+  <owl-carousel-o [options]="customOptions">
+ 
+    <ng-container *ngFor="let slide of sliders">
+      <ng-template carouselSlide [id]="slide.id">
+        <div class="featured-bg" [attr.data-src]="slide.banner"  style="opacity: 1"></div>
+        <div class="container-fluid product-slide-content">
+          <div class="row">
+            <div class="col-sm-6 offset-sm-6 col-md-6 offset-md-6 col-lg-5 offset-lg-7">
+              <h3 style="margin-top: 40px">{{slide.category_name}}</h3>
+  
+              
+             <ul class="category-product__list">
+                <li class="category-product__item" *ngFor="let product of _vopseaDecorativa">
+                    <a routerLink="/produs/{{product.alias}}">
+                        <img src="{{product.image_url}}" alt="">
+                    </a>
+                </li>
+              </ul> 
+              <a routerLink="/categorie/vopsea-decorativa" class="btn btn-orange">Cumpara acum</a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+ 
+  </owl-carousel-o>
+    <!-- <div class="product-section-slider owl-carousel owl-carousel-lazy owl-theme owl-theme-light">
       <div class="product-section-slide">
-        <div class="slide-bg owl-lazy" data-src="assets/images/section/slide-section1.jpg"></div><!-- End .slide-bg -->
+        <div class="slide-bg owl-lazy" data-src="assets/images/section/slide-section1.jpg"></div>
   
         <div class="container-fluid product-slide-content">
           <div class="row">
@@ -17,13 +76,13 @@
                 </li>
               </ul>
               <a routerLink="/categorie/vopsea-decorativa" class="btn btn-orange">Cumpara acum</a>
-            </div><!-- End .col-lg-5 -->
-          </div><!-- End .row -->
-        </div><!-- End .product-slide-content -->
-      </div><!-- .product-section-slide -->
+            </div>
+          </div>
+        </div>
+      </div>
   
-      <div class="product-section-slide">
-        <div class="slide-bg owl-lazy" data-src="assets/images/section/vopsea-lavabila.png"></div><!-- End .slide-bg -->
+     <div class="product-section-slide">
+        <div class="slide-bg owl-lazy" data-src="assets/images/section/vopsea-lavabila.png"></div>
   
         <div class="container-fluid product-slide-content">
           <div class="row">
@@ -38,13 +97,13 @@
                 </li>
               </ul>
               <a routerLink="/categorie/vopsea-lavabila" class="btn btn-orange">Cumpara acum</a>
-            </div><!-- End .col-lg-5 -->
-          </div><!-- End .row -->
-        </div><!-- End .product-slide-content -->
-      </div><!-- .product-section-slide -->
+            </div>
+          </div>
+        </div>
+      </div>
   
       <div class="product-section-slide">
-        <div class="slide-bg owl-lazy" data-src="assets/images/section/accesorii.jpg"></div><!-- End .slide-bg -->
+        <div class="slide-bg owl-lazy" data-src="assets/images/section/accesorii.jpg"></div>
   
         <div class="container-fluid product-slide-content">
           <div class="row">
@@ -60,9 +119,9 @@
                 </li>
               </ul>
               <a routerLink="/categorie/aparate-si-scule-de-vopsit" class="btn btn-orange">Cumpara acum</a>
-            </div><!-- End .col-lg-5 -->
-          </div><!-- End .row -->
-        </div><!-- End .product-slide-content -->
-      </div><!-- .product-section-slide -->
-    </div><!-- End .product-section-slider -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
   </div><!-- End .product-slider-section -->
