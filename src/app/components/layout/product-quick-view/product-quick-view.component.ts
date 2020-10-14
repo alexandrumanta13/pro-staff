@@ -31,6 +31,8 @@ export class ProductQuickViewComponent implements OnInit {
   selectedColor: any;
   selectedColorName: any;
   singleImage: any;
+  old_price: any;
+  label: string = 'Cantitati';
 
   constructor(
     httpClient: HttpClient,
@@ -76,8 +78,14 @@ export class ProductQuickViewComponent implements OnInit {
       .subscribe(data => {
         console.log(data)
         this.product = data;
+        this.product.availableQuantities.map(qnt => {
+          if(qnt.um  === 'mm' || qnt.um ===  'cm') {
+            this.label = 'Dimensiuni';
+          }
+        })
       });
-     
+    
+      
     const checkExistQnt = setInterval(() => {
       const qnt = <HTMLElement>document.querySelector('.qnt-class.active a');
       if (qnt) {
@@ -148,6 +156,7 @@ export class ProductQuickViewComponent implements OnInit {
     this.product.information.map(qnt => {
       if (qnt.quantity == qntValue) {
         this.price = qnt.price;
+        this.old_price = qnt.old_price;
         this.selectedQnt = qntValue + ' ' + um;
         const activeQnt = <HTMLElement>document.querySelector('.qnt-class.active');
         if (this.clickedQnt == true) {

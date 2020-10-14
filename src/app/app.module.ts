@@ -72,6 +72,7 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { CategorySliderComponent } from './pages/home/category-slider/category-slider.component';
+import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
 
 
   
@@ -113,7 +114,8 @@ import { CategorySliderComponent } from './pages/home/category-slider/category-s
     RadioButtonComponent,
     ConfirmOrderComponent,
     AuthComponent,
-    CategorySliderComponent
+    CategorySliderComponent,
+    CategoryFilterComponent
   ],
   imports: [
     BrowserModule,

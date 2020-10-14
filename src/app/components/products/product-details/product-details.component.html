@@ -68,8 +68,8 @@
               </div> -->
 
               <div class="price-box">
-                <!-- <span class="old-price"
-                  *ngIf="product.discount > 0">{{ ((product.price/product.discount)*100).toFixed(2) }}</span> -->
+                <span class="old-price"
+                  *ngIf="old_price > 0">{{ ((price/old_price)*100).toFixed(2) }}</span>
                 <span class="product-price">{{price}} lei</span>
                 <span class="product-price" *ngIf="clickedColor"> + 20 Lei (nuantator)</span>
               </div><!-- End .price-box -->

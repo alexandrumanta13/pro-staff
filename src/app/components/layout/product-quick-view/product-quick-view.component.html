@@ -34,7 +34,7 @@
         </div> -->
 
         <div class="price-box">
-          <!-- <span class="old-price">$81.00</span> -->
+          <span class="old-price" *ngIf="old_price > 0">{{old_price}}</span>
           <span class="product-price">{{price}} Lei</span>
           <span class="product-price" *ngIf="clickedColor"> + 20 Lei (nuantator)</span>
         </div><!-- End .price-box -->
@@ -45,7 +45,7 @@
 
         <div class="product-filters-container">
           <div class="product-single-filter">
-            <label>Cantitati:</label>
+            <label>{{label}}</label>
             <ul class="config-size-list">
               <li class="qnt-class" *ngFor="let qnt of product?.availableQuantities; first as isFirst"
                 [ngClass]="{'active': isFirst}">

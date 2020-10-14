@@ -86,13 +86,9 @@ export class SliderComponent implements OnInit {
         
     const checkExist = setInterval(() => {
       let bg = document.querySelectorAll<HTMLElement>('.slide-bg.home')
-
-
-      console.log(bg)
       if (bg.length && $('.owl-item ul.scene')) {
         $('.owl-item ul.scene').parallax();
         bg.forEach(node => node.style.backgroundImage = "url('" + node.dataset.src + "')");
-        console.log("Exists!");
         clearInterval(checkExist);
       }
     }, 100);

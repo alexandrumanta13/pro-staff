@@ -1,5 +1,5 @@
 <main class="main">
-  <div *ngIf="category.length == 0" class="banner banner-cat mb-0" style="background-image: url('assets/images/bg-2.jpg');" id="products">
+  <div *ngIf="!category || category.length == 0" class="banner banner-cat mb-0" style="background-image: url('assets/images/bg-2.jpg');" id="products">
     <div class="banner-content container-fluid">
       <h1 class="banner-title">
         Toate produsele
@@ -19,9 +19,13 @@
   <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
     <div class="container-fluid">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a>Acasa</a></li>
-        <li class="breadcrumb-item"><a>Produse</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Toate produsele</li>
+        <li class="breadcrumb-item"><a routerLink="/">Acasa</a></li>
+        <li class="breadcrumb-item"><a routerLink="/produse">Produse</a></li>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="!_route && router.url.includes('/produse')">Toate produsele</li>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="_route && !_route_subcategory">{{category[0]?.category_name}}</li>
+        <li class="breadcrumb-item" *ngIf="_route_subcategory"><a routerLink="/produse/{{category[0]?.slug}}">{{category[0]?.category_name}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="_route_subcategory">{{subcategoryValue[0]?.subcategory_name}}</li>
+
       </ol>
     </div>
   </nav>
@@ -81,6 +85,12 @@
                 <a href="/produs/{{product.alias}}" class="product-image">
                   <img src="{{product.image_url}}" alt="product">
                 </a>
+                <div class="discount" *ngFor="let discount of product.information">
+                  <span class="product-label label-sale" *ngIf="discount.old_price > 0">
+                    Reducere
+                  </span>
+                </div>
+                
                 <!-- <span class="product-label label-new">Nou</span> -->
                 <a (click)="openModal('productQuickView', product.alias)" class="btn-quickview">Vezi detalii</a>
               </figure>
@@ -90,7 +100,7 @@
                 </h2>
                 <div class="price-box">
                   <!-- <span class="old-price">69 lei</span> -->
-                  <span class="product-price">{{product.price}} lei</span>
+                  <span class="product-price">de la {{product.information[0]?.price}} lei</span>
                 </div><!-- End .price-box -->
               </div><!-- End .product-details -->
             </div><!-- End .product -->
@@ -128,52 +138,8 @@
 
             <div class="collapse show" id="widget-body-2">
               <div class="widget-body">
-                <ul class="cat-list">
-                  <li [class.active]="active === 1">
-              <a 
-                (click)="this.getProducts('vopsea-lavabila');this.active=1;this.dynamicProductViewer='vopsea-lavabila';">VOPSEA
-                LAVABILA</a>
-            </li>
-            <li [class.active]="active === 2">
-              <a 
-                (click)="this.getProducts('vopsea-decorativa');this.active=2;this.dynamicProductViewer='vopsea-decorativa';">VOPSEA
-                DECORATIVA</a>
-            </li>
-            <li [class.active]="active === 3">
-              <a 
-                (click)="this.getProducts('vopsea-metal');this.active=3;this.dynamicProductViewer='vopsea-metal';">VOPSEA
-                METAL</a>
-            </li>
-            <li [class.active]="active === 4">
-              <a 
-                (click)="this.getProducts('pentru-lemn');this.active=4;this.dynamicProductViewer='pentru-lemn';">PENTRU
-                LEMN</a>
-            </li>
-            <li [class.active]="active === 5">
-              <a 
-                (click)="this.getProducts('vopsea-pardoseala');this.active=5;this.dynamicProductViewer='vopsea-pardoseala';">VOPSEA
-                PARDOSEALA</a>
-            </li>
-            <li [class.active]="active === 6">
-              <a 
-                (click)="this.getProducts('vopsea-ceramica');this.active=6;this.dynamicProductViewer='vopsea-ceramica';">VOPSEA
-                CERAMICA</a>
-            </li>
-            <li [class.active]="active === 7">
-              <a 
-                (click)="this.getProducts('hidroizolatii');this.active=7;this.dynamicProductViewer='hidroizolatii';">HIDROIZOLATII</a>
-            </li>
-            <li [class.active]="active === 8">
-              <a 
-                (click)="this.getProducts('camere-copii');this.active=8;this.dynamicProductViewer='camere-copii';">CAMERE
-                COPII</a>
-            </li>
-            <li [class.active]="active === 9">
-              <a 
-                (click)="this.getProducts('aparate-si-scule-de-vopsit');this.active=9;this.dynamicProductViewer='aparate-si-scule-de-vopsit';">APARATE
-                ȘI SCULE DE VOPSIT</a>
-            </li>
-                </ul>
+                <app-category-filter (categoryEvent)="getProducts()"></app-category-filter>
+                
               </div><!-- End .widget-body -->
             </div><!-- End .collapse -->
           </div><!-- End .widget -->

@@ -80,6 +80,8 @@ const routes: Routes = [
   { path: 'produse', component: ProductsComponent },
   { path: 'produs/:productName', component: ProductDetailsComponent },
   { path: 'categorie/:categorySlug', component: CategoryComponent },
+  { path: 'produse/:categorySlug', component: ProductsComponent },
+  { path: 'produse/:categorySlug/:subcategorySlug', component: ProductsComponent },
 
 
   { path: 'cos-cumparaturi', component: CartComponent },

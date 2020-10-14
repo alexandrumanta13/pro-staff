@@ -33,6 +33,7 @@ export class ProductDetailsComponent implements OnInit {
   selectedColorName: any;
   NCScolors: any;
   RALcolors: any;
+  old_price: any;
 
   constructor(
     httpClient: HttpClient, 
@@ -104,7 +105,8 @@ export class ProductDetailsComponent implements OnInit {
     this.product.information.map(qnt => {
       if (qnt.quantity == qntValue) {
         this.price = qnt.price;
-        console.log(this.price)
+        this.old_price = qnt.old_price;
+        console.log(qnt.old_price)
         this.selectedQnt = qntValue + ' ' + um;
         const activeQnt = <HTMLElement>document.querySelector('.qnt-class.active');
         if (this.clickedQnt == true) {

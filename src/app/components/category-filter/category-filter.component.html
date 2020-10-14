@@ -1,0 +1,19 @@
+<ul class="check-filter-list" *ngIf="!_route && !router.url.includes('/produse')">
+  <li [class.active]="active === i" *ngFor="let category of categories; let i = index">
+    <a href="#"
+      (click)="getProducts(category.slug);this.active=i;this.dynamicProductViewer=category.slug;">{{category.category_name}}</a>
+  </li>
+</ul>
+
+<ul class="cat-list" *ngIf="!_route && router.url.includes('/produse')">
+  <li [class.active]="active === 1" *ngFor="let category of categories; let i = index">
+    <a href="#" routerLink="/produse/{{category.slug}}">{{category.category_name}}</a>
+  </li>
+
+</ul>
+
+<ul class="cat-list" *ngIf="_route">
+  <li [class.active]="active === 1" *ngFor="let subcategory of subcategoryValue; let i = index">
+    <a href="#" routerLink="/produse/{{_route}}/{{subcategory.slug}}">{{subcategory.subcategory_name}}</a>
+  </li>
+</ul>

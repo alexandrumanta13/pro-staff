@@ -10,52 +10,7 @@
       <aside class="filter-sidebar col-lg-2">
         <div class="sidebar-wrapper">
           <h3>Produse</h3>
-          <ul class="check-filter-list">
-            <li [class.active]="active === 1">
-              <a href="#"
-                (click)="this.getProducts('vopsea-lavabila');this.active=1;this.dynamicProductViewer='vopsea-lavabila';">VOPSEA
-                LAVABILA</a>
-            </li>
-            <li [class.active]="active === 2">
-              <a href="#"
-                (click)="this.getProducts('vopsea-decorativa');this.active=2;this.dynamicProductViewer='vopsea-decorativa';">VOPSEA
-                DECORATIVA</a>
-            </li>
-            <li [class.active]="active === 3">
-              <a href="#"
-                (click)="this.getProducts('vopsea-metal');this.active=3;this.dynamicProductViewer='vopsea-metal';">VOPSEA
-                METAL</a>
-            </li>
-            <li [class.active]="active === 4">
-              <a href="#"
-                (click)="this.getProducts('pentru-lemn');this.active=4;this.dynamicProductViewer='pentru-lemn';">PENTRU
-                LEMN</a>
-            </li>
-            <li [class.active]="active === 5">
-              <a href="#"
-                (click)="this.getProducts('vopsea-pardoseala');this.active=5;this.dynamicProductViewer='vopsea-pardoseala';">VOPSEA
-                PARDOSEALA</a>
-            </li>
-            <li [class.active]="active === 6">
-              <a href="#"
-                (click)="this.getProducts('vopsea-ceramica');this.active=6;this.dynamicProductViewer='vopsea-ceramica';">VOPSEA
-                CERAMICA</a>
-            </li>
-            <li [class.active]="active === 7">
-              <a href="#"
-                (click)="this.getProducts('hidroizolatii');this.active=7;this.dynamicProductViewer='hidroizolatii';">HIDROIZOLATII</a>
-            </li>
-            <li [class.active]="active === 8">
-              <a href="#"
-                (click)="this.getProducts('camere-copii');this.active=8;this.dynamicProductViewer='camere-copii';">CAMERE
-                COPII</a>
-            </li>
-            <li [class.active]="active === 9">
-              <a href="#"
-                (click)="this.getProducts('aparate-si-scule-de-vopsit');this.active=9;this.dynamicProductViewer='aparate-si-scule-de-vopsit';">APARATE
-                ȘI SCULE DE VOPSIT</a>
-            </li>
-          </ul>
+          <app-category-filter (categoryEvent)="getProducts('parent')"></app-category-filter>
         </div><!-- End .sidebar-wrapper -->
       </aside><!-- End .col-lg-3 -->
 
@@ -86,7 +41,7 @@
         </div><!-- End .row -->
 
         <div class="product-more-container" *ngIf="dynamicProductViewer">
-          <a routerLink="/categorie/{{dynamicProductViewer}}" class="btn btn-outline-dark">Vezi toate produsele</a>
+          <a routerLink="/produse/{{dynamicProductViewer}}" class="btn btn-outline-dark">Vezi toate produsele</a>
         </div><!-- End .product-more-container -->
       </div><!-- End .col-lg-9 -->
     </div><!-- End .row -->

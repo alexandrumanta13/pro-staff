@@ -93,11 +93,14 @@ body.admin {
 
 .body {
   overflow: hidden;
+
   &.modal-open {
     overflow: hidden;
+
     .page-wrapper {
       overflow: hidden;
     }
+
     overflow: hidden;
   }
 }
@@ -107,7 +110,8 @@ body.admin {
   overflow: auto;
 }
 
-a.add-cart:not([href]):not([tabindex]):focus, a.add-cart:not([href]):not([tabindex]):hover {
+a.add-cart:not([href]):not([tabindex]):focus,
+a.add-cart:not([href]):not([tabindex]):hover {
   background-color: #141414;
   color: #fff;
   cursor: pointer;
@@ -137,7 +141,12 @@ a.add-cart:not([href]):not([tabindex]) {
 }
 
 
-.owl-theme, .owl-carousel, .owl-carousel .owl-stage-outer, owl-stage, .owl-carousel .owl-stage, .owl-carousel .owl-item  {
+.owl-theme,
+.owl-carousel,
+.owl-carousel .owl-stage-outer,
+owl-stage,
+.owl-carousel .owl-stage,
+.owl-carousel .owl-item {
   height: 100%;
 }
 
@@ -147,9 +156,9 @@ owl-stage {
 
 .owl-dots {
   position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
+  bottom: 10px;
+  left: 0;
+  right: 0;
 }
 
 .featured-bg {
@@ -163,4 +172,42 @@ owl-stage {
   background-position: center center;
   background-size: cover;
   z-index: 2;
+}
+
+.product-label {
+  padding: .5rem;
+}
+
+
+.product-single-filter .config-size-list li a {
+  width: auto;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+
+.product-image-container {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  background: #FFF;
+  justify-content: center;
+
+  .product-image {
+    img {
+      width: auto;
+      max-height: 200px;
+    }
+  }
+}
+
+.btn-quickview {
+  border: 1px solid #FFC107;
+}
+
+.btn-quickview:hover, .btn-quickview:focus, .product:hover .btn-quickview:hover, .product:hover .btn-quickview:focus {
+  color: #333;
+  background-color: #fff;
+  opacity: 1;
+  cursor: pointer;
 }

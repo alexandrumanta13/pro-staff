@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalService } from 'app/services';
 import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryFilterComponent } from '../category-filter/category-filter.component';
 
 @Component({
   selector: 'app-products',
@@ -12,13 +14,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
 
-
+  @ViewChild(CategoryFilterComponent) subcategory;
   private _httpClient: HttpClient;
   public dynamicProductViewer;
   public active;
   onCategoryChanged: BehaviorSubject<any>;
   items$: any;
-  category: any;
+  category: any = [];
 
 
   public currentPage: number = 1;
@@ -30,8 +32,14 @@ export class ProductsComponent implements OnInit {
   public _products: any = [];
 
   inputForm: FormGroup;
+  min_price: any;
+  discount: boolean = false;
+  public _route: string;
+  
+  public _route_subcategory: string;
+  subcategoryValue: any;
 
-  constructor(httpClient: HttpClient, private modalService: ModalService) {
+  constructor(httpClient: HttpClient, private route: ActivatedRoute, private modalService: ModalService, public router: Router) {
     this._httpClient = httpClient;
     this.onCategoryChanged = new BehaviorSubject({});
     this.inputForm = new FormGroup({
@@ -43,8 +51,16 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.active = 1;
-    this.getProducts();
+
     this.dynamicProductViewer = 'vopsea-lavabila';
+    this.route.paramMap.subscribe(params => {
+      this._route = params.get('categorySlug');
+      this._route_subcategory = params.get('subcategorySlug');
+      this.getProducts();
+    });
+    
+    this.getProducts();
+    
   }
 
   output(e) {
@@ -59,11 +75,28 @@ export class ProductsComponent implements OnInit {
         this.items$ = this.onCategoryChanged.asObservable();
         this.items$.subscribe(data => {
           this.category = data;
-          console.log(this.category)
+          
         })
 
       });
   }
+
+  getSubcategory() {
+    return new Promise((resolve, reject) => {
+
+      this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/subcategory/' + this._route_subcategory)
+        .subscribe((response: any) => {
+          this.subcategoryValue = response.data;
+          
+          resolve(response);
+        }, reject);
+
+    });
+
+  }
+
+
+  
 
   // getProducts() {
   //   this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
@@ -73,50 +106,50 @@ export class ProductsComponent implements OnInit {
   //   });
   // }
 
-  getProducts(id?: string, category_type = "parent") {
-    
-    this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/category/' + id)
-      .subscribe((response: any) => {
-        console.log(response)
-        this.onCategoryChanged.next(response.data);
-        this.items$ = this.onCategoryChanged.asObservable();
-        this.items$.subscribe(data => {
-          console.log(data)
-          this.category = data;
-         
-        })
-
-      });
-    if (!id) {
+  getProducts() {
+   
+    if (!this._route) {
       this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;
+        console.log(this._products)
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
 
       });
     }
-    else if (category_type == "parent") {
-      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${id}`).subscribe((data: any) => {
+    else if (this._route_subcategory) {
+      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/subcategory/${this._route_subcategory}/page/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;
+        console.log(this._products)
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
-      });
-    }
-    else if (category_type == "child") {
-      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/subcategory/${id}`).subscribe((data: any) => {
-        this._products = data.products;
-        this.setTotalPages(data.no_of_pages);
-        this.setPagesArray(this.totalPages);
+        this.getCategory(this._route);
+        this.getSubcategory();
       });
     } else {
-      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
+      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${this._route}/page/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
+        this.getCategory(this._route);
       });
     }
-    document.getElementById("products").scrollIntoView();
-    console.log(this._products)
+
+    this._products.map(product => {
+      if (product.information.old_price > 0) {
+        console.log(product.information.old_price)
+        this.discount = true;
+      }
+    })
+
+    const checkExist = setInterval(() => {
+      let bg = document.getElementById("products")
+      if (bg) {
+        bg.scrollIntoView();
+        clearInterval(checkExist);
+      }
+    }, 100);
+
     return this._products;
   }
 
