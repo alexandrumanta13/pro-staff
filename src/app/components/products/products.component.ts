@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
       this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/subcategory/' + this._route_subcategory)
         .subscribe((response: any) => {
           this.subcategoryValue = response.data;
-          
+          console.log(this.subcategoryValue)
           resolve(response);
         }, reject);
 

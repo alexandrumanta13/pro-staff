@@ -4,6 +4,7 @@ import { ModalService } from 'app/services';
 import { ProductService } from 'app/services/products.service';
 import { CartService } from 'app/services/cart.service';
 import { v4 as uuidv4 } from 'uuid';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare var $: any;
 
@@ -33,6 +34,15 @@ export class ProductQuickViewComponent implements OnInit {
   singleImage: any;
   old_price: any;
   label: string = 'Cantitati';
+
+  selectedImage: string;
+  imageSize = 430;
+
+  customOptions: OwlOptions = {
+    items: 1, dots:false, margin:8, autoWidth: true
+  }
+
+  dotsOptions: OwlOptions;
 
   constructor(
     httpClient: HttpClient,
@@ -71,13 +81,18 @@ export class ProductQuickViewComponent implements OnInit {
     this.modalService.add(this);
   }
 
-
+  changeimage(image: string){
+    this.selectedImage = image;
+  }
 
   getProducts(slug) {
     this.productService.getProductDetails(slug)
       .subscribe(data => {
         console.log(data)
         this.product = data;
+        this.dotsOptions = {
+          items: this.product.images.length, dots:false, margin:8, autoWidth: true, nav: true
+        }
         this.product.availableQuantities.map(qnt => {
           if(qnt.um  === 'mm' || qnt.um ===  'cm') {
             this.label = 'Dimensiuni';

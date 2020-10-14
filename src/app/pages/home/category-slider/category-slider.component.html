@@ -5,7 +5,7 @@
  
     <ng-container *ngFor="let slide of sliders">
       <ng-template carouselSlide [id]="slide.id">
-        <div class="featured-bg" [attr.data-src]="slide.banner"  style="opacity: 1"></div>
+        <div class="featured-bg" [attr.data-src]="slide.featured"  style="opacity: 1"></div>
         <div class="container-fluid product-slide-content">
           <div class="row">
             <div class="col-sm-6 offset-sm-6 col-md-6 offset-md-6 col-lg-5 offset-lg-7">
