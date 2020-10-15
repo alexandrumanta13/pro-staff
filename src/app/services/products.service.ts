@@ -92,4 +92,30 @@ export class ProductService {
 
         });
     }
+
+    
+
+    getColorsBase(id): Promise<any> {
+        return new Promise((resolve, reject) => {
+
+            this.httpClient.get('https://pro-staff.ro/prostaff-api/v1/basecolor/' + id + '/colors')
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+
+        });
+    }
+
+    getBaseColors(palette): Promise<any> {
+        return new Promise((resolve, reject) => {
+
+            this.httpClient.get('https://pro-staff.ro/prostaff-api/v1/basecolor/' + palette)
+                .subscribe((response: any) => {
+                    console.log(response)
+
+                    resolve(response);
+                }, reject);
+
+        });
+    }
 }

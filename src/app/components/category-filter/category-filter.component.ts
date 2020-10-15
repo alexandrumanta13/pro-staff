@@ -63,6 +63,7 @@ export class CategoryFilterComponent implements OnInit {
   }
 
   getProducts(id?: string) {
+    console.log(id)
     this.categoryEvent.emit(id)
   }
 

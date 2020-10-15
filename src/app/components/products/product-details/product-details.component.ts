@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ProductService } from 'app/services/products.service';
 import { Product } from 'app/models/product';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   private _httpClient: HttpClient;
   private _route;
   //public product: any = [];
- // public product: Product;
+  // public product: Product;
 
   public product: any = [];
   public colors: any = [];
@@ -35,11 +36,36 @@ export class ProductDetailsComponent implements OnInit {
   RALcolors: any;
   old_price: any;
 
+  selectedImage: string;
+
+
+  customOptions: OwlOptions = {
+    items: 1, dots: false, margin: 0, stagePadding: 0, autoWidth: true, autoHeight: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
+  }
+
+  dotsOptions: OwlOptions;
+  additionalImages: any;
+  basecolors: any[];
+
   constructor(
-    httpClient: HttpClient, 
-    route: ActivatedRoute,  
+    httpClient: HttpClient,
+    route: ActivatedRoute,
     private productService: ProductService,
-    ) {
+  ) {
     this._httpClient = httpClient;
     this._route = route;
   }
@@ -54,22 +80,36 @@ export class ProductDetailsComponent implements OnInit {
     //   this.product = data;
     // });
     this.getProducts(this._productSlug);
-    this.productService.getColors(13)
-    .then(data => {
-      console.log(data)
-        this.NCScolors = data;
-      });
-      this.productService.getColors(12)
-    .then(data => {
-        this.RALcolors = data;
-      });
+
   }
 
   getProducts(slug) {
+
     this.productService.getProductDetails(slug)
       .subscribe(data => {
-        console.log(data)
+
         this.product = data;
+        console.log(this.product)
+        console.log(this.product.PaletteColorID)
+        if (this.product.PaletteColorID && (this.product.PaletteColorID != 0 || this.product.PaletteColorID != -1)) {
+          this.getBaseColors(this.product.PaletteColorID)
+        } else if (this.product.PaletteColorID == -1) {
+          this.productService.getColors(13)
+            .then(data => {
+              console.log(data)
+              this.NCScolors = data;
+            });
+          this.productService.getColors(12)
+            .then(data => {
+              this.RALcolors = data;
+            });
+        }
+
+
+        this.additionalImages = this.product.images.length;
+        this.dotsOptions = {
+          items: this.product.images.length, dots: false, margin: 8, autoWidth: true, navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'], nav: true
+        }
       });
 
     const checkExistQnt = setInterval(() => {
@@ -79,6 +119,32 @@ export class ProductDetailsComponent implements OnInit {
         clearInterval(checkExistQnt);
       }
     }, 100); // check every 100ms
+  }
+
+  getBaseColors(palette) {
+    this.productService.getBaseColors(palette)
+      .then(data => {
+        console.log(data)
+        if (data) {
+          this.basecolors = data.filter((item, index, self) =>
+            index === self.findIndex((t) => (
+              t.base_image === item.base_image && t.base_name === item.base_name
+            ))
+          )
+
+          
+          //this.productService.getColors(baseID.id)
+          for(let i in this.basecolors) {
+            console.log()
+            this.productService.getColorsBase(this.basecolors[i].id)
+            .then(colors => {
+              
+              this.basecolors[i].colors = [...colors]
+            })
+          }
+          console.log(this.basecolors)
+        }
+      });
   }
 
   getColor(colorValue, event) {
@@ -94,14 +160,14 @@ export class ProductDetailsComponent implements OnInit {
           event.target.parentElement.parentElement.classList.add('active');
         }
 
-       this.selectedColor = event.target.dataset.image;
-       this.selectedColorName = event.target.dataset.color;
+        this.selectedColor = event.target.dataset.image;
+        this.selectedColorName = event.target.dataset.color;
 
       }
     })
     this.clickedColor = true;
   }
-  getPrice(qntValue, um,  event) {
+  getPrice(qntValue, um, event) {
     this.product.information.map(qnt => {
       if (qnt.quantity == qntValue) {
         this.price = qnt.price;
@@ -115,7 +181,7 @@ export class ProductDetailsComponent implements OnInit {
         }
         this.clickedQnt = true;
 
-       
+
       }
     })
 

@@ -211,3 +211,10 @@ owl-stage {
   opacity: 1;
   cursor: pointer;
 }
+
+
+.product-single-carousel { 
+  .owl-nav {
+    display: none;
+  }
+}

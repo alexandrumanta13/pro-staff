@@ -1,29 +1,96 @@
 .color-class {
-    img {
-      height: 100%;
-    }
+  img {
+    height: 100%;
   }
+}
 
-  .download {
-    padding: .85rem 1rem;
-    background-color: #000;
-    color: #fff;
-    font: 400 1.3rem/1 "Oswald",sans-serif;
-    letter-spacing: 1px;
-    text-transform: uppercase; 
-    height: 43px;
-    span {
-        display: inline;
-    }
+.download {
+  padding: .85rem 1rem;
+  background-color: #000;
+  color: #fff;
+  font: 400 1.3rem/1 "Oswald", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  height: 43px;
+
+  span {
+    display: inline;
   }
+}
 
-  .ncs-ral {
-      padding: 0;
+.ncs-ral {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    flex-basis: 5%;
+    padding: 8px;
+  }
+}
+
+
+.product-gallery__featured {
+  border-radius: 8px;
+  border: solid 1px #F0F3F4;
+  background-color: #fff;
+
+}
+
+.product-gallery__carousel {
+  margin-top: 9px;
+
+  owl-carousel-o img {
+    border-radius: 8px;
+    border: solid 1px #F0F3F4;
+  }
+}
+
+.product-gallery__carousel-item--active {
+  border: solid 1px #459AD4 !important;
+}
+
+owl-carousel-o::ng-deep {
+  img {
+    border-radius: 8px;
+  }
+}
+
+.config-swatch-list {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    a {
+      width: auto;
+      margin-bottom: 8px;
+      height: auto;
+
+      img {
+        height: auto;
+        width: fit-content;
+      }
+    }
+
+    ul {
       display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
+      position: absolute;
+      top: 8px;
+      left: 8px;
 
       li {
-          flex-basis: 5%;
-          padding: 8px;
+        a {
+          margin-bottom: 0;
+          width: 40px;
+          height: 40px;
+        }
       }
+    }
   }
+}

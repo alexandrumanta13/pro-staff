@@ -28,12 +28,14 @@ export class HomeComponent implements OnInit {
     this.active = 1;
     this.dynamicProductViewer = 'vopsea-lavabila';
     this.getProducts();
+    console.log(this.category)
   }
 
   
-  getProducts(id?:string, category_type = "parent")
+  getProducts(category?:string, category_type = "parent")
   {
-    if(!id)
+    console.log(category)
+    if(!category)
     {
         this._httpClient.get("https://pro-staff.ro/prostaff-api/v1/products/category/vopsea-lavabila").subscribe((data:any) => {
         this._products = data.products;
@@ -41,16 +43,16 @@ export class HomeComponent implements OnInit {
     } else {
       if(category_type == "parent")
       {
-        this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${id}`).subscribe((data:any) => {
+        this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${category}`).subscribe((data:any) => {
         this._products = data.products;
-        this.dynamicProductViewer = id;
+        this.dynamicProductViewer = category;
         });
       }
       if(category_type == "child")
       {
-        this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/subcategory/${id}`).subscribe((data:any) => {
+        this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/subcategory/${category}`).subscribe((data:any) => {
         this._products = data.products;
-        this.dynamicProductViewer = id;
+        this.dynamicProductViewer = category;
         });
       }
     }

@@ -61,7 +61,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 
 import { RangeSlideDirective } from './directives/range.directive';
-
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 // Import the library
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -124,6 +124,7 @@ import { CategoryFilterComponent } from './components/category-filter/category-f
     HttpClientModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    NgxImageZoomModule,
     AdminModule,
     BrowserAnimationsModule,
     CarouselModule,

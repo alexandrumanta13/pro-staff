@@ -36,10 +36,24 @@ export class ProductQuickViewComponent implements OnInit {
   label: string = 'Cantitati';
 
   selectedImage: string;
-  imageSize = 430;
+  imageSize = 453;
 
   customOptions: OwlOptions = {
-    items: 1, dots:false, margin:8, autoWidth: true
+    items: 1, dots: false, margin: 0, stagePadding: 0, autoWidth: true, autoHeight: true, navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
   }
 
   dotsOptions: OwlOptions;
@@ -81,7 +95,7 @@ export class ProductQuickViewComponent implements OnInit {
     this.modalService.add(this);
   }
 
-  changeimage(image: string){
+  changeimage(image: string) {
     this.selectedImage = image;
   }
 
@@ -91,16 +105,16 @@ export class ProductQuickViewComponent implements OnInit {
         console.log(data)
         this.product = data;
         this.dotsOptions = {
-          items: this.product.images.length, dots:false, margin:8, autoWidth: true, nav: true
+          items: this.product.images.length, dots: false, margin: 8, autoWidth: true, navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'], nav: true
         }
         this.product.availableQuantities.map(qnt => {
-          if(qnt.um  === 'mm' || qnt.um ===  'cm') {
+          if (qnt.um === 'mm' || qnt.um === 'cm') {
             this.label = 'Dimensiuni';
           }
         })
       });
-    
-      
+
+
     const checkExistQnt = setInterval(() => {
       const qnt = <HTMLElement>document.querySelector('.qnt-class.active a');
       if (qnt) {
@@ -116,7 +130,7 @@ export class ProductQuickViewComponent implements OnInit {
     //     clearInterval(checkExistColor);
     //   }
     // }, 100); // check every 100ms
-   
+
   }
 
   getColors(qnt, event) {
@@ -140,7 +154,7 @@ export class ProductQuickViewComponent implements OnInit {
   //         event.target.parentElement.parentElement.classList.add('active');
   //       }
 
-       
+
   //     }
   //   })
   //   this.clickedColor = true;
@@ -157,17 +171,17 @@ export class ProductQuickViewComponent implements OnInit {
           event.target.parentElement.parentElement.classList.add('active');
         } else {
           event.target.parentElement.parentElement.classList.add('active');
-         
+
         }
 
-       this.selectedColor = event.target.dataset.image;
-       this.selectedColorName = event.target.dataset.color;
+        this.selectedColor = event.target.dataset.image;
+        this.selectedColorName = event.target.dataset.color;
 
       }
     })
     this.clickedColor = true;
   }
-  getPrice(qntValue, um,  event) {
+  getPrice(qntValue, um, event) {
     this.product.information.map(qnt => {
       if (qnt.quantity == qntValue) {
         this.price = qnt.price;
@@ -179,8 +193,8 @@ export class ProductQuickViewComponent implements OnInit {
           event.target.parentElement.classList.add('active');
         }
         this.clickedQnt = true;
-       
-       
+
+
       }
     })
 
@@ -219,12 +233,12 @@ export class ProductQuickViewComponent implements OnInit {
     product.selectedColorName = this.selectedColorName;
     product.selectedColor = this.selectedColor;
     product.cart_uuid = uuidv4();
-    if(this.selectedColor) {
+    if (this.selectedColor) {
       product.selectedPrice = parseInt(this.price) + 20;
     } else {
       product.selectedPrice = this.price;
     }
-    
+
     const inputValue = (<HTMLInputElement>document.querySelector('.horizontal-quantity')).value;
     this.cartService.addToCart(product, parseInt(inputValue));
     this.clickedColor = false;
@@ -235,7 +249,7 @@ export class ProductQuickViewComponent implements OnInit {
     this.element.unsubscribe();
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     // $('.owl-carousel').owlCarousel({loop: true,
     //   margin: 0,
     //   responsiveClass: true,
@@ -246,62 +260,62 @@ export class ProductQuickViewComponent implements OnInit {
     //   autoplayTimeout: 15000,
     //   items: 1,});
     //   $('.owl-carousel').trigger("refresh.owl.carousel");
-   
-      // var sliderDefaultOptions = {
-      //   loop: true,
-      //   margin: 0,
-      //   responsiveClass: true,
-      //   nav: false,
-      //   navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
-      //   dots: true,
-      //   autoplay: true,
-      //   autoplayTimeout: 15000,
-      //   items: 1,
-      // };
-      // $('.product-single-default .product-single-carousel').owlCarousel($.extend(true, {}, sliderDefaultOptions, {
-      //   nav: true,
-      //   dotsContainer: '#carousel-custom-dots',
-      //   autoplay: false,
-      //   onInitialized: function () {
-      //     var $source = this.$element;
 
-      //     if ($.fn.elevateZoom) {
-      //       $source.find('img').each(function () {
-      //         var $this = $(this),
-      //           zoomConfig = {
-      //             responsive: true,
-      //             zoomWindowFadeIn: 350,
-      //             zoomWindowFadeOut: 200,
-      //             borderSize: 0,
-      //             zoomContainer: $this.parent(),
-      //             zoomType: 'inner',
-      //             cursor: 'grab'
-      //           };
-      //         $this.elevateZoom(zoomConfig);
-      //       });
-      //     }
-      //   },
-      // }));
+    // var sliderDefaultOptions = {
+    //   loop: true,
+    //   margin: 0,
+    //   responsiveClass: true,
+    //   nav: false,
+    //   navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+    //   dots: true,
+    //   autoplay: true,
+    //   autoplayTimeout: 15000,
+    //   items: 1,
+    // };
+    // $('.product-single-default .product-single-carousel').owlCarousel($.extend(true, {}, sliderDefaultOptions, {
+    //   nav: true,
+    //   dotsContainer: '#carousel-custom-dots',
+    //   autoplay: false,
+    //   onInitialized: function () {
+    //     var $source = this.$element;
 
-      // $('.product-single-extended .product-single-carousel').owlCarousel($.extend(true, {}, sliderDefaultOptions, {
-      //   dots: false,
-      //   autoplay: false,
-      //   responsive: {
-      //     0: {
-      //       items: 1
-      //     },
-      //     480: {
-      //       items: 2
-      //     },
-      //     1200: {
-      //       items: 3
-      //     }
-      //   }
-      // }));
+    //     if ($.fn.elevateZoom) {
+    //       $source.find('img').each(function () {
+    //         var $this = $(this),
+    //           zoomConfig = {
+    //             responsive: true,
+    //             zoomWindowFadeIn: 350,
+    //             zoomWindowFadeOut: 200,
+    //             borderSize: 0,
+    //             zoomContainer: $this.parent(),
+    //             zoomType: 'inner',
+    //             cursor: 'grab'
+    //           };
+    //         $this.elevateZoom(zoomConfig);
+    //       });
+    //     }
+    //   },
+    // }));
 
-      // $('#carousel-custom-dots .owl-dot').click(function () {
-      //   console.log('asdas')
-      //   $('.product-single-carousel').trigger('to.owl.carousel', [$(this).index(), 300]);
-      // });
+    // $('.product-single-extended .product-single-carousel').owlCarousel($.extend(true, {}, sliderDefaultOptions, {
+    //   dots: false,
+    //   autoplay: false,
+    //   responsive: {
+    //     0: {
+    //       items: 1
+    //     },
+    //     480: {
+    //       items: 2
+    //     },
+    //     1200: {
+    //       items: 3
+    //     }
+    //   }
+    // }));
+
+    // $('#carousel-custom-dots .owl-dot').click(function () {
+    //   console.log('asdas')
+    //   $('.product-single-carousel').trigger('to.owl.carousel', [$(this).index(), 300]);
+    // });
   }
 }
