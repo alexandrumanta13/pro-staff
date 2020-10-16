@@ -132,8 +132,6 @@ export class ProductDetailsComponent implements OnInit {
             ))
           )
 
-          
-          //this.productService.getColors(baseID.id)
           for(let i in this.basecolors) {
             console.log()
             this.productService.getColorsBase(this.basecolors[i].id)
@@ -148,7 +146,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getColor(colorValue, event) {
-    console.log(event.target.parentElement.parentElement.dataset)
+    console.log(event.target.parentElement.parentElement)
     this.product.availableColors.map(color => {
       if (color.color == colorValue) {
         const activeColor = <HTMLElement>document.querySelector('.color-class.active');

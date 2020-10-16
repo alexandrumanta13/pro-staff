@@ -2,49 +2,53 @@
   role="dialog" aria-labelledby="openModalLabel" aria-hidden="true">
   <div class="row">
     <button title="Close (Esc)" type="button" (click)="close()" class="mfp-close">×</button>
-    <div class="col-lg-6 col-md-6 product-single-gallery">
-      <div class="product-slider-container product-item product-gallery__featured">
-
-        <owl-carousel-o class="product-single-carousel" [options]="customOptions" #owlCar>
-          <ng-container class="product-item">
-            <ng-template carouselSlide [id]="product?.image_url" [width]="imageSize">
-              <lib-ngx-image-zoom [thumbImage]="product?.image_url" [fullImage]="product?.image_url" [magnification]="1"
-                [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200" [lensHeight]="200"
-                [circularLens]="true"></lib-ngx-image-zoom>
-              <!-- <img class="product-single-image" [src]="product?.image_url" [attr.data-zoom-image]="product?.image_url"> -->
-            </ng-template>
-          </ng-container>
-          <ng-container class="product-item" *ngFor="let image of product?.images">
-            <ng-template carouselSlide [id]="image?.image_url" [width]="imageSize">
-              <lib-ngx-image-zoom [thumbImage]="image.image_url" [fullImage]="image.image_url" [magnification]="1"
-                [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200" [lensHeight]="200"
-                [circularLens]="true"></lib-ngx-image-zoom>
-            </ng-template>
-          </ng-container>
-        </owl-carousel-o>
-
-        <div class="product-gallery__carousel">
-          <owl-carousel-o [options]="dotsOptions">
-            <ng-container>
-              <ng-template carouselSlide [id]="product?.image_url" [width]="80">
-                <a (click)="owlCar.to(product?.image_url); changeimage(product?.image_url)">
-                  <img [src]="product?.image_url"
-                    [ngClass]="{'product-gallery__carousel-item--active':selectedImage === product?.image_url || (i == 0 && !selectedImage)}">
-                </a>
+    <div class="col-lg-6 col-md-6 ">
+      <div class="product-single-gallery">
+       
+        <div class="product-slider-container product-item product-gallery__featured" *ngIf="loaded">
+         
+          <owl-carousel-o class="product-single-carousel" [options]="customOptionsQuick" #owlCar>
+            <ng-container class="product-item">
+              <ng-template carouselSlide [id]="product?.image_url" [width]="454">
+                <lib-ngx-image-zoom [thumbImage]="product?.image_url" [fullImage]="product?.image_url" [magnification]="1"
+                  [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200" [lensHeight]="200"
+                  [circularLens]="true"></lib-ngx-image-zoom>
+                <!-- <img class="product-single-image" [src]="product?.image_url" [attr.data-zoom-image]="product?.image_url"> -->
               </ng-template>
             </ng-container>
-            <ng-container *ngFor="let image of product?.images; let i = index">
-              <ng-template carouselSlide [id]="image.image_url+i" [width]="80">
-                <a (click)="owlCar.to(image.image_url); changeimage(image.image_url+i)">
-                  <img [src]="image.image_url"
-                    [ngClass]="{'product-gallery__carousel-item--active':selectedImage === image.image_url+i || (i == 0 && !selectedImage)}">
-                </a>
+            <ng-container class="product-item" *ngFor="let image of product?.images">
+              <ng-template carouselSlide [id]="image?.image_url" [width]="454">
+                <lib-ngx-image-zoom [thumbImage]="image.image_url" [fullImage]="image.image_url" [magnification]="1"
+                  [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200" [lensHeight]="200"
+                  [circularLens]="true"></lib-ngx-image-zoom>
               </ng-template>
             </ng-container>
           </owl-carousel-o>
+  
+          <div class="product-gallery__carousel">
+            <owl-carousel-o [options]="dotsOptions" *ngIf="additionalImages > 0">
+              <ng-container>
+                <ng-template carouselSlide [id]="product?.image_url" [width]="80">
+                  <a (click)="owlCar.to(product?.image_url); changeimage(product?.image_url)">
+                    <img [src]="product?.image_url"
+                      [ngClass]="{'product-gallery__carousel-item--active':selectedImage === product?.image_url || (i == 0 && !selectedImage)}">
+                  </a>
+                </ng-template>
+              </ng-container>
+              <ng-container *ngFor="let image of product?.images; let i = index">
+                <ng-template carouselSlide [id]="image.image_url+i" [width]="80">
+                  <a (click)="owlCar.to(image.image_url); changeimage(image.image_url+i)">
+                    <img [src]="image.image_url"
+                      [ngClass]="{'product-gallery__carousel-item--active':selectedImage === image.image_url+i || (i == 0 && !selectedImage)}">
+                  </a>
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+  
         </div>
-
       </div>
+      
 
     </div><!-- End .col-lg-7 -->
 
@@ -94,12 +98,22 @@
           <div class="product-single-filter">
             <label>Culori:</label>
             <ul class="config-swatch-list">
-              <li class="color-class" *ngFor="let color of product?.availableColors; first as isFirst">
-                <a (click)="getColor(color.color, $event)">
-                  <img *ngIf="color.color_image" [attr.data-color]="color.color" [attr.data-image]="color.color_image"
-                    src="{{color.color_image}}" alt="">
+              <li class="color-class" *ngFor="let basecolor of basecolors; first as isFirst">
+                <a (click)="getColor(basecolor.color, $event)">
+                  <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color" [attr.data-image]="basecolor.base_image"
+                    src="{{basecolor.base_image}}" alt="">
 
                 </a>
+                <ul class="config-swatch-list">
+                  <li class="color-class" *ngFor="let color of basecolor.colors; i as index">
+                    
+                    <a (click)="getColor(color.color, $event)">
+                      <img *ngIf="color.color_image" [attr.data-color]="color.color" [attr.data-image]="color.color_image"
+                        src="{{color.color_image}}" alt="">
+    
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
             <a href="" *ngIf="product?.PaletteColorID == -1">Vezi paletarul de culori</a>

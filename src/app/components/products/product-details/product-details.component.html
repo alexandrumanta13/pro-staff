@@ -119,7 +119,7 @@
                   </ul> -->
                   <ul class="config-swatch-list">
                     <li class="color-class" *ngFor="let basecolor of basecolors; first as isFirst">
-                      <a (click)="getColor(color.color, $event)">
+                      <a (click)="getColor(basecolor.color, $event)">
                         <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color" [attr.data-image]="basecolor.base_image"
                           src="{{basecolor.base_image}}" alt="">
       

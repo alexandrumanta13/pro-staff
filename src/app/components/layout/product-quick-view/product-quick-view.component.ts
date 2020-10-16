@@ -31,15 +31,15 @@ export class ProductQuickViewComponent implements OnInit {
   selectedQnt: string;
   selectedColor: any;
   selectedColorName: any;
-  singleImage: any;
+  
   old_price: any;
   label: string = 'Cantitati';
 
   selectedImage: string;
-  imageSize = 453;
 
-  customOptions: OwlOptions = {
-    items: 1, dots: false, margin: 0, stagePadding: 0, autoWidth: true, autoHeight: true, navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+
+  customOptionsQuick: OwlOptions = {
+    items: 1, dots: false, margin: 0, stagePadding: 0, autoWidth: true, autoHeight: true,
     responsive: {
       0: {
         items: 1
@@ -57,6 +57,9 @@ export class ProductQuickViewComponent implements OnInit {
   }
 
   dotsOptions: OwlOptions;
+  additionalImages: any;
+  loaded: boolean = false;
+  basecolors: any;
 
   constructor(
     httpClient: HttpClient,
@@ -104,6 +107,10 @@ export class ProductQuickViewComponent implements OnInit {
       .subscribe(data => {
         console.log(data)
         this.product = data;
+        this.additionalImages = this.product.images.length;
+        if (this.product.PaletteColorID && (this.product.PaletteColorID != 0 || this.product.PaletteColorID != -1)) {
+          this.getBaseColors(this.product.PaletteColorID)
+        }
         this.dotsOptions = {
           items: this.product.images.length, dots: false, margin: 8, autoWidth: true, navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'], nav: true
         }
@@ -114,11 +121,13 @@ export class ProductQuickViewComponent implements OnInit {
         })
       });
 
-
+    
     const checkExistQnt = setInterval(() => {
       const qnt = <HTMLElement>document.querySelector('.qnt-class.active a');
       if (qnt) {
         qnt.click();
+        
+        this.loaded = true
         clearInterval(checkExistQnt);
       }
     }, 100); // check every 100ms
@@ -131,6 +140,30 @@ export class ProductQuickViewComponent implements OnInit {
     //   }
     // }, 100); // check every 100ms
 
+  }
+
+  getBaseColors(palette) {
+    this.productService.getBaseColors(palette)
+      .then(data => {
+        console.log(data)
+        if (data) {
+          this.basecolors = data.filter((item, index, self) =>
+            index === self.findIndex((t) => (
+              t.base_image === item.base_image && t.base_name === item.base_name
+            ))
+          )
+
+          for(let i in this.basecolors) {
+            console.log()
+            this.productService.getColorsBase(this.basecolors[i].id)
+            .then(colors => {
+              
+              this.basecolors[i].colors = [...colors]
+            })
+          }
+          console.log(this.basecolors)
+        }
+      });
   }
 
   getColors(qnt, event) {
@@ -214,16 +247,12 @@ export class ProductQuickViewComponent implements OnInit {
     this.element.style.display = 'block';
     document.body.classList.add('modal-open');
 
-    this.singleImage = this.product.images.length;
-
-
   }
 
   // close modal
   close(): void {
     this.element.style.display = 'none';
     document.body.classList.remove('modal-open');
-    this.singleImage = 0;
   }
 
 
@@ -317,5 +346,7 @@ export class ProductQuickViewComponent implements OnInit {
     //   console.log('asdas')
     //   $('.product-single-carousel').trigger('to.owl.carousel', [$(this).index(), 300]);
     // });
+    
   }
+ 
 }

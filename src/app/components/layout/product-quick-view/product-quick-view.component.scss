@@ -68,3 +68,43 @@ owl-carousel-o::ng-deep{
       border-radius: 8px;
     }
 }
+
+
+.config-swatch-list {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    a {
+      width: auto;
+      margin-bottom: 8px;
+      height: auto;
+
+      img {
+        height: auto;
+        width: fit-content;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+
+      li {
+        a {
+          margin-bottom: 0;
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
