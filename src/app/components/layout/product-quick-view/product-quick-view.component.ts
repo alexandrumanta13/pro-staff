@@ -267,10 +267,8 @@ export class ProductQuickViewComponent implements OnInit {
     } else {
       product.selectedPrice = this.price;
     }
-
     const inputValue = (<HTMLInputElement>document.querySelector('.horizontal-quantity')).value;
     this.cartService.addToCart(product, parseInt(inputValue));
-    this.clickedColor = false;
     this.close();
   }
 

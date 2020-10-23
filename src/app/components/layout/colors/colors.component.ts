@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalService } from 'app/services';
 import { ProductService } from 'app/services/products.service';
 
@@ -11,6 +11,7 @@ import { ProductService } from 'app/services/products.service';
 export class ColorsComponent implements OnInit {
   @Input() id: string;
   @Input() slug: string;
+  @Output() selectedColor: EventEmitter<any> = new EventEmitter<any>();
 
 
   private element: any;
@@ -18,6 +19,8 @@ export class ColorsComponent implements OnInit {
   clickedColor: boolean = false;
   NCScolors: any;
   RALcolors: any;
+  colorBg: any;
+  colorName: any;
 
   constructor(
     httpClient: HttpClient,
@@ -52,11 +55,23 @@ export class ColorsComponent implements OnInit {
 
   }
 
+  public chooseColor(name: any, color: any): void {
+    this.selectedColor.emit({'name': name, 'color':color});
+    this.close();
+  }
+
   getColorOffer(event, color, name) {
     event.stopPropagation();
-    event.target.parentElement.classList.add('active')
+
     const activeColor = <HTMLElement>document.querySelector('.color-class.active');
-    console.log(activeColor)
+    if (activeColor) {
+      activeColor.classList.remove('active');
+    }
+
+    this.colorBg = color;
+    this.colorName = name;
+
+    event.target.parentElement.classList.add('active');
   }
   // remove self from modal service when component is destroyed
   ngOnDestroy(): void {

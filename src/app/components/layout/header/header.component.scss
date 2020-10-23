@@ -21,7 +21,7 @@
 
     img {
       height: 29px;
-    
+
       display: flex;
     }
 
@@ -91,4 +91,28 @@
     }
 
   }
+}
+
+.cart-dropdown .product-image-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.additional-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .cart-product-color {
+    height: 20px;
+
+    img {
+      height: 100%;
+    }
+  }
+}
+
+.cart-dropdown .dropdownmenu-wrapper {
+  max-height: 80vh;
+  overflow: auto;
 }

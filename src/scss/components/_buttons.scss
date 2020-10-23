@@ -17,7 +17,7 @@
 
 .btn-colors {
   background: linear-gradient(90deg, rgba(183,255,248,1) 0%, rgba(255,225,231,1) 50%, rgba(203,176,255,1) 100%);
-  color: #000;
+  color: #000 !important;
   transition: 500ms all;
   &:before {
     content: none;
@@ -54,3 +54,11 @@
   }
 }
 
+.btn-no-icon {
+  &::before {
+    content: none;
+  }
+  i {
+    margin-right: 16px;
+  }
+}

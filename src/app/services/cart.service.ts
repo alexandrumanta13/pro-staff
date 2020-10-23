@@ -33,16 +33,36 @@ export class CartService {
 
 
     addToCart(product, value: number) {
-        console.log(product)
+        
             this.items$.pipe(
                 take(1),
                 map((products) => {
-                    const existing = products.find(({ product_name }) => product.product_name === product_name);
-                    const selectedQnt = products.find(({selectedQnt}) => product.selectedQnt === selectedQnt);
-                    const selectedColor = products.find(({selectedColor}) => product.selectedColor === selectedColor);
+                    // const existing = products.find(({ product_name }) => product.product_name === product_name);
+                    // const selectedQnt = products.find(({selectedQnt}) => product.selectedQnt === selectedQnt);
+                    // const selectedColorName = products.find(({selectedColorName}) => product.selectedColorName === selectedColorName);
                     
-                    if (existing && selectedQnt && selectedColor) {
-                        existing.num += value;
+                    const filter = {
+                        'product_name': product.product_name,
+                        'selectedQnt': product.selectedQnt,
+                        'selectedColorName': product.selectedColorName
+                      };
+
+                    
+                    const productsInLocalstorage = products.filter(function(item) {
+                        for (var key in filter) {
+                          if (item[key] === undefined || item[key] != filter[key])
+                            return false;
+                        }
+                        return true;
+                      });
+
+                    // var result = products.filter(function(v, i) {
+                    //     return (v["product_name"] == product.product_name && v["selectedQnt"] == product.selectedQnt && v["selectedColorName"] == product.selectedColorName);
+                    //   })
+                      
+                     
+                    if (productsInLocalstorage.length > 0) {
+                        productsInLocalstorage[0].num += value;
                     } else {
                         products.push({ ...product, num: value });
                     }

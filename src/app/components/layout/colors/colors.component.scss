@@ -15,6 +15,7 @@
   max-width: 980px;
   height: 80vh;
   margin: auto;
+  overflow: hidden;
 }
 
 .modal-background {
@@ -34,19 +35,91 @@
 }
 
 .config-swatch-list {
-  padding: 0;
+  padding: 0 0 20px 0;
   display: flex;
   flex-wrap: wrap;
+  flex: 1;
 
   li {
     flex-basis: 40px;
 
     width: 40px;
     height: 40px;
+    margin: 2px;
 
     a {
       width: 100%;
       height: 100%;
+    }
+  }
+
+
+}
+
+
+
+.product-single-tabs {
+  height: 100%;
+  overflow: hidden;
+
+  .tab-pane {
+    height: 100%;
+  }
+
+  .tab-content {
+    height: 100%;
+
+    .product-single-filter {
+      align-items: flex-start;
+      overflow: auto;
+      height: 100%;
+
+      .color-details {
+        width: 0;
+        height: 100%;
+        display: flex;
+        position: relative;
+
+        .color-details-inner {
+          height: 520px;
+          width: inherit;
+          position: fixed;
+
+          .color-actions-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+
+            .color-title {
+              margin-top: auto;
+             
+              padding: 4px 8px;
+              background-color: #fff;
+              h2 {
+                margin-bottom: 0;
+              }
+              
+            }
+
+            .color-actions {
+              display: flex;
+              flex-direction: column;
+              margin: auto auto 20px;
+
+              a {
+                margin: 8px;
+                height: 40px;
+              }
+            }
+          }
+        }
+
+        &.show {
+          width: 300px;
+        }
+      }
     }
   }
 }

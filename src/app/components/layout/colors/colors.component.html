@@ -19,18 +19,61 @@
       <div class="tab-pane fade active show" id="ncs-palette-content" role="tabpanel" aria-labelledby="tab-ncs-palette">
         <div class="ncs-palette-content product-single-filter">
           <ul class="config-swatch-list">
-            <li *ngFor="let color of NCScolors" class="color-class" (click)="getColorOffer($event, color.color_image, color.color)" [id]="color.color">
-                <a [ngStyle]="{backgroundColor: color.color_image}"></a>
+            <li *ngFor="let color of NCScolors" class="color-class"
+              (click)="getColorOffer($event, color.color_image, color.color)" [id]="color.color">
+              <a [ngStyle]="{backgroundColor: color.color_image}"></a>
             </li>
           </ul>
+          <div class="color-details" [class.show]="colorBg && colorName">
+            <div class="color-details-inner" [ngStyle]="{backgroundColor: colorBg}">
+              <div class="color-actions-container" *ngIf="colorBg && colorName">
+                <div class="color-title">
+                  <h2>{{colorName}}</h2>
+                </div>
+                <div class="color-actions">
+                  <a class="paction add-cart btn-colors" (click)="chooseColor(colorBg, colorName)">
+                    <img src="/assets/icons/painting.svg">
+                    <span>Alege culoarea</span>
+                  </a>
+                  <a class="paction add-cart btn-no-icon" (click)="askPrice(colorBg, colorName)">
+                    <i class="icon-mail-alt"></i>
+                    <span>Cere oferta</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div><!-- End .ncs-palette -->
       </div><!-- End .tab-pane -->
       <div class="tab-pane fade" id="ral-palette-content" role="tabpanel" aria-labelledby="tab-ral-palette">
         <div class="ral-palette-content product-single-filter ">
-          <ul class="ncs-ral">
-            <li *ngFor="let color of RALcolors" [ngStyle]="{backgroundColor: color.color_image}">{{color.color}}</li>
+          <ul class="config-swatch-list">
+            <li *ngFor="let color of RALcolors" class="color-class"
+              (click)="getColorOffer($event, color.color_image, color.color)" [id]="color.color">
+              <a [ngStyle]="{backgroundColor: color.color_image}"></a>
+            </li>
           </ul>
+          <div class="color-details" [class.show]="colorBg && colorName">
+            <div class="color-details-inner" [ngStyle]="{backgroundColor: colorBg}">
+              <div class="color-actions-container" *ngIf="colorBg && colorName">
+                <div class="color-title">
+                  <h2>{{colorName}}</h2>
+                </div>
+                <div class="color-actions">
+                  <a class="paction add-cart btn-colors" (click)="chooseColor(colorBg, colorName)">
+                    <img src="/assets/icons/painting.svg">
+                    <span>Alege culoarea</span>
+                  </a>
+                  <a class="paction add-cart btn-no-icon" (click)="askPrice(colorBg, colorName)">
+                    <i class="icon-mail-alt"></i>
+                    <span>Cere oferta</span>
+                  </a>
+                </div>
+              </div>
 
+            </div>
+          </div>
         </div><!-- End .ral-palette -->
       </div><!-- End .tab-pane -->
     </div><!-- End .tab-content -->

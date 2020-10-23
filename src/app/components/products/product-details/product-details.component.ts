@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,8 @@ import { ProductService } from 'app/services/products.service';
 import { Product } from 'app/models/product';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ModalService } from 'app/services';
+import { v4 as uuidv4 } from 'uuid';
+import { CartService } from 'app/services/cart.service';
 
 
 @Component({
@@ -15,7 +17,8 @@ import { ModalService } from 'app/services';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-
+  @Output() addToCartEmit = new EventEmitter();
+  @Output() num = new EventEmitter();
 
   private _productSlug: string;
   private _httpClient: HttpClient;
@@ -67,7 +70,8 @@ export class ProductDetailsComponent implements OnInit {
     httpClient: HttpClient,
     route: ActivatedRoute,
     private productService: ProductService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private cartService: CartService
   ) {
     this._httpClient = httpClient;
     this._route = route;
@@ -86,6 +90,27 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
+  addToCart(product) {
+    product.selectedQnt = this.selectedQnt;
+    product.selectedColorName = this.selectedColorName;
+    product.selectedColor = this.selectedColor;
+    product.cart_uuid = uuidv4();
+    if (this.selectedColor) {
+      product.selectedPrice = parseInt(this.price) + 20;
+    } else {
+      product.selectedPrice = this.price;
+    }
+    const inputValue = (<HTMLInputElement>document.querySelector('.horizontal-quantity')).value;
+    this.cartService.addToCart(product, parseInt(inputValue));
+
+  }
+
+  selectedColorFn(color: any) {
+    this.selectedColor = color.color;
+    this.selectedColorName = color.name;
+    console.log(this.selectedColorName, this.selectedColor);
+  }
+
   getProducts(slug) {
 
     this.productService.getProductDetails(slug)
@@ -95,9 +120,9 @@ export class ProductDetailsComponent implements OnInit {
         console.log(this.product)
         console.log(this.product.PaletteColorID)
         if (this.product.PaletteColorID > 0) {
-          
+
           this.getBaseColors(this.product.PaletteColorID)
-        } else if(this.product.PaletteColorID < 0) {
+        } else if (this.product.PaletteColorID < 0) {
           this.ncsandralpalette = true;
           // this.NCScolors = data;
           // console.log('asdadasd')
@@ -141,38 +166,35 @@ export class ProductDetailsComponent implements OnInit {
             ))
           )
 
-          for(let i in this.basecolors) {
+          for (let i in this.basecolors) {
             console.log()
             this.productService.getColorsBase(this.basecolors[i].id)
-            .then(colors => {
-              
-              this.basecolors[i].colors = [...colors]
-            })
+              .then(colors => {
+
+                this.basecolors[i].colors = [...colors]
+              })
           }
           console.log(this.basecolors)
         }
       });
   }
 
-  getColor(colorValue, event) {
-    console.log(event.target.parentElement.parentElement)
-    this.product.availableColors.map(color => {
-      if (color.color == colorValue) {
-        const activeColor = <HTMLElement>document.querySelector('.color-class.active');
-
-        if (this.clickedColor == true) {
-          activeColor.classList.remove('active');
-          event.target.parentElement.parentElement.classList.add('active');
-        } else {
-          event.target.parentElement.parentElement.classList.add('active');
-        }
-
-        this.selectedColor = event.target.dataset.image;
-        this.selectedColorName = event.target.dataset.color;
-
+  getColor(colorValue, event, mode) {
+    const activeColor = <HTMLElement>document.querySelector('.color-class.active');
+      if(activeColor) {
+        activeColor.classList.remove('active');
       }
-    })
-    this.clickedColor = true;
+    
+      
+      event.target.parentElement.parentElement.classList.add('active');
+      
+      this.selectedColor = event.target.dataset.image;
+      this.selectedColorName = event.target.dataset.color;
+    
+      
+    
+
+ 
   }
   getPrice(qntValue, um, event) {
     this.product.information.map(qnt => {

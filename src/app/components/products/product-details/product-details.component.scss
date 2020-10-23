@@ -90,7 +90,88 @@ owl-carousel-o::ng-deep {
           width: 40px;
           height: 40px;
         }
+
+        &.active {
+          a {
+            &:before {
+              top: 50%;
+              left: 50%;
+              bottom: auto;
+              right: auto;
+            }
+          }
+        }
       }
     }
+
+    &.active {
+      a {
+        &:before {
+          bottom: 20px;
+          right: 20px;
+          top: auto;
+          left: auto;
+        }
+      }
+
+      ul {
+        li {
+          a {
+            box-shadow: none;
+
+            &::before {
+              content: none;
+            }
+          }
+        }
+      }
+
+    }
   }
+}
+
+
+.selected-color {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-left: 16px;
+  padding: 10px;
+
+  span {
+    background: #fff;
+    padding: 4px 8px;
+  }
+}
+
+.product-single-filter {
+  flex-wrap: wrap;
+
+  label {
+    margin: 16px 16px 16px 0;
+  }
+
+  a {
+    margin: 0;
+  }
+
+  .info {
+    flex-basis: 100%;
+    margin: 16px 0 0;
+
+    span {
+      color: red;
+    }
+
+    a {
+      background-color: #ddd;
+      padding: 2px 4px;
+
+      cursor: pointer;
+    }
+  }
+
+
 }

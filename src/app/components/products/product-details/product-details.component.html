@@ -105,28 +105,20 @@
                     </li>
                   </ul>
                 </div><!-- End .product-single-filter -->
-                <div class="product-single-filter">
+                <div class="product-single-filter" *ngIf="product?.PaletteColorID > 0 || product?.PaletteColorID < 0">
                   <label>Culori:</label>
-                  <!-- <ul class="config-swatch-list">
-                    <li class="color-class" *ngFor="let color of product?.availableColors; first as isFirst">
-                      <a (click)="getColor(color.color, $event)">
-                        <img *ngIf="color.color_image" [attr.data-color]="color.color" [attr.data-image]="color.color_image"
-                          src="{{color.color_image}}" alt="">
-      
-                      </a>
-                    </li>
-                  </ul> -->
+                  
                   <ul class="config-swatch-list" *ngIf="basecolors">
                     <li class="color-class" *ngFor="let basecolor of basecolors; first as isFirst">
-                      <a (click)="getColor(basecolor.color, $event)">
-                        <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color"
+                      <a (click)="getColor(basecolor.color, $event, 'basecolor')">
+                        <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.base_name"
                           [attr.data-image]="basecolor.base_image" src="{{basecolor.base_image}}" alt="">
 
                       </a>
                       <ul class="config-swatch-list">
                         <li class="color-class" *ngFor="let color of basecolor.colors; i as index">
 
-                          <a (click)="getColor(color.color, $event)">
+                          <a (click)="getColor(color.color, $event, 'color')">
                             <img *ngIf="color.color_image" [attr.data-color]="color.color"
                               [attr.data-image]="color.color_image" src="{{color.color_image}}" alt="">
 
@@ -145,9 +137,18 @@
 
                     </li>
                   </ul>
-                  <a class="paction add-cart btn-colors" (click)="openModal('productColors', product.alias)" *ngIf="ncsandralpalette">
+                  <a class="paction add-cart btn-colors" (click)="openModal('productColors', product.alias)"
+                    *ngIf="ncsandralpalette">
                     <img src="/assets/icons/painting.svg">
-                    <span>Alege culoarea</span></a>
+                    <span>Alege culoarea</span>
+                  </a>
+                  <div class="selected-color" *ngIf="selectedColorName && !basecolors"
+                    [ngStyle]="{backgroundColor: selectedColorName}">
+                    <span>{{selectedColor}}</span>
+                  </div>
+                  <p class="info" *ngIf="selectedColorName && !basecolors"><span>*</span> Pretul se modifica in functie de culoare, iar dupa comanda veti fi contactat in
+                    vederea confirmarii. Daca vreti sa aflati pretul inainte de a comanda, va rugam sa <a (click)="openModal('productColors', product.alias)">cereti o oferta
+                      pentru culoarea aleasa</a>. Multumim!</p>
                 </div>
               </div><!-- End .product-filters-container -->
 
@@ -158,7 +159,7 @@
                   <input class="horizontal-quantity form-control" type="text">
                 </div><!-- End .product-single-qty -->
 
-                <a href="cart.html" class="paction add-cart" title="Adauga in cos">
+                <a (click)="addToCart(product)" class="paction add-cart" title="Adauga in cos">
                   <span>Adauga in cos</span>
                 </a>
 
@@ -418,10 +419,10 @@
           </div><!-- End .collapse -->
         </div><!-- End .widget -->
 
-        <div class="widget widget-banner">
+        <div class="widget widget-banner" *ngIf="selectedColor && product?.PaletteColorID > 0">
           <div class="banner banner-image">
             <a href="#">
-              <img src="assets/images/banners/banner-sidebar.jpg" alt="Banner Desc">
+              <img src="{{selectedColor}}" alt="Banner Desc">
             </a>
           </div><!-- End .banner -->
         </div><!-- End .widget -->
@@ -605,4 +606,4 @@
 
   <div class="mb-lg-4"></div><!-- margin -->
 </div><!-- End .container-fluid -->
-<app-colors id="productColors" ></app-colors>
+<app-colors id="productColors" (selectedColor)="selectedColorFn($event)"></app-colors>
