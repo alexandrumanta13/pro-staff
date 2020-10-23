@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { ProductService } from 'app/services/products.service';
 import { Product } from 'app/models/product';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ModalService } from 'app/services';
 
 
 @Component({
@@ -60,11 +61,13 @@ export class ProductDetailsComponent implements OnInit {
   dotsOptions: OwlOptions;
   additionalImages: any;
   basecolors: any[];
+  ncsandralpalette: boolean = false;
 
   constructor(
     httpClient: HttpClient,
     route: ActivatedRoute,
     private productService: ProductService,
+    private modalService: ModalService
   ) {
     this._httpClient = httpClient;
     this._route = route;
@@ -91,18 +94,22 @@ export class ProductDetailsComponent implements OnInit {
         this.product = data;
         console.log(this.product)
         console.log(this.product.PaletteColorID)
-        if (this.product.PaletteColorID && (this.product.PaletteColorID != 0 || this.product.PaletteColorID != -1)) {
+        if (this.product.PaletteColorID > 0) {
+          
           this.getBaseColors(this.product.PaletteColorID)
-        } else if (this.product.PaletteColorID == -1) {
-          this.productService.getColors(13)
-            .then(data => {
-              console.log(data)
-              this.NCScolors = data;
-            });
-          this.productService.getColors(12)
-            .then(data => {
-              this.RALcolors = data;
-            });
+        } else {
+          this.ncsandralpalette = true;
+          // this.NCScolors = data;
+          // console.log('asdadasd')
+          // this.productService.getColors(13)
+          //   .then(data => {
+          //     console.log(data)
+          //     this.NCScolors = data;
+          //   });
+          // this.productService.getColors(12)
+          //   .then(data => {
+          //     this.RALcolors = data;
+          //   });
         }
 
 
@@ -183,6 +190,10 @@ export class ProductDetailsComponent implements OnInit {
       }
     })
 
+  }
+
+  openModal(id: string, slug: string) {
+    this.modalService.open(id, slug);
   }
 
 }

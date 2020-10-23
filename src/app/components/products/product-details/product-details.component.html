@@ -1,4 +1,3 @@
-
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
   <div class="container-fluid">
     <ol class="breadcrumb">
@@ -20,21 +19,21 @@
                 <owl-carousel-o class="product-single-carousel" [options]="customOptions" #owlCar>
                   <ng-container class="product-item">
                     <ng-template carouselSlide [id]="product?.image_url">
-                      <lib-ngx-image-zoom [thumbImage]="product?.image_url" [fullImage]="product?.image_url" [magnification]="1"
-                        [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200" [lensHeight]="200"
-                        [circularLens]="true"></lib-ngx-image-zoom>
+                      <lib-ngx-image-zoom [thumbImage]="product?.image_url" [fullImage]="product?.image_url"
+                        [magnification]="1" [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200"
+                        [lensHeight]="200" [circularLens]="true"></lib-ngx-image-zoom>
                       <!-- <img class="product-single-image" [src]="product?.image_url" [attr.data-zoom-image]="product?.image_url"> -->
                     </ng-template>
                   </ng-container>
                   <ng-container class="product-item" *ngFor="let image of product?.images">
                     <ng-template carouselSlide [id]="image?.image_url">
-                      <lib-ngx-image-zoom [thumbImage]="image.image_url" [fullImage]="image.image_url" [magnification]="1"
-                        [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200" [lensHeight]="200"
-                        [circularLens]="true"></lib-ngx-image-zoom>
+                      <lib-ngx-image-zoom [thumbImage]="image.image_url" [fullImage]="image.image_url"
+                        [magnification]="1" [enableScrollZoom]="true" [enableLens]="true" [lensWidth]="200"
+                        [lensHeight]="200" [circularLens]="true"></lib-ngx-image-zoom>
                     </ng-template>
                   </ng-container>
                 </owl-carousel-o>
-        
+
                 <div class="product-gallery__carousel">
                   <owl-carousel-o [options]="dotsOptions" *ngIf="additionalImages > 0">
                     <ng-container>
@@ -55,9 +54,9 @@
                     </ng-container>
                   </owl-carousel-o>
                 </div>
-        
+
               </div>
-              
+
             </div><!-- End .product-single-gallery -->
           </div><!-- End .col-lg-7 -->
 
@@ -74,8 +73,7 @@
               </div> -->
 
               <div class="price-box">
-                <span class="old-price"
-                  *ngIf="old_price > 0">{{ ((price/old_price)*100).toFixed(2) }}</span>
+                <span class="old-price" *ngIf="old_price > 0">{{ ((price/old_price)*100).toFixed(2) }}</span>
                 <span class="product-price">{{price}} lei</span>
                 <span class="product-price" *ngIf="clickedColor"> + 20 Lei (nuantator)</span>
               </div><!-- End .price-box -->
@@ -101,7 +99,8 @@
                     <li class="qnt-class" *ngFor="let qnt of product?.availableQuantities; first as isFirst"
                       [ngClass]="{'active': isFirst}">
                       <!-- <a (click)="getColors(qnt.quantity, $event)" [attr.data-qnt]="qnt.quantity">{{qnt.quantity}} {{qnt.um}}</a> -->
-                      <a (click)="getPrice(qnt.quantity, qnt.um, $event)" [attr.data-qnt]="qnt.quantity">{{qnt.quantity}}
+                      <a (click)="getPrice(qnt.quantity, qnt.um, $event)"
+                        [attr.data-qnt]="qnt.quantity">{{qnt.quantity}}
                         {{qnt.um}}</a>
                     </li>
                   </ul>
@@ -117,29 +116,42 @@
                       </a>
                     </li>
                   </ul> -->
-                  <ul class="config-swatch-list">
+                  <ul class="config-swatch-list" *ngIf="basecolors">
                     <li class="color-class" *ngFor="let basecolor of basecolors; first as isFirst">
                       <a (click)="getColor(basecolor.color, $event)">
-                        <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color" [attr.data-image]="basecolor.base_image"
-                          src="{{basecolor.base_image}}" alt="">
-      
+                        <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color"
+                          [attr.data-image]="basecolor.base_image" src="{{basecolor.base_image}}" alt="">
+
                       </a>
                       <ul class="config-swatch-list">
                         <li class="color-class" *ngFor="let color of basecolor.colors; i as index">
-                          
+
                           <a (click)="getColor(color.color, $event)">
-                            <img *ngIf="color.color_image" [attr.data-color]="color.color" [attr.data-image]="color.color_image"
-                              src="{{color.color_image}}" alt="">
-          
+                            <img *ngIf="color.color_image" [attr.data-color]="color.color"
+                              [attr.data-image]="color.color_image" src="{{color.color_image}}" alt="">
+
                           </a>
                         </li>
                       </ul>
                     </li>
                   </ul>
+
+                  <ul class="config-swatch-list" *ngIf="product?.PaletteColorID == -1">
+                    <li class="color-class" *ngFor="let basecolor of basecolors; first as isFirst">
+                      <a (click)="getColor(basecolor.color, $event)">
+                        <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color"
+                          [attr.data-image]="basecolor.base_image" src="{{basecolor.base_image}}" alt="">
+                      </a>
+
+                    </li>
+                  </ul>
+                  <a class="paction add-cart btn-colors" (click)="openModal('productColors', product.alias)" *ngIf="ncsandralpalette">
+                    <img src="/assets/icons/painting.svg">
+                    <span>Alege culoarea</span></a>
                 </div>
               </div><!-- End .product-filters-container -->
 
-            
+
 
               <div class="product-action">
                 <div class="product-single-qty">
@@ -175,7 +187,7 @@
             <a class="nav-link" id="product-tab-size" data-toggle="tab" href="#product-size-content" role="tab"
               aria-controls="product-size-content" aria-selected="true">Detalii tehnice</a>
           </li>
-          
+
           <!-- <li class="nav-item">
             <a class="nav-link" id="product-tab-reviews" data-toggle="tab" href="#product-reviews-content" role="tab"
               aria-controls="product-reviews-content" aria-selected="false">Recenzii</a>
@@ -193,76 +205,75 @@
             </div><!-- End .product-desc-content -->
           </div><!-- End .tab-pane -->
 
-          <div class="tab-pane fade" id="product-size-content" role="tabpanel"
-            aria-labelledby="product-tab-size">
+          <div class="tab-pane fade" id="product-size-content" role="tabpanel" aria-labelledby="product-tab-size">
             <div class="product-size-content">
-            
-                <!-- <div class="col-md-4">
+
+              <!-- <div class="col-md-4">
                   <img src="assets/images/products/single/body-shape.png" alt="body shape">
                 </div> -->
-                <p>
-                  
-                  <a class="paction download" href="{{product?.datasheet}}" download>
-                     <span>Descarca fisa tehnica</span>
-                  </a>
-                </p>
+              <p>
 
-                <div class="col-md-8">
-                  <table class="table table-size">
-                    <thead>
-                      <tr>
-                        <th>Cantitate</th>
-                        <th>Diluare</th>
-                        <th>Straruri baza</th>
-                        <th>Consum baza</th>
-                        <th>Temperatura de aplicare</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1l</td>
-                        <td>5%</td>
-                        <td>1</td>
-                        <td>4 mp/l</td>
-                        <td>+5C + 36C</td>
-                      </tr>
-                      <tr>
-                        <td>2l</td>
-                        <td>5%</td>
-                        <td>1</td>
-                        <td>4 mp/l</td>
-                        <td>+5C + 36C</td>
-                      </tr>
-                      <tr>
-                        <td>5l</td>
-                        <td>5%</td>
-                        <td>1</td>
-                        <td>4 mp/l</td>
-                        <td>+5C + 36C</td>
-                      </tr>
-                      <tr>
-                        <td>10l</td>
-                        <td>5%</td>
-                        <td>1</td>
-                        <td>4 mp/l</td>
-                        <td>+5C + 36C</td>
-                      </tr>
-                      <tr>
-                        <td>20l</td>
-                        <td>5%</td>
-                        <td>1</td>
-                        <td>4 mp/l</td>
-                        <td>+5C + 36C</td>
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                </div>
-              
+                <a class="paction download" href="{{product?.datasheet}}" download>
+                  <span>Descarca fisa tehnica</span>
+                </a>
+              </p>
+
+              <div class="col-md-8">
+                <table class="table table-size">
+                  <thead>
+                    <tr>
+                      <th>Cantitate</th>
+                      <th>Diluare</th>
+                      <th>Straruri baza</th>
+                      <th>Consum baza</th>
+                      <th>Temperatura de aplicare</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1l</td>
+                      <td>5%</td>
+                      <td>1</td>
+                      <td>4 mp/l</td>
+                      <td>+5C + 36C</td>
+                    </tr>
+                    <tr>
+                      <td>2l</td>
+                      <td>5%</td>
+                      <td>1</td>
+                      <td>4 mp/l</td>
+                      <td>+5C + 36C</td>
+                    </tr>
+                    <tr>
+                      <td>5l</td>
+                      <td>5%</td>
+                      <td>1</td>
+                      <td>4 mp/l</td>
+                      <td>+5C + 36C</td>
+                    </tr>
+                    <tr>
+                      <td>10l</td>
+                      <td>5%</td>
+                      <td>1</td>
+                      <td>4 mp/l</td>
+                      <td>+5C + 36C</td>
+                    </tr>
+                    <tr>
+                      <td>20l</td>
+                      <td>5%</td>
+                      <td>1</td>
+                      <td>4 mp/l</td>
+                      <td>+5C + 36C</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
             </div><!-- End .product-size-content -->
           </div><!-- End .tab-pane -->
 
-       
+
 
           <div class="tab-pane fade" id="product-reviews-content" role="tabpanel" aria-labelledby="product-tab-reviews">
             <div class="product-reviews-content">
@@ -369,7 +380,8 @@
             <div class="product-desc-content">
               <p>Paletar NCS</p>
               <ul class="ncs-ral">
-                <li *ngFor="let color of NCScolors" [ngStyle]="{backgroundColor: color.color_image}">{{color.color}}</li>
+                <li *ngFor="let color of NCScolors" [ngStyle]="{backgroundColor: color.color_image}">{{color.color}}
+                </li>
               </ul>
 
             </div><!-- End .product-desc-content -->
@@ -400,7 +412,7 @@
                 <li><a href="#">HIDROIZOLATII</a></li>
                 <li><a href="#">CAMERE COPII</a></li>
                 <li><a href="#">APARATE ȘI SCULE DE VOPSIT</a></li>
-               
+
               </ul>
             </div><!-- End .widget-body -->
           </div><!-- End .collapse -->
@@ -560,18 +572,18 @@
   <div class="featured-section pt-sm bg-white" style="display: none;">
     <h2 class="carousel-title">Cumparate impreuna</h2>
     <div class="featured-products owl-carousel owl-theme owl-dots-top">
-        <div class="product" >
-            <figure class="product-image-container">
-                <a class="product-image" [innerHtml]="product?.image_url">
-                    <!-- <img src="{{product.image}}" alt="product"> -->
-                </a>
-                <!-- <span class="product-label label-sale" *ngIf="product.discount > 0">-{{product.discount}}%</span>
+      <div class="product">
+        <figure class="product-image-container">
+          <a class="product-image" [innerHtml]="product?.image_url">
+            <!-- <img src="{{product.image}}" alt="product"> -->
+          </a>
+          <!-- <span class="product-label label-sale" *ngIf="product.discount > 0">-{{product.discount}}%</span>
                 <span class="product-label label-new" *ngIf="product.newProduct === true">Nou</span> -->
-                <a class="btn-quickview">Vezi detalii</a>
-            </figure>
-            <div class="product-details">
-                
-                <!-- <ul class="config-swatch-list" *ngIf="product.colors.length > 0">
+          <a class="btn-quickview">Vezi detalii</a>
+        </figure>
+        <div class="product-details">
+
+          <!-- <ul class="config-swatch-list" *ngIf="product.colors.length > 0">
                     <li *ngFor="let color of product.colors">
                         {{color}}
                         <a [ngStyle]="{'background-color': color}"></a>
@@ -579,17 +591,18 @@
                    
                 </ul>
          -->
-                <h2 class="product-title">
-                    <a href="product.html">{{product?.product_name}}</a>
-                </h2>
-                <div class="price-box">
-                    <!-- <span class="old-price" *ngIf="product.discount > 0">{{ ((product.price/product.discount)*100).toFixed(2) }}</span> -->
-                    <span class="product-price">{{product?.price}} lei</span>
-                </div><!-- End .price-box -->
-            </div><!-- End .product-details -->
-        </div><!-- End .product -->
+          <h2 class="product-title">
+            <a href="product.html">{{product?.product_name}}</a>
+          </h2>
+          <div class="price-box">
+            <!-- <span class="old-price" *ngIf="product.discount > 0">{{ ((product.price/product.discount)*100).toFixed(2) }}</span> -->
+            <span class="product-price">{{product?.price}} lei</span>
+          </div><!-- End .price-box -->
+        </div><!-- End .product-details -->
+      </div><!-- End .product -->
     </div><!-- End .featured-proucts -->
   </div><!-- End .featured-section -->
 
   <div class="mb-lg-4"></div><!-- margin -->
 </div><!-- End .container-fluid -->
+<app-colors id="productColors" ></app-colors>

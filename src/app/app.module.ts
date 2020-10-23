@@ -73,6 +73,7 @@ import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.compo
 import { AuthComponent } from './pages/auth/auth.component';
 import { CategorySliderComponent } from './pages/home/category-slider/category-slider.component';
 import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
+import { ColorsComponent } from './components/layout/colors/colors.component';
 
 
   
@@ -115,7 +116,8 @@ import { CategoryFilterComponent } from './components/category-filter/category-f
     ConfirmOrderComponent,
     AuthComponent,
     CategorySliderComponent,
-    CategoryFilterComponent
+    CategoryFilterComponent,
+    ColorsComponent
   ],
   imports: [
     BrowserModule,

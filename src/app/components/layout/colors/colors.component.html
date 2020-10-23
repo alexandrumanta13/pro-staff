@@ -1,0 +1,43 @@
+<div class="product-single-container product-single-default product-quick-view container modal" tabindex="-1"
+  role="dialog" aria-labelledby="openModalLabel" aria-hidden="true">
+
+  <button title="Close (Esc)" type="button" (click)="close()" class="mfp-close">×</button>
+  <div class="product-single-tabs">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="tab-ncs-palette" data-toggle="tab" href="#ncs-palette-content" role="tab"
+          aria-controls="ncs-palette-content" aria-selected="false">Paletar NCS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="tab-ral-palette" data-toggle="tab" href="#ral-palette-content" role="tab"
+          aria-controls="ral-palette-content" aria-selected="true">Paletar RAL</a>
+      </li>
+
+
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade active show" id="ncs-palette-content" role="tabpanel" aria-labelledby="tab-ncs-palette">
+        <div class="ncs-palette-content product-single-filter">
+          <ul class="config-swatch-list">
+            <li *ngFor="let color of NCScolors" class="color-class" (click)="getColorOffer($event, color.color_image, color.color)" [id]="color.color">
+                <a [ngStyle]="{backgroundColor: color.color_image}"></a>
+            </li>
+          </ul>
+        </div><!-- End .ncs-palette -->
+      </div><!-- End .tab-pane -->
+      <div class="tab-pane fade" id="ral-palette-content" role="tabpanel" aria-labelledby="tab-ral-palette">
+        <div class="ral-palette-content product-single-filter ">
+          <ul class="ncs-ral">
+            <li *ngFor="let color of RALcolors" [ngStyle]="{backgroundColor: color.color_image}">{{color.color}}</li>
+          </ul>
+
+        </div><!-- End .ral-palette -->
+      </div><!-- End .tab-pane -->
+    </div><!-- End .tab-content -->
+  </div><!-- End .product-single-tabs -->
+
+
+  <ng-content></ng-content>
+
+</div><!-- End .product-single-container -->
+<div class="modal-background"></div>

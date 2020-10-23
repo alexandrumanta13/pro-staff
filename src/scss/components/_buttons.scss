@@ -12,6 +12,26 @@
       color: $color-white;
     }
   }
+  
+}
+
+.btn-colors {
+  background: linear-gradient(90deg, rgba(183,255,248,1) 0%, rgba(255,225,231,1) 50%, rgba(203,176,255,1) 100%);
+  color: #000;
+  transition: 500ms all;
+  &:before {
+    content: none;
+  }
+
+  img {
+    width: 18px;
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background: linear-gradient(90deg, rgba(241,190,187,1) 0%, rgba(182,219,241,1) 50%, rgba(174,241,200,1) 100%);
+    color: #000;
+  }
 }
 
 .btn-quickview {
