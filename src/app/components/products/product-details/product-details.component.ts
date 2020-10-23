@@ -97,7 +97,7 @@ export class ProductDetailsComponent implements OnInit {
         if (this.product.PaletteColorID > 0) {
           
           this.getBaseColors(this.product.PaletteColorID)
-        } else {
+        } else if(this.product.PaletteColorID < 0) {
           this.ncsandralpalette = true;
           // this.NCScolors = data;
           // console.log('asdadasd')
@@ -110,6 +110,8 @@ export class ProductDetailsComponent implements OnInit {
           //   .then(data => {
           //     this.RALcolors = data;
           //   });
+        } else {
+          this.ncsandralpalette = false;
         }
 
 
