@@ -91,6 +91,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product) {
+    console.log(product)
     product.selectedQnt = this.selectedQnt;
     product.selectedColorName = this.selectedColorName;
     product.selectedColor = this.selectedColor;
@@ -106,8 +107,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   selectedColorFn(color: any) {
-    this.selectedColor = color.color;
-    this.selectedColorName = color.name;
+    this.selectedColor = color.name;
+    this.selectedColorName = color.color;
     console.log(this.selectedColorName, this.selectedColor);
   }
 

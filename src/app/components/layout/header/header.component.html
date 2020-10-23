@@ -106,7 +106,8 @@
                         <span>{{product.selectedQnt}}</span>
                       </div>
                       <div class="cart-product-color" *ngIf="product.selectedColor">
-                        <img src="{{product.selectedColor}}" alt="">
+                        <img src="{{product.selectedColor}}" alt="" *ngIf="!product.selectedColor.includes('#')">
+                        <span style="width:20px; height: 20px; display: flex" *ngIf="product.selectedColor.includes('#')" [ngStyle]="{backgroundColor: product.selectedColor}"></span>
                       </div>
                     </div>
                   </figure>

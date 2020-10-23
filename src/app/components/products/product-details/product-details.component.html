@@ -143,8 +143,8 @@
                     <span>Alege culoarea</span>
                   </a>
                   <div class="selected-color" *ngIf="selectedColorName && !basecolors"
-                    [ngStyle]="{backgroundColor: selectedColorName}">
-                    <span>{{selectedColor}}</span>
+                    [ngStyle]="{backgroundColor: selectedColor}">
+                    <span>{{selectedColorName}}</span>
                   </div>
                   <p class="info" *ngIf="selectedColorName && !basecolors"><span>*</span> Pretul se modifica in functie de culoare, iar dupa comanda veti fi contactat in
                     vederea confirmarii. Daca vreti sa aflati pretul inainte de a comanda, va rugam sa <a (click)="openModal('productColors', product.alias)">cereti o oferta
