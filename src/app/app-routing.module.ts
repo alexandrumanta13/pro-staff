@@ -19,7 +19,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 
 
-import { AuthGuard } from './app-routing.guard';
+import { AuthGuard } from './helpers/auth.guard';
 import { AuthService } from './services';
 import { Role } from './models/role';
 import { InterorComponent } from './pages/projects/interor/interor.component';
@@ -28,6 +28,7 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 
 
 const routes: Routes = [
@@ -136,6 +137,10 @@ const routes: Routes = [
 
   { path: 'login', component: AuthComponent },
 
+  { path: 'autentificare', component: LoginComponent },
+
+  { path: 'contul-meu', component: MyAccountComponent, canActivate: [AuthGuard] },
+
   {
     path: 'admin',
     // canLoad: [AuthGuard],
@@ -161,7 +166,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    AuthGuard,
+    //AuthGuard,
     AuthService
   ]
 })

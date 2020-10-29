@@ -222,3 +222,20 @@ owl-stage {
 .cart-dropdown .product-image-container {
   height: auto;
 }
+
+.address-box-action .btn.btn-sm {
+  &:hover {
+    color: #fff;
+  }
+}
+
+.btn-primary {
+  border-color: #000;
+  background-color: #000;
+  color: #fff !important;
+  box-shadow: none;
+}
+
+.table-mini-cart .product-col .product-image-container {
+  height: 70px;
+}

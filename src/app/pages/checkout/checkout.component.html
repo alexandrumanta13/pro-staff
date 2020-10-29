@@ -10,7 +10,7 @@
 
   <div class="page-header">
     <div class="container">
-      <h1>Checkout</h1>
+      <h1>Finalizare comanda</h1>
     </div><!-- End .container -->
   </div><!-- End .page-header -->
 
@@ -28,18 +28,38 @@
         <ul class="checkout-steps">
           <li>
             <h2 class="step-title">Adresa de livrare</h2>
+            <div class="shipping-step-addresses" *ngIf="isAuthentificated">
+              <div class="shipping-address-box" *ngFor="let address of addresses; let isFirst = first; let i = index"  [class.active]="isFirst">
+                  <address>
+                      {{user.name}} {{user.last_name}}<br>
+                      {{address.address}} <br>
+                      {{address.town}}<br>
+                  </address>
 
-            <form>
+                  <div class="address-box-action clearfix">
+                      <!-- <a href="#" class="btn btn-sm btn-link">
+                          Edit
+                      </a> -->
+
+                      <a (click)="selectAddress(i, $event)" class="btn btn-sm btn-outline-secondary float-right">
+                          Alege
+                      </a>
+                  </div><!-- End .address-box-action -->
+              </div><!-- End .shipping-address-box -->
+             
+          </div>
+
+            <form *ngIf="!isAuthentificated" #authForm="ngForm" (ngSubmit)="onLogin(authForm)">
               <div class="form-group required-field">
                 <label>Email </label>
                 <div class="form-control-tooltip">
-                  <input type="email" class="form-control" required>
+                  <input type="email" class="form-control" placeholder="Email" ngModel name="email" required email>
                 </div><!-- End .form-control-tooltip -->
               </div><!-- End .form-group -->
 
               <div class="form-group required-field">
                 <label>Parola </label>
-                <input type="password" class="form-control" required>
+                <input type="password" class="form-control" placeholder="Parola" ngModel name="password" required minlength="6">
               </div><!-- End .form-group -->
 
               <p>Daca ai deja cont, te poti autentifica sau poti continua comanda.</p>
@@ -49,7 +69,7 @@
               </div><!-- End .form-footer -->
             </form>
 
-           <form [formGroup]="form" (ngSubmit)="submit()">
+           <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!addresses">
               <div class="form-group required-field">
                 <label>Nume </label>
                 <input formControlName="name" id="name" type="text" class="form-control" placeholder="ex: Mihai">
@@ -92,17 +112,18 @@
 
               <div class="form-group required-field">
                 <label>Judet </label>
-                <input formControlName="city" id="city" type="text" class="form-control" placeholder="Judet">
-                <div *ngIf="f.city.touched && f.city.invalid" class="alert alert-danger">
-                  <div *ngIf="f.city.errors.required">Introduceti udetul</div>
-                  <div *ngIf="f.city.errors.minlength">Numele judetului trebuie sa contina cel putin 3 litere</div>
+                <input formControlName="county" id="county" type="text" class="form-control" placeholder="Judet">
+                <div *ngIf="f.county.touched && f.county.invalid" class="alert alert-danger">
+                  <div *ngIf="f.county.errors.required">Introduceti udetul</div>
+                  <div *ngIf="f.county.errors.minlength">Numele judetului trebuie sa contina cel putin 3 litere</div>
                 </div>
               </div>
 
 
               <div class="form-group required-field">
                 <label>Oras </label>
-                <input formControlName="town" id="town" type="text" class="form-control" placeholder="Oras">
+                <input input [ngModel]="search"
+                (ngModelChange)="searchFunc($event)" formControlName="town" id="town" type="text" class="form-control" placeholder="Oras">
                 <div *ngIf="f.town.touched && f.town.invalid" class="alert alert-danger">
                   <div *ngIf="f.town.errors.required">Introduceti numele orasului</div>
                   <div *ngIf="f.town.errors.minlength">Numele orasului trebuie sa contina cel putin 3 litere</div>
@@ -158,7 +179,7 @@
                       <span class="product-qty">Cant: {{product.num}}</span>
                     </div>
                   </td>
-                  <td class="price-col">{{product.price}} Lei</td>
+                  <td class="price-col">{{product.selectedPrice}} Lei</td>
                 </tr>
               </tbody>
             </table>
@@ -170,8 +191,10 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="checkout-steps-action">
-          <button class="btn btn-primary float-right" type="submit" (click)="submit()"
-            [disabled]="!form.valid">Inainte</button>
+          <button *ngIf="!selectedAddress" class="btn btn-primary float-right" type="submit" (click)="submit()"
+            [disabled]="!form.valid || (selectedAddress | json) == '{}'">Inainte</button>
+          <button *ngIf="selectedAddress" class="btn btn-primary float-right" type="submit" (click)="submit()"
+            [disabled]="(selectedAddress | json) == '{}'">Inainte</button>
           <!-- <a href="checkout-review.html" class="btn btn-primary float-right">NEXT</a> -->
         </div><!-- End .checkout-steps-action -->
       </div><!-- End .col-lg-8 -->

@@ -3,96 +3,155 @@ import { User } from '../models';
 import { Role } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 
-
+export interface AuthResponseData {
+  user: User
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new Subject<User>();
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
-  // private user: User;
-  // private role: Role;
+  user = new BehaviorSubject<User>(null);
 
-  signUpApi;
-
-  constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document, public router: Router) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+  private tokenExpirationTimer: any;
+  constructor(private http: HttpClient, public router: Router) {
+    // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    // this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+  signup(email: string, password: string) {
+    return this.http.post<AuthResponseData>(`https://pro-staff.ro/prostaff-api/v1/login`, { "email": email, "password": password })
+      .pipe(tap(data => {
+        this.handleAuthentication(
+          data.user.id,
+          data.user.name,
+          data.user.last_name,
+          data.user.email,
+          data.user.phone,
+          data.user.date_last_visit,
+          data.user.access,
+          data.user.token
+        );
+      })
+      );
   }
 
 
-
-  isAuthorized() {
-    const user = localStorage.getItem('currentUser')
-    const getRole = JSON.parse(user)
-
-    if (getRole.role == 'Admin') {
-      return true
-    } else {
-      return !!this.user;
-    }
-
-  }
-
-  // hasRole(role: Role) {
-  //   const user = localStorage.getItem('currentUser')
-  //   const getRole = JSON.parse(user)
-
-  //   if (getRole.role == 'Admin') {
-  //     if(this.router.url.includes('/admin/dashboard')) {
-  //       this.document.body.classList.add('admin');
-  //     }
-     
-  //     return this.isAuthorized();
-  //   } else {
-  //     return this.isAuthorized() && this.user.role === role;
-  //   }
-  // }
 
   login(email: string, password: string) {
-    //this.user = { role: role };
+    return this.http
+      .post<AuthResponseData>(
+        'https://pro-staff.ro/prostaff-api/v1/login',
+        {
+          email: email,
+          password: password,
+        }
+      )
+      .pipe(
+        tap(data => {
+          console.log(data)
+          this.handleAuthentication(
+            data.user.id,
+            data.user.name,
+            data.user.last_name,
+            data.user.email,
+            data.user.phone,
+            data.user.date_last_visit,
+            data.user.access,
+            data.user.token,
+          );
 
-   
-  //  localStorage.setItem('currentUser', JSON.stringify(this.user = { role: role }));
-
-    return this.http.post(this.signUpApi, {
-      email: email,
-      password: password,
-      returnScureToken: true
-
-    })
+        })
+      );
   }
 
   logout() {
-    this.user = null;
+    this.user.next(null);
+    this.router.navigate(['/autentificare']);
+    localStorage.removeItem('userData');
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
   }
 
-  // login(username, password, role: Role) {
-  //   return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
-  //     .pipe(map(user => {
-  //       // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //       localStorage.setItem('currentUser', JSON.stringify(user));
-  //       this.user = { role: role };
-  //       this.currentUserSubject.next(user);
+  autoLogout(expirationDuration: number) {
 
-  //       return user;
-  //     }));
-  // }
+    this.tokenExpirationTimer = setTimeout(() => {
+      console.log(expirationDuration)
+      this.logout();
+    }, expirationDuration);
+  }
 
+  autoLogin() {
+    const userData: {
+      id: number,
+      name: string,
+      last_name: string,
+      email: string,
+      phone: string,
+      date_last_visit: Date,
+      access: number,
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
+    }
 
+    const loadedUser = new User(
+      userData.id,
+      userData.name,
+      userData.last_name,
+      userData.email,
+      userData.phone,
+      userData.date_last_visit,
+      userData.access,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
 
-  // logout() {
-  //   // remove user from local storage and set current user to null
-  //   localStorage.removeItem('currentUser');
-  //   this.currentUserSubject.next(null);
-  // }
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+      const expirationDuration =
+        new Date(userData._tokenExpirationDate).getTime() -
+        new Date().getTime();
+      //this.autoLogout(expirationDuration);
+
+    }
+  }
+
+  private handleAuthentication(
+    id: number,
+    name: string,
+    last_name: string,
+    email: string,
+    phone: string,
+    date_last_visit: Date,
+    access: number,
+    token: string,
+
+  ) {
+
+    const expirationDate = new Date(date_last_visit);
+    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+    const user = new User(
+      id,
+      name,
+      last_name,
+      email,
+      phone,
+      date_last_visit,
+      access,
+      token,
+      expirationDate
+    )
+    this.user.next(user);
+    //this.autoLogout(expirationDate.getTime());
+
+    localStorage.setItem('userData', JSON.stringify(user))
+  }
 }

@@ -29,7 +29,7 @@ import { CartComponent } from './components';
 import { AlertComponent } from './components';
 
 
-// import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { JwtInterceptor } from './helpers';
 // import { fakeBackendProvider } from './helpers';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -47,7 +47,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 
 
-import { AuthGuard } from './app-routing.guard';
+//import { AuthGuard } from './app-routing.guard';
 import { AuthService } from './services';
 
 import { UserRoleDirective } from './directives/user-role.directive';
@@ -74,6 +74,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { CategorySliderComponent } from './pages/home/category-slider/category-slider.component';
 import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
 import { ColorsComponent } from './components/layout/colors/colors.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 
 
   
@@ -117,7 +118,8 @@ import { ColorsComponent } from './components/layout/colors/colors.component';
     AuthComponent,
     CategorySliderComponent,
     CategoryFilterComponent,
-    ColorsComponent
+    ColorsComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -139,7 +141,7 @@ import { ColorsComponent } from './components/layout/colors/colors.component';
   ],
   entryComponents: [ProductQuickViewComponent],
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend

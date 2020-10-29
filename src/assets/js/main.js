@@ -539,17 +539,17 @@
       // Quantity input - cart - product pages
       if ($.fn.TouchSpin) {
         // Vertical Quantity
-        $('.vertical-quantity').TouchSpin({
-          verticalbuttons: true,
-          verticalup: '',
-          verticaldown: '',
-          verticalupclass: 'icon-up-dir',
-          verticaldownclass: 'icon-down-dir',
-          buttondown_class: 'btn btn-outline',
-          buttonup_class: 'btn btn-outline',
-          initval: 1,
-          min: 1
-        });
+        // $('.vertical-quantity').TouchSpin({
+        //   verticalbuttons: true,
+        //   verticalup: '',
+        //   verticaldown: '',
+        //   verticalupclass: 'icon-up-dir',
+        //   verticaldownclass: 'icon-down-dir',
+        //   buttondown_class: 'btn btn-outline',
+        //   buttonup_class: 'btn btn-outline',
+        //   initval: 1,
+        //   min: 1
+        // });
 
         // Horizontal Quantity
         $('.horizontal-quantity').TouchSpin({

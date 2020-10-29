@@ -142,12 +142,11 @@
                     <img src="/assets/icons/painting.svg">
                     <span>Alege culoarea</span>
                   </a>
-                  <div class="selected-color" *ngIf="selectedColorName && !basecolors"
+                  <!-- <div class="selected-color" *ngIf="selectedColorName && !basecolors"
                     [ngStyle]="{backgroundColor: selectedColor}">
                     <span>{{selectedColorName}}</span>
-                  </div>
-                  <p class="info" *ngIf="selectedColorName && !basecolors"><span>*</span> Pretul se modifica in functie de culoare, iar dupa comanda veti fi contactat in
-                    vederea confirmarii. Daca vreti sa aflati pretul inainte de a comanda, va rugam sa <a (click)="openModal('productColors', product.alias)">cereti o oferta
+                  </div> -->
+                  <p class="info" *ngIf="!basecolors"><span>*</span> Pretul produsului este cel de baza pentru culoarea alba si variaza in functie de culoare. Daca vreti sa aflati pretul produslui cu pigment, va rugam sa <a (click)="openModal('productColors', product.alias)">cereti o oferta
                       pentru culoarea aleasa</a>. Multumim!</p>
                 </div>
               </div><!-- End .product-filters-container -->

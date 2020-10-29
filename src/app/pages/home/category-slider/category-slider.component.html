@@ -13,7 +13,7 @@
   
               
              <ul class="category-product__list">
-                <li class="category-product__item" *ngFor="let product of _vopseaDecorativa">
+                <li class="category-product__item" *ngFor="let product of slide.products">
                     <a routerLink="/produs/{{product.alias}}">
                         <img src="{{product.image_url}}" alt="">
                     </a>

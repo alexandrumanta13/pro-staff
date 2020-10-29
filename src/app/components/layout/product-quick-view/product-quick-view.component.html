@@ -106,7 +106,8 @@
 
         <div class="product-action">
           <div class="product-single-qty">
-            <input class="horizontal-quantity form-control" type="text">
+            
+            <input class="horizontal-quantity form-control" [(ngModel)]="product.num" type="text">
           </div><!-- End .product-single-qty -->
 
           <a (click)="addToCart(product)" class="paction add-cart" title="Add to Cart">

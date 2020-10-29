@@ -11,3 +11,11 @@
     align-items: center;
 }
 
+.home-slide-content  {
+    top: 40%;
+    h3, h1 {
+        display: inline-block;
+        background-color: #000;
+        padding: 2px 4px;
+    }
+}

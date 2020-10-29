@@ -52,7 +52,7 @@
                       <span class="product-qty">Cant: {{product.num}}</span>
                     </div>
                   </td>
-                  <td class="price-col">{{product.price}} Lei</td>
+                  <td class="price-col">{{product.selectedPrice}} Lei</td>
                 </tr>
               </tbody>
             </table>
@@ -230,7 +230,7 @@
 
               <div class="form-group required-field">
                 <label>Judet </label>
-                <input formControlName="city" name="city" id="city" type="text" class="form-control">
+                <input formControlName="county" name="county" id="county" type="text" class="form-control">
               </div><!-- End .form-group -->
 
               <div class="form-group required-field">
@@ -280,8 +280,8 @@
 
   <input name="country" type="hidden" value="" />
   <input name="company" type="hidden" value="" />
-  <input name="city" type="hidden" value="Bucuresti" />
-  <input name="add" type="hidden" value="{{shippingAddress}}" />
+  <input name="city" type="hidden" value="{{order['customer']['shippingAddress']['town']}}" />
+  <input name="add" type="hidden" value="{{order['customer']['shippingAddress']['address']}}" />
   <input name="email" type="hidden" value="{{order['customer']['email']}}" />
   <input name="phone" type="hidden" value="{{order['customer']['phone']}}" />
   <input name="fax" type="hidden" value="" />
@@ -296,7 +296,7 @@
   <input name="slname" type="hidden" value="{{order['customer']['lastName']}}" />
   <input name="scountry" type="hidden" value="" />
   <input name="scompany" type="hidden" value="" />
-  <input name="scity" type="hidden" value="" />
+  <input name="scity" type="hidden" value="{{order['customer']['shippingAddress']['town']}}" />
   <input name="sadd" type="hidden" value="" />
   <input name="semail" type="hidden" value="{{order['customer']['email']}}" />
   <input name="sphone" type="hidden" value="{{order['customer']['phone']}}" />
@@ -304,7 +304,7 @@
 
   <!-- end shipping details -->
 
-  <input type="hidden" name="amount" value="{{totalPrice$}}" SIZE="12" MAXLENGTH="12" />
+  <input type="hidden" name="amount" value="{{order['total']}}" SIZE="12" MAXLENGTH="12" />
   <input TYPE="hidden" name="curr" value="{{dataAll.curr}}" SIZE="5" MAXLENGTH="3" />
   <input type="hidden" name="invoice_id" value="{{order_guid}}" SIZE="32" MAXLENGTH="32" />
   <input type="hidden" name="order_desc" value="{{dataAll.order_desc}}" SIZE="32" MAXLENGTH="50" />
@@ -313,6 +313,6 @@
   <input TYPE="hidden" name="nonce" size="35" value="{{dataAll.nonce}}" />
   <input TYPE="hidden" name="fp_hash" size="40" value="{{dataAll.fp_hash}}" />
 <script>
-  document.getElementById('epForm').submit();
+  //document.getElementById('epForm').submit();
 </script>
 </form>

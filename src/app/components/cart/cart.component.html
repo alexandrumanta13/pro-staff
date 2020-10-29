@@ -1,54 +1,61 @@
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
-    <div class="container-fluid">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Acasa</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Cos cumparaturi</li>
-        </ol>
-    </div><!-- End .container-fluid -->
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Acasa</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Cos cumparaturi</li>
+    </ol>
+  </div><!-- End .container-fluid -->
 </nav>
 
 <div class="page-header">
-    <div class="container">
-        <h1>Cos cumparaturi</h1>
-    </div><!-- End .container -->
+  <div class="container">
+    <h1>Cos cumparaturi</h1>
+  </div><!-- End .container -->
 </div><!-- End .page-header -->
 
 <div class="container">
-    <div class="row" *ngIf="(items$ | async).length > 0">
-        <div class="col-lg-8 padding-right-lg">
-            <div class="cart-table-container">
-                <table class="table table-cart">
-                    <thead>
-                        <tr>
-                            <th class="product-col">Produs</th>
-                            <th class="price-col">Pret</th>
-                            <th class="qty-col">Cantitate</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <div>
-                            
-                        </div>
-                        <tr class="product-row" *ngFor="let product of items$ | async">
-                            <td class="product-col">
-                                <figure class="product-image-container">
-                                    <a href="product.html" class="product-image">
-                                        <img src="{{product.image_url}}" alt="product">
-                                    </a>
-                                </figure>
-                                <h2 class="product-title">
-                                    <a href="product.html">{{product.product_name}}</a>
-                                </h2>
-                            </td>
-                            <td>{{product.price}} lei</td>
-                            <td>
-                               
-                                <input class="vertical-quantity form-control" type="number" [(ngModel)]="product.num" (ngModelChange)="modelChanged($event)" min="0">
-                            </td>
-                            <td>{{product.num * product.price | number:'1.2-2'}} lei</td>
-                        </tr>
-                        <!-- <tr class="product-action-row" *ngFor="let product of items$ | async; let index = index" [ngClass]="{'myStyle1': 0 === index % 1}">
+  <div class="row" *ngIf="(items$ | async).length > 0">
+    <div class="col-lg-8 padding-right-lg">
+      <div class="cart-table-container">
+        <table class="table table-cart">
+          <thead>
+            <tr>
+              <th class="product-col">Produs</th>
+              <th class="price-col">Pret</th>
+              <th class="qty-col">Cantitate</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <div>
+
+            </div>
+            <tr class="product-row" *ngFor="let product of items$ | async">
+              <td class="product-col">
+                <figure class="product-image-container">
+                  <a href="product.html" class="product-image">
+                    <img src="{{product.image_url}}" alt="product">
+                  </a>
+                </figure>
+                <h2 class="product-title">
+                  <a href="product.html">{{product.product_name}}</a>
+                </h2>
+              </td>
+              <td>{{product.selectedPrice}} lei</td>
+              <td>
+                <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                    <input class="vertical-quantity form-control" min="0" type="number" [(ngModel)]="product.num"
+                    (blur)="addToCart(product, $event, true)">
+                    <span class="input-group-btn-vertical">
+                        <button (click)="addOneToCart(product)" class="btn btn-outline bootstrap-touchspin-up icon-up-dir" type="button"></button>
+                        <button (click)="removeOneFromCart(product)" class="btn btn-outline bootstrap-touchspin-down icon-down-dir" type="button"></button>
+                    </span>
+                </div>
+                
+              </td>
+              <td>{{product.num * product.selectedPrice | number:'1.2-2'}} lei</td>
+            </tr>
+            <!-- <tr class="product-action-row" *ngFor="let product of items$ | async; let index = index" [ngClass]="{'myStyle1': 0 === index % 1}">
                             <td colspan="4" class="clearfix">
                                 <div class="float-left">
                                     <a href="#" class="btn-move">Muta in Favorite</a>
@@ -58,47 +65,47 @@
                                 </div>
                             </td>
                         </tr> -->
-                    </tbody>
+          </tbody>
 
-                    <tfoot>
-                        <tr>
-                            <td colspan="4" class="clearfix">
-                                <div class="float-left">
-                                    <a routerLink="/produse" class="btn btn-outline-secondary">Continua cumparaturile</a>
-                                </div>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="clearfix">
+                <div class="float-left">
+                  <a routerLink="/produse" class="btn btn-outline-secondary">Continua cumparaturile</a>
+                </div>
 
-                                <div class="float-right">
-                                    <a (click)="emptyCart()" class="btn btn-outline-secondary btn-clear-cart">Goleste cos </a>
-                                    
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div><!-- End .cart-table-container -->
+                <div class="float-right">
+                  <a (click)="emptyCart()" class="btn btn-outline-secondary btn-clear-cart">Goleste cos </a>
 
-            <div class="cart-discount">
-                <h4>Aplica cumpon de reduceri</h4>
-                <form action="#">
-                    <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" placeholder="Adauga codul aici"  required>
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-primary" type="submit">Aplica reducere</button>
-                        </div>
-                    </div><!-- End .input-group -->
-                </form>
-            </div><!-- End .cart-discount -->
-        </div><!-- End .col-lg-8 -->
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div><!-- End .cart-table-container -->
 
-        <div class="col-lg-4">
-            <div class="cart-summary">
-                <h3>Sumar</h3>
+      <div class="cart-discount">
+        <h4>Aplica cumpon de reduceri</h4>
+        <form action="#">
+          <div class="input-group">
+            <input type="text" class="form-control form-control-sm" placeholder="Adauga codul aici" required>
+            <div class="input-group-append">
+              <button class="btn btn-sm btn-primary" type="submit">Aplica reducere</button>
+            </div>
+          </div><!-- End .input-group -->
+        </form>
+      </div><!-- End .cart-discount -->
+    </div><!-- End .col-lg-8 -->
 
-                <!-- <h4>
+    <div class="col-lg-4">
+      <div class="cart-summary">
+        <h3>Sumar</h3>
+
+        <!-- <h4>
                     <a data-toggle="collapse" href="#total-estimate-section" class="collapsed" role="button" aria-expanded="false" aria-controls="total-estimate-section">Cost estimativ transport</a>
                 </h4> -->
 
-                <!-- <div class="collapse" id="total-estimate-section">
+        <!-- <div class="collapse" id="total-estimate-section">
                     <form action="#">
                         <div class="form-group form-group-sm">
                             <label>Judet</label>
@@ -143,41 +150,41 @@
                     </form>
                 </div> -->
 
-                <table class="table table-totals">
-                    <tbody>
-                        <tr>
-                            <td>Total</td>
-                            <td>{{totalPrice$}} lei</td>
-                        </tr>
+        <table class="table table-totals">
+          <tbody>
+            <tr>
+              <td>Total</td>
+              <td>{{totalPrice$}} lei</td>
+            </tr>
 
-                        <!-- <tr>
+            <!-- <tr>
                             <td>Transport</td>
                             <td>20 lei</td>
                         </tr> -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td>Total comanda</td>
-                            <td>{{totalPrice$}} lei</td>
-                        </tr>
-                    </tfoot>
-                </table>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total comanda</td>
+              <td>{{totalPrice$}} lei</td>
+            </tr>
+          </tfoot>
+        </table>
 
-                <div class="checkout-methods">
-                    
-                    <a [routerLink]="['/finalizeaza-comanda']" class="btn btn-block btn-sm btn-primary">Finalizeaza comanda</a>
-                </div><!-- End .checkout-methods -->
-            </div><!-- End .cart-summary -->
-        </div><!-- End .col-lg-4 -->
-    </div><!-- End .row -->
-    <div class="row">
-        <div class="col-xs-12" *ngIf="(items$ | async).length === 0">
-            <p>Nu exista produse in cos!</p>
-            <div class="float-left">
-                <a routerLink="/produse" class="btn btn-outline-secondary">Continua cumparaturile</a>
-            </div>
-        </div>
+        <div class="checkout-methods">
+
+          <a [routerLink]="['/finalizeaza-comanda']" class="btn btn-block btn-sm btn-primary">Finalizeaza comanda</a>
+        </div><!-- End .checkout-methods -->
+      </div><!-- End .cart-summary -->
+    </div><!-- End .col-lg-4 -->
+  </div><!-- End .row -->
+  <div class="row">
+    <div class="col-xs-12" *ngIf="(items$ | async).length === 0">
+      <p>Nu exista produse in cos!</p>
+      <div class="float-left">
+        <a routerLink="/produse" class="btn btn-outline-secondary">Continua cumparaturile</a>
+      </div>
     </div>
+  </div>
 </div><!-- End .container -->
 
 <div class="mb-6"></div><!-- margin -->

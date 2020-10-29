@@ -27,7 +27,7 @@ export class AppComponent {
     private authService: AuthService,
    
   ) {
-    this.authService.currentUser.subscribe(x => this.currentUser = x);
+    // this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
 
@@ -77,6 +77,8 @@ export class AppComponent {
         
         $.getScript('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f50ef52d1631692')
       });
+
+      this.authService.autoLogin();
   }
 
   ngAfterViewInit() {
@@ -101,9 +103,9 @@ export class AppComponent {
   }
 
 
-  get isAuthorized() {
-    return this.authService.isAuthorized();
-  }
+  // get isAuthorized() {
+  //   return this.authService.isAuthorized();
+  // }
 
   // get isAdmin() {
   //   return this.authService.hasRole(Role.Admin);
@@ -121,7 +123,7 @@ export class AppComponent {
   }
 
   logout() {
-    this.authService.logout();
+   // this.authService.logout();
     this.router.navigate(['login']);
   }
 }

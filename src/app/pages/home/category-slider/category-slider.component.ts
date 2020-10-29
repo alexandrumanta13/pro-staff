@@ -11,9 +11,7 @@ declare var $: any;
 export class CategorySliderComponent implements OnInit {
 
   private _httpClient: HttpClient;
-  public _vopseaDecorativa: any = [];
-  public _accesoriiProfesionale: any = [];
-  public _vopseaLavabila: any = [];
+
 
 
   sliders: any;
@@ -45,7 +43,8 @@ export class CategorySliderComponent implements OnInit {
     },
     nav: false
   }
-  
+  categoryFeaturedProduct: any = [];
+
 
 
   constructor(httpClient: HttpClient) {
@@ -56,42 +55,47 @@ export class CategorySliderComponent implements OnInit {
     // this.getProducts();
     this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/categories/featuredCategory')
       .subscribe((response: any) => {
-
         this.sliders = response.data;
         console.log(this.sliders)
+        this.getProducts();
       });
   }
 
   ngAfterViewInit() {
-
     const checkExist = setInterval(() => {
       let bg = document.querySelectorAll<HTMLElement>('.featured-bg')
-
-
-      console.log(bg)
       if (bg.length) {
-
         bg.forEach(node => node.style.backgroundImage = "url('" + node.dataset.src + "')");
-        console.log("Exists!");
+
         clearInterval(checkExist);
       }
     }, 100);
-
   }
 
   getProducts() {
 
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/category/vopsea-decorativa`, { limit: 5 }).subscribe((data: any) => {
-      this._vopseaDecorativa = data.products;
-    });
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/subcategory/accesorii-profesionale`, { limit: 5 }).subscribe((data: any) => {
-      this._accesoriiProfesionale = data.products;
-    });
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/featured/category/vopsea-lavabila`, { limit: 5 }).subscribe((data: any) => {
-      this._vopseaLavabila = data.products;
-    });
-  }
+    for (let i = 0; i < this.sliders.length; i++) {
 
-  
+      if (this.sliders[i].category_name == "Vopsea lavabila") {
+
+        this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/categoryFeatured/category/vopsea-lavabila`, { limit: 5 }).subscribe((data: any) => {
+          console.log(data)
+          this.sliders[i].products = data.products;
+        });
+      } else if (this.sliders[i].category_name == "Vopsea decorativa") {
+        this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/categoryFeatured/category/vopsea-decorativa`, { limit: 5 }).subscribe((data: any) => {
+          console.log(data)
+          this.sliders[i].products = data.products;
+        });
+      } else {
+        this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/categoryFeatured/subcategory/accesorii-profesionale`, { limit: 5 }).subscribe((data: any) => {
+          console.log(data)
+          this.sliders[i].products = data.products;
+        });
+
+      }
+    }
+
+  }
 
 }

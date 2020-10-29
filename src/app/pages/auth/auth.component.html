@@ -21,14 +21,14 @@
                     <h2 class="title">Login</h2>
                     <p>If you have an account with us, please log in.</p>
                 </div><!-- End .heading -->
-                <div class="error" *ngIf="error">{{error}}</div>
+                <div class="error alert alert-danger" *ngIf="error">{{error}}</div>
                 <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
                     <input type="email" class="form-control" placeholder="Email" ngModel name="email" required email>
                     <input type="password" class="form-control" placeholder="Parola" ngModel name="password" required minlength="6">
 
                     <div class="form-footer">
                         <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Autentificare</button>
-                        <a href="forgot-password.html" class="forget-pass"> Forgot your password?</a>
+                        <a href="/am-uitat-parola" class="forget-pass"> Forgot your password?</a>
                     </div><!-- End .form-footer -->
                 </form>
             </div><!-- End .col-md-6 -->

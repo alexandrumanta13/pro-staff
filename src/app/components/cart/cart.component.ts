@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'app/services/cart.service';
 
@@ -9,6 +9,7 @@ import { CartService } from 'app/services/cart.service';
 })
 
 export class CartComponent implements OnInit {
+  @Input() productNum: number;
 
   constructor(
     public router: Router,
@@ -30,6 +31,23 @@ export class CartComponent implements OnInit {
 
   emptyCart() {
     this.cartService.emptyCart();
+  }
+
+  addToCart(product, event, isBlur: boolean = false) {
+    if(isBlur) {
+      this.cartService.addToCart(product, event.target.value);
+    } else {
+      this.cartService.addToCart(product, event);
+    }
+  }
+
+  addOneToCart(product) {
+    console.log(product)
+    this.cartService.addToCart(product, product.num + 1);
+  }
+
+  removeOneFromCart(product) {
+    this.cartService.addToCart(product, product.num - 1);
   }
 
 

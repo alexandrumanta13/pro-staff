@@ -1,66 +1,50 @@
-// // import { Injectable } from '@angular/core';
-// // import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 
-// // import { AuthenticationService } from '../services';
+import { AuthService } from '../services';
 
-// // @Injectable({ providedIn: 'root' })
-// // export class AuthGuard implements CanActivate {
-// //     constructor(
-// //         private router: Router,
-// //         private AuthenticationService: AuthenticationService
-// //     ) {}
+@Injectable({ providedIn: 'root' })
 
-// //     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-// //         const currentUser = this.AuthenticationService.currentUserValue;
-// //         if (currentUser) {
-// //             // authorised so return true
-// //             return true;
-// //         }
+export class AuthGuard implements CanActivate {
+    constructor(
+        private router: Router,
+        private authService: AuthService
+    ) { }
 
-// //         // not logged in so redirect to login page with the return url
-// //         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-// //         return false;
-// //     }
-// // }
+    canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot): | boolean  | UrlTree  | Promise<boolean | UrlTree> | Observable<boolean | UrlTree> {
+        return this.authService.user.pipe(
+            take(1),
+            map(user => {
+                const isAuth = !!user;
+                if (isAuth) {
+                  return true;
+                }
+                return this.router.createUrlTree(['/contul-meu']);
+        }), 
+        // tap(isAuth => {
+        //     if(!isAuth) {
+        //         console.log('asdadsa1')
+        //         return this.router.createUrlTree['/autentificare']
+        //     } else {
+        //         console.log('asdsadas2')
+        //         return this.router.createUrlTree['/contul-meu']
+        //     }
+        // })
+    )
+    }
 
-// import { CanActivate, Router, ActivatedRouteSnapshot, CanLoad, Route, RouterStateSnapshot } from '@angular/router';
-// import { Observable } from 'rxjs';
-// import { Injectable } from '@angular/core';
-// import { AuthenticationService } from '../services';
-// import { Role } from '../models/role';
+    // canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
+    //     if (!this.authService.isAuthorized()) {
+    //         return false;
+    //     }
 
-// @Injectable()
-// export class AuthGuard implements CanActivate, CanLoad {
-//     constructor(
-//         private router: Router,
-//         private authService: AuthenticationService
-//     ) { }
+    //     const roles = route.data && route.data.roles as Role[];
+    //     if (roles && !roles.some(r => this.authService.hasRole(r))) {
+    //         return false;
+    //     }
 
-//     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-//         if (!this.authService.isAuthorized()) {
-//             this.router.navigate(['login']);
-//             return false;
-//         }
-
-//         const roles = route.data.roles as Role[];
-//         if (roles && !roles.some(r => this.authService.hasRole(r))) {
-//             this.router.navigate(['error', 'not-found']);
-//             return false;
-//         }
-
-//         return true;
-//     }
-
-//     canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
-//         if (!this.authService.isAuthorized()) {
-//             return false;
-//         }
-
-//         const roles = route.data && route.data.roles as Role[];
-//         if (roles && !roles.some(r => this.authService.hasRole(r))) {
-//             return false;
-//         }
-
-//         return true;
-//     }
-// }
+    //     return true;
+    // }
+}

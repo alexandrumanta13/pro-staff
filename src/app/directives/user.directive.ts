@@ -10,12 +10,12 @@ export class UserDirective implements OnInit {
     ) { }
 
     ngOnInit() {
-        const hasAccess = this.authService.isAuthorized();
+       // const hasAccess = this.authService.isAuthorized();
 
-        if (hasAccess) {
-            this.viewContainer.createEmbeddedView(this.templateRef);
-        } else {
-            this.viewContainer.clear();
-        }
+        // if (hasAccess) {
+        //     this.viewContainer.createEmbeddedView(this.templateRef);
+        // } else {
+        //     this.viewContainer.clear();
+        // }
     }
 }

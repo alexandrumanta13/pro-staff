@@ -38,7 +38,7 @@ export class ConfirmOrderComponent implements OnInit {
   public bank;
   public bankAccount;
   public address;
-  public city;
+  public county;
   public town;
   order_guid: any;
 
@@ -72,7 +72,7 @@ export class ConfirmOrderComponent implements OnInit {
     bank: new FormControl(''),
     bankAccount: new FormControl(''),
     address: new FormControl('', Validators.required),
-    city: new FormControl('', Validators.required),
+    county: new FormControl('', Validators.required),
     town: new FormControl('', Validators.required)
   });
 
@@ -95,19 +95,24 @@ export class ConfirmOrderComponent implements OnInit {
     this.endpoint = "https://pro-staff.ro/prostaff-api/v1/order/add";
     this.euplatesctSend = "https://pro-staff.ro/payment/ep_send.php"
     this.euplatesctAPI = "https://secure.euplatesc.ro/tdsprocess/tranzactd.php";
-
+    
     this.shippingItems$.pipe(
       take(1),
       map((items) => {
-        this.order = items;
-
-        this.shippingAddress = items['customer']['shippingAddress'];
-        this.payment = items['payment'];
+        
+        if(JSON.stringify(items) === '{}') {
+          this.payment = items['payment'];
+          this.order = items;
+          this.shippingAddress = items['customer']['shippingAddress'];
+        } else {
+          this.router.navigate(['/finalizeaza-comanda']);
+        }
 
       }),
     ).subscribe();
 
     this.dateTime = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
+    console.log(this.totalPrice$);
   }
 
   getProducts() {
@@ -131,7 +136,7 @@ export class ConfirmOrderComponent implements OnInit {
         bank: this.form.value.bank,
         bankAccount: this.form.value.bankAccount,
         address: this.form.value.address,
-        city: this.form.value.city,
+        county: this.form.value.county,
         town: this.form.value.town,
       }
       this.order['customer']['invoiceAddress'] = this.shippingAddressPF;
@@ -172,9 +177,9 @@ export class ConfirmOrderComponent implements OnInit {
 
     this.order['status'] = this.status;
     this.order['payment']['transactionId'] = Math.floor((Math.random() * 10000) + 1);
-
+    console.log(this.order['payment'])
     this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/order/add`, this.order).subscribe((data: any) => {
-      
+
       if (data.status == "success") {
         let dataSend = {
           amount: this.totalPrice$,
@@ -187,6 +192,7 @@ export class ConfirmOrderComponent implements OnInit {
           .pipe(
             take(1),
             map((response) => {
+              console.log(response)
               this.dataAll = response;
               return response;
             }),
@@ -194,7 +200,15 @@ export class ConfirmOrderComponent implements OnInit {
           .subscribe((data: any) => {
             if (data) {
               setTimeout(() => {
-                this.submit();
+                
+                if (this.order['payment']['method'] == 'card') {
+                  
+                  this.submit();
+                } else {
+                  
+                  this.router.navigate(['/']);
+                }
+
               }, 1000);
             }
           })
