@@ -58,6 +58,7 @@ export class AppComponent {
         this._seoService.updateOgUrl(event['ogUrl']);
         //Updating Description tag dynamically with title
         this._seoService.updateDescription(event['title'] + event['description'])
+        window.scrollTo(0, 0)
       });
 
     this.router.events.subscribe((evt) => {
@@ -72,7 +73,7 @@ export class AppComponent {
       map(() => this.activatedRoute),
     )
       .subscribe((event) => {
-
+       
         $.getScript('../assets/js/main.js');
         
         $.getScript('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f50ef52d1631692')
