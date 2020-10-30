@@ -8,6 +8,7 @@ import { take, map } from 'rxjs/operators';
 import { RadioButtonItem } from 'app/components/radio-button/radio-button.component';
 import { DatePipe } from '@angular/common';
 import { AuthResponseData, AuthService } from 'app/services';
+import { User } from 'app/models';
 
 @Component({
   selector: 'app-checkout',
@@ -41,7 +42,7 @@ export class CheckoutComponent implements OnInit {
   isAuthentificated = false;
   private userSub: Subscription;
   addresses: any;
-  user: import("/Users/ek23ax/www/pro-staf/src/app/models/user").User;
+  user: User;
   selectedAddress: any;
 
 
