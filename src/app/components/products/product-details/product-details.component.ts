@@ -171,7 +171,6 @@ export class ProductDetailsComponent implements OnInit {
             console.log()
             this.productService.getColorsBase(this.basecolors[i].id)
               .then(colors => {
-
                 this.basecolors[i].colors = [...colors]
               })
           }
@@ -185,17 +184,22 @@ export class ProductDetailsComponent implements OnInit {
       if(activeColor) {
         activeColor.classList.remove('active');
       }
-    
-      
+
+      if(mode == 'color') {
+        this.clickedColor = true;
+        const productPrice = <HTMLElement>document.querySelector('.product-price');
+        const productPriceColor = <HTMLElement>document.querySelector('.product-price.color');
+
+        let currentPrice = parseFloat(productPrice.innerText) + parseFloat("20.00");
+
+        productPriceColor.innerText = `${currentPrice} Lei` ;
+      } else {
+        this.clickedColor = false;
+      }
+
       event.target.parentElement.parentElement.classList.add('active');
-      
       this.selectedColor = event.target.dataset.image;
       this.selectedColorName = event.target.dataset.color;
-    
-      
-    
-
- 
   }
   getPrice(qntValue, um, event) {
     this.product.information.map(qnt => {

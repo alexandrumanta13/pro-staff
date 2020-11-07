@@ -99,8 +99,8 @@ export class ConfirmOrderComponent implements OnInit {
     this.shippingItems$.pipe(
       take(1),
       map((items) => {
-        
-        if(JSON.stringify(items) === '{}') {
+        console.log(items)
+        if(items) {
           this.payment = items['payment'];
           this.order = items;
           this.shippingAddress = items['customer']['shippingAddress'];
@@ -112,7 +112,7 @@ export class ConfirmOrderComponent implements OnInit {
     ).subscribe();
 
     this.dateTime = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
-    console.log(this.totalPrice$);
+    console.log(this.order['payment']['delivery']);
   }
 
   getProducts() {
@@ -144,7 +144,8 @@ export class ConfirmOrderComponent implements OnInit {
     }
 
 
-    this.order['total'] = this.totalPrice$;
+    this.order['total'] = this.totalPrice$ + this.order['payment']['delivery'];
+    console.log(this.order['total'])
     this.order['discount'] = '0';
     this.order['date'] = this.dateTime;
 
@@ -152,7 +153,7 @@ export class ConfirmOrderComponent implements OnInit {
       tracking: 0,
       carrier: 'DPD Courier',
       weight: 0,
-      fee: 20.00,
+      fee: this.order['payment']['delivery'],
       date: this.dateTime
     }
 
@@ -182,9 +183,10 @@ export class ConfirmOrderComponent implements OnInit {
 
       if (data.status == "success") {
         let dataSend = {
-          amount: this.totalPrice$,
+          amount: this.order['total'].toFixed(2),
           invoice_id: data.order_guid
         };
+        console.log(dataSend)
         this.cartService.emptyCart();
 
         this.order_guid = data.order_guid;
@@ -219,6 +221,6 @@ export class ConfirmOrderComponent implements OnInit {
 
   submit() {
     const epForm = <HTMLFormElement>document.getElementById('epForm');
-    epForm.submit();
+    //epForm.submit();
   }
 }

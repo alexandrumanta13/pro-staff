@@ -32,8 +32,8 @@ export class CheckoutComponent implements OnInit {
   private dpdusername: string = '200900001';
   private dpdpassword: string = '9886142696';
   private countrId = '642'; //Romania
-  
-  private dpdApi = 'https://api.dpd.ro/v1/location/site/?username='+ this.dpdusername +'&password='+ this.dpdpassword +'&country_id='+ this.countrId +'&name='
+
+  private dpdApi = 'https://api.dpd.ro/v1/location/site/?username=' + this.dpdusername + '&password=' + this.dpdpassword + '&country_id=' + this.countrId + '&name='
 
 
   search = '';
@@ -44,12 +44,19 @@ export class CheckoutComponent implements OnInit {
   addresses: any;
   user: User;
   selectedAddress: any;
+  searchTowns: any;
+  hasSelectedTown: boolean = false;
+  lat: any;
+  lng: any;
+  weight: number = 0;
+  delivery: any;
+
 
 
 
   constructor(
-    http: HttpClient, 
-    private router: Router, 
+    http: HttpClient,
+    private router: Router,
     private cartService: CartService,
     private authService: AuthService,
     private datePipe: DatePipe) {
@@ -67,7 +74,7 @@ export class CheckoutComponent implements OnInit {
   public payment: string;
   public dateTime: any = new Date();
 
-  form = new FormGroup({
+  form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email, Validators.pattern(new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"))]),
     phone: new FormControl('', [Validators.required, Validators.pattern(new RegExp("[0-9 ]{10}"))]),
@@ -75,6 +82,7 @@ export class CheckoutComponent implements OnInit {
     address: new FormControl('', Validators.required),
     county: new FormControl('', Validators.required),
     town: new FormControl('', Validators.required)
+
   });
 
   get f() {
@@ -106,12 +114,12 @@ export class CheckoutComponent implements OnInit {
 
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthentificated = !!user;
-      if(this.isAuthentificated) {
+      if (this.isAuthentificated) {
         this.user = user;
         this.getAddresses(user);
         console.log(this.user)
       }
-      
+
     });
   }
 
@@ -119,27 +127,35 @@ export class CheckoutComponent implements OnInit {
     this.cartItems$.pipe(
       take(1),
       map((products) => {
-        console.log(products)
-        if(products.length > 0) {
+        if (products.length > 0) {
           this.cartProducts = products;
+          this.weight;
+          this.cartProducts.map(product => {
+            if(product.selectedQnt.includes('L') || product.selectedQnt.includes('Kg') || product.selectedQnt.includes('buc')) {
+              let productQnt = parseInt(product.selectedQnt.replace(/\D/g, ""));
+              this.weight += productQnt;
+            }
+            
+          })
+          console.log(this.weight)
           this.cartTotal$;
         } else {
           this.router.navigate(['/']);
         }
-        
+
       }),
     ).subscribe();
   }
 
   onLogin(form: NgForm) {
-    if(!form.valid) {
+    if (!form.valid) {
       return;
     }
-   
+
     const email = form.value.email;
     const password = form.value.password;
 
-   
+
 
     let authObs: Observable<AuthResponseData>;
 
@@ -155,8 +171,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   getAddresses(user) {
-    
-    this.http.get<any>(`https://pro-staff.ro/prostaff-api/v1/addresses/${user.id}`).subscribe(addresses=>{
+
+    this.http.get<any>(`https://pro-staff.ro/prostaff-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
       this.selectedAddress = this.addresses[0];
       console.log(this.selectedAddress)
@@ -189,7 +205,7 @@ export class CheckoutComponent implements OnInit {
       postVars['products'] = orders;
     })
 
-    if(this.isAuthentificated) {
+    if (this.isAuthentificated) {
       postVars['customer'] = {
         email: this.user.email,
         firstName: this.user.name,
@@ -206,44 +222,37 @@ export class CheckoutComponent implements OnInit {
     }
 
 
-    if(this.selectedAddress != '{}') {
-      console.log('tresadada')
+    if (this.selectedAddress) {
+      console.log(this.selectedAddress)
       postVars['customer']['shippingAddress'] = {
         address: this.selectedAddress.address,
         county: this.selectedAddress.county,
         town: this.selectedAddress.town,
-        lat: 44.4411895,
-        lng: 26.1746886
-  
+        lat: this.selectedAddress.y,
+        lng: this.selectedAddress.x
+
       }
     } else {
+
       postVars['customer']['shippingAddress'] = {
         address: this.form.value.address,
         county: this.form.value.county,
-        town: this.form.value.town,
-        lat: 44.4411895,
-        lng: 26.1746886
-  
+        town: this.search,
+        lat: this.lat,
+        lng: this.lng
+
       }
     }
-    
+
     postVars['payment'] = {
       // 0 if ramburs else we must get te transaction id from eu platesc
       transactionId: '0',
-      amount: this.totalPrice$,
+      amount: this.totalPrice$.toFixed(2),
       method: this.selectedItem,
-      date: this.dateTime
+      date: this.dateTime,
+      delivery: this.delivery
     }
 
-
-    // this.http.post(this.endpoint, postVars)
-    //   .subscribe(
-    //     response => {
-    //       //this.closeModal.nativeElement.click()
-    //       // document.getElementById("closeModal").click()
-    //       // this.router.navigate(['/thank-you'])
-    //     }
-    //   )
     this.cartService.sendOrder(postVars)
     this.router.navigate(['/confirmare-si-plata'])
 
@@ -253,39 +262,71 @@ export class CheckoutComponent implements OnInit {
     this.show = true
   }
   hide() {
-    this.show = false
+    this.show = false;
   }
   clear() {
-    this.search = ''
+    this.search = '';
+    this.form.get('county').setValue('');
+    this.hasSelectedTown = false;
+    this.form.controls['town'].enable();
+  }
+  selectTown(selectedTown, county, i) {
+    this.search = selectedTown;
+    this.hasSelectedTown = true;
+    this.form.get('county').setValue(county);
+    this.form.get('town').setValue(selectedTown);
+    this.form.controls['town'].disable();
+    this.lat = this.searchTowns[i].y;
+    this.lng = this.searchTowns[i].x;
+
+    this.http.post<any>(`https://pro-staff.ro/shipping/priceCalculation.php`, { weight: this.weight, site: this.searchTowns[i].id })
+
+      .subscribe(data => {
+        let deliveryPrice = JSON.parse(data)
+        this.delivery = deliveryPrice.calculations[0].price.total;
+      })
+
+    this.hide();
   }
 
   fetchResults(town, count) {
     if (!town) this.hide();
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*')
-    let options = { headers: headers };
-   
-    this.http.get<any>(`https://api.dpd.ro/v1/location/site/?username=${this.dpdusername}&password=${this.dpdpassword}&country_id=${this.countrId}&name=${town}`, options).subscribe(data =>{
-      console.log(data)
-    })
+    // let headers = new HttpHeaders();
+    // headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Accept', 'application/json');
+    // headers.append('Access-Control-Allow-Origin', '* Chrome Extension');
+    // headers.append('Content-Transfer-Encoding:', 'binary');
+    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    // headers.append('Content-Type', 'charset=UTF-8');
+    // headers.append('Cache-Control', 'public');
+    // let options = { headers: headers };
+
+    // this.http.get<any>(`https://api.dpd.ro/v1/location/site/?username=${this.dpdusername}&password=${this.dpdpassword}&country_id=${this.countrId}&name=${town}`, options).subscribe(data =>{
+    //   console.log(data)
+    // })
+    this.http.post<any>(`https://pro-staff.ro/shipping/getTown.php`, { town: town })
+
+      .subscribe(data => {
+        let townsJson = JSON.parse(data)
+        this.searchTowns = townsJson.sites;
+        console.log(this.searchTowns)
+      })
   }
   searchFunc(val) {
-    this.search = val;
-      if(val != ''){
-      clearTimeout(this.timeout)
-      this.timeout = setTimeout(() => {
-        this.show = true
+    if (this.hasSelectedTown === false) {
+      this.search = val;
+      if (val != '') {
+        clearTimeout(this.timeout)
+        this.timeout = setTimeout(() => {
+          this.show = true
 
-        this.fetchResults(this.search, 10)
+          this.fetchResults(this.search, 10)
 
-      }, 500);
-  } else {
-    this.clear();
-    this.hide();
+        }, 500);
+      } else {
+        this.clear();
+        this.hide();
+      }
+    }
   }
-
-  }
-
 }

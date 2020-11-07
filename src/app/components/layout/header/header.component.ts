@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
     })
 
     this.cartService.totalPrice.subscribe(info => {
-      this.totalPrice$ = info;
+      this.totalPrice$ = info.toFixed(2);
     });
 
     this.userSub = this.authService.user.subscribe(user => {

@@ -105,29 +105,39 @@
                 <input formControlName="address" id="address" type="text" class="form-control"
                   placeholder="ex: Strada, numar, bloc, scara, etaj, apartament">
                 <div *ngIf="f.address.touched && f.address.invalid" class="alert alert-danger">
-                  <div *ngIf="f.address.errors.required">Introduceti numele</div>
-                  <div *ngIf="f.address.errors.minlength">Numele trebuie sa contina cel putin 3 litere</div>
+                  <div *ngIf="f.address.errors.required">Introduceti adresa</div>
+                  <div *ngIf="f.address.errors.minlength">Adresa este prea scurta</div>
                 </div>
               </div>
 
-              <div class="form-group required-field">
-                <label>Judet </label>
-                <input formControlName="county" id="county" type="text" class="form-control" placeholder="Judet">
-                <div *ngIf="f.county.touched && f.county.invalid" class="alert alert-danger">
-                  <div *ngIf="f.county.errors.required">Introduceti udetul</div>
-                  <div *ngIf="f.county.errors.minlength">Numele judetului trebuie sa contina cel putin 3 litere</div>
-                </div>
-              </div>
-
+              
 
               <div class="form-group required-field">
                 <label>Oras </label>
-                <input input [ngModel]="search"
-                (ngModelChange)="searchFunc($event)" formControlName="town" id="town" type="text" class="form-control" placeholder="Oras">
-                <div *ngIf="f.town.touched && f.town.invalid" class="alert alert-danger">
+                <input [ngModel]="search"
+                (ngModelChange)="searchFunc($event)" [disabled]="!form.valid || (selectedAddress | json) == '{}'" formControlName="town" id="town" type="text" class="form-control" placeholder="Oras">
+                <div *ngIf="f.town.touched && f.town.invalid" class="alert alert-danger" >
                   <div *ngIf="f.town.errors.required">Introduceti numele orasului</div>
-                  <div *ngIf="f.town.errors.minlength">Numele orasului trebuie sa contina cel putin 3 litere</div>
                 </div>
+                <div *ngIf="hasSelectedTown" (click)="clear()" class="clear"><i class="icon-cancel"></i></div>
+                <div *ngIf="searchTowns && show"  class="town-search-result">
+                  <div *ngFor="let townResult of searchTowns; let i = index" class="search-result-item">
+                    <div class="search-result-name" (click)="selectTown(townResult.name, townResult.region, i)">
+                     {{townResult.name}}, ({{townResult.region}})
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+              <div class="form-group required-field">
+                <label>Judet </label>
+                <input formControlName="county" id="county" type="text" class="form-control" disabled placeholder="Judet">
+                <div *ngIf="f.county.touched && f.county.invalid" class="alert alert-danger">
+                  <div *ngIf="f.county.errors.required">Introduceti judetul</div>
+                  <div *ngIf="f.county.errors.minlength">Numele judetului trebuie sa contina cel putin 3 litere</div>
+                </div>
+                
               </div>
 
 
@@ -173,7 +183,7 @@
                     </figure>
                     <div>
                       <h2 class="product-title">
-                        <a href="product.html">{{product.product_name}}</a>
+                        <a routerLink="/produs/{{product.alias}}">{{product.product_name}}</a>
                       </h2>
 
                       <span class="product-qty">Cant: {{product.num}}</span>
