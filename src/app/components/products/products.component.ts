@@ -74,6 +74,7 @@ export class ProductsComponent implements OnInit {
         this.onCategoryChanged.next(response.data);
         this.items$ = this.onCategoryChanged.asObservable();
         this.items$.subscribe(data => {
+          console.log(data)
           this.category = data;
           
         })

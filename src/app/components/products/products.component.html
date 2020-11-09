@@ -8,7 +8,7 @@
     </div><!-- End .banner-content -->
   </div><!-- End .banner -->
 
-  <div *ngIf="category.length > 0" class="banner banner-cat mb-0" style="background-image: url('{{category[0].banner}}');" id="products">
+  <div *ngIf="category.length > 0" class="banner banner-cat mb-0" [style.background-image]="'url(' + category[0].banner + ')'"  id="products">
     <div class="banner-content container-fluid">
       <h1 class="banner-title">
         {{category[0].category_name}}

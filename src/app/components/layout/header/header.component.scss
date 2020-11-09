@@ -41,7 +41,7 @@
       padding: 0 1.6rem 0 2.4rem;
       text-decoration: none;
 
-      &::after {
+      &:after {
         display: inline-block;
         position: absolute;
         top: 1rem;
@@ -55,7 +55,22 @@
         font-family: 'porto';
         font-size: 1.4rem;
         line-height: 1;
-        content: '\e81c';
+        content: none;
+      }
+    }
+
+
+  }
+
+  &.logged-in {
+    a {
+      &.dropdown-toggle {
+
+
+        &::after {
+
+          content: '\e81c';
+        }
       }
     }
   }
@@ -92,6 +107,15 @@
       right: 23px;
       left: auto;
     }
+
+
+    .dropdown-cart-action {
+      font-size: 14px;
+
+      a {
+        font-size: 14px;
+      }
+    }
   }
 
   &:hover {
@@ -113,6 +137,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   .cart-product-color {
     height: 20px;
 

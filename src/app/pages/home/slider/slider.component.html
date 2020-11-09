@@ -1,7 +1,7 @@
 <div class="home-slider-container">
     <owl-carousel-o class="home-sliders" [options]="defaultOptions">
  
-        <ng-container  *ngFor="let slider of sliders">
+        <ng-container  *ngFor="let slider of sliders; index as i">
           <ng-template class="home-slider-item" carouselSlide [id]="slider.id" >
              
          
@@ -15,11 +15,11 @@
                 <li class="layer" data-depth="0.10"><img class="animation-wave" style="position: absolute; top: 50%; left: 80%;" src="assets/images/slider/blurflake3.png" alt="" /></li>
                 <li class="layer" data-depth="0.15"><img style="position: absolute; top: 70%; left: 55%;" src="assets/images/slider/blurflake4.png" alt="" /></li>
            </ul>
-           <div class="container home-slide-content">
+           <div class="container home-slide-content" [class.left]="i == 1">
                 <h3>{{slider.h3}}</h3> <br>
                 <h1>{{slider.h1}}</h1> <br>
 
-                <a routerLink="/produs/{{slider.link}}" class="btn btn-orange" role="button">Vezi mai mult</a>
+                <a routerLink="{{slider.link}}" class="btn btn-orange" role="button">Vezi mai mult</a>
             </div>
             
           </ng-template>
@@ -89,7 +89,7 @@
  
     <div class="home-slider-thumbs">
         
-        <a (click)="changeSlide(i)" *ngFor="let slider of sliders; index as i; let firstItem = first;" [ngClass]="{ active: firstItem }">
+        <a (click)="changeSlide($event, i)" *ngFor="let slider of sliders; index as i; let firstItem = first;" [ngClass]="{ active: firstItem }">
             <img src="{{slider.thumb}}" alt="Slide Thumb">
         </a>
         <!-- <a href="#">

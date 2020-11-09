@@ -132,16 +132,20 @@
             </div><!-- End .dropdownmenu-wrapper -->
           </div><!-- End .dropdown-menu -->
         </div><!-- End .dropdown -->
-        <div class="dropdown user-account">
-          <a href="" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+        <div class="dropdown user-account" [class.logged-in]="isAuthentificated">
+          <a routerLink="/autentificare" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" data-display="static">
             <img src="/assets/icons/user-account.svg" alt="">
           </a>
 
-          <div class="dropdown-menu dropdown">
+          <div class="dropdown-menu dropdown" *ngIf="isAuthentificated">
             <div class="dropdownmenu-wrapper">
+              <div class="dropdown-cart-action" >
+                <a href="" class="btn btn-orange">Contul meu</a>
 
-            </div>
+                <a href="" class="btn btn-orange">Delogare</a>
+              </div>
+            </div>  
           </div>
         </div>
       </div><!-- End .header-right -->

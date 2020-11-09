@@ -239,3 +239,12 @@ owl-stage {
 .table-mini-cart .product-col .product-image-container {
   height: 70px;
 }
+
+.header.header-transparent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #000;
+  z-index: 1040;
+}

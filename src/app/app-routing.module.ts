@@ -137,7 +137,7 @@ const routes: Routes = [
 
   { path: 'login', component: AuthComponent },
 
-  { path: 'autentificare', component: LoginComponent },
+  { path: 'autentificare', component: AuthComponent },
 
   { path: 'contul-meu', component: MyAccountComponent, canActivate: [AuthGuard] },
 

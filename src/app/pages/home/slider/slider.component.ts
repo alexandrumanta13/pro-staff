@@ -95,9 +95,20 @@ export class SliderComponent implements OnInit {
 
   }
 
-  changeSlide(i) {
+  changeSlide(event, i) {
     const dots: HTMLElement = document.querySelectorAll('.owl-dots .owl-dot-text')[i] as HTMLElement;
+    const activeThumbs = document.querySelectorAll('.active');
+
+    for (let i = 0; i < activeThumbs.length; i++) {
+      activeThumbs[i].classList.remove('active');
+    }
+    console.log(event.target)
+    event.target.closest('a').classList.add('active')
     dots.click();
+  }
+
+  activeThumb(slide) {
+    
   }
 
   ngOnDestroy() {
