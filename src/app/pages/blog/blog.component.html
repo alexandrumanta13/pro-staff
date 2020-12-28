@@ -17,41 +17,49 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-9">
-        <article class="entry" *ngFor="let post of posts">
+        <article class="entry" *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: p }">
           <div class="entry-media">
-            <a [routerLink]="['/blog', post.title]" [innerHTML]="post.image">
-
+            <a [routerLink]="['/blog', post.slug]" >
+             <img src="{{post.image}}" alt="">
             </a>
           </div><!-- End .entry-media -->
 
           <div class="entry-body">
             <div class="entry-date">
-              <span class="day">29</span>
-              <span class="month">Jun</span>
+              <span class="day">{{post.date_added | date: 'dd'}}</span>
+              <span class="month">{{post.date_added | date: 'MM'}}</span>
             </div><!-- End .entry-date -->
 
             <h2 class="entry-title">
-              <a [routerLink]="['/blog', post.title]">{{post.title}}</a>
+              <a [routerLink]="['/blog', post.slug]">{{post.title}}</a>
             </h2>
 
             <div class="entry-content">
               <p>{{post.shortDescription}}</p>
 
-              <a [routerLink]="['/blog',post.title]" class="read-more">Citeste mai mult <i
+              <a [routerLink]="['/blog',post.slug]" class="read-more">Citeste mai mult <i
                   class="icon-angle-double-right"></i></a>
             </div><!-- End .entry-content -->
 
             <div class="entry-meta">
-              <span><i class="icon-calendar"></i>{{post.published}}</span>
+             
               <span><i class="icon-user"></i><a href="#">Prostaff</a></span>
               <span><i class="icon-folder-open"></i>
-                <a *ngFor="let category of post.categories">{{category}}</a>
+                <a routerLink="/blog/categorie/{{category.id}}" *ngFor="let category of post.categories">[{{category.blog_category_name}}] </a>
               </span>
             </div><!-- End .entry-meta -->
           </div><!-- End .entry-body -->
         </article><!-- End .entry -->
 
-
+        <pagination-controls (pageChange)="p = $event" class="float-right"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel=""
+                      nextLabel=""
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page"></pagination-controls>
 
         <nav class="toolbox toolbox-pagination">
           <ul class="pagination">

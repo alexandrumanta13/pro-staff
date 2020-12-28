@@ -75,7 +75,8 @@ import { CategorySliderComponent } from './pages/home/category-slider/category-s
 import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
 import { ColorsComponent } from './components/layout/colors/colors.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
 
   
 
@@ -132,7 +133,8 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
     AdminModule,
     BrowserAnimationsModule,
     CarouselModule,
-    
+    ToastrModule.forRoot(),
+    NgxPaginationModule,
   ],
   exports: [
     UserDirective,

@@ -35,7 +35,14 @@
                     <img src="/assets/icons/painting.svg">
                     <span>Alege culoarea</span>
                   </a> -->
-                  <a class="paction add-cart btn-no-icon" (click)="askPrice(colorBg, colorName)">
+                  <div class="form-group required-field" *ngIf="!this.isAuthentificated">
+                    <label>Email </label>
+                    <div class="form-control-tooltip">
+                      <input class="form-control" [(ngModel)]="emailNCScolors" name="emailNCScolors" placeholder="Email"
+                        type="email">
+                    </div>
+                  </div>
+                  <a class="paction add-cart btn-no-icon" (click)="askNCScolorsPrice(colorBg, colorName)">
                     <i class="icon-mail-alt"></i>
                     <span>Cere oferta</span>
                   </a>
@@ -65,7 +72,14 @@
                     <img src="/assets/icons/painting.svg">
                     <span>Alege culoarea</span>
                   </a> -->
-                  <a class="paction add-cart btn-no-icon" (click)="askPrice(colorBg, colorName)">
+                  <div class="form-group required-field" *ngIf="!this.isAuthentificated">
+                    <label>Email </label>
+                    <div class="form-control-tooltip">
+                      <input class="form-control" [(ngModel)]="emailRALcolors" name="emailRALcolors" placeholder="Email"
+                        type="email">
+                    </div>
+                  </div>
+                  <a class="paction add-cart btn-no-icon" (click)="askRALcolorsPrice(colorBg, colorName)">
                     <i class="icon-mail-alt"></i>
                     <span>Cere oferta</span>
                   </a>

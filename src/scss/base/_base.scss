@@ -240,11 +240,11 @@ owl-stage {
   height: 70px;
 }
 
-.header.header-transparent {
+.header.header-transparent, .header {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  background-color: #000;
+  background-color: #FFC107;
   z-index: 1040;
 }

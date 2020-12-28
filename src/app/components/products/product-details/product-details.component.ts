@@ -124,6 +124,7 @@ export class ProductDetailsComponent implements OnInit {
 
           this.getBaseColors(this.product.PaletteColorID)
         } else if (this.product.PaletteColorID < 0) {
+          console.log(this.product.PaletteColorID)
           this.ncsandralpalette = true;
           // this.NCScolors = data;
           // console.log('asdadasd')

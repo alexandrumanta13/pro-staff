@@ -105,7 +105,7 @@
                     </li>
                   </ul>
                 </div><!-- End .product-single-filter -->
-                <div class="product-single-filter" *ngIf="product?.PaletteColorID > 0 || product?.PaletteColorID < 0">
+                <div class="product-single-filter" *ngIf="product?.PaletteColorID != 0">
                   <label>Culori:</label>
                   
                   <ul class="config-swatch-list" *ngIf="basecolors">
@@ -128,7 +128,7 @@
                     </li>
                   </ul>
 
-                  <ul class="config-swatch-list" *ngIf="product?.PaletteColorID == -1">
+                  <ul class="config-swatch-list" *ngIf="product?.PaletteColorID > 0">
                     <li class="color-class" *ngFor="let basecolor of basecolors; first as isFirst">
                       <a (click)="getColor(basecolor.color, $event)">
                         <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color"
@@ -137,6 +137,7 @@
 
                     </li>
                   </ul>
+                  
                   <a class="paction add-cart btn-colors" (click)="openModal('productColors', product.alias)"
                     *ngIf="ncsandralpalette">
                     <img src="/assets/icons/painting.svg">

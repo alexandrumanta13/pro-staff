@@ -71,7 +71,7 @@ export class AuthService {
   logout() {
     this.user.next(null);
     this.router.navigate(['/autentificare']);
-    localStorage.removeItem('userData');
+    localStorage.removeItem('ProstaffUserData');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
@@ -87,7 +87,7 @@ export class AuthService {
   }
 
   autoLogin() {
-    const userData: {
+    const ProstaffUserData: {
       id: number,
       name: string,
       last_name: string,
@@ -97,27 +97,27 @@ export class AuthService {
       access: number,
       _token: string;
       _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
-    if (!userData) {
+    } = JSON.parse(localStorage.getItem('ProstaffUserData'));
+    if (!ProstaffUserData) {
       return;
     }
 
     const loadedUser = new User(
-      userData.id,
-      userData.name,
-      userData.last_name,
-      userData.email,
-      userData.phone,
-      userData.date_last_visit,
-      userData.access,
-      userData._token,
-      new Date(userData._tokenExpirationDate)
+      ProstaffUserData.id,
+      ProstaffUserData.name,
+      ProstaffUserData.last_name,
+      ProstaffUserData.email,
+      ProstaffUserData.phone,
+      ProstaffUserData.date_last_visit,
+      ProstaffUserData.access,
+      ProstaffUserData._token,
+      new Date(ProstaffUserData._tokenExpirationDate)
     );
 
     if (loadedUser.token) {
       this.user.next(loadedUser);
       const expirationDuration =
-        new Date(userData._tokenExpirationDate).getTime() -
+        new Date(ProstaffUserData._tokenExpirationDate).getTime() -
         new Date().getTime();
       //this.autoLogout(expirationDuration);
 
@@ -152,6 +152,6 @@ export class AuthService {
     this.user.next(user);
     //this.autoLogout(expirationDate.getTime());
 
-    localStorage.setItem('userData', JSON.stringify(user))
+    localStorage.setItem('ProstaffUserData', JSON.stringify(user))
   }
 }

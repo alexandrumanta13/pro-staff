@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ModalService } from 'app/services';
+import { AuthService, ModalService } from 'app/services';
 import { ProductService } from 'app/services/products.service';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-colors',
@@ -14,6 +16,12 @@ export class ColorsComponent implements OnInit {
   @Output() selectedColor: EventEmitter<any> = new EventEmitter<any>();
 
 
+  private SEND_COLOR = "https://pro-staff.ro/data/sendColor.php";
+ 
+  isAuthentificated = false;
+  private userSub: Subscription;
+
+
   private element: any;
   private _httpClient: HttpClient;
   clickedColor: boolean = false;
@@ -21,12 +29,16 @@ export class ColorsComponent implements OnInit {
   RALcolors: any;
   colorBg: any;
   colorName: any;
+  emailNCScolors: any;
+  private userEmail: string;
 
   constructor(
     httpClient: HttpClient,
     private modalService: ModalService,
     private el: ElementRef,
     private productService: ProductService,
+    private toaster: ToastrService,
+    private authService: AuthService
   ) {
     this._httpClient = httpClient;
     this.element = el.nativeElement;
@@ -52,7 +64,11 @@ export class ColorsComponent implements OnInit {
     // add self (this modal instance) to the modal service so it's accessible from controllers
     this.modalService.add(this);
 
-
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthentificated = !!user;
+      this.userEmail = user.email;
+      console.log(user);
+    })
   }
 
   public chooseColor(name: any, color: any): void {
@@ -77,6 +93,7 @@ export class ColorsComponent implements OnInit {
   ngOnDestroy(): void {
     this.modalService.remove(this.id);
     this.element.remove();
+    this.userSub.unsubscribe();
   }
 
   // open modal
@@ -100,5 +117,39 @@ export class ColorsComponent implements OnInit {
     this.element.style.display = 'none';
     document.body.classList.remove('modal-open');
   }
+
+  askNCScolorsPrice(colorBg, colorName) {
+    console.log(colorBg, colorName)
+    if(!this.emailNCScolors && !this.isAuthentificated) {
+      
+      this.toaster.warning('Te rugam sa adaugi adresa de email!', '', {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+
+      return;
+    } 
+    
+    if(this.isAuthentificated) {
+      this.emailNCScolors = this.userEmail;
+      console.log(this.userEmail)
+    } 
+
+    
+    
+    this._httpClient.post(this.SEND_COLOR, {colorBg: colorBg, colorName: colorName, email: this.emailNCScolors}).subscribe((data: any) => {
+      console.log(data)
+      if(data.status == 'success') {
+        this.toaster.success('Iti multumim!', `${colorBg}`, {
+          timeOut: 3000,
+          positionClass: 'toast-bottom-right'
+        });
+
+        this.close();
+      }
+    })
+  }
+
+  
 
 }
