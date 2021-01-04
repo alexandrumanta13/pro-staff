@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
 
   private _httpClient: HttpClient;
   private _route;
-  
+
   public currentPage: number = 1;
   private previousPage: number = this.currentPage - 1;
   private nextPage: number = this.currentPage + 1;
@@ -23,7 +23,7 @@ export class CategoryComponent implements OnInit {
   public dynamicProductViewer;
   public active;
 
-  constructor(httpClient: HttpClient, private route:ActivatedRoute, private modalService: ModalService) {
+  constructor(httpClient: HttpClient, private route: ActivatedRoute, private modalService: ModalService) {
     this._httpClient = httpClient;
   }
 
@@ -34,31 +34,28 @@ export class CategoryComponent implements OnInit {
     this.active = 1;
     this.getProducts();
     this.dynamicProductViewer = 'vopsea-lavabila';
-    console.log(this._route )
+    console.log(this._route)
   }
 
   getProducts() {
-    
-      this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${this._route}/page/${this.currentPage}`).subscribe((data: any) => {
-          this._products = data.products;
-          this.setTotalPages(data.no_of_pages);
-          this.setPagesArray(this.totalPages);
-      });
+
+    this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${this._route}/page/${this.currentPage}`).subscribe((data: any) => {
+      this._products = data.products;
+      this.setTotalPages(data.no_of_pages);
+      this.setPagesArray(this.totalPages);
+    });
   }
 
-  getTotalPages()
-  {
+  getTotalPages() {
     return this.totalPages;
   }
 
-  setTotalPages(page: number)
-  {
+  setTotalPages(page: number) {
     this.totalPages = page;
   }
 
-  setPagesArray(maxPage: number)
-  {
-    this.pages = Array(maxPage).fill(0).map((x,i) => i+1);
+  setPagesArray(maxPage: number) {
+    this.pages = Array(maxPage).fill(0).map((x, i) => i + 1);
   }
 
   setCurrentPage(page: number) {

@@ -77,7 +77,12 @@ import { ColorsComponent } from './components/layout/colors/colors.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BlogSingleComponent } from './pages/blog-single/blog-single.component';
 
+import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+import { SharerMethod } from 'ngx-sharebuttons';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
   
 
 @NgModule({
@@ -120,7 +125,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CategorySliderComponent,
     CategoryFilterComponent,
     ColorsComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    BlogSingleComponent
   ],
   imports: [
     BrowserModule,
@@ -135,6 +141,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CarouselModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,
+    JwSocialButtonsModule,
+    ShareButtonsModule.withConfig({
+      debug: true,
+      sharerMethod: SharerMethod.Window
+    }),
+    ShareIconsModule
   ],
   exports: [
     UserDirective,

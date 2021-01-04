@@ -29,6 +29,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { BlogSingleComponent } from './pages/blog-single/blog-single.component';
 
 
 const routes: Routes = [
@@ -61,6 +62,25 @@ const routes: Routes = [
 
   {
     path: 'blog', component: BlogComponent,
+    data: {
+      title: 'Pro staff',
+      description: 'Description Meta Tag Content',
+      ogUrl: 'your og url'
+    }
+  },
+
+  {
+    path: 'blog/:postSlug', component: BlogSingleComponent,
+    data: {
+      title: 'Pro staff',
+      description: 'Description Meta Tag Content',
+      ogUrl: 'your og url'
+    }
+  },
+
+
+  {
+    path: 'blog/categorie/:categorySlug', component: BlogComponent,
     data: {
       title: 'Pro staff',
       description: 'Description Meta Tag Content',

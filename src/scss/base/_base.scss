@@ -205,7 +205,10 @@ owl-stage {
   border: 1px solid #FFC107;
 }
 
-.btn-quickview:hover, .btn-quickview:focus, .product:hover .btn-quickview:hover, .product:hover .btn-quickview:focus {
+.btn-quickview:hover,
+.btn-quickview:focus,
+.product:hover .btn-quickview:hover,
+.product:hover .btn-quickview:focus {
   color: #333;
   background-color: #fff;
   opacity: 1;
@@ -213,7 +216,7 @@ owl-stage {
 }
 
 
-.product-single-carousel { 
+.product-single-carousel {
   .owl-nav {
     display: none;
   }
@@ -240,11 +243,116 @@ owl-stage {
   height: 70px;
 }
 
-.header.header-transparent, .header {
+.header.header-transparent,
+.header {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   background-color: #FFC107;
   z-index: 1040;
+}
+
+.pagination {
+  display: flex;
+
+  .pagination-next a,
+  .pagination-previous a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0 10px;
+
+    &:hover {
+      background-color: #000;
+      opacity: .8;
+    }
+
+    &:after {
+      display: flex;
+      margin-left: 2px;
+      align-items: center;
+      justify-content: center;
+      margin-top: -2px;
+
+    }
+  }
+
+  .pagination-previous, .pagination-next {
+    &.disabled {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      padding: 0;
+      background-color: #ddd;
+      color: #fff;
+      font-size: 1.8rem;
+      margin: 0 10px;
+
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+
+  li {
+    a {
+      margin-left: -1px;
+      padding: 0 1rem;
+      border: 0;
+      background-color: transparent;
+      color: #939393;
+      line-height: 1.25;
+
+      &:hover {
+        background: transparent;
+        text-decoration: none;
+      }
+    }
+
+    button {
+      &:hover {
+        background: transparent;
+      }
+    }
+
+    &.current {
+      background: transparent;
+      color: #000;
+    }
+  }
+
+
+}
+
+.pagination .ngx-pagination .show-for-sr {
+  position: absolute !important;
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination .ngx-pagination a,
+.ngx-pagination button {
+  cursor: pointer;
+  display: flex;
+}
+
+
+.ngx-pagination {
+  display: flex;
+  align-items: center;
 }
