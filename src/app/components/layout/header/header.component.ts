@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   scrolling: boolean;
   isAuthentificated = false;
   private userSub: Subscription;
+  toggler: any;
+  body: any;
 
   constructor(
     public router: Router,
@@ -38,9 +40,21 @@ export class HeaderComponent implements OnInit {
 
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthentificated = !!user;
-      console.log(!user);
-      console.log(!!user);
+      // console.log(!user);
+      // console.log(!!user);
     })
+
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      
+    
+      const body = (<HTMLElement>document.querySelector('body'));
+      body.classList.remove('mmenu-active');
+      // const toggler = (<HTMLElement>document.querySelector('body'));
+      // toggler.classList.remove('active');
+    });
 
   }
 
@@ -95,6 +109,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnDestroy() {
     this.userSub.unsubscribe();
+  }
+
+  toggleMenu(event) {
+    this.toggler = event.target
+    this.toggler.classList.toggle('active')
+    this.body = (<HTMLElement>document.querySelector('body'));
+    this.body.classList.toggle('mmenu-active');
   }
 
 }

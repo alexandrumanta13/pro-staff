@@ -13,10 +13,7 @@
       <div class="header-center">
         <nav class="main-nav">
           <ul class="menu sf-arrows">
-            <li>
-              <a routerLink="/produse">Produse</a>
-             
-            </li>
+            <li><a routerLink="/produse">Produse</a></li>
             <li><a routerLink="/despre-noi">Despre noi</a></li>
             <li><a href="">Proiecte</a>
               <ul>
@@ -46,7 +43,7 @@
       </div><!-- End .header-center -->
 
       <div class="header-right">
-        <button class="mobile-menu-toggler" type="button">
+        <button class="mobile-menu-toggler" (click)="toggleMenu($event)" type="button">
           <i class="icon-menu"></i>
         </button>
         <!-- <div class="header-search header-search-popup header-search-category d-none d-sm-block">
