@@ -88,6 +88,15 @@ const routes: Routes = [
     }
   },
 
+  {
+    path: 'blog/arhiva/:data', component: BlogComponent,
+    data: {
+      title: 'Pro staff',
+      description: 'Description Meta Tag Content',
+      ogUrl: 'your og url'
+    }
+  },
+
 
   {
     path: 'proiecte/exterior', component: ExteriorComponent,

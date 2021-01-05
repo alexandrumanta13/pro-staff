@@ -84,7 +84,8 @@ import { SharerMethod } from 'ngx-sharebuttons';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
   
-
+import { LOCALE_ID } from '@angular/core';
+import { BlogSidebarComponent } from './components/layout/blog-sidebar/blog-sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,7 +127,8 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
     CategoryFilterComponent,
     ColorsComponent,
     MyAccountComponent,
-    BlogSingleComponent
+    BlogSingleComponent,
+    BlogSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -160,6 +162,7 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
     // provider used to create fake backend
     //fakeBackendProvider,
+    //{ provide: LOCALE_ID, useValue: "ro-RO" },
 
     AuthService
   ],

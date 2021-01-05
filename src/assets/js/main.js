@@ -242,21 +242,21 @@
       });
 
       // Related posts
-      $('.related-posts-carousel').owlCarousel($.extend(true, {}, sliderDefaultOptions, {
-        loop: false,
-        margin: 30,
-        responsive: {
-          0: {
-            items: 1
-          },
-          480: {
-            items: 2
-          },
-          1200: {
-            items: 3
-          }
-        }
-      }));
+      // $('.related-posts-carousel').owlCarousel($.extend(true, {}, sliderDefaultOptions, {
+      //   loop: false,
+      //   margin: 30,
+      //   responsive: {
+      //     0: {
+      //       items: 1
+      //     },
+      //     480: {
+      //       items: 2
+      //     },
+      //     1200: {
+      //       items: 3
+      //     }
+      //   }
+      // }));
 
       //Category boxed slider
       $('.boxed-slider').owlCarousel($.extend(true, {}, sliderDefaultOptions, {

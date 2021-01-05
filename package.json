@@ -51,7 +51,7 @@
     "hammerjs": "*",
     "jw-angular-social-buttons": "^1.0.0",
     "lodash": "*",
-    "moment": "2.27.0",
+    "moment": "^2.27.0",
     "ng-image-slider": "^2.4.1",
     "ng2-charts": "2.3.3",
     "ngrx-store-freeze": "*",
