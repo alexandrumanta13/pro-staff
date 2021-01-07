@@ -4390,7 +4390,7 @@ a:focus {
 .home-slide {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background-color: #ccc;
 }
 
@@ -4419,7 +4419,7 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 .home-slide::after, .home-slide::before {
   position: absolute;

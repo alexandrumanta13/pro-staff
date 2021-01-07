@@ -19,7 +19,8 @@
           "options": {
             "outputPath": "dist/pro-staff",
             "allowedCommonJsDependencies": [
-              "jw-angular-social-buttons"
+              "jw-angular-social-buttons",
+              "moment/locale/ro"
             ],
             "index": "src/index.html",
             "main": "src/main.ts",

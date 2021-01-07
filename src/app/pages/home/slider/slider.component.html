@@ -5,7 +5,7 @@
           <ng-template class="home-slider-item" carouselSlide [id]="slider.id" >
              
          
-            <div class="slide-bg home"  [attr.data-src]="slider.background"  style="opacity: 1"></div>
+            <div class="slide-bg home"  [attr.data-src]="innerWidth > 991 ? slider.background : slider.mobile"  style="opacity: 1"></div>
             <ul class="slide-bg scene" style="width: 100%; height: 100%;">
                 <li class="layer" data-depth="0.05">
                     <img class="slider-product" src="{{slider.product}}" alt="">

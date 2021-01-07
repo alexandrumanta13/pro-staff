@@ -45,6 +45,7 @@ export class SliderComponent implements OnInit {
     },
     nav: false
   }
+  innerWidth: number;
 
 
   constructor(
@@ -80,6 +81,8 @@ export class SliderComponent implements OnInit {
         console.log(response)
         this.sliders = response;
       });
+
+      this.innerWidth = window.innerWidth;
   }
 
   ngAfterViewInit() {
