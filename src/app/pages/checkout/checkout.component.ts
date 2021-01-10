@@ -201,7 +201,7 @@ export class CheckoutComponent implements OnInit {
 
   selectAddress(addressIndex, event) {
     this.selectedAddress = this.addresses[addressIndex];
-    const active = document.querySelectorAll('.active');
+    const active = document.querySelectorAll('.shipping-address-box.active');
     for (let i = 0; i < active.length; i++) {
       active[i].classList.remove('active');
     }
@@ -210,17 +210,22 @@ export class CheckoutComponent implements OnInit {
 
     this.http.post<any>(`https://pro-staff.ro/shipping/getTown.php`, { town: this.selectedAddress.town })
 
-      .subscribe(data => {
-        let townsJson = JSON.parse(data)
-        this.searchTowns = townsJson.sites;
-        console.log(JSON.parse(data))
-      })
-    // this.http.post<any>(`https://pro-staff.ro/shipping/priceCalculation.php`, { weight: this.weight, site: this.searchTowns[i].id })
+        .subscribe(data => {
+          let townsJson = JSON.parse(data)
+          this.searchTowns = townsJson.sites[0];
+          console.log(this.searchTowns)
 
-    // .subscribe(data => {
-    //   let deliveryPrice = JSON.parse(data)
-    //   this.delivery = deliveryPrice.calculations[0].price.total;
-    // })
+          this.http.post<any>(`https://pro-staff.ro/shipping/priceCalculation.php`, { weight: this.weight, site: this.searchTowns.id })
+
+            .subscribe(data => {
+              let deliveryPrice = JSON.parse(data)
+              this.delivery = deliveryPrice.calculations[0].price.total;
+
+              console.log(this.delivery)
+            })
+        })
+
+    
 
   }
 

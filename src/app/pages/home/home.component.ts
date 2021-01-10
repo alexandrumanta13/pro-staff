@@ -28,13 +28,11 @@ export class HomeComponent implements OnInit {
     this.active = 1;
     this.dynamicProductViewer = 'vopsea-lavabila';
     this.getProducts();
-    console.log(this.category)
   }
 
   
   getProducts(category?:string, category_type = "parent")
   {
-    console.log(category)
     if(!category)
     {
         this._httpClient.get("https://pro-staff.ro/prostaff-api/v1/products/category/vopsea-lavabila").subscribe((data:any) => {

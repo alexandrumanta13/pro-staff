@@ -155,7 +155,7 @@ export class ConfirmOrderComponent implements OnInit {
     this.shippingDetails = {
       tracking: 0,
       carrier: 'DPD Courier',
-      weight: 0,
+      weight: this.order['payment']['weight'],
       fee: this.order['payment']['delivery'],
       date: this.dateTime
     }
