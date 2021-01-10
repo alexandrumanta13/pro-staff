@@ -83,15 +83,7 @@
               </div><!-- End .product-desc -->
 
               <div class="product-filters-container">
-                <!-- <div class="product-single-filter" *ngIf="product.colors.length > 0">
-                  <label>Culori:</label>
-                  <ul class="config-swatch-list">
-                    <li *ngFor="let color of product.colors">
-                      {{color}}
-                      <a [ngStyle]="{'background-color': color}"></a>
-                    </li>
-                  </ul>
-                </div> -->
+                
 
                 <div class="product-single-filter">
                   <label>Cantitati:</label>
@@ -128,7 +120,7 @@
                     </li>
                   </ul>
 
-                  <ul class="config-swatch-list" *ngIf="product?.PaletteColorID > 0">
+                  <!-- <ul class="config-swatch-list" *ngIf="product?.PaletteColorID > 0">
                     <li class="color-class" *ngFor="let basecolor of basecolors; first as isFirst">
                       <a (click)="getColor(basecolor.color, $event)">
                         <img *ngIf="basecolor.base_image" [attr.data-color]="basecolor.color"
@@ -136,7 +128,7 @@
                       </a>
 
                     </li>
-                  </ul>
+                  </ul> -->
                   
                   <a class="paction add-cart btn-colors" (click)="openModal('productColors', product.alias)"
                     *ngIf="ncsandralpalette">

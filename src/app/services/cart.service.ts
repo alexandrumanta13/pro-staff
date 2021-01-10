@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { take, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root',
@@ -16,7 +17,7 @@ export class CartService {
     public shippingSubject = new BehaviorSubject({});
 
 
-    constructor(public router: Router) {
+    constructor(private toaster: ToastrService, public router: Router) {
         let existingCartItems = JSON.parse(localStorage.getItem('productsProstaff'));
         if (!existingCartItems) {
             existingCartItems = [];
@@ -40,7 +41,10 @@ export class CartService {
                 // const existing = products.find(({ product_name }) => product.product_name === product_name);
                 // const selectedQnt = products.find(({selectedQnt}) => product.selectedQnt === selectedQnt);
                 // const selectedColorName = products.find(({selectedColorName}) => product.selectedColorName === selectedColorName);
-
+                if(value <= 0) {
+                    this.removeFromCart(product);
+                    return;
+                }
                 const filter = {
                     'id': product.id,
                     'selectedQnt': product.selectedQnt,
@@ -71,6 +75,10 @@ export class CartService {
                 } else {
                     products.push({ ...product, num: value });
                 }
+                this.toaster.success('', 'Produsul a fost adaugat in cos', {
+                    timeOut: 3000,
+                    positionClass: 'toast-bottom-right'
+                  });
                 localStorage.setItem('productsProstaff', JSON.stringify(products));
                 this.calcTotal();
             }),
@@ -85,6 +93,10 @@ export class CartService {
             map((products) => {
                 products = products.filter(({ cart_uuid }) => cart_uuid !== product.cart_uuid);
                 localStorage.setItem('productsProstaff', JSON.stringify(products));
+                this.toaster.success('', 'Produsul a fost sos din cosul de cumparaturi', {
+                    timeOut: 3000,
+                    positionClass: 'toast-bottom-right'
+                  });
                 this.calcTotal();
             }),
         ).subscribe();
@@ -97,6 +109,10 @@ export class CartService {
         this.numTotal.next(existingCartItems.reduce((acc, pr) => acc += pr.num, 0));
         this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.selectedPrice * pr.num, 0));
         // this.router.navigate(['/produse']);
+        this.toaster.success('', 'Am golit cosul de cumparaturi', {
+            timeOut: 3000,
+            positionClass: 'toast-bottom-right'
+          });
     }
 
     calcTotal() {

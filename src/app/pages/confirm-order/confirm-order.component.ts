@@ -6,6 +6,7 @@ import { take, map } from 'rxjs/operators';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -41,9 +42,15 @@ export class ConfirmOrderComponent implements OnInit {
   public county;
   public town;
   order_guid: any;
+  successMessage: any;
 
 
-  constructor(private httpClient: HttpClient, private router: Router, private cartService: CartService, private datePipe: DatePipe) {
+  constructor(
+    private toaster: ToastrService,
+    private httpClient: HttpClient,
+    private router: Router,
+    private cartService: CartService,
+    private datePipe: DatePipe) {
     this._httpClient = httpClient;
 
   }
@@ -60,6 +67,8 @@ export class ConfirmOrderComponent implements OnInit {
   public shippingDetails: object = {};
   status;
   public dateTime: any = new Date();
+
+  private SEND_ORDER = "https://pro-staff.ro/data/sendOrder.php";
 
   form = new FormGroup({
     companyName: new FormControl(''),
@@ -95,12 +104,12 @@ export class ConfirmOrderComponent implements OnInit {
     this.endpoint = "https://pro-staff.ro/prostaff-api/v1/order/add";
     this.euplatesctSend = "https://pro-staff.ro/payment/ep_send.php"
     this.euplatesctAPI = "https://secure.euplatesc.ro/tdsprocess/tranzactd.php";
-    
+
     this.shippingItems$.pipe(
       take(1),
       map((items) => {
         console.log(items)
-        if(items) {
+        if (items) {
           this.payment = items['payment'];
           this.order = items;
           this.shippingAddress = items['customer']['shippingAddress'];
@@ -112,8 +121,8 @@ export class ConfirmOrderComponent implements OnInit {
     ).subscribe();
 
     this.dateTime = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
-    
-    if(Object.keys(this.order).length === 0 && this.order.constructor === Object) {
+
+    if (Object.keys(this.order).length === 0 && this.order.constructor === Object) {
       this.router.navigate(['/finalizeaza-comanda'])
 
     }
@@ -181,23 +190,30 @@ export class ConfirmOrderComponent implements OnInit {
 
     this.order['status'] = this.status;
     this.order['payment']['transactionId'] = Math.floor((Math.random() * 10000) + 1);
-  
+    
     this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/order/add`, this.order).subscribe((data: any) => {
 
       if (data.status == "success") {
+
+        this.successMessage = data.message;
         let dataSend = {
           amount: this.order['total'].toFixed(2),
           invoice_id: data.order_guid
         };
-      
-        this.cartService.emptyCart();
 
+        
         this.order_guid = data.order_guid;
+        
+        this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
+          console.log(data);
+        })
+        
+        this.cartService.emptyCart();
         this._httpClient.post(this.euplatesctSend, dataSend)
           .pipe(
             take(1),
             map((response) => {
-            
+
               this.dataAll = response;
               return response;
             }),
@@ -205,12 +221,18 @@ export class ConfirmOrderComponent implements OnInit {
           .subscribe((data: any) => {
             if (data) {
               setTimeout(() => {
-                
+
                 if (this.order['payment']['method'] == 'card') {
-                  
+                  this.toaster.success('Vei fi redirectionat catre EuPLastesc!', `${this.successMessage}`, {
+                    timeOut: 3000,
+                    positionClass: 'toast-bottom-right'
+                  });
                   this.submit();
                 } else {
-                  
+                  this.toaster.success('Multumim!', `${this.successMessage}`, {
+                    timeOut: 3000,
+                    positionClass: 'toast-bottom-right'
+                  });
                   this.router.navigate(['/']);
                 }
 
@@ -224,6 +246,6 @@ export class ConfirmOrderComponent implements OnInit {
 
   submit() {
     const epForm = <HTMLFormElement>document.getElementById('epForm');
-    //epForm.submit();
+    epForm.submit();
   }
 }

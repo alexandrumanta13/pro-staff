@@ -116,7 +116,7 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.getProductDetails(slug)
       .subscribe(data => {
-
+        console.log(data)
         this.product = data;
         console.log(this.product)
         console.log(this.product.PaletteColorID)
