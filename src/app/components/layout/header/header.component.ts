@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
   private userSub: Subscription;
   toggler: any;
   body: any;
+  user: import("/Users/ek23ax/www/pro-staf/src/app/models/user").User;
+  clientMenu: boolean;
 
   constructor(
     public router: Router,
@@ -40,6 +42,8 @@ export class HeaderComponent implements OnInit {
 
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthentificated = !!user;
+      this.user = user;
+      console.log(this.user)
       // console.log(!user);
       // console.log(!!user);
     })
@@ -47,13 +51,11 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
-      }
-      
+      }      
     
       const body = (<HTMLElement>document.querySelector('body'));
       body.classList.remove('mmenu-active');
-      // const toggler = (<HTMLElement>document.querySelector('body'));
-      // toggler.classList.remove('active');
+
     });
 
   }
@@ -116,6 +118,10 @@ export class HeaderComponent implements OnInit {
     this.toggler.classList.toggle('active')
     this.body = (<HTMLElement>document.querySelector('body'));
     this.body.classList.toggle('mmenu-active');
+  }
+
+  toggleClientMenu() {
+    this.clientMenu = !this.clientMenu;
   }
 
 }

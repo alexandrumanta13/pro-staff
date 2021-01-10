@@ -1,4 +1,4 @@
-<header class="header" [ngClass]="router.url == '/' || router.url == '/despre-noi' ? 'header-transparent' : ''" >
+<header class="header" [ngClass]="router.url == '/' || router.url == '/despre-noi' ? 'header-transparent' : ''">
   <div class="header-middle sticky-header" [ngClass]="{'sticky' : isSticky}">
     <div class="container-fluid">
       <div class="header-left">
@@ -91,28 +91,31 @@
                       <span class="cart-product-qty">{{product.num}}</span>
                       x {{product.selectedPrice}} lei
                     </span>
-                    
-                    
+
+
                   </div><!-- End .product-details -->
 
                   <figure class="product-image-container">
                     <a routerLink="/produs/{{product.alias}}" class="product-image">
                       <img src="{{product.image_url}}" alt="product">
                     </a>
-                    <a (click)="removeCart(product)" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+                    <a (click)="removeCart(product)" class="btn-remove" title="Remove Product"><i
+                        class="icon-cancel"></i></a>
                     <div class="additional-info">
                       <div class="cart-product-qnt" *ngIf="product.selectedQnt">
                         <span>{{product.selectedQnt}}</span>
                       </div>
                       <div class="cart-product-color" *ngIf="product.selectedColor">
                         <img src="{{product.selectedColor}}" alt="" *ngIf="!product.selectedColor.includes('#')">
-                        <span style="width:20px; height: 20px; display: flex" *ngIf="product.selectedColor.includes('#')" [ngStyle]="{backgroundColor: product.selectedColor}"></span>
+                        <span style="width:20px; height: 20px; display: flex"
+                          *ngIf="product.selectedColor.includes('#')"
+                          [ngStyle]="{backgroundColor: product.selectedColor}"></span>
                       </div>
                     </div>
                   </figure>
                 </div><!-- End .product -->
 
-               
+
               </div><!-- End .cart-product -->
 
               <div class="dropdown-cart-total" *ngIf="cartTotal$ > 0">
@@ -132,19 +135,31 @@
           </div><!-- End .dropdown-menu -->
         </div><!-- End .dropdown -->
         <div class="dropdown user-account" [class.logged-in]="isAuthentificated">
-          <a routerLink="/autentificare" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false" data-display="static">
+          <a *ngIf="!isAuthentificated" routerLink="/autentificare" class="dropdown-toggle" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <img src="/assets/icons/user-account.svg" alt="">
+          </a>
+
+          <a *ngIf="isAuthentificated" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" data-display="static" (click)="toggleClientMenu()" [class.open]="clientMenu">
             <img src="/assets/icons/user-account.svg" alt="">
           </a>
 
           <div class="dropdown-menu dropdown" *ngIf="isAuthentificated">
             <div class="dropdownmenu-wrapper">
-              <div class="dropdown-cart-action" >
-                <a href="" class="btn btn-orange">Contul meu</a>
-
-                <a href="" class="btn btn-orange">Delogare</a>
-              </div>
-            </div>  
+              <h4>Salut, {{user.last_name}}</h4>
+              <ul class="dropdown-cart-action">
+                <li><a routerLink="/contul-meu">Informatii cont</a></li>
+                <li><a routerLink="/adresele-mele">Adresele mele</a></li>
+                <li><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+                <li><a routerLink="/favorite">Favorite</a></li>
+                <li><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
+                <hr>
+                <li>
+                  <a (click)="onLogout()" class="">Delogare</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div><!-- End .header-right -->

@@ -35,23 +35,34 @@
                 <figure class="product-image-container">
                   <a href="product.html" class="product-image">
                     <img src="{{product.image_url}}" alt="product">
+                    
                   </a>
+                  <div class="cart-product-color" *ngIf="product.selectedColor">
+                    <img src="{{product.selectedColor}}" alt="" *ngIf="!product.selectedColor.includes('#')">
+                    <span style="width:20px; height: 20px; display: flex" 
+                      [ngStyle]="{backgroundColor: product.selectedColor}"></span>
+                  </div>
                 </figure>
                 <h2 class="product-title">
-                  <a href="product.html">{{product.product_name}}</a>
+                  <a href="product.html">
+                    <p>{{product.product_name}}</p>
+                    <p>{{product.selectedQnt}}</p>
+                  </a>
                 </h2>
               </td>
               <td>{{product.selectedPrice}} lei</td>
               <td>
                 <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                    <input class="vertical-quantity form-control" min="0" type="number" [(ngModel)]="product.num"
+                  <input class="vertical-quantity form-control" min="0" type="number" [(ngModel)]="product.num"
                     (blur)="addToCart(product, $event, true)">
-                    <span class="input-group-btn-vertical">
-                        <button (click)="addOneToCart(product)" class="btn btn-outline bootstrap-touchspin-up icon-up-dir" type="button"></button>
-                        <button (click)="removeOneFromCart(product)" class="btn btn-outline bootstrap-touchspin-down icon-down-dir" type="button"></button>
-                    </span>
+                  <span class="input-group-btn-vertical">
+                    <button (click)="addOneToCart(product)" class="btn btn-outline bootstrap-touchspin-up icon-up-dir"
+                      type="button"></button>
+                    <button (click)="removeOneFromCart(product)"
+                      class="btn btn-outline bootstrap-touchspin-down icon-down-dir" type="button"></button>
+                  </span>
                 </div>
-                
+
               </td>
               <td>{{product.num * product.selectedPrice | number:'1.2-2'}} lei</td>
             </tr>

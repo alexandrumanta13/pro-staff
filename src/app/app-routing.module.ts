@@ -30,6 +30,8 @@ import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.compo
 import { AuthComponent } from './pages/auth/auth.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { BlogSingleComponent } from './pages/blog-single/blog-single.component';
+import { MyOrdersComponent } from './pages/my-account/my-orders/my-orders.component';
+import { OrderDetailsComponent } from './pages/my-account/order-details/order-details.component';
 
 
 const routes: Routes = [
@@ -169,6 +171,8 @@ const routes: Routes = [
   { path: 'autentificare', component: AuthComponent },
 
   { path: 'contul-meu', component: MyAccountComponent, canActivate: [AuthGuard] },
+  { path: 'comenzile-mele', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'comenzile-mele/:orderUUID', component: OrderDetailsComponent, canActivate: [AuthGuard] },
 
   {
     path: 'admin',

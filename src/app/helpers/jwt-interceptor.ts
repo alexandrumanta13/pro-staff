@@ -14,10 +14,10 @@ export class JwtInterceptor implements HttpInterceptor {
         return this.authService.user.pipe(
             take(1),
             exhaustMap(user => {
-                // if (currentUser && currentUser.token) {
+                // if (user && user.token) {
                 //     request = request.clone({
                 //         setHeaders: { 
-                //             Authorization: `Bearer ${currentUser.token}`
+                //             Authorization: `Bearer ${user.token}`
                 //         }
                 //     });
                 // }

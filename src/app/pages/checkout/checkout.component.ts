@@ -131,11 +131,11 @@ export class CheckoutComponent implements OnInit {
           this.cartProducts = products;
           this.weight;
           this.cartProducts.map(product => {
-            if(product.selectedQnt.includes('L') || product.selectedQnt.includes('Kg') || product.selectedQnt.includes('buc')) {
+            if (product.selectedQnt.includes('L') || product.selectedQnt.includes('Kg') || product.selectedQnt.includes('buc')) {
               let productQnt = parseInt(product.selectedQnt.replace(/\D/g, ""));
               this.weight += productQnt;
             }
-            
+
           })
           console.log(this.weight)
           this.cartTotal$;
@@ -175,8 +175,28 @@ export class CheckoutComponent implements OnInit {
     this.http.get<any>(`https://pro-staff.ro/prostaff-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
       this.selectedAddress = this.addresses[0];
-      console.log(this.selectedAddress)
+
+      this.http.post<any>(`https://pro-staff.ro/shipping/getTown.php`, { town: this.selectedAddress.town })
+
+        .subscribe(data => {
+          let townsJson = JSON.parse(data)
+          this.searchTowns = townsJson.sites[0];
+          console.log(this.searchTowns)
+
+          this.http.post<any>(`https://pro-staff.ro/shipping/priceCalculation.php`, { weight: this.weight, site: this.searchTowns.id })
+
+            .subscribe(data => {
+              let deliveryPrice = JSON.parse(data)
+              this.delivery = deliveryPrice.calculations[0].price.total;
+
+              console.log(this.delivery)
+            })
+        })
+
     })
+
+
+
   }
 
   selectAddress(addressIndex, event) {
@@ -187,6 +207,21 @@ export class CheckoutComponent implements OnInit {
     }
     event.target.closest(".shipping-address-box").classList.add('active');
     console.log(this.selectedAddress)
+
+    this.http.post<any>(`https://pro-staff.ro/shipping/getTown.php`, { town: this.selectedAddress.town })
+
+      .subscribe(data => {
+        let townsJson = JSON.parse(data)
+        this.searchTowns = townsJson.sites;
+        console.log(JSON.parse(data))
+      })
+    // this.http.post<any>(`https://pro-staff.ro/shipping/priceCalculation.php`, { weight: this.weight, site: this.searchTowns[i].id })
+
+    // .subscribe(data => {
+    //   let deliveryPrice = JSON.parse(data)
+    //   this.delivery = deliveryPrice.calculations[0].price.total;
+    // })
+
   }
 
 
@@ -197,10 +232,23 @@ export class CheckoutComponent implements OnInit {
 
     this.cartItems$.subscribe(data => {
       // this.products = data;
+      console.log(data);
       const orders = [];
       for (const key in data) {
-        console.log(data[key].id);
-        orders.push({ id: data[key].id, name: data[key].product_name, quantity: data[key].num, price: data[key].selectedPrice })
+
+        orders.push(
+          {
+            id: data[key].id,
+            name: data[key].product_name,
+            quantity: data[key].num,
+            
+            selectedPrice: data[key].selectedPrice,
+            selectedColor: data[key].selectedColor,
+            selectedColorName: data[key].selectedColorName,
+            selectedQnt: data[key].selectedQnt,
+           
+          }
+        )
       }
       postVars['products'] = orders;
     })
@@ -250,7 +298,8 @@ export class CheckoutComponent implements OnInit {
       amount: this.totalPrice$.toFixed(2),
       method: this.selectedItem,
       date: this.dateTime,
-      delivery: this.delivery
+      delivery: this.delivery,
+      weight: this.weight
     }
 
     this.cartService.sendOrder(postVars)

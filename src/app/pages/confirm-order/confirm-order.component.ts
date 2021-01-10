@@ -112,7 +112,11 @@ export class ConfirmOrderComponent implements OnInit {
     ).subscribe();
 
     this.dateTime = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
-    console.log(this.order['payment']['delivery']);
+    
+    if(Object.keys(this.order).length === 0 && this.order.constructor === Object) {
+      this.router.navigate(['/finalizeaza-comanda'])
+
+    }
   }
 
   getProducts() {
@@ -145,7 +149,6 @@ export class ConfirmOrderComponent implements OnInit {
 
 
     this.order['total'] = this.totalPrice$ + this.order['payment']['delivery'];
-    console.log(this.order['total'])
     this.order['discount'] = '0';
     this.order['date'] = this.dateTime;
 
@@ -178,7 +181,7 @@ export class ConfirmOrderComponent implements OnInit {
 
     this.order['status'] = this.status;
     this.order['payment']['transactionId'] = Math.floor((Math.random() * 10000) + 1);
-    console.log(this.order['payment'])
+  
     this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/order/add`, this.order).subscribe((data: any) => {
 
       if (data.status == "success") {
@@ -186,7 +189,7 @@ export class ConfirmOrderComponent implements OnInit {
           amount: this.order['total'].toFixed(2),
           invoice_id: data.order_guid
         };
-        console.log(dataSend)
+      
         this.cartService.emptyCart();
 
         this.order_guid = data.order_guid;
@@ -194,7 +197,7 @@ export class ConfirmOrderComponent implements OnInit {
           .pipe(
             take(1),
             map((response) => {
-              console.log(response)
+            
               this.dataAll = response;
               return response;
             }),

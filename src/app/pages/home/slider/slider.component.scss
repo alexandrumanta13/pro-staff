@@ -25,12 +25,15 @@
 }
 
 .home-slide-content {
-  top: 50%;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin-left: 20%;
 
   h3,
   h1 {
     display: inline-block;
-    background-color: #333;
+    background-color: #44525e;
     padding: 8px 16px;
   }
 
@@ -39,20 +42,29 @@
   // }
 
   @media (max-width: 991px) {
-    top: 10%;
+    top: 5%;
+    margin-left: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 
     h1 {
       font-size: 22px;
+      margin-bottom: 16px;
     }
 
     h3 {
-      font-style: 18px;
+      font-size: 19px;
     }
   }
 }
 
 
 .home-slider-thumbs {
+  a {
+    background: #fff;
+
+  }
   @media (max-width: 991px) {
     width: 100%;
     justify-content: space-around;

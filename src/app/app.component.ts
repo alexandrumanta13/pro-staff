@@ -27,7 +27,7 @@ export class AppComponent {
     private authService: AuthService,
    
   ) {
-    // this.authService.currentUser.subscribe(x => this.currentUser = x);
+    
   }
 
 
@@ -61,13 +61,6 @@ export class AppComponent {
         window.scrollTo(0, 0)
       });
 
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0);
-      
-    });
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),

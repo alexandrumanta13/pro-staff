@@ -1,0 +1,64 @@
+<main class="main">
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Acasa</a></li>
+        <li class="breadcrumb-item"><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Comanda {{order?.reference}}</li>
+      </ol>
+    </div><!-- End .container-fluid -->
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 order-lg-last dashboard-content">
+        <h2 class="text-primary">Comanda {{order?.reference}}</h2>
+        <p>Plasata in: <strong>{{order?.date}}</strong></p>
+        <p>Total: <strong>{{order?.total}} lei</strong></p>
+        <div class="delivery-card card">
+          <p><strong>Adresa de livrare:</strong></p>
+          <p>{{order?.customer.firstName}} {{order?.customer.lastName}}, {{order?.customer.phone}}</p>
+          <p>{{order?.customer.shippingAddress[0].address}}, {{order?.customer.shippingAddress[0].county}},
+            {{order?.customer.shippingAddress[0].town}}</p>
+        </div>
+
+        <div class="delivery-card card">
+          <p><strong>Modalitate de plata:</strong></p>
+          <p>{{order?.payment.method == "card" ? 'Plata online cu Card bancar' : 'Plata ramburs'}}</p>
+          <p class="{{order?.status[0].color}}"><strong>{{order?.status[0].name}}</strong></p>
+          <p>Valoare toala: {{order?.total}} lei</p>
+        </div>
+
+        <p><strong>Produse:</strong></p>
+        <ul class="products">
+          <li *ngFor="let product of order?.products">
+            <a href="/produs/{{product?.alias}}" class="product-image">
+              <img src="{{product?.image_url}}" alt="product">
+            </a>
+            <a href="/produs/{{product?.alias}}" class="product-name">
+                {{product?.name}}
+            </a>
+            
+          </li>
+        </ul>
+      </div><!-- End .col-lg-9 -->
+
+      <aside class="sidebar col-lg-3">
+        <div class="widget widget-dashboard">
+          <h3 class="widget-title">Contul meu</h3>
+
+          <ul class="list">
+            <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
+            <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
+            <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+            <li routerLinkActive='active'><a routerLink="/favorite">Favorite</a></li>
+            <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
+          </ul>
+
+        </div><!-- End .widget -->
+      </aside><!-- End .col-lg-3 -->
+    </div><!-- End .row -->
+  </div><!-- End .container -->
+
+  <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->

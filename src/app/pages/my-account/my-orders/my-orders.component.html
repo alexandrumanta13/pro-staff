@@ -1,0 +1,50 @@
+<main class="main">
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Acasa</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Comenzile mele</li>
+      </ol>
+    </div><!-- End .container-fluid -->
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 order-lg-last dashboard-content">
+        <h2 class="text-primary">Comenzile mele</h2>
+        <ul class="orders">
+          <li *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p }">
+            <div class="desc">
+              <h4>Comanda nr {{order.reference}}</h4>
+              <p>Plasata in data: {{order.date}}, Total: {{order.total}}</p>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-block btn-sm btn-primary" routerLink="/comenzile-mele/{{order.reference}}">Vezi detalii comanda</a>
+            </div>
+          </li>
+        </ul>
+        <pagination-controls (pageChange)="p = $event" class="float-right pagination" directionLinks="true"
+          autoHide="true" responsive="true" previousLabel="" nextLabel="" screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+      </div><!-- End .col-lg-9 -->
+
+      <aside class="sidebar col-lg-3">
+        <div class="widget widget-dashboard">
+          <h3 class="widget-title">Contul meu</h3>
+
+          <ul class="list">
+            <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
+            <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
+            <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+            <li routerLinkActive='active'><a routerLink="/favorite">Favorite</a></li>
+            <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
+          </ul>
+
+        </div><!-- End .widget -->
+      </aside><!-- End .col-lg-3 -->
+    </div><!-- End .row -->
+  </div><!-- End .container -->
+
+  <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->

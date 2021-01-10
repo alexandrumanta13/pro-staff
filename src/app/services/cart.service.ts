@@ -17,7 +17,7 @@ export class CartService {
 
 
     constructor(public router: Router) {
-        let existingCartItems = JSON.parse(localStorage.getItem('products'));
+        let existingCartItems = JSON.parse(localStorage.getItem('productsProstaff'));
         if (!existingCartItems) {
             existingCartItems = [];
         }
@@ -71,7 +71,7 @@ export class CartService {
                 } else {
                     products.push({ ...product, num: value });
                 }
-                localStorage.setItem('products', JSON.stringify(products));
+                localStorage.setItem('productsProstaff', JSON.stringify(products));
                 this.calcTotal();
             }),
         ).subscribe();
@@ -84,15 +84,15 @@ export class CartService {
             take(1),
             map((products) => {
                 products = products.filter(({ cart_uuid }) => cart_uuid !== product.cart_uuid);
-                localStorage.setItem('products', JSON.stringify(products));
+                localStorage.setItem('productsProstaff', JSON.stringify(products));
                 this.calcTotal();
             }),
         ).subscribe();
     }
 
     emptyCart() {
-        localStorage.setItem('products', JSON.stringify([]));
-        let existingCartItems = JSON.parse(localStorage.getItem('products'));
+        localStorage.setItem('productsProstaff', JSON.stringify([]));
+        let existingCartItems = JSON.parse(localStorage.getItem('productsProstaff'));
         this.itemsSubject.next(existingCartItems);
         this.numTotal.next(existingCartItems.reduce((acc, pr) => acc += pr.num, 0));
         this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.selectedPrice * pr.num, 0));
@@ -100,7 +100,7 @@ export class CartService {
     }
 
     calcTotal() {
-        let existingCartItems = JSON.parse(localStorage.getItem('products'));
+        let existingCartItems = JSON.parse(localStorage.getItem('productsProstaff'));
         this.itemsSubject.next(existingCartItems);
         this.numTotal.next(existingCartItems.reduce((acc, pr) => acc += pr.num, 0));
         this.totalPrice.next(existingCartItems.reduce((acc, pr) => acc += pr.selectedPrice * pr.num, 0));

@@ -18,20 +18,23 @@ export class AuthGuard implements CanActivate {
             take(1),
             map(user => {
                 const isAuth = !!user;
+
+                
                 if (isAuth) {
                   return true;
                 }
-                return this.router.createUrlTree(['/contul-meu']);
+                return this.router.createUrlTree(['/autentificare']);
         }), 
-        // tap(isAuth => {
-        //     if(!isAuth) {
-        //         console.log('asdadsa1')
-        //         return this.router.createUrlTree['/autentificare']
-        //     } else {
-        //         console.log('asdsadas2')
-        //         return this.router.createUrlTree['/contul-meu']
-        //     }
-        // })
+        //tap(isAuth => {
+           
+            // if(!isAuth) {
+            //     console.log('asdadsa1')
+            //     return this.router.createUrlTree['/autentificare']
+            // } else {
+            //     console.log('asdsadas2')
+            //     return this.router.createUrlTree['/contul-meu']
+            // }
+        //})
     )
     }
 

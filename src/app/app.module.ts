@@ -84,8 +84,17 @@ import { SharerMethod } from 'ngx-sharebuttons';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
   
-import { LOCALE_ID } from '@angular/core';
+
 import { BlogSidebarComponent } from './components/layout/blog-sidebar/blog-sidebar.component';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
+
+import { MustMatchDirective } from './helpers/must-match.directive';
+import { MyOrdersComponent } from './pages/my-account/my-orders/my-orders.component';
+import { RouterModule } from '@angular/router';
+import { OrderDetailsComponent } from './pages/my-account/order-details/order-details.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -128,7 +137,11 @@ import { BlogSidebarComponent } from './components/layout/blog-sidebar/blog-side
     ColorsComponent,
     MyAccountComponent,
     BlogSingleComponent,
-    BlogSidebarComponent
+    BlogSidebarComponent,
+    NewsletterComponent,
+    MustMatchDirective,
+    MyOrdersComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,12 +161,14 @@ import { BlogSidebarComponent } from './components/layout/blog-sidebar/blog-side
       debug: true,
       sharerMethod: SharerMethod.Window
     }),
-    ShareIconsModule
+    ShareIconsModule,
+    RouterModule.forRoot([])
   ],
   exports: [
     UserDirective,
     UserRoleDirective,
-    ProductQuickViewComponent
+    ProductQuickViewComponent,
+    
   ],
   entryComponents: [ProductQuickViewComponent],
   providers: [
