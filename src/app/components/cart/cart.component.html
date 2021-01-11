@@ -35,11 +35,11 @@
                 <figure class="product-image-container">
                   <a href="product.html" class="product-image">
                     <img src="{{product.image_url}}" alt="product">
-                    
+
                   </a>
                   <div class="cart-product-color" *ngIf="product.selectedColor">
                     <img src="{{product.selectedColor}}" alt="" *ngIf="!product.selectedColor.includes('#')">
-                    <span style="width:20px; height: 20px; display: flex" 
+                    <span style="width:20px; height: 20px; display: flex"
                       [ngStyle]="{backgroundColor: product.selectedColor}"></span>
                   </div>
                 </figure>
@@ -95,11 +95,16 @@
         </table>
       </div><!-- End .cart-table-container -->
 
-      <div class="cart-discount">
+      <div class="cart-discount" *ngIf="!discount">
         <h4>Aplica cumpon de reduceri</h4>
-        <form action="#">
+        <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
           <div class="input-group">
-            <input type="text" class="form-control form-control-sm" placeholder="Adauga codul aici" required>
+            <input type="text" class="form-control form-control-sm" placeholder="Adauga codul aici" name="coupon"
+              class="form-control" [(ngModel)]="model.coupon" #coupon="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && coupon.invalid }" required>
+            <div *ngIf="f.submitted && coupon.invalid" class="invalid-feedback">
+              <div *ngIf="coupon.errors.required">Email is required</div>
+            </div>
             <div class="input-group-append">
               <button class="btn btn-sm btn-primary" type="submit">Aplica reducere</button>
             </div>
@@ -167,11 +172,10 @@
               <td>Total</td>
               <td>{{totalPrice$}} lei</td>
             </tr>
-
-            <!-- <tr>
-                            <td>Transport</td>
-                            <td>20 lei</td>
-                        </tr> -->
+            <tr *ngIf="discount">
+              <td>Discount</td>
+              <td>{{discount}}%</td>
+            </tr>
           </tbody>
           <tfoot>
             <tr>

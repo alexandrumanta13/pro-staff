@@ -54,6 +54,18 @@
                   </td>
                   <td class="price-col">{{product.selectedPrice}} Lei</td>
                 </tr>
+                <tr *ngIf="discount">
+                  <td>Discount</td>
+                  <td>{{discount}}%</td>
+                </tr>
+                <tr>
+                  <td>Transport</td>
+                  <td>{{payment?.delivery}} lei</td>
+                </tr>
+                <tr>
+                  <td>Total</td>
+                  <td>{{totalPrice$}} lei</td>
+                </tr>
               </tbody>
             </table>
           </div><!-- End #order-cart-section -->

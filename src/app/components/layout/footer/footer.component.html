@@ -44,18 +44,19 @@
             <ul class="contact-info">
               <li>
                 <span class="contact-info-label">Adresa:</span>Calea Mosilor 274
-				 <br>Sector 2, Bucuresti
+                <br>Sector 2, Bucuresti
               </li>
               <li>
                 <span class="contact-info-label">Telefon:</span><a href="tel:">0722.589.860</a>
               </li>
               <li>
-                <span class="contact-info-label">Email:</span> <a href="mailto:office@prostaff.ro">office@prostaff.ro</a>
+                <span class="contact-info-label">Email:</span> <a
+                  href="mailto:office@prostaff.ro">office@prostaff.ro</a>
               </li>
               <li>
                 <span class="contact-info-label">Program:</span>
-				Luni-Vineri: 09:00 – 18:00
-				Sambata: 09:00-14:00
+                Luni-Vineri: 09:00 – 18:00
+                Sambata: 09:00-14:00
               </li>
             </ul>
           </div><!-- End .widget -->
@@ -94,9 +95,13 @@
 
             <p>Ramai conectat cu noi! <br>Aboneaza-te la newsletter pentru a primii cele mai noi produse si promotii</p>
 
-            <form action="#">
-              <input type="email" class="form-control" placeholder="Email" required>
-
+            <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
+              <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+              <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Email must be a valid email address</div>
+              </div>
               <input type="submit" class="btn btn-orange" value="Ma abonez">
             </form>
           </div><!-- End .widget -->

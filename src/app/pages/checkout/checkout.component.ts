@@ -50,6 +50,7 @@ export class CheckoutComponent implements OnInit {
   lng: any;
   weight: number = 0;
   delivery: any;
+  discount: any;
 
 
 
@@ -121,6 +122,14 @@ export class CheckoutComponent implements OnInit {
       }
 
     });
+
+    const checkDiscount = JSON.parse(localStorage.getItem("prostaffDiscount"));
+
+    if (checkDiscount) {
+        const prevAccepted = checkDiscount.date;
+        this.discount = checkDiscount.percent;
+        this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
+    }
   }
 
   getProducts() {

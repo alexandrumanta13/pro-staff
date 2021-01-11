@@ -43,6 +43,7 @@ export class ConfirmOrderComponent implements OnInit {
   public town;
   order_guid: any;
   successMessage: any;
+  discount: any;
 
 
   constructor(
@@ -96,9 +97,23 @@ export class ConfirmOrderComponent implements OnInit {
       this.cartTotal$ = info;
     })
 
+    const checkDiscount = JSON.parse(localStorage.getItem("prostaffDiscount"));
+
+    if (checkDiscount) {
+        const prevAccepted = checkDiscount.date;
+        this.discount = checkDiscount.percent;
+        this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
+    }
+
     this.cartService.totalPrice.subscribe(info => {
-      this.totalPrice$ = info;
+      if(this.discount) {
+        this.totalPrice$ = info - (info * this.discount / 100);
+      } else {
+        this.totalPrice$ = info;
+      }
     })
+
+    
 
     this.getProducts();
     this.endpoint = "https://pro-staff.ro/prostaff-api/v1/order/add";
@@ -112,6 +127,7 @@ export class ConfirmOrderComponent implements OnInit {
         if (items) {
           this.payment = items['payment'];
           this.order = items;
+          this.totalPrice$ = this.totalPrice$ + this.order['payment']['delivery']
           this.shippingAddress = items['customer']['shippingAddress'];
         } else {
           this.router.navigate(['/finalizeaza-comanda']);
@@ -157,8 +173,8 @@ export class ConfirmOrderComponent implements OnInit {
     }
 
 
-    this.order['total'] = this.totalPrice$ + this.order['payment']['delivery'];
-    this.order['discount'] = '0';
+    this.order['total'] = this.totalPrice$;
+    this.order['discount'] = (this.discount ? this.discount : 0);
     this.order['date'] = this.dateTime;
 
     this.shippingDetails = {
