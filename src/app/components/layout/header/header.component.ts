@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   private userSub: Subscription;
   toggler: any;
   body: any;
-  user: import("/Users/ek23ax/www/pro-staf/src/app/models/user").User;
+  user: any;
   clientMenu: boolean;
 
   constructor(
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthentificated = !!user;
       this.user = user;
-      console.log(this.user)
+      
       // console.log(!user);
       // console.log(!!user);
     })
