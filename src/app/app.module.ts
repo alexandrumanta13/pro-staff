@@ -92,6 +92,7 @@ import { MustMatchDirective } from './helpers/must-match.directive';
 import { MyOrdersComponent } from './pages/my-account/my-orders/my-orders.component';
 import { RouterModule } from '@angular/router';
 import { OrderDetailsComponent } from './pages/my-account/order-details/order-details.component';
+import { QuantityFilterComponent } from './components/quantity-filter/quantity-filter.component';
 
 
 
@@ -142,6 +143,7 @@ import { OrderDetailsComponent } from './pages/my-account/order-details/order-de
     MustMatchDirective,
     MyOrdersComponent,
     OrderDetailsComponent,
+    QuantityFilterComponent,
   ],
   imports: [
     BrowserModule,

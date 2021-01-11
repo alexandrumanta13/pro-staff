@@ -107,6 +107,16 @@ export class ProductsComponent implements OnInit {
   //   });
   // }
 
+  getProductsByQnt(id) {
+    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/quantity`, {'id': id}).subscribe((data: any) => {
+        this._products = data.products;
+        console.log(this._products)
+        this.setTotalPages(data.no_of_pages);
+        this.setPagesArray(this.totalPages);
+
+      });
+  }
+
   getProducts() {
    
     if (!this._route) {
@@ -153,6 +163,8 @@ export class ProductsComponent implements OnInit {
 
     return this._products;
   }
+
+  
 
   getTotalPages() {
     return this.totalPages;

@@ -130,21 +130,12 @@
       </div>
       <aside class="sidebar-shop col-lg-3 col-xl-2 order-lg-first">
         <div class="sidebar-wrapper">
-          <div class="widget">
-            <h3 class="widget-title">
-              <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true"
-                aria-controls="widget-body-2">Categorii</a>
-            </h3>
+         
+               
+             
 
-            <div class="collapse show" id="widget-body-2">
-              <div class="widget-body">
-                <app-category-filter (categoryEvent)="getProducts()"></app-category-filter>
-                
-              </div><!-- End .widget-body -->
-            </div><!-- End .collapse -->
-          </div><!-- End .widget -->
-
-        
+          <app-category-filter (categoryEvent)="getProducts()"></app-category-filter>
+          <app-quantity-filter (qntEvent)="getProductsByQnt($event)"></app-quantity-filter>
 <!-- 
           <div class="widget">
             <h3 class="widget-title">

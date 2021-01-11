@@ -356,3 +356,10 @@ owl-stage {
   display: flex;
   align-items: center;
 }
+
+
+a:not([href]):not([tabindex]){
+  &:hover {
+    cursor: pointer;
+  }
+}
