@@ -18,12 +18,12 @@
   </div><!-- End .banner -->
   <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
     <div class="container-fluid">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb" *ngIf="loaded">
         <li class="breadcrumb-item"><a routerLink="/">Acasa</a></li>
         <li class="breadcrumb-item"><a routerLink="/produse">Produse</a></li>
         <li class="breadcrumb-item active" aria-current="page" *ngIf="!_route && router.url.includes('/produse')">Toate produsele</li>
         <li class="breadcrumb-item active" aria-current="page" *ngIf="_route && !_route_subcategory">{{category[0]?.category_name}}</li>
-        <li class="breadcrumb-item" *ngIf="_route_subcategory"><a routerLink="/produse/{{category[0]?.slug}}">{{category[0]?.category_name}}</a></li>
+        <li class="breadcrumb-item" *ngIf="_route && _route_subcategory"><a routerLink="/produse/{{category[0]?.slug}}">{{category[0]?.category_name}}</a></li>
         <li class="breadcrumb-item active" aria-current="page" *ngIf="_route_subcategory">{{subcategoryValue[0]?.subcategory_name}}</li>
 
       </ol>

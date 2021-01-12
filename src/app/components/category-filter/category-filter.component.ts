@@ -16,6 +16,7 @@ export class CategoryFilterComponent implements OnInit {
   public _route: string;
   subcategoryValue: any;
   public _route_subcategory: string;
+  noProducts: boolean = false;
 
   constructor(private _httpClient: HttpClient, private route:ActivatedRoute, public router: Router) { }
 
@@ -27,7 +28,10 @@ export class CategoryFilterComponent implements OnInit {
       
     });
     this.getCategories();
-    this.getSubcategory();
+    if(this._route) {
+      this.getSubcategory();
+    }
+    
     
   }
 
@@ -42,6 +46,9 @@ export class CategoryFilterComponent implements OnInit {
       this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/categories')
         .subscribe((response: any) => {
           this.categories = response.data;
+          if(this.categories.length === 0) {
+            this.noProducts = !this.noProducts;
+          }
           resolve(response);
         }, reject);
 
@@ -54,7 +61,9 @@ export class CategoryFilterComponent implements OnInit {
       this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/category/' + this._route + '/subcategories')
         .subscribe((response: any) => {
           this.subcategoryValue = response.data;
-          console.log(this.subcategoryValue)
+          if(this.subcategoryValue.length === 0) {
+            this.noProducts = !this.noProducts;
+          }
           resolve(response);
         }, reject);
 

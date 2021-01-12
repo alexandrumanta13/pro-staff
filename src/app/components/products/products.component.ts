@@ -35,9 +35,10 @@ export class ProductsComponent implements OnInit {
   min_price: any;
   discount: boolean = false;
   public _route: string;
-  
+
   public _route_subcategory: string;
   subcategoryValue: any;
+  loaded: boolean = false;
 
   constructor(httpClient: HttpClient, private route: ActivatedRoute, private modalService: ModalService, public router: Router) {
     this._httpClient = httpClient;
@@ -57,11 +58,16 @@ export class ProductsComponent implements OnInit {
       this._route = params.get('categorySlug');
       this._route_subcategory = params.get('subcategorySlug');
       this.getProducts();
+
+      this.getCategory(this._route);
+      this.getSubcategory();
     });
-    
-    this.getProducts();
-    
   }
+
+  ngAfterViewInit() {
+
+  }
+
 
   output(e) {
     console.log(e.target.value)
@@ -70,15 +76,14 @@ export class ProductsComponent implements OnInit {
   getCategory(slug) {
     this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/category/' + slug)
       .subscribe((response: any) => {
-
+        this.loaded = true;
+        this.category = response.data;
+        console.log(slug)
         this.onCategoryChanged.next(response.data);
         this.items$ = this.onCategoryChanged.asObservable();
         this.items$.subscribe(data => {
-          console.log(data)
-          this.category = data;
-          
-        })
 
+        })
       });
   }
 
@@ -97,7 +102,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  
+
 
   // getProducts() {
   //   this._httpClient.get(`http://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
@@ -108,17 +113,17 @@ export class ProductsComponent implements OnInit {
   // }
 
   getProductsByQnt(id) {
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/quantity`, {'id': id}).subscribe((data: any) => {
-        this._products = data.products;
-        console.log(this._products)
-        this.setTotalPages(data.no_of_pages);
-        this.setPagesArray(this.totalPages);
+    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/quantity`, { 'id': id }).subscribe((data: any) => {
+      this._products = data.products;
+      console.log(this._products)
+      this.setTotalPages(data.no_of_pages);
+      this.setPagesArray(this.totalPages);
 
-      });
+    });
   }
 
   getProducts() {
-   
+
     if (!this._route) {
       this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;
@@ -134,15 +139,14 @@ export class ProductsComponent implements OnInit {
         console.log(this._products)
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
-        this.getCategory(this._route);
-        this.getSubcategory();
+
       });
     } else {
       this._httpClient.get(`https://pro-staff.ro/prostaff-api/v1/products/category/${this._route}/page/${this.currentPage}`).subscribe((data: any) => {
         this._products = data.products;
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
-        this.getCategory(this._route);
+
       });
     }
 
@@ -161,10 +165,12 @@ export class ProductsComponent implements OnInit {
       }
     }, 100);
 
+
+
     return this._products;
   }
 
-  
+
 
   getTotalPages() {
     return this.totalPages;

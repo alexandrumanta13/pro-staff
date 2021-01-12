@@ -1,27 +1,27 @@
-<div class="widget">
+<div class="widget" [class.hide]="noProducts">
   <h3 class="widget-title">
-    <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true"
-      aria-controls="widget-body-2">Categorii</a>
+    <a data-toggle="collapse" href="#categories" role="button" aria-expanded="true"
+      aria-controls="categories">Categorii</a>
   </h3>
-  <div class="collapse show" id="widget-body-2">
+  <div class="collapse show" id="categories">
     <div class="widget-body">
       <ul class="check-filter-list" *ngIf="!_route && !router.url.includes('/produse')">
         <li [class.active]="active === i" *ngFor="let category of categories; let i = index">
-          <a href="#"
+          <a
             (click)="getProducts(category.slug);this.active=i;this.dynamicProductViewer=category.slug;">{{category.category_name}}</a>
         </li>
       </ul>
 
       <ul class="cat-list" *ngIf="!_route && router.url.includes('/produse')">
         <li [class.active]="active === 1" *ngFor="let category of categories; let i = index">
-          <a href="#" routerLink="/produse/{{category.slug}}">{{category.category_name}}</a>
+          <a routerLink="/produse/{{category.slug}}">{{category.category_name}}</a>
         </li>
 
       </ul>
 
       <ul class="cat-list" *ngIf="_route">
         <li [class.active]="active === 1" *ngFor="let subcategory of subcategoryValue; let i = index">
-          <a href="#" routerLink="/produse/{{_route}}/{{subcategory.slug}}">{{subcategory.subcategory_name}}</a>
+          <a routerLink="/produse/{{_route}}/{{subcategory.slug}}">{{subcategory.subcategory_name}}</a>
         </li>
       </ul>
     </div><!-- End .widget-body -->

@@ -39,5 +39,21 @@ export class QuantitiesService {
     });
   }
 
-  
+  getQuantitiesByCategory(categorySlug) {
+    return new Promise((resolve, reject) => {
+      this._httpClient.get(this.REST_API_SERVER + 'products/quantity/category/' + categorySlug)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  getQuantitiesByCategoryAndSubcategory(categorySlug, subcategorySlug) {
+    return new Promise((resolve, reject) => {
+      this._httpClient.get(this.REST_API_SERVER + 'products/quantity/category/' + categorySlug + '/subcategory/' + subcategorySlug)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
 }
