@@ -40,21 +40,18 @@ export class QuantityFilterComponent implements OnInit {
   }
 
   getQuantities() {
-    console.log('asdasd3')
 
     if (this.route_category && !this.route_subcategory) {
-      console.log('asdasd1')
+
       this._quantitiesService.getQuantitiesByCategory(this.route_category).then(quantity => {
         this.quantities = quantity['data'];
       })
     } else if (this.route_subcategory) {
-      console.log('asdasd2')
-
       this._quantitiesService.getQuantitiesByCategoryAndSubcategory(this.route_category, this.route_subcategory).then(quantity => {
         this.quantities = quantity['data'];
       })
     } else {
-      console.log('asdasd')
+
       this._quantitiesService.getQuantities().then(quantity => {
         this.quantities = quantity['data'];
       })

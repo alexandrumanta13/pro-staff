@@ -5,5 +5,6 @@ export * from './seoservice.service';
 export * from './my-account.service';
 export * from './newsletter.service';
 export * from './quantities.service';
+export * from './brand.service';
 
 

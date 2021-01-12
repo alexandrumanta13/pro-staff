@@ -24,7 +24,7 @@
         <li class="breadcrumb-item active" aria-current="page" *ngIf="!_route && router.url.includes('/produse')">Toate produsele</li>
         <li class="breadcrumb-item active" aria-current="page" *ngIf="_route && !_route_subcategory">{{category[0]?.category_name}}</li>
         <li class="breadcrumb-item" *ngIf="_route && _route_subcategory"><a routerLink="/produse/{{category[0]?.slug}}">{{category[0]?.category_name}}</a></li>
-        <li class="breadcrumb-item active" aria-current="page" *ngIf="_route_subcategory">{{subcategoryValue[0]?.subcategory_name}}</li>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="_route && _route_subcategory">{{subcategoryValue[0]?.subcategory_name}}</li>
 
       </ol>
     </div>
@@ -136,6 +136,8 @@
 
           <app-category-filter (categoryEvent)="getProducts()"></app-category-filter>
           <app-quantity-filter (qntEvent)="getProductsByQnt($event)"></app-quantity-filter>
+          <app-brand-filter (brandEvent)="getProductsByBrand($event)"></app-brand-filter>
+
 <!-- 
           <div class="widget">
             <h3 class="widget-title">

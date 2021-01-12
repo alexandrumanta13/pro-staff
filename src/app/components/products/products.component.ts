@@ -121,6 +121,15 @@ export class ProductsComponent implements OnInit {
 
     });
   }
+  getProductsByBrand(id) {
+    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/brand`, { 'id': id }).subscribe((data: any) => {
+      this._products = data.products;
+      console.log(this._products)
+      this.setTotalPages(data.no_of_pages);
+      this.setPagesArray(this.totalPages);
+
+    });
+  }
 
   getProducts() {
 

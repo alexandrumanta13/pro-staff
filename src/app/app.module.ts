@@ -93,6 +93,7 @@ import { MyOrdersComponent } from './pages/my-account/my-orders/my-orders.compon
 import { RouterModule } from '@angular/router';
 import { OrderDetailsComponent } from './pages/my-account/order-details/order-details.component';
 import { QuantityFilterComponent } from './components/quantity-filter/quantity-filter.component';
+import { BrandFilterComponent } from './components/brand-filter/brand-filter.component';
 
 
 
@@ -144,6 +145,7 @@ import { QuantityFilterComponent } from './components/quantity-filter/quantity-f
     MyOrdersComponent,
     OrderDetailsComponent,
     QuantityFilterComponent,
+    BrandFilterComponent,
   ],
   imports: [
     BrowserModule,

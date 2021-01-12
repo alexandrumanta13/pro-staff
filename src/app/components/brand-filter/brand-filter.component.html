@@ -1,0 +1,19 @@
+<div class="widget">
+    <h3 class="widget-title">
+      <a data-toggle="collapse" href="#qnt" role="button" aria-expanded="true"
+        aria-controls="qnt">Branduri</a>
+    </h3>
+    <div class="collapse show" id="qnt">
+      <div class="widget-body">
+        <ul class="cat-list">
+          <ng-container *ngFor="let brand of brands">
+            <li *ngIf="brand.productCount > 0">
+              <a (click)="getProductsByBrand(brand.id);">{{brand.brand_name}}
+                ({{brand.productCount}})</a>
+            </li>
+          </ng-container>
+        </ul>
+      </div><!-- End .widget-body -->
+    </div><!-- End .collapse -->
+  </div><!-- End .widget -->
+  
