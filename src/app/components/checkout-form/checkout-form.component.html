@@ -1,0 +1,79 @@
+<form class="checkout-form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+  <div class="form-group required-field">
+    <label for="acc-name">Nume</label>
+    <input type="text" name="firstName" class="form-control" [(ngModel)]="model.firstName" #firstName="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required minlength="3">
+    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+      <div *ngIf="firstName.errors.required">Va rugam sa introduceti numele!</div>
+      <div *ngIf="firstName.errors.minlength">Numele trebuie sa contina cel putin 3 litere!</div>
+    </div>
+  </div>
+
+  <div class="form-group required-field">
+    <label>Prenume </label>
+    <input type="text" name="lastName" class="form-control" [(ngModel)]="model.lastName" #lastName="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required minlength="3">
+    <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+      <div *ngIf="lastName.errors.required">Va rugam sa introduceti prenumele!</div>
+      <div *ngIf="lastName.errors.minlength">Prenumele trebuie sa contina cel putin 3 litere!</div>
+    </div>
+  </div>
+
+  <div class="form-group required-field">
+    <label>Email </label>
+    <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Email" required email>
+    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+      <div *ngIf="email.errors.required">Te rugam sa introduci adresa de email!</div>
+      <div *ngIf="email.errors.email">Email-ul nu este valid</div>
+    </div>
+  </div>
+
+  <div class="form-group required-field">
+    <label>Telefon </label>
+    <input type="text" name="phone" class="form-control" [(ngModel)]="model.phone" #phone="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" required>
+    <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+      <div *ngIf="phone.errors.required">Te rugam sa introduci adresa!</div>
+    </div>
+  </div>
+
+
+  <div class="form-group required-field">
+    <label>Adresa </label>
+    <input type="text" name="address" class="form-control" [(ngModel)]="model.address" #address="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && address.invalid }" placeholder="ex: Strada, numar, bloc, scara, etaj, apartament" required>
+    <div *ngIf="f.submitted && address.invalid" class="invalid-feedback">
+      <div *ngIf="address.errors.required">Te rugam sa introduci adresa!</div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group required-field">
+    <label>Oras </label>
+    <input name="town" class="form-control town" (ngModelChange)="searchTown($event)" [(ngModel)]="model.town" #town="ngModel"
+    [ngClass]="{ 'is-invalid': f.submitted && town.invalid }" required>
+      <div *ngIf="f.submitted && town.invalid" class="invalid-feedback">
+        <div *ngIf="town.errors.required">Te rugam sa introduci orasul!</div>
+      </div>
+    <div *ngIf="model.town" (click)="clear()" class="clear"><i class="icon-cancel"></i></div>
+    <div *ngIf="searchTowns && show" class="town-search-result">
+      <div *ngFor="let townResult of searchTowns; let i = index" class="search-result-item" >
+        <div class="search-result-name" (click)="selectTown(townResult.name, townResult.region, i)" #triggerAutocomplete>
+          {{townResult.name}}, ({{townResult.region}})
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group required-field hide">
+    <label>Judet </label>
+    <input name="county" [(ngModel)]="model.county" #county="ngModel" id="county" type="text" class="form-control" disabled placeholder="Judet">
+  </div>
+
+
+
+  <button class="submit-button" #submit type="submit">check</button>
+</form>

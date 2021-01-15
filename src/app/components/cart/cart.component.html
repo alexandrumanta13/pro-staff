@@ -99,12 +99,15 @@
         <h4>Aplica cumpon de reduceri</h4>
         <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
           <div class="input-group">
-            <input type="text" class="form-control form-control-sm" placeholder="Adauga codul aici" name="coupon"
-              class="form-control" [(ngModel)]="model.coupon" #coupon="ngModel"
-              [ngClass]="{ 'is-invalid': f.submitted && coupon.invalid }" required>
-            <div *ngIf="f.submitted && coupon.invalid" class="invalid-feedback">
-              <div *ngIf="coupon.errors.required">Email is required</div>
+            <div class="input__container">
+              <input type="text" class="form-control form-control-sm" placeholder="Adauga codul aici" name="coupon"
+                class="form-control" [(ngModel)]="model.coupon" #coupon="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && coupon.invalid }" required>
+              <div *ngIf="f.submitted && coupon.invalid" class="invalid-feedback">
+                <div *ngIf="coupon.errors.required">Email is required</div>
+              </div>
             </div>
+
             <div class="input-group-append">
               <button class="btn btn-sm btn-primary" type="submit">Aplica reducere</button>
             </div>

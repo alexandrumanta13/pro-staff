@@ -15,7 +15,12 @@
         <h2 class="text-primary">Comanda {{order?.reference}}</h2>
         <p>Plasata in: <strong>{{order?.date}}</strong></p>
         <p>Total: <strong>{{order?.total}} lei</strong></p>
+        <p>Transport: <strong>{{order?.shippingDetails.carrier}}</strong></p>
+        <p>Greutate pachet: <strong>{{order?.shippingDetails.weight}} kg</strong></p>
+        <p>Cost transport: <strong>{{order?.shippingDetails.fee}} lei</strong></p>
+
         <p *ngIf="order?.discount > 0">Discount: <strong>{{order?.discount}}%</strong></p>
+
         <div class="delivery-card card">
           <p><strong>Adresa de livrare:</strong></p>
           <p>{{order?.customer.firstName}} {{order?.customer.lastName}}, {{order?.customer.phone}}</p>
@@ -26,7 +31,7 @@
         <div class="delivery-card card">
           <p><strong>Modalitate de plata:</strong></p>
           <p>{{order?.payment.method == "card" ? 'Plata online cu Card bancar' : 'Plata ramburs'}}</p>
-          <p class="{{order?.status[0].color}}"><strong>{{order?.status[0].name}}</strong></p>
+          <p class="order-status {{order?.status[0].color}}"><strong>{{order?.status[0].name}}</strong></p>
           <p>Valoare toala: {{order?.total}} lei</p>
         </div>
 

@@ -29,25 +29,26 @@
           <li>
             <h2 class="step-title">Adresa de livrare</h2>
             <div class="shipping-step-addresses" *ngIf="isAuthentificated">
-              <div class="shipping-address-box" *ngFor="let address of addresses; let isFirst = first; let i = index"  [class.active]="isFirst">
-                  <address>
-                      {{user.name}} {{user.last_name}}<br>
-                      {{address.address}} <br>
-                      {{address.town}}<br>
-                  </address>
+              <div class="shipping-address-box" *ngFor="let address of addresses; let isFirst = first; let i = index"
+                [class.active]="isFirst">
+                <address>
+                  {{user.name}} {{user.last_name}}<br>
+                  {{address.address}} <br>
+                  {{address.town}}<br>
+                </address>
 
-                  <div class="address-box-action clearfix">
-                      <!-- <a href="#" class="btn btn-sm btn-link">
+                <div class="address-box-action clearfix">
+                  <!-- <a href="#" class="btn btn-sm btn-link">
                           Edit
                       </a> -->
 
-                      <a (click)="selectAddress(i, $event)" class="btn btn-sm btn-outline-secondary float-right">
-                          Alege
-                      </a>
-                  </div><!-- End .address-box-action -->
+                  <a (click)="selectAddress(i, $event)" class="btn btn-sm btn-outline-secondary float-right">
+                    Alege
+                  </a>
+                </div><!-- End .address-box-action -->
               </div><!-- End .shipping-address-box -->
-             
-          </div>
+
+            </div>
 
             <form *ngIf="!isAuthentificated" #authForm="ngForm" (ngSubmit)="onLogin(authForm)">
               <div class="form-group required-field">
@@ -59,7 +60,8 @@
 
               <div class="form-group required-field">
                 <label>Parola </label>
-                <input type="password" class="form-control" placeholder="Parola" ngModel name="password" required minlength="6">
+                <input type="password" class="form-control" placeholder="Parola" ngModel name="password" required
+                  minlength="6">
               </div><!-- End .form-group -->
 
               <p>Daca ai deja cont, te poti autentifica sau poti continua comanda.</p>
@@ -68,95 +70,14 @@
                 <a href="forgot-password.html" class="forget-pass"> Ai uitat parola?</a>
               </div><!-- End .form-footer -->
             </form>
-
-           <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!addresses">
-              <div class="form-group required-field">
-                <label>Nume </label>
-                <input formControlName="name" id="name" type="text" class="form-control" placeholder="ex: Mihai">
-                <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
-                  <div *ngIf="f.name.errors.required">Introduceti numele</div>
-                  <div *ngIf="f.name.errors.minlength">Numele trebuie sa contina cel putin 3 litere</div>
-                </div>
-              </div>
-
-              <div class="form-group required-field">
-                <label>Prenume </label>
-                <input formControlName="lastName" id="lastName" type="text" class="form-control"
-                  placeholder="ex: Popescu">
-                <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger">
-                  <div *ngIf="f.lastName.errors.required">Introduceti prenumele</div>
-                  <div *ngIf="f.lastName.errors.minlength">Prenumele trebuie sa contina cel putin 3 litere</div>
-                </div>
-              </div>
-
-              <div class="form-group required-field">
-                <label>Email </label>
-                <input formControlName="email" id="email" type="text" class="form-control" placeholder="Email">
-                <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
-                  <div *ngIf="f.email.errors.required">Introduceti emailul</div>
-                  <div *ngIf="f.email.errors.minlength">Formatul nu este corect</div>
-                  <div *ngIf="f.email.errors.required">Formatul nu este corect</div>
-                </div>
-              </div>
-
-
-              <div class="form-group required-field">
-                <label>Adresa </label>
-                <input formControlName="address" id="address" type="text" class="form-control"
-                  placeholder="ex: Strada, numar, bloc, scara, etaj, apartament">
-                <div *ngIf="f.address.touched && f.address.invalid" class="alert alert-danger">
-                  <div *ngIf="f.address.errors.required">Introduceti adresa</div>
-                  <div *ngIf="f.address.errors.minlength">Adresa este prea scurta</div>
-                </div>
-              </div>
-
-              
-
-              <div class="form-group required-field">
-                <label>Oras </label>
-                <input [ngModel]="search"
-                (ngModelChange)="searchFunc($event)" [disabled]="!form.valid || (selectedAddress | json) == '{}'" formControlName="town" id="town" type="text" class="form-control" placeholder="Oras">
-                <div *ngIf="f.town.touched && f.town.invalid" class="alert alert-danger" >
-                  <div *ngIf="f.town.errors.required">Introduceti numele orasului</div>
-                </div>
-                <div *ngIf="hasSelectedTown" (click)="clear()" class="clear"><i class="icon-cancel"></i></div>
-                <div *ngIf="searchTowns && show"  class="town-search-result">
-                  <div *ngFor="let townResult of searchTowns; let i = index" class="search-result-item">
-                    <div class="search-result-name" (click)="selectTown(townResult.name, townResult.region, i)">
-                     {{townResult.name}}, ({{townResult.region}})
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-
-              <div class="form-group required-field">
-                <label>Judet </label>
-                <input formControlName="county" id="county" type="text" class="form-control" disabled placeholder="Judet">
-                <div *ngIf="f.county.touched && f.county.invalid" class="alert alert-danger">
-                  <div *ngIf="f.county.errors.required">Introduceti judetul</div>
-                  <div *ngIf="f.county.errors.minlength">Numele judetului trebuie sa contina cel putin 3 litere</div>
-                </div>
-                
-              </div>
-
-
-
-              <div class="form-group required-field">
-                <label>Telefon </label>
-                <input formControlName="phone" id="phone" type="text" class="form-control" placeholder="07xxxxxxxx">
-                <div *ngIf="f.phone.touched && f.phone.invalid" class="alert alert-danger">
-                  <div *ngIf="f.phone.errors.required">Introduceti numarul</div>
-                  <div *ngIf="f.phone.errors.pattern">Telefonul nu are formatul corect</div>
-                </div>
-              </div>
-            </form> 
+            <app-checkout-form (formValue)="submit($event)" *ngIf="!addresses"></app-checkout-form>
+            
           </li>
 
           <li>
             <div class="checkout-step-shipping">
               <h2 class="step-title">Modalitate de plata</h2>
-              <radio-button [items]="items" [(ngModel)]="selectedItem" ></radio-button>
+              <radio-button [items]="items" [(ngModel)]="selectedItem"></radio-button>
             </div><!-- End .checkout-step-shipping -->
           </li>
         </ul>
@@ -168,7 +89,8 @@
 
           <h4>
             <a data-toggle="collapse" href="#order-cart-section" class="collapsed" role="button" aria-expanded="false"
-              aria-controls="order-cart-section">{{cartTotal$ == 1 ? cartTotal$ + ' produs' : cartTotal$ + ' prdouse'}} in cos</a>
+              aria-controls="order-cart-section">{{cartTotal$ == 1 ? cartTotal$ + ' produs' : cartTotal$ + ' prdouse'}}
+              in cos</a>
           </h4>
 
           <div class="collapse" id="order-cart-section">
@@ -199,7 +121,7 @@
                   <td>Total</td>
                   <td>{{totalPrice$}} lei</td>
                 </tr>
-                
+
               </tbody>
             </table>
           </div><!-- End #order-cart-section -->
@@ -210,11 +132,12 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="checkout-steps-action">
-          <button *ngIf="!selectedAddress" class="btn btn-primary float-right" type="submit" (click)="submit()"
+          <!-- <button *ngIf="!selectedAddress" class="btn btn-primary float-right" type="submit" (click)="submit()"
             [disabled]="!form.valid || (selectedAddress | json) == '{}'">Inainte</button>
           <button *ngIf="selectedAddress" class="btn btn-primary float-right" type="submit" (click)="submit()"
-            [disabled]="(selectedAddress | json) == '{}'">Inainte</button>
-          <!-- <a href="checkout-review.html" class="btn btn-primary float-right">NEXT</a> -->
+            [disabled]="(selectedAddress | json) == '{}'">Inainte</button> -->
+          <button class="btn btn-primary float-right" type="submit" (click)="onFormSubmit()">Inainte</button>
+          
         </div><!-- End .checkout-steps-action -->
       </div><!-- End .col-lg-8 -->
     </div><!-- End .row -->
@@ -222,4 +145,3 @@
 
   <div class="mb-6"></div><!-- margin -->
 </main><!-- End .main -->
-

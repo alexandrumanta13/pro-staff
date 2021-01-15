@@ -21,3 +21,18 @@ input[type=number] {
     height: 20px;
   }
 }
+
+.input {
+  &__container {
+    flex: 1;
+    position: relative;
+
+    input {
+      margin: 0;
+    }
+
+    .invalid-feedback {
+      position: absolute;
+    }
+  }
+}

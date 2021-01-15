@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   private token: string;
   private email: string;
   discount: any;
+  isAuthentificated: boolean = false;
 
   constructor(
     public router: Router,
@@ -43,16 +44,23 @@ export class CartComponent implements OnInit {
     })
 
     this._authService.user.subscribe(user => {
-      this.token = user.token;
-      this.email = user.email;
+      this.isAuthentificated = !!user;
+      if (this.isAuthentificated) {
+        this.token = user.token;
+        this.email = user.email;
+      }
     });
 
-    const checkDiscount = JSON.parse(localStorage.getItem("prostaffDiscount"));
+    if (this.isAuthentificated) {
+      const checkDiscount = JSON.parse(localStorage.getItem("prostaffDiscount"));
 
-    if (checkDiscount) {
-        const prevAccepted = checkDiscount.date;
-        this.discount = checkDiscount.percent;
-        this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
+      if (checkDiscount) {
+        if (checkDiscount.email == this.email) {
+          const prevAccepted = checkDiscount.date;
+          this.discount = checkDiscount.percent;
+          this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
+        }
+      }
     }
   }
 
@@ -82,15 +90,14 @@ export class CartComponent implements OnInit {
     let options = { headers: headers };
 
     this._newsletterService.useCoupon(this.email, this.model.coupon, options).then(data => {
-      this.discount = data['percent'];
-      this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
+      if (data['success']) {
+        this.discount = data['percent'];
+        this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
 
-      const currentTime = new Date();
-      const date = currentTime.setTime(currentTime.getTime() + (10 * 60000))
-      localStorage.setItem("prostaffDiscount", JSON.stringify({ 'date': date, 'type': data['type'], 'percent': data['percent'] }));
+        const currentTime = new Date();
+        const date = currentTime.setTime(currentTime.getTime() + (10 * 60000))
+        localStorage.setItem("prostaffDiscount", JSON.stringify({ 'date': date, 'type': data['type'], 'percent': data['percent'], 'email': this.email }));
 
-
-      if (data['success'] === true) {
         this._toaster.success('', `${data['message']}`, {
           timeOut: 8000,
           positionClass: 'toast-bottom-right'
