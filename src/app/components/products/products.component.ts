@@ -39,6 +39,7 @@ export class ProductsComponent implements OnInit {
   public _route_subcategory: string;
   subcategoryValue: any;
   loaded: boolean = false;
+  private _route_brand: string;
 
   constructor(httpClient: HttpClient, private route: ActivatedRoute, private modalService: ModalService, public router: Router) {
     this._httpClient = httpClient;
@@ -57,10 +58,20 @@ export class ProductsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this._route = params.get('categorySlug');
       this._route_subcategory = params.get('subcategorySlug');
-      this.getProducts();
+      this._route_brand = params.get('brandSlug');
+      console.log(this._route, this._route_subcategory, this._route_brand)
+      if (this.router.url.includes('/brand')) {
+        this.getProductsByBrand(this._route_brand)
+      } else {
+        this.getProducts();
 
-      this.getCategory(this._route);
-      this.getSubcategory();
+        this.getCategory(this._route);
+        this.getSubcategory();
+      }
+     
+      
+
+
     });
   }
 
@@ -121,8 +132,8 @@ export class ProductsComponent implements OnInit {
 
     });
   }
-  getProductsByBrand(id) {
-    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/brand`, { 'id': id }).subscribe((data: any) => {
+  getProductsByBrand(slug) {
+    this._httpClient.post(`https://pro-staff.ro/prostaff-api/v1/products/brand`, { 'brandSlug': slug }).subscribe((data: any) => {
       this._products = data.products;
       console.log(this._products)
       this.setTotalPages(data.no_of_pages);

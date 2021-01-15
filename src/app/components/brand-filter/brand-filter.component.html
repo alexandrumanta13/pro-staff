@@ -8,7 +8,7 @@
         <ul class="cat-list">
           <ng-container *ngFor="let brand of brands">
             <li *ngIf="brand.productCount > 0">
-              <a (click)="getProductsByBrand(brand.id);">{{brand.brand_name}}
+              <a (click)="getProductsByBrand(brand.slug);">{{brand.brand_name}}
                 ({{brand.productCount}})</a>
             </li>
           </ng-container>

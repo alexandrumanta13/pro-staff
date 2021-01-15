@@ -225,6 +225,7 @@ export class ConfirmOrderComponent implements OnInit {
         })
         
         this.cartService.emptyCart();
+        localStorage.removeItem("prostaffDiscount")
         this._httpClient.post(this.euplatesctSend, dataSend)
           .pipe(
             take(1),

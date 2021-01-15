@@ -114,6 +114,7 @@ const routes: Routes = [
   { path: 'categorie/:categorySlug', component: CategoryComponent },
   { path: 'produse/:categorySlug', component: ProductsComponent },
   { path: 'produse/:categorySlug/:subcategorySlug', component: ProductsComponent },
+  { path: 'produse/:categorySlug/brand/:brandSlug', component: ProductsComponent },
 
 
   { path: 'cos-cumparaturi', component: CartComponent },
