@@ -32,6 +32,7 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { BlogSingleComponent } from './pages/blog-single/blog-single.component';
 import { MyOrdersComponent } from './pages/my-account/my-orders/my-orders.component';
 import { OrderDetailsComponent } from './pages/my-account/order-details/order-details.component';
+import { RecoverComponent } from './pages/recover/recover.component';
 
 
 const routes: Routes = [
@@ -170,6 +171,9 @@ const routes: Routes = [
   { path: 'login', component: AuthComponent },
 
   { path: 'autentificare', component: AuthComponent },
+
+  { path: 'am-uitat-parola', component: RecoverComponent },
+  { path: 'am-uitat-parola/:token', component: RecoverComponent },
 
   { path: 'contul-meu', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'comenzile-mele', component: MyOrdersComponent, canActivate: [AuthGuard] },

@@ -95,6 +95,7 @@ import { OrderDetailsComponent } from './pages/my-account/order-details/order-de
 import { QuantityFilterComponent } from './components/quantity-filter/quantity-filter.component';
 import { BrandFilterComponent } from './components/brand-filter/brand-filter.component';
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
+import { RecoverComponent } from './pages/recover/recover.component';
 
 
 
@@ -148,6 +149,7 @@ import { CheckoutFormComponent } from './components/checkout-form/checkout-form.
     QuantityFilterComponent,
     BrandFilterComponent,
     CheckoutFormComponent,
+    RecoverComponent,
   ],
   imports: [
     BrowserModule,

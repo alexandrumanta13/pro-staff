@@ -151,4 +151,26 @@ export class AuthService {
 
     localStorage.setItem('ProstaffUserData', JSON.stringify(user))
   }
+
+  recover(email) {
+    return new Promise((resolve, reject) => {
+
+      this.http.post('https://pro-staff.ro/prostaff-api/v1/recover', {'email': email} )
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+
+    });
+  }
+
+  changePassword(password, token) {
+    return new Promise((resolve, reject) => {
+
+      this.http.post('https://pro-staff.ro/prostaff-api/v1/changePassword', {'token': token, 'password': password} )
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+
+    });
+  }
 }
