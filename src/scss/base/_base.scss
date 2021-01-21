@@ -91,8 +91,9 @@ body.admin {
 }
 
 
-.body {
+body {
   overflow: hidden;
+  width: 100%;
 
   &.modal-open {
     overflow: hidden;
