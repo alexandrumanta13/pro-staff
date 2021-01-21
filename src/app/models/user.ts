@@ -4,7 +4,7 @@ export class User {
         public name: string,
         public last_name: string,
         public email: string,
-        public phone: string,
+        
         public date_last_visit: Date,
         public access: number,
         private _token: string,

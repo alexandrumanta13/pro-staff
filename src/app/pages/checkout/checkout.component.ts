@@ -249,7 +249,6 @@ export class CheckoutComponent implements OnInit {
         email: this.user.email,
         firstName: this.user.name,
         lastName: this.user.last_name,
-        phone: this.user.phone,
       }
     } else {
       postVars['customer'] = {

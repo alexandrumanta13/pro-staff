@@ -24,7 +24,7 @@
                     <input type="text" name="name" class="form-control" [(ngModel)]="model.name" #name="ngModel"
                       [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
                     <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
-                      <div *ngIf="name.errors.required">First Name is required</div>
+                      <div *ngIf="name.errors.required">Te rugam sa introduci numele!</div>
                     </div>
                   </div><!-- End .form-group -->
                 </div><!-- End .col-md-4 -->
@@ -35,7 +35,7 @@
                     <input type="text" name="lastName" class="form-control" [(ngModel)]="model.last_name"
                       #last_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && last_name.invalid }" required>
                     <div *ngIf="f.submitted && last_name.invalid" class="invalid-feedback">
-                      <div *ngIf="last_name.errors.required">Last Name is required</div>
+                      <div *ngIf="last_name.errors.required">Te rugam sa introduci prenumele</div>
                     </div>
                   </div><!-- End .form-group -->
                 </div><!-- End .col-md-4 -->
@@ -48,8 +48,8 @@
             <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
               [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
             <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-              <div *ngIf="email.errors.required">Email is required</div>
-              <div *ngIf="email.errors.email">Email must be a valid email address</div>
+              <div *ngIf="email.errors.required">Te rugam sa introduci email-ul!</div>
+              <div *ngIf="email.errors.email">Email-ul nu este valid!</div>
             </div>
           </div><!-- End .form-group -->
 
@@ -71,8 +71,8 @@
                     #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
                     minlength="6">
                   <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
-                    <div *ngIf="password.errors.required">Password is required</div>
-                    <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                    <div *ngIf="password.errors.required">Te rugam sa introduci parola</div>
+                    <div *ngIf="password.errors.minlength">Parola trebuie sa fie de minim 6 caractere</div>
                   </div>
                 </div><!-- End .form-group -->
               </div><!-- End .col-md-6 -->
@@ -84,8 +84,8 @@
                     #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }"
                     required>
                   <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
-                    <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
-                    <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
+                    <div *ngIf="confirmPassword.errors.required">Te rugam sa confirmi parola</div>
+                    <div *ngIf="confirmPassword.errors.mustMatch">Parolele nu se potrivesc</div>
                   </div>
                 </div><!-- End .form-group -->
               </div><!-- End .col-md-6 -->
@@ -111,7 +111,6 @@
             <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
             <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
             <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
-            <li routerLinkActive='active'><a routerLink="/favorite">Favorite</a></li>
             <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
           </ul>
       

@@ -22,19 +22,21 @@ export class AuthService {
     // this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  signup(email: string, password: string) {
-    return this.http.post<AuthResponseData>(`https://pro-staff.ro/prostaff-api/v1/login`, { "email": email, "password": password })
+  signup(user) {
+    return this.http.post<AuthResponseData>(`https://pro-staff.ro/prostaff-api/v1/register`, { "firstName": user.name, "lastName": user.last_name, "email": user.email, "password": user.password })
       .pipe(tap(data => {
-        this.handleAuthentication(
-          data.user.id,
-          data.user.name,
-          data.user.last_name,
-          data.user.email,
-          data.user.phone,
-          data.user.date_last_visit,
-          data.user.access,
-          data.user.token
-        );
+        if (data['success']) {
+          this.handleAuthentication(
+            data.user.id,
+            data.user.name,
+            data.user.last_name,
+            data.user.email,
+            data.user.date_last_visit,
+            data.user.access,
+            data.user.token
+          );
+        }
+
       })
       );
   }
@@ -58,7 +60,6 @@ export class AuthService {
             data.user.name,
             data.user.last_name,
             data.user.email,
-            data.user.phone,
             data.user.date_last_visit,
             data.user.access,
             data.user.token,
@@ -92,7 +93,6 @@ export class AuthService {
       name: string,
       last_name: string,
       email: string,
-      phone: string,
       date_last_visit: Date,
       access: number,
       _token: string;
@@ -107,7 +107,6 @@ export class AuthService {
       ProstaffUserData.name,
       ProstaffUserData.last_name,
       ProstaffUserData.email,
-      ProstaffUserData.phone,
       ProstaffUserData.date_last_visit,
       ProstaffUserData.access,
       ProstaffUserData._token,
@@ -129,7 +128,6 @@ export class AuthService {
     name: string,
     last_name: string,
     email: string,
-    phone: string,
     date_last_visit: Date,
     access: number,
     token: string,
@@ -143,7 +141,6 @@ export class AuthService {
       name,
       last_name,
       email,
-      phone,
       date_last_visit,
       access,
       token,

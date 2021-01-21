@@ -10,7 +10,7 @@
 
   <div class="page-header">
     <div class="container">
-      <h1>Login and Create Account</h1>
+      <h1>Autentifica-te sau creeaza cont</h1>
     </div><!-- End .container -->
   </div><!-- End .page-header -->
 
@@ -22,13 +22,22 @@
           <p>Daca aveti deja cont, va rugam sa va autentificati.</p>
         </div><!-- End .heading -->
         <div class="error alert alert-danger" *ngIf="error">{{error}}</div>
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-          <input type="email" class="form-control" placeholder="Email" ngModel name="email" required email>
-          <input type="password" class="form-control" placeholder="Parola" ngModel name="password" required
-            minlength="6">
+        <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
+          <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="login.email"
+            #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+          <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+            <div *ngIf="email.errors.required">Te rugam sa introduci email-ul!</div>
+            <div *ngIf="email.errors.email">Email-ul nu este valid!</div>
+          </div>
+          <input type="password" name="password" class="form-control" placeholder="Parola" [(ngModel)]="login.password"
+            #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required>
+          <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors.required">Te rugam sa introduci parola</div>
+
+          </div>
 
           <div class="form-footer">
-            <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Autentificare</button>
+            <button type="submit" class="btn btn-primary">Autentificare</button>
             <a href="/am-uitat-parola" class="forget-pass"> Ai uitat parola?</a>
           </div><!-- End .form-footer -->
         </form>
@@ -42,14 +51,38 @@
 
         </div><!-- End .heading -->
 
-        <form action="#">
-          <input type="text" class="form-control" placeholder="Nume" required>
-          <input type="text" class="form-control" placeholder="Prenume" required>
-          
+        <form (ngSubmit)="register.form.valid && signup()" #register="ngForm" [mustMatch]="['password', 'confirmPassword']"
+          novalidate>
+          <input type="text" name="name" class="form-control" placeholder="Nume" [(ngModel)]="model.name"
+            #name="ngModel" [ngClass]="{ 'is-invalid': register.submitted && name.invalid }" required>
+          <div *ngIf="register.submitted && name.invalid" class="invalid-feedback">
+            <div *ngIf="name.errors.required">Te rugam sa introduci numele!</div>
+          </div>
+          <input type="text" name="lastName" class="form-control" placeholder="Prenume" [(ngModel)]="model.last_name"
+            #last_name="ngModel" [ngClass]="{ 'is-invalid': register.submitted && last_name.invalid }" required>
+          <div *ngIf="register.submitted && last_name.invalid" class="invalid-feedback">
+            <div *ngIf="last_name.errors.required">Te rugam sa introduci prenumele</div>
+          </div>
+
           <h2 class="mb-2">Informatii cont</h2>
-          <input type="email" class="form-control" placeholder="Email" required>
-          <input type="password" class="form-control" placeholder="Parola" required>
-          <input type="password" class="form-control" placeholder="Repeta parola" required>
+          <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="model.email"
+            #email="ngModel" [ngClass]="{ 'is-invalid': register.submitted && email.invalid }" required email>
+          <div *ngIf="register.submitted && email.invalid" class="invalid-feedback">
+            <div *ngIf="email.errors.required">Te rugam sa introduci email-ul!</div>
+            <div *ngIf="email.errors.email">Email-ul nu este valid!</div>
+          </div>
+          <input type="password" name="password" class="form-control" placeholder="Parola" [(ngModel)]="model.password"
+            #password="ngModel" [ngClass]="{ 'is-invalid': register.submitted && password.invalid }" required minlength="6">
+          <div *ngIf="register.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors.required">Te rugam sa introduci parola</div>
+            <div *ngIf="password.errors.minlength">Parola trebuie sa fie de minim 6 caractere</div>
+          </div>
+          <input type="password" name="confirmPassword" class="form-control" placeholder="Repeta parola" [(ngModel)]="model.confirmPassword"
+            #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': register.submitted && confirmPassword.invalid }" required>
+          <div *ngIf="register.submitted && confirmPassword.invalid" class="invalid-feedback">
+            <div *ngIf="confirmPassword.errors.required">Te rugam sa confirmi parola</div>
+            <div *ngIf="confirmPassword.errors.mustMatch">Parolele nu se potrivesc</div>
+          </div>
 
           <!-- <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="newsletter-signup">
