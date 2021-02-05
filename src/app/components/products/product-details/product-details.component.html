@@ -16,7 +16,7 @@
             <div class="product-single-gallery">
               <div class="product-slider-container product-item product-gallery__featured">
 
-                <owl-carousel-o class="product-single-carousel" [options]="customOptions" #owlCar>
+                <owl-carousel-o *ngIf="product?.image_url" class="product-single-carousel" [options]="customOptions" #owlCar>
                   <ng-container class="product-item">
                     <ng-template carouselSlide [id]="product?.image_url">
                       <lib-ngx-image-zoom [thumbImage]="product?.image_url" [fullImage]="product?.image_url"
@@ -53,6 +53,8 @@
                       </ng-template>
                     </ng-container>
                   </owl-carousel-o>
+
+                  <img *ngIf="!product?.image_url" src="/assets/images/default.png">
                 </div>
 
               </div>
@@ -73,7 +75,8 @@
               </div> -->
 
               <div class="price-box">
-                <span class="old-price" *ngIf="old_price > 0">{{ ((price/old_price)*100).toFixed(2) }}</span>
+                <!-- <span class="old-price" *ngIf="old_price > 0">{{ ((price/old_price)*100).toFixed(2) }}</span> -->
+                <span class="old-price" *ngIf="old_price > 0">{{ old_price }}</span>
                 <span class="product-price" [hidden]="clickedColor">{{price}} lei</span>
                 <span class="product-price color"></span>
               </div><!-- End .price-box -->

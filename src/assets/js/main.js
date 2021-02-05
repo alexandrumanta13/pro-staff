@@ -344,14 +344,14 @@
       });
     },
     stickySidebar: function () {
-      $(".sidebar-wrapper, .sticky-slider").themeSticky({
-        autoInit: true,
-        minWidth: 991,
-        containerSelector: '.row, .container',
-        autoFit: true,
-        paddingOffsetBottom: 10,
-        paddingOffsetTop: 60
-      });
+      // $(".sidebar-wrapper, .sticky-slider").themeSticky({
+      //   autoInit: true,
+      //   minWidth: 991,
+      //   containerSelector: '.row, .container',
+      //   autoFit: true,
+      //   paddingOffsetBottom: 10,
+      //   paddingOffsetTop: 60
+      // });
     },
     countTo: function () {
       // CountTo plugin used count animations for homepages

@@ -4,6 +4,7 @@ import { CartService } from 'app/services/cart.service';
 import { take, map } from 'rxjs/operators';
 import { fromEvent, Subscription } from 'rxjs';
 import { AuthService } from 'app/services';
+import { ProductService } from 'app/services/products.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,16 +19,22 @@ export class HeaderComponent implements OnInit {
   body: any;
   user: any;
   clientMenu: boolean;
+  show: boolean;
+  products: any;
+  results: boolean;
 
   constructor(
     public router: Router,
     private cartService: CartService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private productService: ProductService,) {
     this.scrolling = false;
+    
   }
   public items$ = this.cartService.items$;
   public cartTotal$;
   public totalPrice$;
+  productSearch: any;
 
 
   ngOnInit() {
@@ -58,6 +65,10 @@ export class HeaderComponent implements OnInit {
 
     });
 
+    
+    this.productService.getProductsAll().then(products => {
+      this.products = products;
+    })
   }
 
   isSticky: boolean = false;
@@ -75,6 +86,12 @@ export class HeaderComponent implements OnInit {
   @HostListener('scroll')
   public asd(): void {
     console.log('scrolling');
+  }
+  
+  onSearchChange() {
+    
+    this.results = true;
+    
   }
 
 
@@ -122,6 +139,11 @@ export class HeaderComponent implements OnInit {
 
   toggleClientMenu() {
     this.clientMenu = !this.clientMenu;
+  }
+
+  toggleSearch() {
+    this.show = !this.show;
+    this.results = false;
   }
 
 }

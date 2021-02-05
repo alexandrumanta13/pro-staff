@@ -51,6 +51,7 @@ export class CheckoutComponent implements OnInit {
   weight: number = 0;
   delivery: any;
   discount: any;
+  showLogin: boolean;
 
 
 
@@ -107,9 +108,7 @@ export class CheckoutComponent implements OnInit {
         this.user = user;
 
         this.getAddresses(user);
-
       }
-
     });
 
     if (this.isAuthentificated) {
@@ -168,6 +167,10 @@ export class CheckoutComponent implements OnInit {
 
     });
     form.reset();
+  }
+
+  showLoginForm() {
+    this.showLogin = !this.showLogin;
   }
 
   getAddresses(user) {

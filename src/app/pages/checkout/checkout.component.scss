@@ -37,3 +37,23 @@
     }
   }
 }
+
+.login-form {
+  display: none;
+
+  &.open {
+    display: block;
+  }
+}
+
+.toggle-login {
+  margin: 40px 0;
+
+  a {
+    color: #FFC107;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -54,10 +54,13 @@ export class AppComponent {
       mergeMap((route) => route.data)
     )
       .subscribe((event) => {
+        console.log(document.querySelector('body'))
+        this.moveToTop()
         this._seoService.updateTitle(event['title']);
         this._seoService.updateOgUrl(event['ogUrl']);
         //Updating Description tag dynamically with title
         this._seoService.updateDescription(event['title'] + event['description'])
+
         window.scrollTo(0, 0)
       });
 
@@ -68,6 +71,7 @@ export class AppComponent {
     )
       .subscribe((event) => {
        
+        
         $.getScript('../assets/js/main.js');
         
         $.getScript('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f50ef52d1631692')
@@ -120,5 +124,15 @@ export class AppComponent {
   logout() {
    // this.authService.logout();
     this.router.navigate(['login']);
+  }
+
+  moveToTop() {
+    // const scrollToContainer = document.querySelector('.page-wrapper');
+    // scrollToContainer.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    // if(window.innerWidth > 991 && scrollToContainer) {
+      
+
+    // }
+    window.scrollTo(0, 0)
   }
 }

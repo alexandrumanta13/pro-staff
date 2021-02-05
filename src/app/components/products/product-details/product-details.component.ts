@@ -118,6 +118,7 @@ export class ProductDetailsComponent implements OnInit {
       .subscribe(data => {
         console.log(data)
         this.product = data;
+        this.product.availableQuantities =  this.product.availableQuantities.sort((a, b) => a.quantity - b.quantity);
         console.log(this.product)
         console.log(this.product.PaletteColorID)
         if (this.product.PaletteColorID > 0) {

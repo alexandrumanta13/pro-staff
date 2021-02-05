@@ -201,7 +201,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'top', // Add options right here
+  })],
   exports: [RouterModule],
   providers: [
     //AuthGuard,

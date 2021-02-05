@@ -49,8 +49,8 @@
               </div><!-- End .shipping-address-box -->
 
             </div>
-
-            <form *ngIf="!isAuthentificated" #authForm="ngForm" (ngSubmit)="onLogin(authForm)">
+            <h4 class="toggle-login">Daca ai deja cont, te poti autentifica <a (click)="showLoginForm()">aici</a> sau poti continua comanda.</h4>
+            <form *ngIf="!isAuthentificated" class="login-form" [class.open]="showLogin" #authForm="ngForm" (ngSubmit)="onLogin(authForm)">
               <div class="form-group required-field">
                 <label>Email </label>
                 <div class="form-control-tooltip">
@@ -64,7 +64,7 @@
                   minlength="6">
               </div><!-- End .form-group -->
 
-              <p>Daca ai deja cont, te poti autentifica sau poti continua comanda.</p>
+              
               <div class="form-footer">
                 <button type="submit" class="btn btn-primary">Autentificare</button>
                 <a href="forgot-password.html" class="forget-pass"> Ai uitat parola?</a>

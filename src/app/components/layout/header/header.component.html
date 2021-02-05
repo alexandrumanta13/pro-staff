@@ -46,31 +46,26 @@
         <button class="mobile-menu-toggler" (click)="toggleMenu($event)" type="button">
           <i class="icon-menu"></i>
         </button>
-        <!-- <div class="header-search header-search-popup header-search-category d-none d-sm-block">
-          <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
-          <form action="#" method="get">
-            <div class="header-search-wrapper show">
-              <input type="search" class="form-control" name="q" id="q" placeholder="I'm searching for..." required="">
-              <div class="select-custom">
-                <select id="cat" name="cat">
+        <div class="header-search header-search-popup header-search-category d-sm-block">
+          <a (click)="toggleSearch()" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
 
-                  <option value="">Toate categoriile</option>
-                  <option value="4">VOPSEA LAVABILA</option>
-                  <option value="4">VOPSEA DECORATIVA</option>
-                  <option value="4">VOPSEA METAL</option>
-                  <option value="4">PENTRU LEMN</option>
-                  <option value="4">VOPSEA PARDOSEALA</option>
-                  <option value="4">VOPSEA CERAMICA</option>
-                  <option value="4">HIDROIZOLATII</option>
-                  <option value="4">CAMERE COPII</option>
-                  <option value="4">APARATE ȘI SCULE DE VOPSIT</option>
-
-                </select>
-              </div>
-              <button class="btn icon-search-3" type="submit"></button>
-            </div>
-          </form>
-        </div> -->
+          <div class="header-search-wrapper" [class.show]="show">
+            <input type="search" class="form-control" name="q" id="q" (click)="onSearchChange()" [(ngModel)]="productSearch" autocomplete="off"
+              placeholder="Cauta">
+          </div>
+          <ul class="results" *ngIf="results">
+            <li *ngFor="let product of products | filter:productSearch">
+              <a routerLink="/produs/{{product.alias}}">
+                <figure>
+                  <img *ngIf="product.image_url" src="{{product.image_url}}" alt="">
+                  <img *ngIf="!product.image_url" src="/assets/images/default.png" alt="">
+                </figure>
+                
+                <strong>{{product.product_name}}</strong>
+              </a>              
+            </li>
+          </ul>
+        </div>
 
         <div class="dropdown cart-dropdown">
           <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -152,7 +147,7 @@
                 <li><a routerLink="/contul-meu">Informatii cont</a></li>
                 <li><a routerLink="/adresele-mele">Adresele mele</a></li>
                 <li><a routerLink="/comenzile-mele">Comenzile mele</a></li>
-                
+
                 <li><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
                 <hr>
                 <li>

@@ -97,6 +97,8 @@ import { BrandFilterComponent } from './components/brand-filter/brand-filter.com
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { RecoverComponent } from './pages/recover/recover.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -150,6 +152,7 @@ import { RecoverComponent } from './pages/recover/recover.component';
     BrandFilterComponent,
     CheckoutFormComponent,
     RecoverComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -170,7 +173,8 @@ import { RecoverComponent } from './pages/recover/recover.component';
       sharerMethod: SharerMethod.Window
     }),
     ShareIconsModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    Ng2SearchPipeModule
   ],
   exports: [
     UserDirective,

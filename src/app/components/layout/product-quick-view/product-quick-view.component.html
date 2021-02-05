@@ -7,7 +7,7 @@
 
         <div class="product-slider-container product-item product-gallery__featured" *ngIf="loaded">
 
-          <owl-carousel-o class="product-single-carousel" [options]="customOptionsQuick" #owlCar>
+          <owl-carousel-o *ngIf="product?.image_url" class="product-single-carousel" [options]="customOptionsQuick" #owlCar>
             <ng-container class="product-item">
               <ng-template carouselSlide [id]="product?.image_url" [width]="454">
                 <lib-ngx-image-zoom [thumbImage]="product?.image_url" [fullImage]="product?.image_url"
@@ -24,6 +24,9 @@
               </ng-template>
             </ng-container>
           </owl-carousel-o>
+
+
+          <img *ngIf="!product?.image_url" src="/assets/images/default.png">
 
           <div class="product-gallery__carousel">
             <owl-carousel-o [options]="dotsOptions" *ngIf="additionalImages > 0">

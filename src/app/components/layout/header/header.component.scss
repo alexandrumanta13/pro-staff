@@ -29,7 +29,7 @@
 
     @media (max-width: 991px) {
 
-      width: 150px;
+      width: 70px;
 
     }
   }
@@ -230,6 +230,104 @@
   .user-account {
     img {
       height: 2.3rem;
+    }
+  }
+}
+
+
+.search-toggle {
+  .icon-magnifier {
+    &:before {
+      color: #fff !important;
+    }
+  }
+
+
+}
+
+.header-search-wrapper {
+  &.show {
+    display: flex;
+
+  }
+
+  width: 320px;
+
+  @media (max-width: 575px) {
+    right: 0;
+    left: 0;
+    width: calc(100% - 10px);
+
+    position: fixed;
+  }
+}
+
+.header-search {
+  @media (max-width: 575px) {
+    margin-right: 2.4rem;
+
+    .search-toggle .icon-magnifier:before {
+      font-size: 2.3rem;
+    }
+  }
+
+  .results {
+    background: #fff;
+    position: absolute;
+    right: -2.3rem;
+    z-index: 999;
+    width: 330px;
+    top: 90px;
+    max-height: 340px;
+    overflow: auto;
+
+    @media (max-width: 575px) {
+      position: fixed;
+
+      width: 100%;
+      left: 0;
+      top: 120px;
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+
+
+      a {
+        display: flex;
+        align-items: center;
+      }
+
+      figure {
+        width: 80px;
+        height: 80px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-right: 16px;
+        margin-bottom: 0;
+
+        img {
+          padding: 8px;
+          width: 100%;
+        }
+      }
+
+      strong {
+        flex: 1;
+        margin-right: 32px;
+        color: #333;
+
+
+        font-size: 12px;
+
+        @media (max-width: 575px) {
+          font-size: 14px;
+        }
+      }
     }
   }
 }

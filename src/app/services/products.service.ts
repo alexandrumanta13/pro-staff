@@ -118,4 +118,20 @@ export class ProductService {
 
         });
     }
+
+    /**
+     * Get products
+     *
+     * @returns {Promise<any>}
+     */
+    getProductsAll() : Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this.httpClient.get('https://pro-staff.ro/prostaff-api/v1/productsAll')
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+       
+    }
 }

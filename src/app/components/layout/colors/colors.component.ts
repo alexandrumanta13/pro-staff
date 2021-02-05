@@ -66,8 +66,10 @@ export class ColorsComponent implements OnInit {
 
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthentificated = !!user;
-      this.userEmail = user.email;
-      console.log(user);
+      if(this.isAuthentificated) {
+        this.userEmail = user.email;
+      }
+      
     })
   }
 

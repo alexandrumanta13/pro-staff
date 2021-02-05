@@ -83,7 +83,9 @@
             <div class="product">
               <figure class="product-image-container">
                 <a href="/produs/{{product.alias}}" class="product-image">
-                  <img src="{{product.image_url}}" alt="product">
+                  <img *ngIf="product.image_url" src="{{product.image_url}}" alt="product">
+                  <img *ngIf="!product.image_url" src="/assets/images/default.png" alt="product">
+
                 </a>
                 <div class="discount" *ngFor="let discount of product.information">
                   <span class="product-label label-sale" *ngIf="discount.old_price > 0">

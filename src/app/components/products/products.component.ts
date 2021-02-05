@@ -129,6 +129,7 @@ export class ProductsComponent implements OnInit {
       console.log(this._products)
       this.setTotalPages(data.no_of_pages);
       this.setPagesArray(this.totalPages);
+      this.moveToTop()
 
     });
   }
@@ -138,7 +139,7 @@ export class ProductsComponent implements OnInit {
       console.log(this._products)
       this.setTotalPages(data.no_of_pages);
       this.setPagesArray(this.totalPages);
-
+      this.moveToTop()
     });
   }
 
@@ -186,7 +187,7 @@ export class ProductsComponent implements OnInit {
     }, 100);
 
 
-
+    this.moveToTop();
     return this._products;
   }
 
@@ -227,5 +228,17 @@ export class ProductsComponent implements OnInit {
 
   openModal(id: string, slug: string) {
     this.modalService.open(id, slug);
+  }
+
+
+  moveToTop() {
+    
+    const scrollToContainer = document.querySelector('.page-wrapper');
+    console.log(scrollToContainer)
+    scrollToContainer.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    // if(window.innerWidth > 991 && scrollToContainer) {
+      
+
+    // }
   }
 }

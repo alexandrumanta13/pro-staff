@@ -33,6 +33,7 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthentificated = !!user;
+      console.log(user)
       if(this.isAuthentificated) {
         this.router.navigate(['/contul-meu']);
       }
