@@ -98,6 +98,10 @@ import { CheckoutFormComponent } from './components/checkout-form/checkout-form.
 import { RecoverComponent } from './pages/recover/recover.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HowToBuyComponent } from './pages/how-to-buy/how-to-buy.component';
+import { HowToPayComponent } from './pages/how-to-pay/how-to-pay.component';
+import { HowToDeliveryComponent } from './pages/how-to-delivery/how-to-delivery.component';
+import { HowToReturnComponent } from './pages/how-to-return/how-to-return.component';
 
 
 
@@ -152,6 +156,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BrandFilterComponent,
     CheckoutFormComponent,
     RecoverComponent,
+    HowToBuyComponent,
+    HowToPayComponent,
+    HowToDeliveryComponent,
+    HowToReturnComponent,
     
   ],
   imports: [

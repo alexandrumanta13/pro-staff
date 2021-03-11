@@ -19,11 +19,13 @@ export class CheckoutFormComponent implements OnInit {
   public cartItems$ = this._cartService.items$;
   weight: number = 0;
 
+
   @ViewChild('f') checkoutForm;
   @ViewChild('submit') submit: ElementRef<HTMLElement>;
   @ViewChild('triggerAutocomplete') triggerAutocomplete: ElementRef<HTMLElement>;
 
   @Output() formValue = new EventEmitter<string>();
+  selectedTown: boolean = false;
 
   constructor(private _dpdService: DpdService, private _cartService: CartService, private _checkoutService: CheckoutService) { }
 
@@ -67,6 +69,7 @@ export class CheckoutFormComponent implements OnInit {
     this.model.town = selectedTown;
     this.model.lat = this.searchTowns[i].y;
     this.model.lng = this.searchTowns[i].x;
+    this.selectedTown = true;
 
     this._dpdService.calculatePrice(this.weight, this.searchTowns[i].id)
       .then(data => {
@@ -102,32 +105,37 @@ export class CheckoutFormComponent implements OnInit {
 
   autofill() {
     const autofilled = document.querySelectorAll('.checkout-form input:-webkit-autofill');
-    if(autofilled) {
+    if (autofilled) {
       autofilled.forEach(input => {
+        
         if (input.classList.contains('town')) {
+          console.log(this.selectedTown)
           const autofilletSelectTown = this.triggerAutocomplete.nativeElement;
           autofilletSelectTown.click();
         }
       })
     }
-    
+
   }
 
   onFormSubmit() {
 
-    this.autofill()
+    if(!this.selectedTown) {
+      this.autofill()
+    }
+   
 
     setTimeout(() => {
       const el: HTMLElement = this.submit.nativeElement;
       el.click()
-      if(this.delivery <= 0) {
+      if (this.delivery <= 0) {
         this.model.town = '';
         this.hide();
-      } 
+      }
 
       if (this.checkoutForm.valid) {
         this.formValue.emit(this.model)
-      } 
+      }
     }, 500)
   }
 }

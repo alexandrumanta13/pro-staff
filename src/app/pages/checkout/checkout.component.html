@@ -49,7 +49,7 @@
               </div><!-- End .shipping-address-box -->
 
             </div>
-            <h4 class="toggle-login">Daca ai deja cont, te poti autentifica <a (click)="showLoginForm()">aici</a> sau poti continua comanda.</h4>
+            <h4 *ngIf="!isAuthentificated" class="toggle-login">Daca ai deja cont, te poti autentifica <a (click)="showLoginForm()">aici</a> sau poti continua comanda.</h4>
             <form *ngIf="!isAuthentificated" class="login-form" [class.open]="showLogin" #authForm="ngForm" (ngSubmit)="onLogin(authForm)">
               <div class="form-group required-field">
                 <label>Email </label>

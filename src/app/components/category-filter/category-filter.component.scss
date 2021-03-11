@@ -2,9 +2,10 @@
   display: none;
 }
 
-.cat-list li a {
+.cat-list li a, .check-filter-list li a  {
   &:hover {
     text-decoration: underline;
     color: #333;
   }
 }
+

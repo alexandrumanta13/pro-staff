@@ -33,6 +33,10 @@ import { BlogSingleComponent } from './pages/blog-single/blog-single.component';
 import { MyOrdersComponent } from './pages/my-account/my-orders/my-orders.component';
 import { OrderDetailsComponent } from './pages/my-account/order-details/order-details.component';
 import { RecoverComponent } from './pages/recover/recover.component';
+import { HowToBuyComponent } from './pages/how-to-buy/how-to-buy.component';
+import { HowToPayComponent } from './pages/how-to-pay/how-to-pay.component';
+import { HowToDeliveryComponent } from './pages/how-to-delivery/how-to-delivery.component';
+import { HowToReturnComponent } from './pages/how-to-return/how-to-return.component';
 
 
 const routes: Routes = [
@@ -167,6 +171,11 @@ const routes: Routes = [
       ogUrl: 'your og url'
     }
   },
+
+  { path: 'cum-cumpar', component: HowToBuyComponent },
+  { path: 'modalitati-de-plata', component: HowToPayComponent },
+  { path: 'livrarea-produselor', component: HowToDeliveryComponent },
+  { path: 'politica-de-retur', component: HowToReturnComponent },
 
   { path: 'login', component: AuthComponent },
 
