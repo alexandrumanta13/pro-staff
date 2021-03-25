@@ -92,7 +92,7 @@ body.admin {
 
 
 body {
-  overflow: hidden;
+  overflow: auto;
   width: 100%;
 
   &.modal-open {
@@ -108,7 +108,7 @@ body {
 
 .page-wrapper {
   height: 100%;
-  overflow: auto;
+ 
 }
 
 a.add-cart:not([href]):not([tabindex]):focus,

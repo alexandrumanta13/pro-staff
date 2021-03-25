@@ -43,6 +43,7 @@ export class AppComponent {
 
  
   ngOnInit() {
+   
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
@@ -54,7 +55,7 @@ export class AppComponent {
       mergeMap((route) => route.data)
     )
       .subscribe((event) => {
-        console.log(document.querySelector('body'))
+        
         this.moveToTop()
         this._seoService.updateTitle(event['title']);
         this._seoService.updateOgUrl(event['ogUrl']);
@@ -78,6 +79,14 @@ export class AppComponent {
       });
 
       this.authService.autoLogin();
+
+      this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+          return;
+        }
+  
+        window.scrollTo(0, 0);
+      });
   }
 
   ngAfterViewInit() {
@@ -121,18 +130,24 @@ export class AppComponent {
     }, 16);
   }
 
+  onDeactivate() {
+    document.body.scrollTop = 0;
+    // Alternatively, you can scroll to top by using this other call:
+    // window.scrollTo(0, 0)
+  }
+
   logout() {
    // this.authService.logout();
     this.router.navigate(['login']);
   }
 
   moveToTop() {
-    // const scrollToContainer = document.querySelector('.page-wrapper');
-    // scrollToContainer.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-    // if(window.innerWidth > 991 && scrollToContainer) {
+    const scrollToContainer = document.querySelector('.page-wrapper');
+    scrollToContainer.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    if(window.innerWidth > 991 && scrollToContainer) {
       
 
-    // }
+    }
     window.scrollTo(0, 0)
   }
 }

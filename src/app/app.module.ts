@@ -102,6 +102,7 @@ import { HowToBuyComponent } from './pages/how-to-buy/how-to-buy.component';
 import { HowToPayComponent } from './pages/how-to-pay/how-to-pay.component';
 import { HowToDeliveryComponent } from './pages/how-to-delivery/how-to-delivery.component';
 import { HowToReturnComponent } from './pages/how-to-return/how-to-return.component';
+import { routes } from './pages/admin/admin-routing.module';
 
 
 
@@ -181,14 +182,16 @@ import { HowToReturnComponent } from './pages/how-to-return/how-to-return.compon
       sharerMethod: SharerMethod.Window
     }),
     ShareIconsModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'top'
+    }),
     Ng2SearchPipeModule
   ],
   exports: [
     UserDirective,
     UserRoleDirective,
     ProductQuickViewComponent,
-    
+    RouterModule
   ],
   entryComponents: [ProductQuickViewComponent],
   providers: [
