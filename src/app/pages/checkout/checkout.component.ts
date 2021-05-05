@@ -176,20 +176,26 @@ export class CheckoutComponent implements OnInit {
   getAddresses(user) {
 
     this.http.get<any>(`https://pro-staff.ro/prostaff-api/v1/addresses/${user.id}`).subscribe(addresses => {
-      this.addresses = addresses.data;
-      this.selectedAddress = this.addresses[0];
-      this.http.post<any>(`https://pro-staff.ro/shipping/getTown.php`, { town: this.selectedAddress.town })
-
-        .subscribe(data => {
-          let townsJson = JSON.parse(data)
-          this.searchTowns = townsJson.sites[0];
-
-          this.http.post<any>(`https://pro-staff.ro/shipping/priceCalculation.php`, { weight: this.weight, site: this.searchTowns.id })
-            .subscribe(data => {
-              let deliveryPrice = JSON.parse(data)
-              this.delivery = deliveryPrice.calculations[0].price.total;
-            })
-        })
+      console.log(addresses)
+      if(addresses.data.length > 0) {
+        this.addresses = addresses.data;
+        this.selectedAddress = this.addresses[0];
+        
+        
+        this.http.post<any>(`https://pro-staff.ro/shipping/getTown.php`, { town: this.selectedAddress.town })
+  
+          .subscribe(data => {
+            let townsJson = JSON.parse(data)
+            this.searchTowns = townsJson.sites[0];
+  
+            this.http.post<any>(`https://pro-staff.ro/shipping/priceCalculation.php`, { weight: this.weight, site: this.searchTowns.id })
+              .subscribe(data => {
+                let deliveryPrice = JSON.parse(data)
+                this.delivery = deliveryPrice.calculations[0].price.total;
+              })
+          })
+      }
+      
     })
   }
 
@@ -248,10 +254,12 @@ export class CheckoutComponent implements OnInit {
     })
 
     if (this.isAuthentificated) {
+      console.log(this.selectedAddress)
       postVars['customer'] = {
         email: this.user.email,
         firstName: this.user.name,
         lastName: this.user.last_name,
+        phone: (this.selectedAddress ? this.selectedAddress.phone : formValue.phone)
       }
     } else {
       postVars['customer'] = {
