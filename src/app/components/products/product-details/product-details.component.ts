@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ProductService } from 'app/services/products.service';
@@ -71,10 +71,14 @@ export class ProductDetailsComponent implements OnInit {
     route: ActivatedRoute,
     private productService: ProductService,
     private modalService: ModalService,
-    private cartService: CartService
+    private cartService: CartService,
+    public _Router: Router,
   ) {
     this._httpClient = httpClient;
     this._route = route;
+    this._Router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
   }
 
   ngOnInit() {
