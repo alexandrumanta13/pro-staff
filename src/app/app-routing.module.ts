@@ -61,6 +61,15 @@ const routes: Routes = [
       dynamic: false
     }
   },
+  {
+    path: 'proiecte/exterior', component: ExteriorComponent,
+    data: {
+      title: 'Pro staff',
+      description: '',
+      ogUrl: '',
+      dynamic: false
+    }
+  },
 
   {
     path: 'despre-noi', component: AboutComponent,
