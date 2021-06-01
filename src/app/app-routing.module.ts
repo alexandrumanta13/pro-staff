@@ -37,15 +37,18 @@ import { HowToBuyComponent } from './pages/how-to-buy/how-to-buy.component';
 import { HowToPayComponent } from './pages/how-to-pay/how-to-pay.component';
 import { HowToDeliveryComponent } from './pages/how-to-delivery/how-to-delivery.component';
 import { HowToReturnComponent } from './pages/how-to-return/how-to-return.component';
+import { ReturnFormComponent } from './pages/return-form/return-form.component';
 
 
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
     data: {
-      title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      title: 'Magazin specializat vopseluri profesionale | PROSTAFF',
+      keyword: 'Magazin specializat vopseluri profesionale',
+      description: 'PROSTAFF - magazin online de vopseluri profesionale, vopsea lavabila, vopsea decorativa, aparate, scule de vopsit, cu showroom in Bucuresti si livrare in toata tara.',
+      ogUrl: 'your og url',
+      dynamic: false
     }
   },
 
@@ -53,8 +56,9 @@ const routes: Routes = [
     path: 'proiecte/interior', component: InterorComponent,
     data: {
       title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      description: '',
+      ogUrl: '',
+      dynamic: false
     }
   },
 
@@ -62,8 +66,9 @@ const routes: Routes = [
     path: 'despre-noi', component: AboutComponent,
     data: {
       title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      description: '',
+      ogUrl: '',
+      dynamic: false
     }
   },
 
@@ -71,8 +76,9 @@ const routes: Routes = [
     path: 'blog', component: BlogComponent,
     data: {
       title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      description: '',
+      ogUrl: '',
+      dynamic: false
     }
   },
 
@@ -80,8 +86,9 @@ const routes: Routes = [
     path: 'blog/:postSlug', component: BlogSingleComponent,
     data: {
       title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      description: '',
+      ogUrl: '',
+      dynamic: false
     }
   },
 
@@ -90,8 +97,9 @@ const routes: Routes = [
     path: 'blog/categorie/:categorySlug', component: BlogComponent,
     data: {
       title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      description: '',
+      ogUrl: '',
+      dynamic: false
     }
   },
 
@@ -99,8 +107,9 @@ const routes: Routes = [
     path: 'blog/arhiva/:data', component: BlogComponent,
     data: {
       title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      description: '',
+      ogUrl: '',
+      dynamic: false
     }
   },
 
@@ -109,17 +118,66 @@ const routes: Routes = [
     path: 'proiecte/exterior', component: ExteriorComponent,
     data: {
       title: 'Pro staff',
-      description: 'Description Meta Tag Content',
-      ogUrl: 'your og url'
+      description: '',
+      ogUrl: '',
+      dynamic: false
     }
   },
 
-  { path: 'produse', component: ProductsComponent },
-  { path: 'produs/:productName', component: ProductDetailsComponent },
-  { path: 'categorie/:categorySlug', component: CategoryComponent },
-  { path: 'produse/:categorySlug', component: ProductsComponent },
-  { path: 'produse/:categorySlug/:subcategorySlug', component: ProductsComponent },
-  { path: 'produse/:categorySlug/brand/:brandSlug', component: ProductsComponent },
+  {
+    path: 'produse', component: ProductsComponent,
+    data: {
+      title: 'Pro staff',
+      description: '',
+      ogUrl: '',
+      dynamic: false
+    }
+  },
+  {
+    path: 'produs/:productName', component: ProductDetailsComponent,
+    data: {
+      title: 'Pro staff',
+      description: '',
+      ogUrl: '',
+      dynamic: true
+    }
+  },
+  {
+    path: 'categorie/:categorySlug', component: CategoryComponent,
+    data: {
+      title: 'Pro staff',
+      description: '',
+      ogUrl: '',
+      dynamic: true
+    }
+  },
+  {
+    path: 'produse/:categorySlug', component: ProductsComponent,
+    data: {
+      title: 'Pro staff',
+      description: '',
+      ogUrl: '',
+      dynamic: true
+    }
+  },
+  {
+    path: 'produse/:categorySlug/:subcategorySlug', component: ProductsComponent,
+    data: {
+      title: 'Pro staff',
+      description: '',
+      ogUrl: '',
+      dynamic: true
+    }
+  },
+  {
+    path: 'produse/:categorySlug/brand/:brandSlug', component: ProductsComponent,
+    data: {
+      title: 'Pro staff',
+      description: '',
+      ogUrl: '',
+      dynamic: true
+    }
+  },
 
 
   { path: 'cos-cumparaturi', component: CartComponent },
@@ -129,7 +187,7 @@ const routes: Routes = [
   { path: 'confirmare-si-plata', component: ConfirmOrderComponent },
 
   {
-    path: 'setari-gdpr', component: GdprComponent,
+    path: 'gdpr-cookies', component: GdprComponent,
     data: {
       title: 'Setari GDPR',
       description: '',
@@ -176,6 +234,7 @@ const routes: Routes = [
   { path: 'modalitati-de-plata', component: HowToPayComponent },
   { path: 'livrarea-produselor', component: HowToDeliveryComponent },
   { path: 'politica-de-retur', component: HowToReturnComponent },
+  { path: 'formular-retur', component: ReturnFormComponent },
 
   { path: 'login', component: AuthComponent },
 

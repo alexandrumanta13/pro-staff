@@ -63,6 +63,9 @@ export class HeaderComponent implements OnInit {
       const body = (<HTMLElement>document.querySelector('body'));
       body.classList.remove('mmenu-active');
 
+      this.show = false;
+      this.results = false;
+
     });
 
     

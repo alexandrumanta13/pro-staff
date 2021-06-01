@@ -4,8 +4,10 @@ import { PaginationComponent } from '../pagination/pagination.component';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalService } from 'app/services';
 import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CategoryFilterComponent } from '../category-filter/category-filter.component';
+import { SEOServiceService } from '../../services/seoservice.service';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -41,7 +43,12 @@ export class ProductsComponent implements OnInit {
   loaded: boolean = false;
   private _route_brand: string;
 
-  constructor(httpClient: HttpClient, private route: ActivatedRoute, private modalService: ModalService, public router: Router) {
+  constructor(
+    httpClient: HttpClient, 
+    private route: ActivatedRoute, 
+    private modalService: ModalService, 
+    public router: Router,
+    private _seoService: SEOServiceService,) {
     this._httpClient = httpClient;
     this.onCategoryChanged = new BehaviorSubject({});
     this.inputForm = new FormGroup({
@@ -68,11 +75,26 @@ export class ProductsComponent implements OnInit {
         this.getCategory(this._route);
         this.getSubcategory();
       }
-     
-      
-
-
     });
+
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.route),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
+      filter((route) => route.outlet === 'primary'),
+      mergeMap((route) => route.data)
+    )
+      .subscribe((event) => {
+        if(!event['dynamic']) {
+          this._seoService.updateTitle(event['title']);
+          //Updating Description tag dynamically with title
+          this._seoService.updateDescription(event['title'] + event['description'])
+          this._seoService.updateKeywords(event['keywords'])
+        }
+      });
   }
 
   ngAfterViewInit() {

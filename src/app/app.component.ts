@@ -17,6 +17,7 @@ declare var $: any;
 export class AppComponent {
   currentUser: User;
   public cartProducts = [];
+  private _route: string;
   
 
 
@@ -43,6 +44,7 @@ export class AppComponent {
 
  
   ngOnInit() {
+    
    
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -55,12 +57,16 @@ export class AppComponent {
       mergeMap((route) => route.data)
     )
       .subscribe((event) => {
-        
+        console.log(event)
         this.moveToTop()
-        this._seoService.updateTitle(event['title']);
-        this._seoService.updateOgUrl(event['ogUrl']);
-        //Updating Description tag dynamically with title
-        this._seoService.updateDescription(event['title'] + event['description'])
+        if(!event['dynamic']) {
+          this._seoService.updateTitle(event['title']);
+          this._seoService.updateOgUrl(event['ogUrl']);
+          //Updating Description tag dynamically with title
+          this._seoService.updateDescription(event['title'] + event['description'])
+          this._seoService.updateKeywords(event['keywords'])
+        }
+        
 
         window.scrollTo(0, 0)
       });

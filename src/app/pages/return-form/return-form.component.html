@@ -1,0 +1,79 @@
+<main class="main">
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Formular Returnare Produse</h1>
+    </div><!-- End .container -->
+  </div><!-- End .page-header -->
+
+  <div class="container">
+
+    <p>Pentru a returna produsele vândute de noi completează formularul de mai jos.</p>
+    <p>Ce trebuie sa stii pentru ca procesul de retur sa decurga usor:</p>
+
+    <ul>
+      <li>Pentru a putea completa si trimite formularul de retur trebuie sa fii logat in contul de utilizator. Odata
+        logat vei putea vedea lista de produse pe care le-ai cumparat si inca pot fi returnate conform termenului de
+        retur.
+      </li>
+      <li>Daca vrei sa returnezi mai multe bucati din acelasi produs este suficient sa completezi un singur formular de
+        retur. Daca vrei sa returnezi mai multe produse, diferite, completeaza cate un formular pentru fiecare dintre
+        acestea.
+      </li>
+      <li>
+        Nu vom accepta spre retur produsele desigilate, produsele colorate la comanda sau produsele care audepasit
+        termenul maxim de 30 de zile de la data achizitionarii.
+
+      </li>
+    </ul>
+    <form (ngSubmit)="f.form.valid && submit(f)" #f="ngForm" novalidate>
+      <div class="form-group required-field">
+        <label for="contact-name">Nume</label>
+        <input type="text" class="form-control" id="contact-name" name="contact-name" [(ngModel)]="model.name"
+          #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid}" required minlength="3">
+        <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+          <div *ngIf="name.errors.required">Te rugam sa introduci numele!</div>
+          <div *ngIf="name.errors.minlength">Numele trebuie sa contina cel putin 3 litere!</div>
+        </div>
+      </div><!-- End .form-group -->
+
+      <div class="form-group required-field">
+        <label for="contact-email">Email</label>
+        <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+        <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">Te rugam sa introduci adresa de email!</div>
+          <div *ngIf="email.errors.email">Email-ul nu este valid</div>
+        </div>
+      </div><!-- End .form-group -->
+
+      <div class="form-group required-field">
+        <label for="contact-phone">Numar comanda</label>
+        <input type="text" class="form-control" id="contact-order" name="contact-order" [(ngModel)]="model.order"
+          #order="ngModel" [ngClass]="{ 'is-invalid': f.submitted && order.invalid}" required>
+        <div *ngIf="f.submitted && order.invalid" class="invalid-feedback">
+          <div *ngIf="order.errors.required">Te rugam sa introduci nr comenzii!</div>
+
+        </div>
+      </div><!-- End .form-group -->
+      <div class="form-group required-field">
+        <label for="contact-phone">Nume produs</label>
+        <input type="text" class="form-control" id="contact-product" name="contact-product" [(ngModel)]="model.product"
+          #product="ngModel" [ngClass]="{ 'is-invalid': f.submitted && product.invalid}" required minlength="3">
+        <div *ngIf="f.submitted && product.invalid" class="invalid-feedback">
+          <div *ngIf="product.errors.required">Te rugam sa introduci numele produsului!</div>
+          <div *ngIf="product.errors.minlength">Numele produsului trebuie sa contina cel putin 3 litere!</div>
+        </div>
+      </div><!-- End .form-group -->
+
+      <div class="form-group required-field">
+        <label for="contact-message">Motiv</label>
+        <textarea cols="30" rows="1" class="form-control" name="message" [(ngModel)]="model.message"></textarea>
+      </div><!-- End .form-group -->
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">Trimite</button>
+      </div><!-- End .form-footer -->
+    </form>
+  </div>
+</main>
