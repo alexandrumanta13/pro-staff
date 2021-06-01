@@ -62,6 +62,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 
 import { RangeSlideDirective } from './directives/range.directive';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { UniversalCookieConsentModule }  from 'universal-cookie-consent';
 
 // Import the library
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -163,7 +164,7 @@ import { ReturnFormComponent } from './pages/return-form/return-form.component';
     HowToDeliveryComponent,
     HowToReturnComponent,
     ReturnFormComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -187,7 +188,25 @@ import { ReturnFormComponent } from './pages/return-form/return-form.component';
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top'
     }),
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    UniversalCookieConsentModule.forRoot({
+      autoShow: true,
+      consentTypes: [
+          {
+              id: 'base',
+              title: 'Base Functionality',
+              description: 'These cookies are required for the functionality of this website and can\'t be disabled.',
+              mandatory: true
+          },
+          {
+              id: 'analytics',
+              title: 'Analytics',
+              description: 'We use these cookies to improve our website.',
+              color: 'orange'
+          }
+      ],
+      disableBodyScroll: true
+  })
   ],
   exports: [
     UserDirective,

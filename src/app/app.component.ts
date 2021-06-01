@@ -57,7 +57,7 @@ export class AppComponent {
       mergeMap((route) => route.data)
     )
       .subscribe((event) => {
-        console.log(event)
+        
         this.moveToTop()
         if(!event['dynamic']) {
           this._seoService.updateTitle(event['title']);

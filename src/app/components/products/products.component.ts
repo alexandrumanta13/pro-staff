@@ -44,9 +44,9 @@ export class ProductsComponent implements OnInit {
   private _route_brand: string;
 
   constructor(
-    httpClient: HttpClient, 
-    private route: ActivatedRoute, 
-    private modalService: ModalService, 
+    httpClient: HttpClient,
+    private route: ActivatedRoute,
+    private modalService: ModalService,
     public router: Router,
     private _seoService: SEOServiceService,) {
     this._httpClient = httpClient;
@@ -66,7 +66,9 @@ export class ProductsComponent implements OnInit {
       this._route = params.get('categorySlug');
       this._route_subcategory = params.get('subcategorySlug');
       this._route_brand = params.get('brandSlug');
-      console.log(this._route, this._route_subcategory, this._route_brand)
+
+
+
       if (this.router.url.includes('/brand')) {
         this.getProductsByBrand(this._route_brand)
       } else {
@@ -77,24 +79,9 @@ export class ProductsComponent implements OnInit {
       }
     });
 
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this.route),
-      map((route) => {
-        while (route.firstChild) route = route.firstChild;
-        return route;
-      }),
-      filter((route) => route.outlet === 'primary'),
-      mergeMap((route) => route.data)
-    )
-      .subscribe((event) => {
-        if(!event['dynamic']) {
-          this._seoService.updateTitle(event['title']);
-          //Updating Description tag dynamically with title
-          this._seoService.updateDescription(event['title'] + event['description'])
-          this._seoService.updateKeywords(event['keywords'])
-        }
-      });
+
+
+
   }
 
   ngAfterViewInit() {
@@ -111,7 +98,12 @@ export class ProductsComponent implements OnInit {
       .subscribe((response: any) => {
         this.loaded = true;
         this.category = response.data;
-        console.log(slug)
+        if (this._route_subcategory === null) {
+          this._seoService.updateTitle(this.category[0].title);
+          //Updating Description tag dynamically with title
+          this._seoService.updateDescription(this.category[0].meta)
+          this._seoService.updateKeywords(this.category[0].keywords)
+        }
         this.onCategoryChanged.next(response.data);
         this.items$ = this.onCategoryChanged.asObservable();
         this.items$.subscribe(data => {
@@ -126,7 +118,13 @@ export class ProductsComponent implements OnInit {
       this._httpClient.get('https://pro-staff.ro/prostaff-api/v1/subcategory/' + this._route_subcategory)
         .subscribe((response: any) => {
           this.subcategoryValue = response.data;
-          console.log(this.subcategoryValue)
+          if (this._route_subcategory.length > 0) {
+            this._seoService.updateTitle(this.subcategoryValue[0].title);
+            //Updating Description tag dynamically with title
+            this._seoService.updateDescription(this.subcategoryValue[0].meta)
+            this._seoService.updateKeywords(this.subcategoryValue[0].keywords)
+          }
+          
           resolve(response);
         }, reject);
 
@@ -254,12 +252,12 @@ export class ProductsComponent implements OnInit {
 
 
   moveToTop() {
-    
+
     const scrollToContainer = document.querySelector('.page-wrapper');
     console.log(scrollToContainer)
     scrollToContainer.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
     // if(window.innerWidth > 991 && scrollToContainer) {
-      
+
 
     // }
   }
