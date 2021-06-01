@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -62,7 +62,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 
 import { RangeSlideDirective } from './directives/range.directive';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
-import { UniversalCookieConsentModule }  from 'universal-cookie-consent';
+import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
 
 // Import the library
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -84,7 +84,7 @@ import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 import { SharerMethod } from 'ngx-sharebuttons';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-  
+
 
 import { BlogSidebarComponent } from './components/layout/blog-sidebar/blog-sidebar.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
@@ -105,6 +105,39 @@ import { HowToDeliveryComponent } from './pages/how-to-delivery/how-to-delivery.
 import { HowToReturnComponent } from './pages/how-to-return/how-to-return.component';
 import { routes } from './pages/admin/admin-routing.module';
 import { ReturnFormComponent } from './pages/return-form/return-form.component';
+
+
+
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: environment.cookieDomain
+  },
+  palette: {
+    "popup": {
+      "background": "#000000",
+      "text": "#ffffff",
+      "link": "#ffffff"
+    },
+    "button": {
+      "background": "#FFC107",
+      "text": "#000000",
+      "border": "transparent"
+    }
+  },
+  
+  "content": {
+    "message": "Acest site web folosește cookie-uri pentru a îmbunătăți experiența utilizatorului. Prin utilizarea site-ului nostru web, sunteți de acord cu Politica noastră privind cookie-urile.",
+    "dismiss": "Am inteles!",
+    "deny": "Refuse cookies",
+    "link": "Afla mai multe",
+    "href": "/gdpr-cookies",
+    "policy": "Cookie Policy"
+  },
+  theme: 'classic',
+  position: 'bottom',
+  type: 'info'
+};
 
 
 
@@ -131,7 +164,7 @@ import { ReturnFormComponent } from './pages/return-form/return-form.component';
     ProductDetailsComponent,
     CartComponent,
     AlertComponent,
-    LoginComponent,    
+    LoginComponent,
     UserDirective,
     UserRoleDirective,
     InterorComponent,
@@ -167,7 +200,7 @@ import { ReturnFormComponent } from './pages/return-form/return-form.component';
 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'ngx-cookieconsent-demo-id' }),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -189,24 +222,7 @@ import { ReturnFormComponent } from './pages/return-form/return-form.component';
       scrollPositionRestoration: 'top'
     }),
     Ng2SearchPipeModule,
-    UniversalCookieConsentModule.forRoot({
-      autoShow: true,
-      consentTypes: [
-          {
-              id: 'base',
-              title: 'Base Functionality',
-              description: 'These cookies are required for the functionality of this website and can\'t be disabled.',
-              mandatory: true
-          },
-          {
-              id: 'analytics',
-              title: 'Analytics',
-              description: 'We use these cookies to improve our website.',
-              color: 'orange'
-          }
-      ],
-      disableBodyScroll: true
-  })
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   exports: [
     UserDirective,

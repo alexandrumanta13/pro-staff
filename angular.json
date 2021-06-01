@@ -41,14 +41,15 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "src/assets/css/toaster.css",
+              "node_modules/cookieconsent/build/cookieconsent.min.css",
               "src/styles.scss"
             ],
             "scripts": [
               "src/assets/js/jquery.min.js",
               "src/assets/js/bootstrap.bundle.min.js",
               "src/assets/js/plugins.min.js",
-              "src/assets/js/main.js"
-
+              "src/assets/js/main.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
           
             ]
           },
