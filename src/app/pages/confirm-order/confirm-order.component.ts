@@ -127,7 +127,7 @@ export class ConfirmOrderComponent implements OnInit {
         if (items) {
           this.payment = items['payment'];
           this.order = items;
-          this.totalPrice$ = this.totalPrice$ + this.order['payment']['delivery']
+          // this.totalPrice$ = this.totalPrice$ + this.order['payment']['delivery']
           this.shippingAddress = items['customer']['shippingAddress'];
         } else {
           this.router.navigate(['/finalizeaza-comanda']);
