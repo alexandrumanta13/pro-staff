@@ -84,9 +84,12 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this._route.paramMap.subscribe(params => {
       this._productSlug = params.get('productName');
+      console.log(params.get('productName'))
     });
 
-    this.modalService.close('productQuickView')
+   
+
+    
 
     // this.productService.getProductDetails(this._productSlug)
     // .subscribe(data => {
