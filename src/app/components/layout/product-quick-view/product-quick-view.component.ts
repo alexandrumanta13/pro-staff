@@ -5,6 +5,7 @@ import { ProductService } from 'app/services/products.service';
 import { CartService } from 'app/services/cart.service';
 import { v4 as uuidv4 } from 'uuid';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -66,7 +67,8 @@ export class ProductQuickViewComponent implements OnInit {
     private modalService: ModalService,
     private el: ElementRef,
     private productService: ProductService,
-    private cartService: CartService) {
+    private cartService: CartService,
+    public router: Router,) {
     this._httpClient = httpClient;
     this.element = el.nativeElement;
   }
@@ -253,6 +255,12 @@ export class ProductQuickViewComponent implements OnInit {
   close(): void {
     this.element.style.display = 'none';
     document.body.classList.remove('modal-open');
+  }
+
+  goToProduct(alias) {
+    this.router.navigate(['/produs/'+alias]);
+    
+    
   }
 
 

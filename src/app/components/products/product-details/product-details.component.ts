@@ -86,6 +86,8 @@ export class ProductDetailsComponent implements OnInit {
       this._productSlug = params.get('productName');
     });
 
+    this.modalService.close('productQuickView')
+
     // this.productService.getProductDetails(this._productSlug)
     // .subscribe(data => {
     //   this.product = data;

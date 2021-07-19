@@ -100,7 +100,7 @@
 
           <div class="product-single-filter">
             <label>Culori:</label>
-            <a class="paction add-cart btn-colors" routerLink="/produs/{{product.alias}}">
+            <a class="paction add-cart btn-colors" (click)="close(); goToProduct(product.alias)">
               <img src="/assets/icons/painting.svg">
               <span>Alege culoarea</span>
             </a>
